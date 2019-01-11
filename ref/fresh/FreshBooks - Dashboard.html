@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://my.freshbooks.com/#/dashboard -->
+<html lang="en" class=" "><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FreshBooks - Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<script src="https://js-agent.newrelic.com/nr-spa-974.min.js"></script><script async="" src="./FreshBooks - Dashboard_files/friendbuy-classic.min.js.download"></script><script src="./FreshBooks - Dashboard_files/growsumo.min.js.download" type="text/javascript" async=""></script><script type="text/javascript" async="" src="./FreshBooks - Dashboard_files/heap-1642515617.js.download"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-MCH68J&amp;l=gtmDl"></script><script async="" src="https://www.fullstory.com/s/fs.js"></script><script async="" src="./FreshBooks - Dashboard_files/friendbuy.min.js.download"></script><script type="text/javascript" async="" src="./FreshBooks - Dashboard_files/recaptcha__en.js.download"></script><script async="" src="./FreshBooks - Dashboard_files/pendo.js.download"></script><script type="text/javascript">
+(function(apiKey){
+  (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
+    v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
+    o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+    y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';
+    z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+})('449ba727-1632-4333-780d-825cdee3f2d3');
+</script>
+
+<script type="text/javascript" src="./FreshBooks - Dashboard_files/api.js.download"></script>
+
+    <link rel="stylesheet" href="./FreshBooks - Dashboard_files/vendor-2d56747f2618cab1d7e12e9bfd5e2490.css">
+    <link rel="stylesheet" href="./FreshBooks - Dashboard_files/mui-a4d5fc1039eb8c54f4655c2d090e497a.css">
+
+    <link rel="icon" href="https://my.freshbooks.com/assets/favicon.ico?v=20150211" type="image/x-icon">
+
+    <link rel="preload" href="https://my.freshbooks.com/assets/fonts/font-awesome/fontawesome-webfont-af7ae505a9eed503f8b8e6982036873e.woff2?v=4.6.3" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="https://my.freshbooks.com/assets/fonts/freshbooks-icons/freshbooksicons-regular-webfont-61b1dc87c48bdf34bbed8791211f70db.woff?v=2.0.14" as="font" type="font/woff" crossorigin="">
+    <link rel="preload" href="https://my.freshbooks.com/assets/fonts/freshbooks-script/FreshBooksScriptWeb-Regular-65ebe5c537b79b4a0ccdefe923544ff9.woff" as="font" type="font/woff" crossorigin="">
+    <link rel="preload" href="https://my.freshbooks.com/assets/fonts/franklin-gothic-urw/FranklinGothicURW-Lig-5264fc55f4409cdbde5f84fb81ca0bac.woff2" as="font" type="font/woff" crossorigin="">
+    <link rel="preload" href="https://my.freshbooks.com/assets/fonts/franklin-gothic-urw/FranklinGothicURW-Boo-4db6fc342f18bf4f112be10a6f5bb9fd.woff2" as="font" type="font/woff" crossorigin="">
+    <link rel="preload" href="https://my.freshbooks.com/assets/fonts/franklin-gothic-urw/FranklinGothicURW-Med-8938e94849cfb215e7af66f140c07946.woff2" as="font" type="font/woff" crossorigin="">
+    <link rel="preload" href="https://my.freshbooks.com/assets/fonts/franklin-gothic-urw/FranklinGothicURW-Dem-3aa2a871323f376d41bd3d86154ec0c4.woff2" as="font" type="font/woff" crossorigin="">
+    <script>
+  window.friendbuy = window.friendbuy || [];
+  window.friendbuy.push(['site', 'site-8001bf3c-host']);
+  (function (f, r, n, d, b, y) {
+    b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.src = n;y.parentNode.insertBefore(b, y);
+  })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
+</script>
+
+
+  <style type="text/css">
+:root #content > #center > .dose > .dosesingle,
+:root #content > #right > .dose > .dosesingle
+{ display: none !important; }</style></head>
+  <body class="ember-application media-desktop is-chrome toolTip-open" style="">
+    
+
+    <div class="js-unsupported-browser" style="display: none">
+      <!--[if lte IE 9]>
+        </div><div>
+      <![endif]-->
+
+      <div style="position: fixed; z-index: 1000000; width: 100%; height: 100%; background-color: #0d83dd; text-align: center; font-size: 18px; line-height: 24px">
+        <img src="./FreshBooks - Dashboard_files/freshbooks-logo-white-with-green-leaf-160px-b2b0811471aa5bcbf6771b40af2146e2.png" style="margin: 25px" alt="FreshBooks Logo">
+        <div style="margin: auto; max-width: 674px">
+          <div style="background: white; border: 2px solid #cdd4d9; border-radius: 5px; padding: 30px">
+            <h2 style="font-size: 30px; line-height: 36px; color: #0d83dd; font-weight: 300">Please Upgrade Your Browser To<br>Continue Using FreshBooks</h2>
+            <div style="margin: 20px 0">FreshBooks uses the latest web technologies to deliver the best experience
+            for our customers. Unfortunately, the browser you're using doesn't support these
+            technologies. To continue, please download one of these browsers.</div>
+            <table cellspacing="0" cellpadding="0">
+              <tbody><tr>
+                <td style="width: 50%">
+                  <h4>We recommend</h4>
+                  <a href="https://www.google.com/chrome" style="display: block; margin: 10px 0 5px">
+                    <img src="./FreshBooks - Dashboard_files/chrome-b745fc465263f9010fe7bb6ee393306f.png" width="110" height="110" alt="Google Chrome">
+                  </a>
+                  <a href="https://www.google.com/chrome">Google Chrome</a>
+                </td>
+                <td style="width: 50%">
+                  <h4>We also support</h4>
+                  <div style="margin: 40px 0 25px; text-align: bottom">
+                    <a href="http://www.mozilla.org/en-US/firefox">
+                      <img src="./FreshBooks - Dashboard_files/firefox-8f96aa2991353f798ac1cbfe71244d87.png" width="64" height="64" alt="Firefox">
+                    </a>
+                    <a href="http://www.apple.com/safari">
+                      <img src="./FreshBooks - Dashboard_files/safari-d094d4cb273e9e1eaf83b4e8b953bf67.png" width="64" height="64" alt="Safari">
+                    </a>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                      <img src="./FreshBooks - Dashboard_files/ie-6499c7b3490123df95833737d769f34a.png" width="64" height="64" alt="Internet Explorer">
+                    </a>
+                  </div>
+                  <div>
+                    <a href="http://www.mozilla.org/en-US/firefox">Firefox</a>,
+                    <a href="http://www.apple.com/safari">Safari</a>,
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">Internet Explorer 11+</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      if (navigator.userAgent.match(/MSIE 10/)) {
+        document.querySelector('.js-unsupported-browser').style.display = '';
+      }
+
+      var head = document.getElementsByTagName('head')[0];
+
+      if (!navigator.userAgent.match(/Win/)) {
+        head.innerHTML += '<link rel="stylesheet" href="assets/non-windows-bf53f5cf64c2bedc5d16ed8711da3e7c.css" type="text/css" media="screen" />';
+      }
+    </script>
+
+    <script src="./FreshBooks - Dashboard_files/vendor-cc8f7766759501ca9a988db8d61a995b.js.download"></script>
+    <script src="./FreshBooks - Dashboard_files/mui-6000cae3b2c10cac4ea58e71215192db.js.download"></script>
+    <script src="./FreshBooks - Dashboard_files/geoip2.js.download" type="text/javascript"></script>
+    
+    <div id="ember-basic-dropdown-wormhole"></div>
+<script>
+window['_fs_debug'] = false;
+window['_fs_host'] = 'www.fullstory.com';
+window['_fs_org'] = 'z10';
+
+var fsInitialShow = false;
+
+function initFS() {
+  (function(m,n,e,t,l,o,g,y){
+      g=m[e]=function(a,b){g.q?g.q.push([a,b]):g._api(a,b);};g.q=[];
+      o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js';
+      y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+      g.identify=function(i,v){g(l,{uid:i});if(v)g(l,v)};g.setUserVars=function(v){FS(l,v)};
+      g.setSessionVars=function(v){FS('session',v)};g.setPageVars=function(v){FS('page',v)};
+    })(window,document,'FS','script','user');
+}
+
+function handleVisibilityChange() {
+  if (document.visibilityState === 'visible' && !fsInitialShow) {
+    fsInitialShow = true;
+    initFS();
+  }
+}
+
+if (document.addEventListener) {
+  document.addEventListener("visibilitychange", handleVisibilityChange, false);
+  handleVisibilityChange();
+} else {
+  initFS();
+}
+</script>
+
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','gtmDl','GTM-MCH68J');
+var gtmDl = gtmDl || [];
+</script>
+
+<script type="text/javascript">if (window.location.host === 'my.freshbooks.com' || window.location.host === 'my.rc.freshenv.com' || window.location.host === 'my.staging.freshenv.com') { window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])}; (function(heap, window) {var domainSettings = {"my.freshbooks.com": {apiKey: "1642515617"},"my.rc.freshenv.com": {apiKey: "3785472041"},"my.staging.freshenv.com": {apiKey: "3785472041"}};heap.load(domainSettings[window.location.host].apiKey); }(heap, window));}</script>
+<script src="https://cdn.optimizely.com/js/10802526514.js"></script>
+    <iframe id="zendesk-widget-iframe" src="javascript:false;" title="" role="presentation" style="display: none;" __idm_frm__="1012" src="./FreshBooks - Dashboard_files/saved_resource.html"></iframe>
+  
+
+<div id="modal-overlays"></div><div class="ember-view" id="ember3"><!---->
+<div class="app-root l-inflate has-navbar" style="padding-right: 0px;">
+  <div id="ember4" class="ember-view"><!----></div>
+  <!---->
+    <nav class="page-navigation
+    
+    
+    
+    
+    
+    
+  ">
+    <div class="navbar l-inflate u-hide--phone">
+  <div class="navbar-header">
+    <div id="ember112" class="l-inflate ember-view">    <div id="ember113" class="ember-view"><div id="ember114" class="navbar-userMenuTrigger ember-view"><div id="ember116" class="ember-basic-dropdown ember-view">    <div aria-owns="ember-basic-dropdown-content-ember116" tabindex="0" data-ebd-id="ember116-trigger" role="button" id="ember117" class="ember-basic-dropdown-trigger ember-basic-dropdown-trigger--in-place ember-view">    <i class="icon icon--bell navbar-notifications-toggle-icon" role="button" tabindex="0"></i>
+<!----></div>  <div id="ember-basic-dropdown-content-ember116" class="ember-basic-dropdown-content-placeholder" style="display: none;"></div>
+
+
+
+</div></div></div>
+
+<div id="ember119" class="navbar-userMenuTrigger is-closed  ember-view"><div id="ember121" class="ember-basic-dropdown ember-view">    <div aria-owns="ember-basic-dropdown-content-ember121" tabindex="0" data-ebd-id="ember121-trigger" role="button" id="ember122" class="ember-basic-dropdown-trigger ember-basic-dropdown-trigger--in-place ember-view">      <div class="navbar-link navbar-popover-toggle js-navbar-link">
+          <div id="ember124" class="navbar-avatar  initialsAvatar avatarColor-11 ember-view">  HP
+</div>
+          <span class="icon icon--chevronDown navbar-popover-toggle-icon"></span>
+
+        <div class="navbar-name">
+          Hamza
+        </div>
+        <div class="navbar-company js-navbar-company">
+          Hamza Pervaiz
+        </div>
+      </div>
+</div>  <div id="ember-basic-dropdown-content-ember121" class="ember-basic-dropdown-content-placeholder" style="display: none;"></div>
+
+
+
+</div></div></div>
+  </div>
+  <div class="navbar-menu-container">
+    <ul class="navbar-menu">
+
+        <li id="ember128" class="ember-view"><a data-link-to="link" href="https://my.freshbooks.com/#/dashboard?page=1&amp;q=" id="ember129" class="navbar-link active ember-view">    <span class="icon icon--dashboard navbar-menu-item-icon"></span>
+
+    <span class="navbar-menu-item-label">Dashboard</span>
+</a></li>
+        <li id="ember132" class="ember-view"><a data-link-to="link" href="https://my.freshbooks.com/#/invoices" id="ember133" class="navbar-link ember-view">    <span class="icon icon--invoices navbar-menu-item-icon"></span>
+
+    <span class="navbar-menu-item-label">Invoices</span>
+</a></li>
+        <li id="ember136" class="ember-view"><a data-link-to="link" href="https://my.freshbooks.com/#/estimates" id="ember137" class="navbar-link ember-view">    <span class="icon icon--estimates navbar-menu-item-icon"></span>
+
+    <span class="navbar-menu-item-label">Estimates</span>
+</a></li>
+        <li id="ember140" class="ember-view"><a data-link-to="link" href="https://my.freshbooks.com/#/clients" id="ember141" class="navbar-link ember-view">    <span class="icon icon--clients navbar-menu-item-icon"></span>
+
+    <span class="navbar-menu-item-label">Clients</span>
+</a></li>
+        <li id="ember144" class="ember-view"><a data-link-to="link" href="https://my.freshbooks.com/#/expenses" id="ember145" class="navbar-link ember-view">    <span class="icon icon--expenses navbar-menu-item-icon"></span>
+
+    <span class="navbar-menu-item-label">Expenses</span>
+</a></li>
+        <li id="ember148" class="ember-view"><a data-link-to="link" href="https://my.freshbooks.com/#/projects" id="ember149" class="navbar-link ember-view">    <span class="icon icon--projects navbar-menu-item-icon"></span>
+
+    <span class="navbar-menu-item-label">Projects</span>
+</a></li>
+        <li id="ember152" class="analytics-time-tracking-tab ember-view"><a data-link-to="link" href="https://my.freshbooks.com/#/time-tracking" id="ember153" class="navbar-link ember-view">    <span class="icon icon--timeTracking navbar-menu-item-icon"></span>
+
+    <span class="navbar-menu-item-label">Time Tracking</span>
+</a></li>
+
+<div id="ember155" class="navbar-moreSubMenuTrigger is-closed  ember-view"><div id="ember157" class="ember-basic-dropdown ember-view">    <div aria-owns="ember-basic-dropdown-content-ember157" tabindex="0" data-ebd-id="ember157-trigger" role="button" id="ember158" class="ember-basic-dropdown-trigger ember-basic-dropdown-trigger--in-place ember-view">            <li id="ember159" class="ember-view"><a data-link-to="link" href="https://my.freshbooks.com/#" id="ember160" class="navbar-link loading ember-view">    <span class="icon icon--ellipsisH navbar-menu-item-icon"></span>
+
+    <span class="navbar-menu-item-label">More</span>
+</a></li>
+</div>  <div id="ember-basic-dropdown-content-ember157" class="ember-basic-dropdown-content-placeholder" style="display: none;"></div>
+
+
+
+</div></div>    </ul>
+  </div>
+<!---->  <div class="navbar-footer">
+    <img src="./FreshBooks - Dashboard_files/freshbooks-logo-white-2eb8482914e95a386e0af5d8c0274e13.svg" width="90" height="47" alt="FreshBooks" class="u-opacity--50 navbar-logo--tabletPortrait">
+    <img src="./FreshBooks - Dashboard_files/freshbooks-leaf-white-d0afc713920f9165c52a465e8d172c7f.svg" width="25" height="23" alt="FreshBooks" class="u-opacity--50 navbar-logo--narrow">
+  </div>
+</div>
+
+  </nav>
+
+  <main class="l-inflate ">
+<!---->
+    <div class="
+      page-content-container
+      
+      
+    ">
+      <div id="ember163" class="ember-view"><div id="ember422" class="ember-view"><!----></div>
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!----></div>
+        <div id="ember165" class="ember-view"><!----></div>
+
+<!----><div id="ember166" class="is-sticky ember-view" style="height: 57px; margin-top: 0px; margin-bottom: 24px;">  <div class="pageHeading pageHeading--bordered pageHeading--sticky pageHeading--sticky" style="width: 1169px; position: fixed; top: 0px;">
+    <section class="page-content-primary grid-container">
+      <div class="u-skewer u-skewer--middle u-paddingY--quarter">
+        <div class="u-skewer-left">
+          <h1 class="u-skewer-item heading-2-no-margin js-header-dashboard">Dashboard</h1>
+        </div>
+        <div class="u-skewer-right">
+          <div class="u-skewer-item u-marginRight--half">
+              <div id="ember167" class="u-display--inlineBlock ember-view">  <div id="ember168" class="ember-view">  <div id="ember171" class="ember-view">  <div id="ember-basic-dropdown-content-ember170" class="ember-basic-dropdown-content-placeholder" style="display: none;"></div>
+</div>
+
+</div>
+
+  <div id="ember173" class="ember-view">  <div id="ember176" class="u-textAlign--left ember-view">  <div id="ember-basic-dropdown-content-ember175" class="ember-basic-dropdown-content-placeholder" style="display: none;"></div>
+</div>
+
+</div>
+<div id="ember178" class="js-invite-drop-target ember-view primaryValuePopover has-header popover--toggleable has-arrow popover-target composeEmailPopover js-popover-send-by-email"><div id="ember180" class="ember-basic-dropdown ember-view">    <div aria-owns="ember-basic-dropdown-content-ember180" tabindex="0" data-ebd-id="ember180-trigger" role="button" id="ember181" class="js-invite-trigger ember-basic-dropdown-trigger ember-basic-dropdown-trigger--in-place ember-view">    <div data-ebd-id="ember175-trigger">
+      <div data-ebd-id="ember170-trigger">
+<button aria-label="" id="ember182" class="button-popover js-button medium button-secondary ember-view" role="button" type="button"><!---->
+  
+          <span class="button-popover-text">
+            Invite
+          </span>
+          <span class="button-popover-icon"><span class="icon icon--chevronDown "></span>
+</span>
+
+
+<!----></button>      </div>
+    </div>
+</div>  <div id="ember-basic-dropdown-content-ember180" class="ember-basic-dropdown-content-placeholder" style="display: none;"></div>
+
+
+
+</div></div>
+<div id="ember185" class="ember-view"><div id="ember186" class="ember-view"><!----></div></div>
+<div id="ember187" class="ember-view"></div>
+  <div id="ember192" class="ember-view"><div id="ember193" class="ember-view"></div></div>
+
+<!---->
+<!---->
+<!---->
+<!---->
+<!----></div>
+          </div>
+          <div class="u-skewer-item">
+<div id="ember199" class="ember-view"><!----></div>
+              <div id="ember200" class="ember-view"><div id="ember201" class="ember-view">    
+<div id="ember204" class="ember-view">  <div id="ember-basic-dropdown-content-ember203" class="ember-basic-dropdown-content-placeholder" style="display: none;"></div>
+</div>
+
+</div>
+
+<div id="ember206" class="ember-view"><div id="ember208" class="ember-basic-dropdown ember-view">    <div aria-owns="ember-basic-dropdown-content-ember208" tabindex="0" data-ebd-id="ember208-trigger" role="button" id="ember210" class="ember-basic-dropdown-trigger u-display--inlineBlock ember-view">        <div data-ebd-id="ember203-trigger">
+<button aria-label="" id="ember211" class="medium button-popover js-create-new-trigger js-button medium button-primary ember-view" role="button" type="button"><!---->
+  
+        <span class="button-popover-text">Create New …</span>
+        <span class="button-popover-icon"><span class="icon icon--chevronDown "></span>
+</span>
+
+
+<!----></button>    </div>
+
+</div>  <div id="ember-basic-dropdown-content-ember208" class="ember-basic-dropdown-content-placeholder" style="display: none;"></div>
+
+
+
+</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div><section class="page-content-primary grid-container">
+
+    <div id="ember375" class="gettingStartedTiles-setupTilesDashboardContainer ember-view"><div class=" u-position--relative">
+  <div id="ember376" class="gettingStartedTiles-container ember-view">  <div class="gettingStartedTiles-containerHeader">
+    <div class="heading--2 color--blue u-paddingBottom--quarter js-gettingStartedTiles-containerTitle">Hey Hamza, Welcome to Your Account</div>
+      <div class="u-opacity--50 u-marginBottom--half js-gettingStartedTiles-containerSubtitle">Let us help you get started, it'll only take a minute.</div>
+  </div>
+<div class="gettingStartedTiles-containerTiles ">
+    <div class="gettingStartedTiles-containerTile">
+        <div id="ember378" class="ember-view"><div id="ember379" class="gettingStartedTiles-baseSetupTile ember-view"><div id="ember380" class="gettingStartedTiles-baseTile ember-view"><div class="gettingStartedTiles-baseTile-callToAction   analytics-setup-tiles--company-profile-tile-clicked" data-ember-action="" data-ember-action-381="381">
+  <div class="gettingStartedTiles-baseTileImage">
+    <div>
+        <div id="ember382" class="ember-view"><svg id="tile-complete-profile" width="70" height="70" opacity="1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="myMask" maskUnits="userSpaceOnUse" x="0" y="0" width="70" height="70">
+      <circle cx="35" cy="35" r="35" fill="white"></circle>
+    </mask>
+  </defs>
+  <circle cx="35" cy="35" r="35" fill="#68B5EB"></circle>
+  <g id="content" mask="url(#myMask)">
+    <g id="briefcase-shadow">
+      <path d="M55.0056152,47.3048378 C55.5526265,47.3458378 57.1619476,50.7668378 56.7454617,51.1248378 L50.5460002,56.4558378 C50.1305107,56.8128378 49.3413796,57.1058378 48.793372,57.1058378 L12.8002268,57.1058378 C12.2522191,57.1058378 11.5109142,56.7648378 11.1532146,56.3488378 L8.43410008,53.1898378 C8.07640051,52.7738378 8.13518679,52.1548378 8.56562193,51.8148378 L13.5833796,47.8488378 C14.0138148,47.5078378 14.8129096,47.2628378 15.3589245,47.3048378 L55.0056152,47.3048378 Z" id="Shadow" fill="#3093DF"></path>
+    </g>
+    <g id="briefcase" transform="translate(12.000000, 13.000000)">
+      <path d="M43.8985,38.3615 L4.7205,38.6465 C4.4815,38.6425 4.2455,38.5685 4.0115,38.4385 C2.7855,37.7885 1.6795,35.7675 1.6745,35.0855 L1.7505,10.9735 C1.7445,10.1645 2.3965,9.5005 3.2135,9.4945 C3.2135,9.4945 40.5595,9.0395 41.1735,9.0705 C41.9215,9.1075 42.0475,9.1875 42.5175,9.6275 C43.2395,10.3145 44.3595,11.6215 44.9665,12.3665 C45.1245,12.5525 45.2165,12.6695 45.2745,12.7995 C45.3545,12.9815 45.3695,13.1895 45.4045,13.6705 C45.7745,18.5785 45.3585,36.8795 45.3585,36.8795 C45.3685,37.6925 44.7115,38.3525 43.8985,38.3615" id="Fill-6" fill="#E6F4FF"></path>
+      <path d="M45.5323115,12.7359217 C45.5323115,13.4847153 4.1299,13.308 4.1299,13.308 L4.0119,38.439 C3.6809,38.263 2.5679,37.33 2.2649,37.043 C1.4089,36.231 0.8069,35.746 0.8069,35.148 L0.8819,10.163 C0.8759,9.354 1.5289,8.69 2.3459,8.685 C2.3459,8.685 39.6919,8.23 40.3059,8.26 C41.0539,8.298 41.3639,8.453 41.8329,8.893 C41.8329,8.893 43.2897133,10.1875145 43.8503628,10.697196 C44.4110124,11.2068774 45.5323115,11.987128 45.5323115,12.7359217 Z" id="Fill-8" fill="#CDE4F6"></path>
+      <path d="M16.604816,10.2609755 L16.6201381,10.6194865 L16.3505954,10.8563653 C16.2479595,10.9465637 16.088771,11.0603976 15.8772905,11.1705724 C15.076537,11.5877405 14.1581954,11.6173624 13.2923621,10.991995 C12.4544934,10.3868257 13.0188305,3.67372782 14.1880688,2.4322754 C15.7770125,0.742170705 18.2059818,0.536621235 25.9658994,0.86365757 C26.0763395,0.868287171 26.0763395,0.868287171 26.1868787,0.872921854 C26.9377634,0.904395355 27.3405701,0.9206998 27.7936088,0.93733623 C28.0856881,0.94806193 28.3596422,0.957339035 28.6244494,0.965382481 C29.4554347,0.991931532 30.2119625,1.35153052 30.818666,2.0148617 C31.6924988,2.9876585 32.1406862,4.5971064 32.3059829,6.66177164 C32.4106335,7.96892696 32.3880111,9.25674378 32.3073937,10.330169 L32.2784724,10.7152586 L31.9482129,10.9154065 C31.857428,10.9704251 31.7203258,11.0379443 31.5421074,11.1017865 C30.7289478,11.3930804 29.825462,11.3433919 28.9939193,10.716351 L28.6881668,10.484242 L28.6895048,10.1103164 C28.6910096,9.28922385 28.662614,8.14446968 28.5761941,7.0212244 C28.4892257,5.89084825 28.34077,4.99557728 28.1790452,4.57884293 C28.0285821,4.57376805 27.8742016,4.56832187 27.7146938,4.56247557 C27.2451936,4.54526743 26.8239454,4.52833467 26.0573541,4.49645995 L25.8138051,4.48632999 C25.6325713,4.478664 25.6325713,4.478664 25.4497682,4.47096409 C24.6142808,4.43584696 24.0513406,4.41400704 23.4782379,4.39570875 C19.7549394,4.27682957 17.4198009,4.44036642 16.8770887,4.87181873 C16.6852213,5.32862135 16.5051753,7.92956054 16.604816,10.2609755 Z" id="Path" fill="#FFFFFF"></path>
+      <polygon id="Fill-14" fill="#C3DEF4" points="4.08 29.7332624 23.9052995 25.6519285 45.538 29.7332624 45.538 14.6933594 4.08 15"></polygon>
+      <polygon id="Fill-14" fill="#FFFFFF" points="4.08 26.1212 45.538 26.1212 45.538 12.6933594 4.08 13"></polygon>
+      <rect id="Rectangle-3" fill="#ECC107" x="19" y="23" width="10" height="7" rx="1"></rect>
+    </g>
+  </g>
+</svg>
+</div>
+    </div>
+  </div>
+  <div class="gettingStartedTiles-baseTileTitle">Complete Company Profile</div>
+      <div class="gettingStartedTiles-baseTileSubtitle">
+      <span class="gettingStartedTiles-baseTileSubtitle-text">Your information is displayed on the invoices you send to clients.</span>
+    </div>
+  <div class="gettingStartedTiles-setupTiles-statusArea ">
+        <div class="gettingStartedTiles-setupTiles-complete ">
+          <span class="icon icon--check icon--standalone"></span>
+
+          All done
+        </div>
+  </div>
+
+</div>
+</div></div>
+</div>
+    </div>
+      <div class="u-position--relative">
+          <div class="gettingStartedTiles-setupTiles-progressBar">
+            <div class="gettingStartedTiles-setupTiles-progressBarFill gettingStartedTiles-setupTiles-progressBarFull"></div>
+          </div>
+      </div>
+    <div class="gettingStartedTiles-containerTile">
+        <div id="ember385" class="ember-view"><div id="ember386" class="gettingStartedTiles-baseSetupTile ember-view"><div id="ember387" class="gettingStartedTiles-baseTile ember-view"><div class="gettingStartedTiles-baseTile-callToAction gettingStartedTiles-baseTile--enabled js-setup-branding-tile-cta analytics-setup-tiles--customize-branding-tile-clicked" data-ember-action="" data-ember-action-388="388">
+  <div class="gettingStartedTiles-baseTileImage">
+    <div>
+        <div id="ember389" class="ember-view"><svg id="tile-customize-brand" width="70" height="70" opacity="1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="myMask" maskUnits="userSpaceOnUse" x="0" y="0" width="70" height="70">
+      <circle cx="35" cy="35" r="35" fill="white"></circle>
+    </mask>
+  </defs>
+  <circle cx="35" cy="35" r="35" fill="#F5DA66"></circle>
+  <g id="content" mask="url(#myMask)">
+    <g id="paper" transform="translate(19.000000, 11.000000)">
+      <polygon id="Fill-4" fill="#EDB81A" points="3 49 35 49 35 2 3 2"></polygon>
+      <polygon id="Fill-6" fill="#FFFFFF" points="0 46 32 46 32 0 0 0"></polygon>
+    </g>
+    <g id="details" transform="translate(24.000000, 15.000000)" fill="#F2CD33">
+      <polygon id="Stroke-7" fill-rule="nonzero" points="-0.0002 17.9999 21.9998 17.9999 21.9998 15.9999 -0.0002 15.9999"></polygon>
+      <polygon id="Stroke-8" fill-rule="nonzero" points="-0.0002 21.9999 21.9998 21.9999 21.9998 19.9999 -0.0002 19.9999"></polygon>
+      <rect id="Rectangle-4" x="0" y="0" width="11" height="10"></rect>
+    </g>
+    <g id="brush" transform="translate(31.000000, 17.000000)">
+      <path d="M22.6374069,41.8115621 L9.05398516,19.3838689 L4.02902632,11.1140488 C3.98719836,11.0471241 3.9510822,10.9804095 3.93469355,10.9398109 C3.85249239,10.7679357 3.80350998,10.5847227 3.78471827,10.3949258 C3.72105333,9.75453139 4.02777879,9.12528563 4.59155841,8.78096163 C5.3384764,8.3295476 6.30387092,8.51954253 6.81461908,9.20555447 C6.85365222,9.25591908 6.8831862,9.2969385 6.91590455,9.35082774 L12.0095579,17.7309047 L25.5283948,40.0549903 C26.0155487,40.8541417 25.7621012,41.8961553 24.9607004,42.3806384 C24.1619967,42.8638724 23.1238791,42.6102478 22.6374069,41.8115621 Z" id="Path" fill="#0D83DD"></path>
+      <path d="M0.99885,4.61175 C0.87285,2.41725 0.35235,0.87975 0.35235,0.87975 C1.81185,1.58625 3.01635,2.49525 4.14735,3.35475 C9.43035,7.37325 10.0332385,12.3632148 10.5987385,15.5867148 C9.27723854,17.4512148 7.65364005,17.2147506 7.65364005,17.2147506 C3.40564005,14.3137506 1.36185,10.94175 0.99885,4.61175 Z" id="Fill-31" fill="#F9439F"></path>
+      <path d="M6.0608034,13.3079293 C5.23481217,12.4819381 4.56441463,11.5176413 4.01503442,10.5034009 C3.46949603,9.48723964 3.02384494,8.4249765 2.69536936,7.32813698 C2.55130112,6.77491495 2.38802379,6.22937656 2.25740192,5.67423361 C2.17096098,5.10756521 2.05378548,4.55050136 2,3.98191204 C2.52056657,5.00191517 2.95085037,6.03728557 3.42339419,7.04960506 C3.91130529,8.05231999 4.36464001,9.06079766 4.90441568,10.0193317 C5.40769405,11.0009166 6.01085974,11.9133488 6.6466809,12.80273 C7.30363206,13.6652185 8.02973598,14.506577 9.0094,15.08285 C7.85109137,14.890759 6.87719008,14.1204742 6.0608034,13.3079293 Z" id="Fill-33" fill="#FFFFFF" transform="translate(5.504700, 9.532381) rotate(5.000000) translate(-5.504700, -9.532381) "></path>
+    </g>
+  </g>
+</svg>
+</div>
+    </div>
+  </div>
+  <div class="gettingStartedTiles-baseTileTitle">Customize Your Branding</div>
+      <div class="gettingStartedTiles-baseTileSubtitle">
+      <span class="gettingStartedTiles-baseTileSubtitle-text">Create and send professional-looking invoices. Your clients will be wowed.</span>
+    </div>
+  <div class="gettingStartedTiles-setupTiles-statusArea ">
+        <div class="gettingStartedTiles-setupTiles-button ">
+          <button aria-label="Let&#39;s do it" id="ember390" class="js-lets-do-it small button-utility ember-view" role="button" type="button"><!---->
+  Let's do it
+
+
+<!----></button>
+        </div>
+  </div>
+
+</div>
+</div></div>
+
+<!----></div>
+    </div>
+      <div class="u-position--relative">
+          <div class="gettingStartedTiles-setupTiles-progressBar">
+            <div class="gettingStartedTiles-setupTiles-progressBarFill "></div>
+          </div>
+      </div>
+    <div class="gettingStartedTiles-containerTile">
+        <div id="ember392" class="ember-view"><div id="ember393" class="gettingStartedTiles-baseSetupTile ember-view"><div id="ember394" class="gettingStartedTiles-baseTile ember-view"><div class="gettingStartedTiles-baseTile-callToAction u-disabled js-invoice-tile-cta analytics-setup-tiles--sample-invoice-tile-clicked" data-ember-action="" data-ember-action-395="395">
+  <div class="gettingStartedTiles-baseTileImage">
+    <div>
+        <div id="ember396" class="ember-view"><svg id="tile-test-invoice" opacity="1" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="tile-test-invoice-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="70" height="70">
+      <circle cx="35" cy="35" r="35" fill="white"></circle>
+    </mask>
+  </defs>
+  <circle cx="35" cy="35" r="35" fill="#FA8DB5"></circle>
+  <g id="content" mask="url(#tile-test-invoice-mask)">
+    <g id="stars" fill="#F9E699" transform="translate(4.000000, 4.000000)">
+      <polygon id="Fill-24" points="56.7724853 43.4742268 53.7217187 43.7788951 52.2433018 46.4645498 51.0107431 43.658008 48 43.0813437 50.2886875 41.0409649 49.9064228 38 52.5528708 39.5462118 55.3275573 38.2425911 54.6749301 41.2386317"></polygon>
+      <polygon id="Fill-30" points="3.72426957 22 6.3136518 24.005123 9.43273206 23.0093817 8.32559497 26.09133 10.2375093 28.7504293 6.96383908 28.6496427 5.02540193 31.2897971 4.10998673 28.1449519 1 27.1173831 3.7075981 25.274428"></polygon>
+      <polygon id="Fill-44" points="24.8334985 2 24.7266496 4.80838471 26.9810868 6.48841409 24.2772777 7.25605945 23.3755028 9.91818991 21.8106581 7.58342648 19 7.54932575 20.7368639 5.33884053 19.9002593 2.65473405 22.539656 3.62471042"></polygon>
+    </g>
+
+    <g id="triangles" fill="#0D83DD" transform="translate(18.000000, 5.000000)">
+      <polygon id="Fill-22" points="30.3145127 53.2233879 28.3685773 54.9816649 26.4219621 56.739942 25.807313 54.41801 25.191984 52.0953981 27.7532484 52.659733"></polygon>
+      <polygon id="Fill-28" points="5.42632273 14.624297 6.16940499 17.8716547 6.91185644 21.1196433 3.95655902 20.3626835 1 19.6050928 3.21347677 17.1146949"></polygon>
+      <polygon id="Fill-42" points="41.934694 22.3843654 44.403489 24.9918644 46.872284 27.6000433 43.7126887 28.5165775 40.5544533 29.4324318 41.2438937 25.9083986"></polygon>
+      <polygon id="Fill-46" points="27.7291565 1.26430515 25.6891497 3.89852543 23.6491429 6.53211492 22.359788 3.76605746 21.0710638 1 24.4004256 1.13246797"></polygon>
+    </g>
+
+    <g id="lines" fill="#FDD9E6" transform="translate(10.000000, 41.000000)">
+      <path d="M10.5692857,8.04469388 C10.9305102,7.54928571 11.2687755,7.0477551 11.602449,6.51102041 C11.8442857,6.12377551 11.9682653,5.89010204 11.9682653,5.89010204 L12.4641837,4.95846939 L11.5697959,5.51918367 C11.5697959,5.51918367 11.3453061,5.6594898 10.9764286,5.92785714 C10.460102,6.30234694 9.98408163,6.67479592 9.52336735,7.06408163 C8.33102041,8.03908163 6.87183673,9.42938776 5.51979592,10.8778571 C4.16367347,12.3339796 2.88,13.887551 1.99989796,15.1360204 C1.64071429,15.6283673 1.30346939,16.1304082 0.967755102,16.6702041 C0.726428571,17.0579592 0.60244898,17.2916327 0.60244898,17.2916327 L0.111122449,18.2171429 L0.999897959,17.6635714 C0.999897959,17.6635714 1.22540816,17.5227551 1.59428571,17.254898 C2.11163265,16.8809184 2.58816327,16.5084694 3.04938776,16.1191837 C4.23816327,15.1477551 5.69683673,13.7569388 7.05142857,12.3043878 C8.40142857,10.8523469 9.68459184,9.29826531 10.5692857,8.04469388" id="Fill-1"></path>
+      <path d="M13.5463265,13.7775 C13.2417347,13.9560714 12.8692857,14.2014796 12.4958163,14.4703571 C11.6238776,15.1019898 10.6203061,16.0040306 9.7422449,16.9458673 C8.86112245,17.8902551 8.03153061,18.9545408 7.46622449,19.8678061 C7.22336735,20.2591327 7.005,20.6494388 6.85091837,20.9637245 C6.70908163,21.2479082 6.6422449,21.422398 6.6422449,21.422398 L6.42285714,21.9984184 L6.98153061,21.7377041 C6.98153061,21.7377041 7.15091837,21.6586224 7.42234694,21.4984184 C7.72744898,21.3208673 8.10091837,21.0754592 8.47387755,20.8055612 C9.34581633,20.1754592 10.3488776,19.2729082 11.2269388,18.3290306 C12.1034694,17.3871939 12.9320408,16.3218878 13.5009184,15.4060714 C13.7427551,15.0162755 13.9616327,14.6269898 14.1172449,14.3111735 C14.2585714,14.0275 14.3259184,13.8535204 14.3259184,13.8535204 L14.5493878,13.2744388 L13.9871429,13.5377041 C13.9871429,13.5377041 13.8182653,13.6172959 13.5463265,13.7775" id="Fill-3"></path>
+      <path d="M1.04831633,8.58928571 C1.36260204,8.40153061 1.74882653,8.14183673 2.13556122,7.85765306 C3.03862245,7.19387755 4.0825,6.24744898 4.99933673,5.2622449 C5.91413265,4.27857143 6.78352041,3.16989796 7.38454082,2.22040816 C7.63607143,1.82193878 7.86821429,1.41887755 8.03760204,1.08622449 C8.18862245,0.793877551 8.26107143,0.613265306 8.26107143,0.613265306 L8.50647959,0 L7.91209184,0.28877551 C7.91209184,0.28877551 7.73760204,0.373469388 7.4580102,0.543877551 C7.14168367,0.734183673 6.75596939,0.994387755 6.37127551,1.27704082 C5.46464286,1.94489796 4.42076531,2.89030612 3.50647959,3.87142857 C2.58658163,4.85765306 1.71668367,5.96530612 1.1202551,6.91173469 C0.864642857,7.31581633 0.633010204,7.71989796 0.467704082,8.04693878 C0.316683673,8.33928571 0.244744898,8.51938776 0.244744898,8.51938776 L-0.000153061224,9.12959184 L0.592193878,8.84438776 C0.592193878,8.84438776 0.767704082,8.76020408 1.04831633,8.58928571" id="Fill-5"></path>
+      <path d="M24.0588265,11.1353061 C24.0588265,11.1353061 23.8986224,11.2026531 23.6430102,11.3434694 C23.3578061,11.4985714 23.0118878,11.7143878 22.6690306,11.9511224 C21.8634184,12.5082653 20.9470918,13.3143878 20.1562755,14.1638776 C19.3598469,15.0164286 18.6195408,15.9873469 18.1241327,16.8261224 C17.9129082,17.1842857 17.722602,17.545 17.5889286,17.8409184 C17.4659694,18.1072449 17.4103571,18.272551 17.4103571,18.272551 L17.1965816,18.9082653 L17.8159694,18.6506122 C17.8159694,18.6506122 17.9771939,18.5842857 18.2328061,18.4429592 C18.5195408,18.2883673 18.8654592,18.072551 19.2078061,17.8368367 C20.0103571,17.2822449 20.9266837,16.475102 21.7205612,15.6215306 C22.512398,14.7705102 23.2516837,13.800102 23.7506633,12.9572449 C23.9608673,12.6011224 24.1511735,12.2409184 24.2858673,11.9455102 C24.4093367,11.6781633 24.4654592,11.5133673 24.4654592,11.5133673 L24.6812755,10.8730612 L24.0588265,11.1353061 Z" id="Fill-8"></path>
+    </g>
+
+    <g id="plane" mask="url(#Mask)" transform="translate(15.000000, 13.000000)">
+      <path d="M38.83144,9.90258687 C38.4311289,10.9202619 30.7102467,29.0126502 28.4243973,34.3971651 C28.1073537,35.1476177 27.7206302,35.3047459 27.3325131,34.9096608 C27.2938408,34.8755176 27.260046,34.8305741 27.2210253,34.7831918 C26.7907518,34.2365529 24.6613338,31.2183677 24.6613338,31.2183677 C24.6613338,31.2183677 24.4839984,31.4315882 24.2000528,31.7754585 C23.0809935,33.1363071 20.280558,36.5251895 20.0154259,36.8359619 C19.9332036,36.9359525 19.8589945,36.9979677 19.7980246,37.0240976 C19.6119793,37.1042295 19.5186082,36.918881 19.4673934,36.7398036 C19.4374311,36.6324965 19.042346,34.7608942 18.617647,32.7460996 L18.4873455,32.1175869 L18.4430988,31.9099407 L18.3584377,31.4929065 L18.1068932,30.2850053 L18.0281549,29.909779 L17.5644351,27.6768863 C17.5644351,27.6768863 12.2530841,27.5012929 11.8618314,27.4622722 C11.4705788,27.4239482 11.2057951,27.1772814 11.859741,26.7393431 C16.9317416,23.34628 35.7623884,10.711919 37.8747348,9.33051482 C38.8715059,8.67656888 39.143606,9.1138103 38.83144,9.90258687" id="Fill-4" fill="#F76795" transform="translate(25.208308, 23.028069) rotate(-2.000000) translate(-25.208308, -23.028069) "></path>
+      <path d="M37.3886733,1.80462 C36.8524733,3.16775333 26.5106733,27.4017533 23.4488733,34.6140867 C23.0242067,35.6192867 22.5062067,35.8297533 21.98634,35.3005533 C21.93454,35.25482 21.8892733,35.19462 21.8370067,35.1311533 C21.2606733,34.3989533 18.4084067,30.35622 18.4084067,30.35622 C18.4084067,30.35622 18.1708733,30.64182 17.79054,31.10242 C16.2916067,32.92522 12.54054,37.4644867 12.1854067,37.8807533 C12.0752733,38.0146867 11.9758733,38.0977533 11.8942067,38.1327533 C11.6450067,38.2400867 11.51994,37.99182 11.45134,37.7519533 C11.4112067,37.60822 10.8820067,35.1012867 10.31314,32.4025533 L10.1386067,31.5606867 L10.07934,31.2825533 L9.96594,30.7239533 L9.62900667,29.10602 L9.52354,28.60342 L8.90240667,25.6125533 C8.90240667,25.6125533 1.78807333,25.3773533 1.26400667,25.3250867 C0.73994,25.2737533 0.385273333,24.9433533 1.26120667,24.3567533 C8.05494,19.8118867 33.2778067,2.88868667 36.1072067,1.03835333 C37.44234,0.16242 37.8068067,0.748086667 37.3886733,1.80462" id="Fill-4" fill="#FFFFFF"></path>
+      <path d="M36.5583333,1.52256667 C32.6542,6.0119 15.5256667,25.4961667 15.2914,25.7747667 C15.0212,26.1014333 14.8970667,26.4579667 14.6278,27.4538333 C14.5046,27.9102333 12.5492667,35.5514333 11.8940667,38.1325667 C11.6448667,38.2403667 11.5202667,37.9916333 11.4512,37.7522333 C11.4110667,37.6080333 10.8818667,35.1011 10.3134667,32.4028333 L10.1389333,31.5605 L10.0796667,31.2823667 L9.96626667,30.7237667 L9.62886667,29.1058333 L9.5234,28.6032333 L8.90226667,25.6123667 C8.90226667,25.6123667 36.2256,1.59536667 36.4360667,1.3961 C36.7123333,1.1203 37.1057333,0.890233333 36.5583333,1.52256667" id="Fill-6" fill="#FCB3CD"></path>
+      <path d="M18.4084533,30.35608 C18.4084533,30.35608 17.1325867,31.8629467 16.7522533,32.3240133 C16.7522533,32.3240133 15.8683867,29.0629467 15.6051867,28.1114133 C15.36112,27.2280133 15.1562533,26.7520133 15.33452,26.6115467 L15.3965867,26.5714133 C15.52632,26.52428 15.6560533,26.5891467 15.8053867,26.77628 C16.05272,27.0866133 16.28792,27.4128133 16.52172,27.7343467" id="Fill-8" fill="#FCB3CD" opacity="0.700000048"></path>
+    </g>
+  </g>
+</svg>
+</div>
+    </div>
+  </div>
+  <div class="gettingStartedTiles-baseTileTitle">Send a Test Invoice</div>
+      <div class="gettingStartedTiles-baseTileSubtitle">
+      <span class="gettingStartedTiles-baseTileSubtitle-text">Quickly preview what your client sees by sending yourself a sample.</span>
+    </div>
+  <div class="gettingStartedTiles-setupTiles-statusArea ">
+<!---->  </div>
+
+</div>
+</div></div>
+<!----></div>
+    </div>
+<!----></div>
+<!----><!----></div>
+<!----></div>
+</div>
+
+  <div class="u-skewer u-skewer--baseline">
+    <div class="u-skewer--left">
+      <h2 class="u-skewer-item heading-2-no-margin">Outstanding Revenue</h2>
+<!---->    </div>
+  </div>
+
+<div id="ember216" class="ember-view"><!----></div>  <div class="js-dashboard-onboarding">
+      <div id="ember350" class="u-position--relative ember-view"><div class="graph">
+  <svg width="938" height="128">
+    <g transform="translate(30, 30)">
+      <polygon class="barGraph--outstandingPlaceholder" transform="scale(0.9737024221453286, 1)" points="573.2,39.9 537.4,39.9 501.7,40.3 465.9,39 430.1,39.9 394.3,38.7 358.6,40.2
+        322.8,39.7 287,40 251.2,38 215.5,38.9 179.7,38.8 143.9,38.2 108.1,38 72.4,39.6 36.6,39.6 1,38.6 0,2 36.6,2.2 72.4,4.1
+          108.1,1.9 143.9,2.6 179.7,2.7 215.4,1.6 251.2,3.6 287,2 322.8,2.2 358.5,3.3 394.3,3.1 430.1,4 465.9,3.1 501.6,4.1 537.4,4
+            573.2,2 578.2,7.8 578.2,33.8 "></polygon>
+    </g>
+  </svg>
+
+  <div class="barGraph-legend">
+    <span class="barGraph-legendItem">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="10" id="ember351" class="barGraph--overduePlaceholder squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg>&nbsp;<svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="50" id="ember352" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg>
+    </span>
+    <span class="barGraph-legendItem">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="10" id="ember353" class="barGraph--outstandingPlaceholder squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg>&nbsp;<svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.6 12.8" height="14" width="70" id="ember354" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="135.1,10.5 90.1,11.8 45.1,10.6 0,11 0.1,2.8 45.1,2.6 90.1,4.1 135.6,2"></polygon>
+</svg>
+    </span>
+  </div>
+</div>
+  <div class="barGraph-onboardingFeature helpTip helpTip--transparent helpTip--downLeft">
+    see who owes you, and who's late to pay
+  </div>
+</div>
+  </div>
+
+<!---->
+  <div class="u-skewer u-skewer--baseline">
+    <div class="u-skewer--left">
+      <h2 class="u-skewer-item heading-2-no-margin">Total Profit</h2>
+<!---->    </div>
+  </div>
+    <div id="ember349" class="u-position--relative ember-view"><div class="graph">
+  <svg width="938" height="356.44">
+    <g transform="scale(1)">
+      <polygon transform="translate(30, 140)" class="lineGraph--profitPlaceholder" points="863.4,0 824.5,10.1 787.5,25.5 750.5,40.4 712.2,50.7 682,54.5 651.5,55 621.2,55
+        591.3,59.1 560.4,57.5 530.5,63.7 502.4,78.6 474.3,93.1 447.9,108.9 407.4,103 367.2,87.8 330,108.4 294.1,129.4 259.9,119.5
+        224.6,117.8 185.5,123.7 145.8,129.2 110.7,141.5 76.3,155.9 38.6,164.2 0,170.1 0.5,182.4 36.9,178 72.7,177 108.6,177
+        144.5,183.1 180.4,177.1 216.3,177 252.2,182.4 288.1,180.2 324,180.5 359.9,177.9 395.8,182 431.7,180.4 467.6,181.2 503.5,182.5
+        539.4,180.1 575.3,182.8 611.2,176.9 647.1,179.5 683,179.7 718.9,183.1 754.8,179.8 790.7,182.9 826.6,183.3 862.7,180.4
+        860.4,144.1 860.2,108.1 864.2,72.2 862.9,36.1 "></polygon>
+    </g>
+  </svg>
+</div>
+  <div class="lineGraph-onboardingFeature helpTip helpTip--transparent helpTip--upRightLarge">
+    watch your profit grow
+  </div>
+</div>
+
+  <div class="u-skewer u-skewer--baseline">
+    <div class="u-skewer--left">
+      <h2 class="u-skewer-item heading-2-no-margin">Revenue Streams</h2>
+<!---->    </div>
+  </div>
+    <div id="ember397" class="u-position--relative ember-view"><div class="ringGraph">
+  <svg width="180px" height="173px">
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-a" d="M176.3 83c0-11.4 1.1-22.9-3-32.8-4.2-10.3-11.9-19-19.6-26.7-7.7-7.7-18.2-11.1-28.5-15.4C115.3 4 105.5 0 94.2 0l-5 18.4c12.5 0 23.2 3.8 33.4 9.7 10.5 6.1 22.2 11.8 28.2 22.3 5.9 10.1 10.3 23 10.3 35.6 0 12-3.3 24.7-8.7 34.7l17.5 3.6c2.1-2.3 3.9-4.9 5.1-7.8 4.1-10 1.3-22.1 1.3-33.5z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-b" d="M147.3 126.4c-6.1 10.2-19.1 14.4-29.4 20.4-10.2 5.9-20.2 13.3-32.8 13.3-8.4 0-17.1-.9-25-3.2l-4.8 14c9.2 2.6 19.6 1.1 29.8 1.1 11.4 0 21.1-2.8 31-6.9 10.3-4.2 18.5-10 26.2-17.7 5.1-5.1 11.7-9.3 17-14.5l-12-6.5z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-c" d="M49.2 152.2c-10.5-6.1-16.8-17.8-22.9-28.2-4.8-8.2-8.7-17.2-10.1-26.9l-16 1.7c.5 8.6 1.9 17 4.9 24.4 4.2 10.3 11.8 19.6 19.5 27.3 7.7 7.7 17.2 15 27.5 19.2.4.2.9.3 1.3.5l4.8-14c-3.1-1.1-6.2-2.4-9-4z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-d" d="M27.7 27.4c-.9.7-1.8 1.5-2.7 2.4C17.3 37.6 12.1 47.7 7.9 58 3.8 67.9 0 78.6 0 90c0 2.2 0 4.5.1 6.7L16 95c-.2-1.7-.2-3.3-.2-5 0-12.5 4.8-23.8 10.6-33.9 3.5-6 7.9-10.9 13-15.1L27.7 27.4z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-e" d="M54.1 15c-8.5 3.5-17.6 6.1-24.8 11.3L41 39.7c3.4-2.6 7.1-5 11-7.3 9.6-5.6 19.5-9.5 31.2-9.9V7c-10.6.5-19.8 4.1-29.1 8z"></path>
+  </svg>
+  <div class="ringGraph-legendPlaceholder">
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="15" id="ember398" class="ringGraph-placeholder ringGraph-placeholder--sector-a squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="158" id="ember399" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg>
+      </span>
+    </div>
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.6 12.8" height="14" width="15" id="ember400" class="ringGraph-placeholder ringGraph-placeholder--sector-b squigglyLine ember-view"><polygon points="135.1,10.5 90.1,11.8 45.1,10.6 0,11 0.1,2.8 45.1,2.6 90.1,4.1 135.6,2"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.8 12.8" height="14" width="168" id="ember401" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="279.7,10.5 168.7,10.6 93.5,10.6 47,10.8 0.8,8.3 0,0 90.1,1 186.7,2 233.1,0.9 279.8,1.9"></polygon>
+</svg>
+      </span>
+    </div>
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="15" id="ember402" class="ringGraph-placeholder ringGraph-placeholder--sector-c squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.6 12.8" height="14" width="196" id="ember403" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="135.1,10.5 90.1,11.8 45.1,10.6 0,11 0.1,2.8 45.1,2.6 90.1,4.1 135.6,2"></polygon>
+</svg>
+      </span>
+    </div>
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="15" id="ember404" class="ringGraph-placeholder ringGraph-placeholder--sector-d squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.6 12.8" height="14" width="168" id="ember405" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="135.1,10.5 90.1,11.8 45.1,10.6 0,11 0.1,2.8 45.1,2.6 90.1,4.1 135.6,2"></polygon>
+</svg>
+      </span>
+    </div>
+  </div>
+</div>
+  <div class="ringGraph-onboardingFeature helpTip helpTip--transparent helpTip--leftSquiggly">
+    see where your money's coming from
+  </div>
+</div>
+
+  <div class="u-skewer u-skewer--baseline">
+    <div class="u-skewer--left">
+      <h2 class="u-skewer-item heading-2-no-margin">Spending</h2>
+<!---->    </div>
+  </div>
+    <div id="ember433" class="u-position--relative ember-view"><div class="ringGraph">
+  <svg width="180px" height="173px">
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-a" d="M30.316 125.54c-4.696-7.923-4.35-16.54-5.663-25.949l-19.985 2.9c.484 8.252 3.418 15.635 5.918 23.049 3.789 11.229 9.629 19.77 17.264 27.23 7.634 7.46 21.928 16.473 32.058 20.57.415.173.987-3.403 1.411-3.258l4.745-13.456c-3.137-1.022-6.126-2.295-8.877-3.855-10.33-5.852-20.884-17.15-26.871-27.231z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-b" d="M16.17 45.933c-.91.707-2.838 3.519-7.042 13.338-4.066 9.476-7.795 19.714-7.795 30.604 0 2.123.04 4.264.129 6.415l15.717-1.596a48.57 48.57 0 0 1-.247-4.83c0-11.998 4.697-22.715 10.514-32.42 2.635-4.389 1.396-3.403 2.573-4.34L16.17 45.932z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-c" d="M17.566 43.109l12.375 6.755c3.366-2.557 18.384-14.31 22.226-16.482 9.513-5.366 19.334-9.207 30.887-9.592V8.89c-10.434.395-19.542 3.907-28.779 7.642-4.547 1.838-16.565 8.451-24.334 14.514-3.285 2.563-6.562 5.639-8.415 7.72-1.867 2.095-2.306 3.19-3.96 4.343z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-d" d="M165.482 49.628c-3.922-9.227-10.934-17.096-18.075-24.048-4.761-4.64-13.524-9.251-26.288-13.832-16.146-4.54-27.721-6.81-34.727-6.81V19.49c11.579 0 29.855 8.15 32.292 10.29 2.435 2.14 20.455 10.612 26.048 20.02 2.948-.504 13.288.621 17.716 0 1.292-.183 3.396.677 3.034-.172z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-e" d="M155.486 58.217c-1.837 2.959 2.534 13.393 2.98 24.083.45 10.82-5.017 23.874-8.063 35.162-3.92 14.553-20.25 25.88-24.288 28.149-10.09 5.665-20.069 12.784-32.54 12.784-8.36 0-16.999-.847-24.823-3.112l-4.776 13.459c9.105 2.523 19.48 1.04 29.6 1.04 11.309 0 20.991-2.698 30.822-6.657 10.197-4.094 18.32-9.614 26.004-17.06 1.744-1.696 14.428-9.645 18.49-22.342 4.468-13.968 6.64-32.854 6.95-46.24.214-9.199-3.365-17.938-1.986-19.266h-18.37z"></path>
+  </svg>
+  <div class="ringGraph-legendPlaceholder">
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.8 12.8" height="14" width="15" id="ember434" class="ringGraph-placeholder ringGraph-placeholder--sector-a squigglyLine ember-view"><polygon points="279.7,10.5 168.7,10.6 93.5,10.6 47,10.8 0.8,8.3 0,0 90.1,1 186.7,2 233.1,0.9 279.8,1.9"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="176" id="ember435" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg>
+      </span>
+    </div>
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="15" id="ember436" class="ringGraph-placeholder ringGraph-placeholder--sector-b squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.8 12.8" height="14" width="170" id="ember437" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="279.7,10.5 168.7,10.6 93.5,10.6 47,10.8 0.8,8.3 0,0 90.1,1 186.7,2 233.1,0.9 279.8,1.9"></polygon>
+</svg>
+      </span>
+    </div>
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="15" id="ember438" class="ringGraph-placeholder ringGraph-placeholder--sector-c squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="179" id="ember439" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg>
+      </span>
+    </div>
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.8 12.8" height="14" width="15" id="ember440" class="ringGraph-placeholder ringGraph-placeholder--sector-d squigglyLine ember-view"><polygon points="279.7,10.5 168.7,10.6 93.5,10.6 47,10.8 0.8,8.3 0,0 90.1,1 186.7,2 233.1,0.9 279.8,1.9"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.6 12.8" height="14" width="199" id="ember441" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="135.1,10.5 90.1,11.8 45.1,10.6 0,11 0.1,2.8 45.1,2.6 90.1,4.1 135.6,2"></polygon>
+</svg>
+      </span>
+    </div>
+  </div>
+</div>
+  <div class="ringGraph-onboardingFeature helpTip helpTip--transparent helpTip--leftSquiggly">
+    see where your money's going
+  </div>
+</div>
+
+  <div id="ember239" class="js-widget-unbilled-time ember-view"><div class="u-skewer u-skewer--baseline">
+  <div class="u-skewer--left">
+    <h2 class="u-skewer-item heading-2-no-margin">Unbilled Time</h2>
+    <div class="u-skewer-item u-marginLeft--half u-opacity--50 unbilled-time-date-range">
+<!---->    </div>
+  </div>
+</div>
+
+    <div id="ember363" class="u-position--relative ember-view"><div class="ringGraph">
+  <svg width="180px" height="173px">
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-a" d="M176.3 83c0-11.4 1.1-22.9-3-32.8-4.2-10.3-11.9-19-19.6-26.7-7.7-7.7-18.2-11.1-28.5-15.4C115.3 4 105.5 0 94.2 0l-5 18.4c12.5 0 23.2 3.8 33.4 9.7 10.5 6.1 22.2 11.8 28.2 22.3 5.9 10.1 10.3 23 10.3 35.6 0 12-3.3 24.7-8.7 34.7l17.5 3.6c2.1-2.3 3.9-4.9 5.1-7.8 4.1-10 1.3-22.1 1.3-33.5z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-b" d="M147.3 126.4c-6.1 10.2-19.1 14.4-29.4 20.4-10.2 5.9-20.2 13.3-32.8 13.3-8.4 0-17.1-.9-25-3.2l-4.8 14c9.2 2.6 19.6 1.1 29.8 1.1 11.4 0 21.1-2.8 31-6.9 10.3-4.2 18.5-10 26.2-17.7 5.1-5.1 11.7-9.3 17-14.5l-12-6.5z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-c" d="M49.2 152.2c-10.5-6.1-16.8-17.8-22.9-28.2-4.8-8.2-8.7-17.2-10.1-26.9l-16 1.7c.5 8.6 1.9 17 4.9 24.4 4.2 10.3 11.8 19.6 19.5 27.3 7.7 7.7 17.2 15 27.5 19.2.4.2.9.3 1.3.5l4.8-14c-3.1-1.1-6.2-2.4-9-4z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-d" d="M27.7 27.4c-.9.7-1.8 1.5-2.7 2.4C17.3 37.6 12.1 47.7 7.9 58 3.8 67.9 0 78.6 0 90c0 2.2 0 4.5.1 6.7L16 95c-.2-1.7-.2-3.3-.2-5 0-12.5 4.8-23.8 10.6-33.9 3.5-6 7.9-10.9 13-15.1L27.7 27.4z"></path>
+      <path class="ringGraph-placeholder ringGraph-placeholder--sector-e" d="M54.1 15c-8.5 3.5-17.6 6.1-24.8 11.3L41 39.7c3.4-2.6 7.1-5 11-7.3 9.6-5.6 19.5-9.5 31.2-9.9V7c-10.6.5-19.8 4.1-29.1 8z"></path>
+  </svg>
+  <div class="ringGraph-legendPlaceholder">
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.6 12.8" height="14" width="15" id="ember364" class="ringGraph-placeholder ringGraph-placeholder--sector-a squigglyLine ember-view"><polygon points="135.1,10.5 90.1,11.8 45.1,10.6 0,11 0.1,2.8 45.1,2.6 90.1,4.1 135.6,2"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.8 12.8" height="14" width="156" id="ember365" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="279.7,10.5 168.7,10.6 93.5,10.6 47,10.8 0.8,8.3 0,0 90.1,1 186.7,2 233.1,0.9 279.8,1.9"></polygon>
+</svg>
+      </span>
+    </div>
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="15" id="ember366" class="ringGraph-placeholder ringGraph-placeholder--sector-b squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.6 12.8" height="14" width="173" id="ember367" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="135.1,10.5 90.1,11.8 45.1,10.6 0,11 0.1,2.8 45.1,2.6 90.1,4.1 135.6,2"></polygon>
+</svg>
+      </span>
+    </div>
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.8 12.8" height="14" width="15" id="ember368" class="ringGraph-placeholder ringGraph-placeholder--sector-c squigglyLine ember-view"><polygon points="279.7,10.5 168.7,10.6 93.5,10.6 47,10.8 0.8,8.3 0,0 90.1,1 186.7,2 233.1,0.9 279.8,1.9"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="188" id="ember369" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg>
+      </span>
+    </div>
+    <div class="ringGraph-legendEntry">
+      <svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="15" id="ember370" class="ringGraph-placeholder ringGraph-placeholder--sector-d squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg><span class="ringGraph-legendLabel"><svg preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.3 12.5" height="14" width="170" id="ember371" class="barGraph-legendPlaceholder squigglyLine ember-view"><polygon points="60.2,8.9 17.9,12.5 0,11.2 0.3,1.2 33.7,0 60.3,0.8"></polygon>
+</svg>
+      </span>
+    </div>
+  </div>
+</div>
+  <div class="ringGraph-onboardingFeature helpTip helpTip--transparent helpTip--leftSquiggly">
+    easily keep track of time that<br>needs to be billed
+  </div>
+</div>
+</div>
+
+<!---->  <!-- Reports -->
+  <div class="u-position--relative">
+    <h2 class="u-skewer-item heading-2-no-margin">Advanced Reports</h2>
+
+<div id="ember248" class="ember-view"><!----></div>
+    <div class="js-reports-section">
+      <div class="dashboard-reportList js-report-list">
+        <div id="ember249" class="u-skewer-item u-paddingLeft--0 u-marginLeft--half u-marginBottom--half ember-view"><span id="ember250" class="u-textAlign--center ember-view"></span>
+<a data-link-to="link" href="https://my.freshbooks.com/#/reports/profit-loss" id="ember252" class="entity-card entity-card-report js-report-pnl ember-view has-arrow toolTip-target">    <div class="entity-card-face">
+      <div class="u-paddingTop--1 u-paddingX--1">
+        <img class="entity-card-report-icon" src="./FreshBooks - Dashboard_files/profit-and-loss-icon-d78187a975cad1c4a4e63cc0a59a3af1.svg">
+        <img class="entity-card-report-lines" src="./FreshBooks - Dashboard_files/report-lines-741f4f7ae307baa7aca455b8648c8ac2.svg">
+      </div>
+      <div class="u-paddingBottom--1 entity-card-primary-data">
+        Profit<br>&amp; Loss
+      </div>
+    </div>
+</a></div>
+
+        <div id="ember253" class="u-skewer-item u-paddingLeft--0 u-marginLeft--half u-marginBottom--half ember-view"><span id="ember254" class="u-textAlign--center ember-view"></span>
+<a data-link-to="link" href="https://my.freshbooks.com/#/reports/tax-summary" id="ember256" class="entity-card entity-card-report js-tax-summary-report ember-view has-arrow toolTip-target toolTip-enabled toolTip-abutted toolTip-abutted-top toolTip-out-of-bounds toolTip-out-of-bounds-bottom has-arrow-bottom has-arrow-center is-at-top is-at-center">    <div class="entity-card-face">
+      <div class="u-paddingTop--1 u-paddingX--1">
+        <img class="entity-card-report-icon" src="./FreshBooks - Dashboard_files/tax-summary-icon-36dcd23bf60f8424232627608b77bab2.svg">
+        <img class="entity-card-report-lines" src="./FreshBooks - Dashboard_files/report-lines-741f4f7ae307baa7aca455b8648c8ac2.svg">
+      </div>
+      <div class="u-paddingBottom--1 entity-card-primary-data">
+        Sales Tax<br>Summary
+      </div>
+    </div>
+</a></div>
+
+        <div id="ember257" class="u-skewer-item u-paddingLeft--0 u-marginLeft--half u-marginBottom--half ember-view"><span id="ember258" class="u-textAlign--center ember-view"></span>
+<a data-link-to="link" href="https://my.freshbooks.com/#/reports/accounts-aging" id="ember260" class="entity-card entity-card-report js-accounts-aging-report ember-view has-arrow toolTip-target">    <div class="entity-card-face">
+      <div class="u-paddingTop--1 u-paddingX--1">
+        <img class="entity-card-report-icon" src="./FreshBooks - Dashboard_files/accounts-aging-icon-5654db26e72a7cfac087b71ae144d915.svg">
+        <img class="entity-card-report-lines" src="./FreshBooks - Dashboard_files/report-lines-741f4f7ae307baa7aca455b8648c8ac2.svg">
+      </div>
+      <div class="u-paddingBottom--1 entity-card-primary-data">
+        Accounts<br>Aging
+      </div>
+    </div>
+</a></div>
+
+        <div id="ember261" class="u-skewer-item u-paddingLeft--0 u-marginLeft--half u-marginBottom--half ember-view"><span id="ember262" class="u-textAlign--center ember-view"></span>
+<a data-link-to="link" href="https://my.freshbooks.com/#/reports/invoice-details" id="ember264" class="entity-card entity-card-report js-invoice-details-report ember-view has-arrow toolTip-target">    <div class="entity-card-face">
+      <div class="u-paddingTop--1 u-paddingX--1">
+        <img class="entity-card-report-icon" src="./FreshBooks - Dashboard_files/invoice-details-icon-823cfbf00f3f3ab7dc69d838a75a33d4.svg">
+        <img class="entity-card-report-lines" src="./FreshBooks - Dashboard_files/report-lines-741f4f7ae307baa7aca455b8648c8ac2.svg">
+      </div>
+      <div class="u-paddingBottom--1 entity-card-primary-data">
+        Invoice<br>Details
+      </div>
+    </div>
+</a></div>
+
+        <div id="ember265" class="u-skewer-item u-paddingLeft--0 u-marginLeft--half u-marginBottom--half ember-view"><span id="ember266" class="u-textAlign--center ember-view"></span>
+<a data-link-to="link" href="https://my.freshbooks.com/#/reports/expense-report" id="ember268" class="entity-card entity-card-report js-expense-report ember-view has-arrow toolTip-target">    <div class="entity-card-face">
+      <div class="u-paddingTop--1 u-paddingX--1">
+        <img class="entity-card-report-icon" src="./FreshBooks - Dashboard_files/expense-details-icon-ebeb4470742cc4cb6f053c606f878390.svg">
+        <img class="entity-card-report-lines" src="./FreshBooks - Dashboard_files/report-lines-741f4f7ae307baa7aca455b8648c8ac2.svg">
+      </div>
+      <div class="u-paddingBottom--1 entity-card-primary-data">
+        Expense<br>Report
+      </div>
+    </div>
+</a></div>
+
+        <div id="ember269" class="u-skewer-item u-paddingLeft--0 u-marginLeft--half u-marginBottom--half ember-view"><span id="ember270" class="u-textAlign--center ember-view"></span>
+<a data-link-to="link" href="https://my.freshbooks.com/#/reports/time-entry-details" id="ember272" class="entity-card entity-card-report js-time-entry-details-report ember-view has-arrow toolTip-target">    <div class="entity-card-face">
+      <div class="u-paddingTop--1 u-paddingX--1">
+        <img class="entity-card-report-icon" src="./FreshBooks - Dashboard_files/time-entry-details-icon-b5f775253b5366ce689e932eaa263d74.svg">
+        <img class="entity-card-report-lines" src="./FreshBooks - Dashboard_files/report-lines-741f4f7ae307baa7aca455b8648c8ac2.svg">
+      </div>
+      <div class="u-paddingBottom--1 entity-card-primary-data">
+        Time Entry<br>Details
+      </div>
+    </div>
+</a></div>
+
+        <div id="ember273" class="u-skewer-item u-paddingLeft--0 u-marginLeft--half u-marginBottom--half ember-view"><span id="ember274" class="u-textAlign--center ember-view"></span>
+<a data-link-to="link" href="https://my.freshbooks.com/#/reports/payments-collected" id="ember276" class="entity-card entity-card-report js-payments-collected-report ember-view has-arrow toolTip-target">    <div class="entity-card-face">
+      <div class="u-paddingTop--1 u-paddingX--1">
+        <img class="entity-card-report-icon" src="./FreshBooks - Dashboard_files/payments-collected-icon-59f24f9a530195f64cccf3ecb5737d68.svg">
+        <img class="entity-card-report-lines" src="./FreshBooks - Dashboard_files/report-lines-741f4f7ae307baa7aca455b8648c8ac2.svg">
+      </div>
+      <div class="u-paddingBottom--1 entity-card-primary-data">
+        Payments<br>Collected
+      </div>
+    </div>
+</a></div>
+
+<!---->
+<!---->
+          <div id="ember277" class="u-skewer-item u-paddingLeft--0 u-marginLeft--half u-marginBottom--half ember-view"><span id="ember278" class="u-textAlign--center ember-view"></span>
+<a data-link-to="link" href="https://my.freshbooks.com/#/reports/trial-balance" id="ember280" class="entity-card entity-card-report js-trial-balance-report ember-view has-arrow toolTip-target">    <div class="entity-card-face">
+      <div class="u-paddingTop--1 u-paddingX--1">
+        <img class="entity-card-report-icon" src="./FreshBooks - Dashboard_files/trial-balance-icon-f70c561feb1762a3240f8250329f9262.svg">
+        <img class="entity-card-report-lines" src="./FreshBooks - Dashboard_files/report-lines-741f4f7ae307baa7aca455b8648c8ac2.svg">
+      </div>
+      <div class="u-paddingBottom--1 entity-card-primary-data">
+        Trial<br>Balance
+      </div>
+    </div>
+</a></div>
+
+          <div id="ember281" class="u-skewer-item u-paddingLeft--0 u-marginLeft--half u-marginBottom--half ember-view"><span id="ember282" class="u-textAlign--center ember-view"></span>
+<a data-link-to="link" href="https://my.freshbooks.com/#/reports/general-ledger" id="ember284" class="entity-card entity-card-report js-general-ledger-report ember-view has-arrow toolTip-target">    <div class="entity-card-face">
+      <div class="u-paddingTop--1 u-paddingX--1">
+        <img class="entity-card-report-icon" src="./FreshBooks - Dashboard_files/general-ledger-icon-fcab1ca559b96235158406e9a97fa66b.svg">
+        <img class="entity-card-report-lines" src="./FreshBooks - Dashboard_files/report-lines-741f4f7ae307baa7aca455b8648c8ac2.svg">
+      </div>
+      <div class="u-paddingBottom--1 entity-card-primary-data">
+        General<br>Ledger
+      </div>
+    </div>
+</a></div>
+
+<!---->      </div>
+    </div>
+  </div>
+  <!---->
+</section>
+
+    </div>
+
+<!---->
+<!---->
+<!---->
+<div id="ember285" class="ember-view">      <div id="ember287" class="ember-view"><!----></div>
+
+</div>
+    <div id="ember289" class="ember-view"><!---->
+<!----></div>
+
+    <div id="ember290" class="ember-view"><!---->
+<!----></div>
+
+<!---->
+    <div class="page-widget-container">
+<!---->      <div class="page-widget">
+        <div id="ember291" class="zendesk-launcherButton ember-view"><button aria-label="" id="ember292" class="zendesk-launcherButton-button icon--only js-button icon--only button-bare ember-view" role="button" type="button">  <span class="icon icon--support icon--standalone "></span>
+
+
+  
+
+
+<!----></button>
+</div>
+      </div>
+    </div>
+
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->  </main>
+
+</div>
+</div><span class="u-accessible no-print" id="tooltipster-accessible" role="status" aria-live="polite"></span><div class="popover primaryValuePopover has-header popover--toggleable has-arrow popover-element"><div class="popover-content"><div aria-hidden="" tabindex="-1" id="ember188" class="ember-view"><div>
+    <div class="popover-header">
+      <div class="heading-2-no-margin u-truncate">
+    Re-invite from FreshBooks Classic?
+  </div>
+
+  </div>
+  <div class="popover-section js-primary-value-choices">
+<!---->  </div>
+  <div class="popover-footer u-borderTop u-borderWidth--hairline">
+    <div class="u-skewer u-skewer--middle">
+        <div class="u-skewer-left u-textAlign--left">
+          <div class="u-skewer-item u-marginRight--half">
+            <a class="link" href="https://my.freshbooks.com/#" data-ember-action="" data-ember-action-189="189">
+              Manage my team
+            </a>
+          </div>
+        </div>
+      <div class="u-skewer-right">
+        <div class="u-skewer-item">
+          <button class="button-cancel medium js-primary-value-popover-cancel" data-ember-action="" data-ember-action-190="190">
+            Cancel
+          </button>
+          <button class="button-primary medium js-primary-value-popover-save " data-ember-action="" data-ember-action-191="191">
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div></div></div><div class="popover composeEmailPopover has-header js-popover-send-by-email popover--toggleable has-arrow popover-element"><div class="popover-content"><div aria-hidden="" tabindex="-1" id="ember194" class="ember-view"><div>
+      <div>
+      <div class="popover-header">
+          <div class="heading-2-no-margin">
+    Invite an Employee
+  </div>
+
+      </div>
+      <div class="popover-section">
+        <div class="form form--horizontal">
+          <label class="form-labelFieldPair form-labelFieldPair--first">
+            <div class="form-label form-label--alignTop">
+              To:
+            </div>
+            <div class="form-field">
+                  <input aria-label="Email Address" placeholder="Email Address" id="ember195" class="form-input js-send-email-recipient ember-text-field ember-view" type="email">
+            </div>
+          </label>
+          <label class="form-labelFieldPair">
+            <div class="form-label form-label--noPointer js-send-email-subject">
+              Subject:
+            </div>
+            <div class="form-field">
+              
+            </div>
+          </label>
+
+<!---->        </div>
+      </div>
+
+      <div class="popover-section composeEmailPopover-messagePreview">
+        <div class="composeEmailPopover-uneditableCopy">
+          
+        </div>
+          <textarea placeholder="Enter a Personal Message" id="ember196" class="composeEmailPopover-editableCopy js-send-email-body ember-text-area ember-view" style="max-height: 175px; overflow: auto; height: 72px;"></textarea>
+      </div>
+      <div class="popover-footer">
+        <div class="u-skewer u-skewer--middle">
+<!----><!---->          <div class="u-skewer-right u-noWrap">
+            <button aria-label="Cancel" id="ember197" class="js-send-popover-cancel medium button-cancel ember-view" role="button" type="button"><!---->
+  Cancel
+
+
+<!----></button>
+
+            <button aria-label="Send Invitation" id="ember198" class="js-send-by-email-popover-send  medium button-primary ember-view" role="button" type="button"><!---->
+  Send Invitation
+
+
+<!----></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+</div></div></div><iframe data-product="web_widget" title="" src="./FreshBooks - Dashboard_files/saved_resource(1).html" style="width: 0px; height: 0px; border: 0px; position: absolute; top: -9999px;" __idm_frm__="1028"></iframe><div class="toolTip has-arrow toolTip-element toolTip-enabled toolTip-abutted toolTip-abutted-top toolTip-out-of-bounds toolTip-out-of-bounds-bottom has-arrow-bottom has-arrow-center is-at-top is-at-center toolTip-open toolTip-open-transitionend toolTip-after-open" style="top: 0px; left: 0px; position: absolute; transform: translateX(448px) translateY(2151px) translateZ(0px);"><div class="toolTip-content"><div aria-hidden="" tabindex="-1" id="ember255" class="u-textAlign--center ember-view"><div>
+        Helps determine how much <br> you owe the government <br> in Sales Taxes
+
+
+</div>
+</div></div></div><div data-tether-id="1" style="top: 0px; left: 0px; position: absolute;"></div></body></html>

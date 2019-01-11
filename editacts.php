@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<head>
+    
+  <?php include"include/connect.php" ?>
+  <?php include"include/head.php" ?>
+
+  <title>Edit Account - <?php echo $comp_name ?>  </title>
+  <style type="text/css">
+    hr{
+      margin-top: 0px;
+      margin-bottom: 10px;
+    }
+  </style>
+  
+</head>
+<body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
+data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+  
+<?php $link="editacts.php"; ;?>
+
+<?php if (!empty($_POST['id']))  $id=$_POST['id'] ;?>
+
+<?php
+if(isset($_POST['update'])){
+    $msg="Unsuccessful" ;
+    
+     $name=$_POST['name'];
+     $id=$_POST['update'];
+
+
+    $sql = "UPDATE acts SET `name` = '$name' WHERE `id` =$id";
+    
+    mysqli_query($con, $sql);
+
+	$msg="Successful" ;
+    
+}
+?>
+
+<?php
+if(isset($_POST['del'])){
+    
+
+    $delid=$_POST['del'];
+
+
+
+    $data=mysqli_query($con,"DELETE FROM `acts` WHERE id=$delid")or die(mysqli_error($con) );
+    
+    if ($data == 1) {
+        $msg="Deleted Successfully!";
+    } 
+    
+    else {
+        $msg="Unsuccessful!";
+    }
+
+
+    }
+?>
+
+
+
+
+<?php include"include/header.php" ?>
+<?php include"include/sidebar.php" ?>
+<div class="app-content content">
+  <div class="content-wrapper">
+
+
+  	<?php if (!empty($id)) { ?>
+  	
+  	<?php
+
+  	$rows =mysqli_query($con,"SELECT * FROM acts WHERE id=$id" ) or die(mysqli_error($con));
+  	          
+  		while($row=mysqli_fetch_array($rows)){
+  			
+  			$name = $row['name']; 
+  			$type = $row['type']; 
+  		}
+  		?>
+
+  	  	<div class="col-sm-12">
+  	  	  <div class="card">
+  	  	    <div class="card-header" style="padding-bottom: 0px;">
+  	  	      <h4 class="card-title">Edit  Account</h4>
+  	  	    </div>
+  	  	    <div class="card-block">
+  	  	      <div class="card-body">
+  	  	      	<form action="" method="post">
+  	  	      	<div class="row">
+
+  		  	      	<div class="col-sm-5">
+  			  	      	<span>Name</span>
+  			  	          <input type="text" class="form-control" name="name" value="<?php echo $name ?>">
+  		  	      	</div>
+  		  	      	<div class="col-sm-3">
+  			  	      	<span>Type</span>
+  			  	      	<select style="text-transform: capitalize;" class="form-control" name="type" disabled>
+  			  	      		
+  			  	      		<option  value="<?php echo $type ?>"><?php echo $type ?></option>
+
+
+  			  	      	</select>
+
+  		  	      	</div>
+  		  	      	<div class="col-sm-2">
+  			  	      	<span>Balance </span>
+  			  	          <input type="number" class="form-control" placeholder="0" disabled>
+  		  	      	</div>
+  		  	      	<div class="col-sm-1">
+  			  	      	<span>&nbsp;</span>
+  			  	      	<button name="update" class="btn btn-primary" value="<?php echo $id ?>">Update</button>
+
+  		  	      	</div>
+  		  	      	
+  	  	      	</div>
+  	  	      </form>
+
+  	  	      <br><hr>
+
+  	  	      <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
+  	  	      </div>
+  	  	    </div>
+  	  	  </div>
+  	  	</div>
+
+  	<?php } ?>	
+
+  
+
+  	  	<div class="col-sm-12">
+  	  	  <div class="card">
+  	  	    <div class="card-header" style="padding-bottom: 0px;">
+  	  	      <h4 class="card-title">View Existing Accounts</h4>
+  	  	    </div>
+  	  	    <div class="card-block">
+  	  	      <div class="card-body">
+  	  	      	<form action="" method="POST">
+  	  	      	<div class="row align-conter-center">
+
+  		  	      	<div class="col-sm-3">
+  			  	      	<h2>Name</h2>
+  		  	      	</div>
+                  <div class="col-sm-2">
+                    <h2>Type </h2>
+                  </div>
+                  <div class="col-sm-2">
+                    <h2>Purpose </h2>
+                  </div>
+  		  	      	<div class="col-sm-2">
+  			  	      	<h2>Balance </h2>
+  		  	      	</div>
+  		  	      	<div class="col-sm-3">
+                    <h2>Update / Delete </h2>
+  		  	      	</div>
+  		  	      	
+  	  	      	</div>
+                <hr><br> 
+  	  	      	<?php
+
+  	  	      	$rows =mysqli_query($con,"SELECT * FROM acts  ORDER BY name" ) or die(mysqli_error($con));
+  	  	      	          
+  	  	      		while($row=mysqli_fetch_array($rows)){
+  	  	      			
+  	  	      			$id = $row['id'];
+  	  	      			$name = $row['name']; 
+                    $type = $row['type']; 
+                    $purpose = $row['purpose']; 
+                    $balance = $row['balance']; 
+  	  	      			$nodel = $row['nodel']; 
+
+  	  	      		?>
+  	  	      	<div class="row  align-items-center" align="">
+
+  		  	      	<div class="col-sm-3">
+  			  	      	<h5><?php echo $name ?></h5>
+  		  	      	</div>
+                  <div class="col-sm-2">
+                    <h5 style="text-transform: capitalize;"><?php echo $type ?> </h5>
+                  </div>
+                  <div class="col-sm-2">
+                    <h5 style="text-transform: capitalize;"><?php echo $purpose ?> </h5>
+                  </div>
+  		  	      	<div class="col-sm-2">
+  			  	      	<h5 style="text-transform: capitalize;">Rs. <?php echo number_format($balance); ?>/-</h5>
+  		  	      	</div>
+  		  	      	<div class="col-sm-1">
+  			  	      	<button name="id" class="btn btn-primary" value="<?php echo $id ?>">Edit</button>
+
+  		  	      	</div>
+  		  	      	<div class="col-sm-1">
+                    <?php if($nodel==0){ ?>
+  			  	      	<button name="del" class="btn btn-danger" value="<?php echo $id ?>">Del</button>
+                  <?php } ?>
+  		  	      	</div>
+  		  	      	
+  	  	      	</div>
+  	  	      	
+  	  	      	<hr>
+  	  	      <?php } ?>
+  	  	      </form>
+
+  	  	      <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
+  	  	      </div>
+  	  	    </div>
+  	  	  </div>
+  	  	</div>
+
+
+
+    
+  </div>
+</div>
+
+
+<!-- BEGIN VENDOR JS-->
+<script src="vendors/js/vendors.min.js" type="text/javascript"></script>
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
+<script src="vendors/js/charts/chart.min.js" type="text/javascript"></script>
+<script src="vendors/js/charts/raphael-min.js" type="text/javascript"></script>
+<script src="vendors/js/charts/morris.min.js" type="text/javascript"></script>
+<script src="vendors/js/charts/jvector/jquery-jvectormap-2.0.3.min.js"
+type="text/javascript"></script>
+<script src="vendors/js/charts/jvector/jquery-jvectormap-world-mill.js"
+type="text/javascript"></script>
+<script src="data/jvector/visitor-data.js" type="text/javascript"></script>
+<script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
+<script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
+
+
+
+<!-- END PAGE VENDOR JS-->
+<!-- BEGIN MODERN JS-->
+<script src="js/core/app-menu.js" type="text/javascript"></script>
+<script src="js/core/app.js" type="text/javascript"></script>
+<script src="js/scripts/customizer.js" type="text/javascript"></script>
+<!-- END MODERN JS-->
+<!-- BEGIN PAGE LEVEL JS-->
+<script src="js/scripts/pages/dashboard-sales.js" type="text/javascript"></script>
+
+<script src="js/scripts/tables/datatables-extensions/datatables-sources.js"
+type="text/javascript"></script>
+
+<script src="js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
+<script src="js/scripts/modal/components-modal.js" type="text/javascript"></script>
+
+<script src="js/scripts/tables/datatables-extensions/datatable-button/datatable-html5.js"
+type="text/javascript"></script>
+
+<script src="js/scripts/tables/datatables/datatable-api.js" type="text/javascript"></script>
+
+<!-- END PAGE LEVEL JS-->
+
+
+
+</body>
+</html>
