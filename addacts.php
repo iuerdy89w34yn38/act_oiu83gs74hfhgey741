@@ -145,7 +145,7 @@ $data=mysqli_query($con,"INSERT INTO acts (name,typeid,type,slug,purpose,balance
   		  	      	</div>
   		  	      	<div class="col-sm-1">
   			  	      	<span>Balance </span>
-  			  	          <input type="number" name="bal" class="form-control" value="0" >
+  			  	          <input readonly type="number" name="bal" class="form-control" value="0" >
   		  	      	</div>
   		  	      	<div class="col-sm-1">
   			  	      	<span>&nbsp;</span>

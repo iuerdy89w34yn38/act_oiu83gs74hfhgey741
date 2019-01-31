@@ -3,14 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 10, 2019 at 06:30 AM
+-- Generation Time: Jan 17, 2019 at 08:32 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `acts` (
   `nodel` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=MyISAM AUTO_INCREMENT=200031 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=200037 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `acts`
@@ -49,19 +49,12 @@ CREATE TABLE IF NOT EXISTS `acts` (
 INSERT INTO `acts` (`id`, `typeid`, `type`, `name`, `slug`, `purpose`, `balance`, `nodel`) VALUES
 (200019, 2, 'Revenue', 'Sales Account', 'sales-account', 'income', 0, 1),
 (200018, 10, 'Cost of Goods Sold', 'Purchase Account', 'purchase-account', 'inventory', 0, 1),
-(200017, 5, 'Current Assets', 'Cash in Bank', 'cash-in-bank', 'cash', 0, 0),
 (200016, 5, 'Current Assets', 'Cash in Hands', 'cash-in-hands', 'cash', 0, 1),
-(200015, 1, 'Capital', 'Capital A/c of Ali Pervaiz', 'capital-a-c-of-ali-pervaiz', 'capital', 0, 0),
-(200014, 1, 'Capital', 'Capital A/c of Hamza Pervaiz', 'capital-a-c-of-hamza-pervaiz', 'capital', 0, 0),
-(200020, 7, 'Drawing Capital', 'Drawing A/c of Hamza Pervaiz', 'drawing-a-c-of-hamza-pervaiz', 'capital', 0, 0),
 (200021, 5, 'Current Assets', 'Customers', 'customers', 'assets', 0, 1),
-(200022, 3, 'Liability', 'Vendors', 'vendors', 'liabilities', 0, 0),
-(200023, 4, 'Expenses', 'Food Expenses', 'food-expenses', 'expenses', 0, 0),
-(200024, 3, 'Liability', 'Loan from Hassan ', 'loan-from-hassan-', 'liabilities', 0, 0),
-(200025, 5, 'Current Assets', 'UBL Bank', 'ubl-bank', 'cash', 0, 0),
-(200028, 10, 'Cost of Goods Sold', 'Purchase Return', 'purchase-return', 'inventory', 0, 0),
-(200029, 2, 'Revenue', 'Sales Return', 'sales-return', 'income', 0, 0),
-(200030, 6, 'Fixed Assets', 'Furniture Account', 'furniture-account', 'assets', 0, 0);
+(200022, 3, 'Liability', 'Vendors', 'vendors', 'liabilities', 0, 1),
+(200028, 10, 'Cost of Goods Sold', 'Purchase Return', 'purchase-return', 'inventory', 0, 1),
+(200029, 2, 'Revenue', 'Sales Return', 'sales-return', 'income', 0, 1),
+(200032, 5, 'Current Assets', 'Open Cheque', 'cheque', 'cash', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -835,17 +828,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `balance` int(11) DEFAULT '0',
   `dated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=600006 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`) VALUES
-(600001, 200021, 'Customers', 'Test Customer 1', '123456789', 'ABC Company', '456789123', 'email@abccompany.com', 'Test Address Customer 1', 'Lahore', 'Pakistan', 0, '2018-12-17'),
-(600002, 200021, 'Customers', 'Test Customer 2', '123456789', 'XYZ Company', '456789123', 'email@xyzcompany.com', 'Test Address Customer 2', 'Multan', 'Pakistan', 0, '2018-12-17'),
-(600003, 200021, 'Customers', 'Test Customer 3', '123456789', 'JKL Company', '456789123', 'email@jklcompany.com', 'Test Address Customer 3', 'Karachi', 'Pakistan', 0, '2018-12-17'),
-(600004, 200021, 'Customers', 'Test Customer 4', '123456789', 'MNO Company', '456789123', 'email@mnocompany.com', 'Test Address Customer 4', 'Lahore', 'Pakistan', 0, '2018-12-17');
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -865,17 +848,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `stock` int(11) NOT NULL DEFAULT '0',
   `pause` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `items`
---
-
-INSERT INTO `items` (`id`, `brand`, `name`, `desp`, `price`, `quantity`, `weight`, `stock`, `pause`) VALUES
-(2, '4', 'Product 33', 'Product 33', 0, 0, 780, 0, 0),
-(3, '4', 'Product 2', 'Description 2', 0, 0, 250, 0, 0),
-(1, '1', 'N/A', 'N/A', 0, 0, 0, 0, 1),
-(4, '9', 'Product 46', 'Product 45', 0, 0, 200, 0, 0);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -888,18 +861,7 @@ CREATE TABLE IF NOT EXISTS `itemsb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `itemsb`
---
-
-INSERT INTO `itemsb` (`id`, `name`) VALUES
-(1, 'None'),
-(2, 'Brand 2'),
-(4, 'Brand 32'),
-(9, 'Brand 46'),
-(8, 'Brand 1');
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -920,7 +882,7 @@ CREATE TABLE IF NOT EXISTS `itemslog` (
   `subtotal` float NOT NULL DEFAULT '0',
   `datec` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -932,6 +894,10 @@ DROP TABLE IF EXISTS `journal`;
 CREATE TABLE IF NOT EXISTS `journal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `desp` text NOT NULL,
+  `invoiceno` varchar(21) NOT NULL DEFAULT '0',
+  `invoicepic` text,
+  `chequeno` varchar(21) NOT NULL DEFAULT '0',
+  `chequeamt` int(11) NOT NULL DEFAULT '0',
   `dract` int(11) NOT NULL DEFAULT '0',
   `cract` int(11) NOT NULL DEFAULT '0',
   `dr` int(11) NOT NULL DEFAULT '0',
@@ -939,7 +905,7 @@ CREATE TABLE IF NOT EXISTS `journal` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=205649 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -952,6 +918,7 @@ CREATE TABLE IF NOT EXISTS `ledger` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jid` int(11) NOT NULL,
   `typeid` int(11) NOT NULL DEFAULT '0',
+  `ref` int(11) NOT NULL DEFAULT '0',
   `actid` int(11) NOT NULL,
   `desp` text NOT NULL,
   `type` varchar(20) NOT NULL,
@@ -961,7 +928,7 @@ CREATE TABLE IF NOT EXISTS `ledger` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=760600 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1027,18 +994,7 @@ CREATE TABLE IF NOT EXISTS `vendors` (
   `balance` int(11) DEFAULT '0',
   `dated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=400006 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `vendors`
---
-
-INSERT INTO `vendors` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`) VALUES
-(400001, 200022, 'Vendors', 'Test Vendor 1', '123456789', 'ABC Company', '456789123', 'email@abccompany.com', 'Test Address Vendor 1', 'Lahore', 'Pakistan', 0, '2018-12-17'),
-(400002, 200022, 'Vendors', 'Test Vendor 2', '123456789', 'XYZ Company', '456789123', 'email@xyzcompany.com', 'Test Address Vendor 2', 'Multan', 'Pakistan', 0, '2018-12-17'),
-(400003, 200022, 'Vendors', 'Test Vendor 3', '123456789', 'JKL Company', '456789123', 'email@jklcompany.com', 'Test Address Vendor 3', 'Karachi', 'Pakistan', 0, '2018-12-17'),
-(400004, 200022, 'Vendors', 'Test Vendor 4', '123456789', 'MNO Company', '456789123', 'email@mnocompany.com', 'Test Address Vendor 4', 'Lahore', 'Pakistan', 0, '2018-12-17'),
-(400005, 200022, 'Vendors', 'HAMZA PERVAIZ', '3204157040', 'Voanpny', '3204157040', 'hamzapervaiz5@gmail.com', 'House # 604, C Block,, Al-Rehman Garden Phase 2,', 'Lahore', 'Pakistan', 0, '2019-01-05');
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

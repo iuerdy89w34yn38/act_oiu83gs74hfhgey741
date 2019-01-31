@@ -18,6 +18,8 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
   <?php if(isset($_POST['send'])){
 
 
+    $chequeno = $_POST['chequeno'];
+
     $act = $_POST['act'];
     $pay = $_POST['pay'];
 
@@ -58,7 +60,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 
-         $desp='Made Payment Against Purchase Invoice';
+         $desp='Made Payment Against Purchase Invoice from '.$destname;
 
                           //Journal Entry
          $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup')")or die( mysqli_error($con) );
@@ -92,6 +94,67 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
         $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
       }
+        else if($srcid==200032){ //Cheque 
+
+          
+            $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
+            while($row=mysqli_fetch_array($rows)){ 
+              $srcname = $row['name'];
+              $srcbalance = $row['balance'];
+              $srctype = $row['type'];
+              $srctypeid = $row['typeid'];
+            }
+            $destid=$act;
+            $rows =mysqli_query($con,"SELECT * FROM vendors where id=$destid ORDER BY name" ) or die(mysqli_error($con));
+            while($row=mysqli_fetch_array($rows)){ 
+              $destname = $row['name'];
+              $destbalance = $row['balance'];
+              $desttype = $row['type'];
+              $desttypeid = $row['typeid'];
+
+            }
+
+              //First Entry
+        
+
+           $srcbalance=$srcbalance-$amount;
+           $destbalance=$destbalance-$amount;
+
+
+
+
+
+     $desp='Made Payment Against Purchase Invoice from '.$destname.' through Open Cheque No. '.$chequeno;
+
+                            //Journal Entry
+           $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,datec,dateup,chequeno)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup','$chequeno')")or die( mysqli_error($con) );
+
+
+           $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
+           mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+           $sqls = "UPDATE vendors SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
+           mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+
+            //Ledger Entry
+           $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+           while($row=mysqli_fetch_array($rows)){ 
+            $jid = $row['id'];
+
+          }
+
+
+     $desp='Made Payment Against Purchase Invoice from '.$destname.' through Open Cheque No. '.$chequeno;
+
+
+          $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+    $desp='Payment Made to '.$destname;;
+
+          $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        }
       else{
       $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
       while($row=mysqli_fetch_array($rows)){ 
@@ -119,7 +182,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 
-     $desp='Made Payment Against Purchase Invoice';
+     $desp='Made Payment Against Purchase Invoice from '.$destname;
 
                       //Journal Entry
      $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup')")or die( mysqli_error($con) );
@@ -183,7 +246,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                       <select class="form-control select2" name="act">
                         <?php
 
-                         $rows =mysqli_query($con,"SELECT * FROM vendors where balance>0  ORDER BY name" ) or die(mysqli_error($con));
+                         $rows =mysqli_query($con,"SELECT * FROM vendors where balance!=0  ORDER BY name" ) or die(mysqli_error($con));
                                   
                           while($row=mysqli_fetch_array($rows)){
                             
@@ -199,7 +262,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                     </div>
                     <div class="col-sm-3">
                       <span>Cash Account</span>
-                      <select class="form-control select2" name="pay">
+                      <select class="form-control select2" id="multiOptions" name="pay">
                         <?php
 
                         $rows =mysqli_query($con,"SELECT * FROM acts where purpose='cash'  ORDER BY name" ) or die(mysqli_error($con));
@@ -219,6 +282,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                     <div class="col-sm-2">
                       <span>Amount </span>
                         <input type="number" name="amount" class="form-control" placeholder="0">
+                    </div>
+
+                      <div class="col-sm-2" id="chequediv">
+                        <center><span>Cheque No :</span></center>
+                        <input type="text" name="chequeno" class="form-control">
+
                     </div>
                     <div class="col-sm-1">
                       <span>&nbsp;</span>
@@ -270,7 +339,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
             <?php
             $tb=0;
-             $rows =mysqli_query($con,"SELECT * FROM vendors where balance>0  ORDER BY name" ) or die(mysqli_error($con));
+             $rows =mysqli_query($con,"SELECT * FROM vendors where balance!=0  ORDER BY name" ) or die(mysqli_error($con));
                       
               while($row=mysqli_fetch_array($rows)){
                 
@@ -335,4 +404,23 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <?php include"include/footer.php" ?>
 
 </body>
+<script type="text/javascript">
+  
+  $(document).ready(function () {
+
+  $('#chequediv').hide();
+
+  $("#multiOptions").change(function () {
+      if ($(this).val() == "200032" ) {
+         $('#chequediv').show();
+         
+      }
+      else { 
+          $('#chequediv').hide();
+           }
+  });
+  });
+
+</script>
+
 </html>

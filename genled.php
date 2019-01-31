@@ -57,7 +57,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
              <form action="tdetail.php" method="get">
               <?php
               $opbalance=Null;
-              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM ledger  where datec>='$dates' and datec<='$datee' and (actid LIKE '$act' ) ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM ledger  where datec>='$dates' and datec<='$datee' AND ref=0 and (actid LIKE '$act' ) ORDER BY id desc limit 1" ) or die(mysqli_error($con));
 
               while($row=mysqli_fetch_array($rows)){
                 $opbalance = $row['balance'];
@@ -69,7 +69,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
               <?php
               $opbalance=Null;
               $datey=date('Y-m-d' , strtotime($dates.'-1 days'));
-              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM ledger where actid LIKE '$act'   AND datec<'$dates' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM ledger where actid LIKE '$act'  AND ref=0  AND datec<'$dates' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
 
               while($row=mysqli_fetch_array($rows)){
 
@@ -94,7 +94,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
              <div class="row align-conter-center">
 
               <div class="col-sm-2">
-               <h4>ID - Date</h4>
+               <h4>Invoice - Date</h4>
              </div>
              <div class="col-sm-6">
                <h4>Description</h4>
@@ -114,7 +114,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                $tdr=0;
                $tcr=0;
 
-               $rows =mysqli_query($con,"SELECT * FROM ledger  where datec>='$dates' and datec<='$datee' and (actid LIKE '$act' ) ORDER BY id" ) or die(mysqli_error($con));
+               $rows =mysqli_query($con,"SELECT * FROM ledger  where datec>='$dates' and datec<='$datee'  AND ref=0 and (actid LIKE '$act' ) ORDER BY id" ) or die(mysqli_error($con));
 
                while($row=mysqli_fetch_array($rows)){
 
@@ -138,7 +138,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                  <div class="row  align-items-center" align="">
 
                   <div class="col-sm-2">
-                   <h5><?php echo $id ?> - <?php echo $mydate ?></h5>
+                   <h5><?php echo $jid ?> - <?php echo $mydate ?></h5>
                  </div> 
 
                  <div class="col-sm-6">
@@ -186,7 +186,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
          </div>
          <div class="col-sm-4">
           <hr>
-          <h3> Closing Balance: <strong>Rs. <?php if(!empty($tbalance))  echo number_format($tbalance) ?>/-</strong></h3>
+          <h3> Closing Balance: <strong>Rs. <?php if($tbalance===0) echo '0' ; else echo number_format($tbalance) ?>/-</strong></h3>
         </div>
       </div>
 
@@ -235,7 +235,7 @@ if (empty($_POST['dates'])) {
                   <option value="%"> All </option>
                   <?php
 
-                  $rows =mysqli_query($con,"SELECT * FROM acts  ORDER BY name" ) or die(mysqli_error($con));
+                  $rows =mysqli_query($con,"SELECT * FROM acts where id!=200021 AND id!=200022  ORDER BY name" ) or die(mysqli_error($con));
 
                   while($row=mysqli_fetch_array($rows)){
 

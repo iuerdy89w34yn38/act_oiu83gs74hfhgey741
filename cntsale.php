@@ -4,7 +4,7 @@
   <?php include"include/connect.php" ?>
   <?php include"include/head.php" ?>
 
-  <title>Counter Sale Invoice  - <?php echo $comp_name ?>  </title>
+  <title>Counter Sale  - <?php echo $comp_name ?>  </title>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -142,7 +142,7 @@
 
 
 
-        $desp='Goods Sold to '.$destname;
+        $desp='Goods Sold to '.$destname.' through Counter Sale';
 
                           //Journal Entry
         $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup')")or die( mysqli_error($con) );
@@ -166,12 +166,12 @@
 
         }
 
-        $desp='Goods Sold to '.$destname;
+        $desp='Goods Sold to '.$destname.' Counter Sale';
 
 
         $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-        $desp='Sale Invoice';
+        $desp='Counter Sale Invoice';
 
         $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 

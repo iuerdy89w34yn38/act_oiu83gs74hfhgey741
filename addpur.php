@@ -4,7 +4,7 @@
   <?php include"include/connect.php" ?>
   <?php include"include/head.php" ?>
 
-  <title>Make Purchase Invoice  - <?php echo $comp_name ?>  </title>
+  <title>Make Purchase  - <?php echo $comp_name ?>  </title>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -74,11 +74,41 @@
     $act = $_POST['act'];
     $pay = $_POST['pay'];
 
+    $rows =mysqli_query($con,"SELECT * FROM vendors where id=$act ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $actname = $row['name'];
+      $actbalance = $row['balance'];
+      $acttype = $row['type'];
+      $acttypeid = $row['typeid'];
+
+    }
+
+    $invoiceno = $_POST['invoiceno'];
+    $chequeno = $_POST['chequeno'];
+    $chequeamt = $_POST['chequeamt'];
+
+
     $subt = $_POST['sub_total'];
     $amount = preg_replace("/[^0-9^.]/", '', $subt); 
 
     $datec=date('Y-m-d');
     $dateup=date('Y-m-d');
+
+
+    // Get image name
+    $invoicepic = $_FILES['invoicepic']['name'];
+    $invoicepic = md5(uniqid())  . "1.png";
+
+    // image file directory
+    $target = "images/invoices/".basename($invoicepic);
+
+
+    if (move_uploaded_file($_FILES['invoicepic']['tmp_name'], $target)) {
+    $pmsg = "Image uploaded successfully";
+    }else{
+    $pmsg = "Failed to upload image";
+    }
+
 
     if($pay=='credit'){
 
@@ -109,10 +139,10 @@
 
 
 
-      $desp='Goods are Purchased from '.$srcname.' on Credit';
+      $desp='Goods are Purchased from '.$srcname.' on Credit Against Invoice No. '.$invoiceno ;
 
                     //Journal Entry
-      $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+      $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup,invoiceno,invoicepic)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup','$invoiceno','$invoicepic')")or die( mysqli_error($con) );
 
 
   $sqls = "UPDATE vendors SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
@@ -130,12 +160,12 @@
 
       }
 
-      $desp='Goods Purchased from '.$srcname.' on Credit ';
+      $desp='Goods are Purchased from '.$srcname.' on Credit Against Invoice No. '.$invoiceno ;
 
 
       $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-      $desp='Purchase Invoice';
+      $desp='Purchase Account';
 
       $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
@@ -145,7 +175,7 @@
 
 
       $srcid=$pay;
-      if($srcid==200016){
+      if($srcid==200016){ //Cash in Hands
 
           $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
           while($row=mysqli_fetch_array($rows)){ 
@@ -174,10 +204,10 @@
 
 
 
-         $desp='Goods are Purchased on Cash';
+      $desp='Goods are Purchased from '.$actname.' Against Invoice No. '.$invoiceno.' Through '.$srcname ;
 
                           //Journal Entry
-         $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+         $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,datec,dateup,invoiceno,invoicepic)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup','$invoiceno','$invoicepic')")or die( mysqli_error($con) );
 
 
          $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
@@ -198,12 +228,100 @@
 
         }
 
-        $desp='Goods Purchased from '.$srcname;
+
+      $desp='Goods are Purchased from '.$actname.' Against Invoice No. '.$invoiceno.' Through '.$srcname ;
 
 
         $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-        $desp='Purchase Invoice';
+        $desp=$srcname.' Purchase';
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+      $desp='Goods are Purchased from '.$actname.' Against Invoice No. '.$invoiceno.' Through '.$srcname ;
+
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        $desp=$srcname.' Purchase';
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+      }
+      else if($srcid==200032){ //Cheque 
+
+          $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
+          while($row=mysqli_fetch_array($rows)){ 
+            $srcname = $row['name'];
+            $srcbalance = $row['balance'];
+            $srctype = $row['type'];
+            $srctypeid = $row['typeid'];
+          }
+
+          $destid=200018;
+          $rows =mysqli_query($con,"SELECT * FROM acts where id=$destid ORDER BY name" ) or die(mysqli_error($con));
+          while($row=mysqli_fetch_array($rows)){ 
+            $destname = $row['name'];
+            $destbalance = $row['balance'];
+            $desttype = $row['type'];
+            $desttypeid = $row['typeid'];
+
+          }
+
+            //First Entry
+    
+
+         $srcbalance=$srcbalance-$chequeamt;
+         $destbalance=$destbalance+$amount;
+         $chequebal=$amount-$chequeamt;
+         $actbalance=$actbalance+$chequebal;
+
+
+
+
+        $desp='Goods Purchased from '.$actname.' Through '.$srcname.' No. '.$chequeno.' Against Invoice No. '.$invoiceno;
+
+                          //Journal Entry
+         $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,datec,dateup,invoiceno,invoicepic,chequeno,chequeamt)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup','$invoiceno','$invoicepic','$chequeno','$chequeamt')")or die( mysqli_error($con) );
+
+
+         $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
+         mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+         $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
+         mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+         $sqls = "UPDATE vendors SET `balance` = '$actbalance' WHERE `id` = $act"  ;
+         mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+
+
+
+
+
+                          //Ledger Entry
+         $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+         while($row=mysqli_fetch_array($rows)){ 
+          $jid = $row['id'];
+
+        }
+
+
+      $desp='Goods are Purchased from '.$actname.' Against Invoice No. '.$invoiceno.' Through '.$srcname.' No. '.$chequeno ;
+
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        $desp=$srcname.' Purchase';
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+      $desp='Goods are Purchased from '.$actname.' Against Invoice No. '.$invoiceno.' Through '.$srcname .' No. '.$chequeno ;
+
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        $desp=$srcname.' Purchase';
 
         $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
@@ -235,10 +353,10 @@
 
 
 
-     $desp='Goods are Purchased on Cash';
+        $desp='Goods Purchased from '.$actname.' Through '.$srcname.' Against Invoice No. '.$invoiceno;
 
                       //Journal Entry
-     $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+     $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup,invoiceno,invoicepic)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup','$invoiceno','$invoicepic')")or die( mysqli_error($con) );
 
 
      $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
@@ -259,12 +377,23 @@
 
     }
 
-    $desp='Goods Purchased from '.$srcname;
+
+
+      $desp='Goods are Purchased from '.$actname.' Against Invoice No. '.$invoiceno.' Through '.$srcname ;
 
 
     $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-    $desp='Purchase Invoice';
+    $desp=$srcname.' Purchase';
+
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+    $desp='Goods Purchased from '.$actname.' Through '.$srcname.' Against Invoice No. '.$invoiceno;
+
+
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+    $desp=$srcname.' Purchase';
 
     $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
@@ -322,13 +451,13 @@
 <div class="app-content content">
  <div class="content-wrapper">
 
-  <form name="cart" method="POST" action="">
+  <form name="cart" method="POST" action="" enctype="multipart/form-data">
 
 
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header" style="padding-bottom: 0px;">
-          <h4 class="card-title">Make Purchase Invoice</h4>
+          <h4 class="card-title">Make Purchase</h4>
         </div>
         <div class="card-block">
           <div class="card-body">
@@ -365,7 +494,7 @@
               </div>
               <div class="col-sm-3">
                 <center><span>Payment Type:</span></center>
-                <select class="form-control select2" name="pay">
+                <select class="form-control select2" id="multiOptions" name="pay">
                   <option value="credit">Credit</option>
 
                   <?php
@@ -384,6 +513,41 @@
                 </select>
 
               </div>
+            </div>
+            <div class="row">
+
+
+
+
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-3">
+                <center><span>Invoice ID :</span></center>
+                <input type="text" name="invoiceno" class="form-control">
+
+              </div>
+              <div class="col-sm-5">
+                <center><span>Invoice Pic :</span></center>
+                <input type="file" name="invoicepic" class="form-control">
+
+              </div>
+            </div>
+
+            <div class="row" id="chequediv">
+              <div class="col-sm-3">
+              </div>
+              <div class="col-sm-3">
+                <center><span>Cheque No :</span></center>
+                <input type="text" name="chequeno" class="form-control">
+
+              </div>
+              <div class="col-sm-3">
+                <center><span>Cheque Amount :</span></center>
+                <input type="text" name="chequeamt" class="form-control">
+
+              </div>
+
+
             </div>
             <hr>
 
@@ -478,6 +642,26 @@
 
 
 </body>
+
+<script type="text/javascript">
+  
+  $(document).ready(function () {
+
+  $('#chequediv').hide();
+
+  $("#multiOptions").change(function () {
+      if ($(this).val() == "200032" ) {
+         $('#chequediv').show();
+         
+      }
+      else { 
+          $('#chequediv').hide();
+           }
+  });
+  });
+
+</script>
+
 <script type="text/javascript">
 
   $('#qty').keyup(function() {

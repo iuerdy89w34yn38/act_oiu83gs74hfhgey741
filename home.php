@@ -33,9 +33,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 	<div class="content-wrapper">
 		<div class="row">
 			<div class="col-sm-4">
-				<div class="card">
+				<div class="card  pull-up">
 					<div class="card-header" style="padding-bottom: 0px;">
 						<h4 class="card-title">Net Profit</h4>
+						<div class="heading-elements">
+							<a href="pls.php" target="blank"> <i class="la la-external-link"></i></a>
+						</div>
 					</div>
 					<div class="card-block">
 						<div class="card-body">
@@ -126,7 +129,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 									<center><h4> Expenses Balance: <?php echo $expenses ?></h4></center>
 
 									<hr>
-									<center><h2> Net Profit: <?php echo $netprofit ?></h2></center>
+									<center><h2> Net Profit: Rs. <?php echo number_format($netprofit) ?>/-</h2></center>
 
 								</div>
 
@@ -138,6 +141,227 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 				</div>
 			</div>
+
+			<?php $lmonth = date('Y-m-d', strtotime(' -30 day')); ?>
+
+			<div class="col-lg-4">
+
+				<?php 
+
+				$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=200019 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+								$sales=0;
+								while($row=mysqli_fetch_array($rows)){
+
+									$cr = $row['cr'];
+									$sales=$sales+$cr;
+								} 
+
+				$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=200029 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+								$salesr=0;
+								while($row=mysqli_fetch_array($rows)){
+
+									$dr = $row['dr'];
+									$salesr=$salesr+$dr;
+								} 
+
+								$netsales=$sales-$salesr;
+
+								?>
+			             <div class="card pull-up">
+
+			               <div class="card-content">
+			                 <div class="card-body">
+			                   <div class="media d-flex">
+			                     <div class="media-body text-left">
+			                       <h6 class="text-muted">Monthly Net Sales 
+			             		<a href="genled.php" target="blank"> <i class="la la-external-link success"></i></a>
+
+			                       </h6> 
+			                       <br>
+			                       <h3>Rs.<?php echo number_format($netsales) ?>/-</h3>
+			                     </div>
+			                     <div class="align-self-center">
+			                       <i class="la la-codepen success font-large-2 float-right"></i>
+			                     </div>
+			                   </div>
+			                 </div>
+			               </div>
+			             </div>
+
+				<?php 
+
+				$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=200018 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+								$sales=0;
+								while($row=mysqli_fetch_array($rows)){
+
+									$dr = $row['dr'];
+									$sales=$sales+$dr;
+								} 
+
+				$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=200028 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+								$salesr=0;
+								while($row=mysqli_fetch_array($rows)){
+
+									$cr = $row['cr'];
+									$salesr=$salesr+$cr;
+								} 
+
+								$netsales=$sales-$salesr;
+
+								?>
+			             <div class="card pull-up">
+			               <div class="card-content">
+			                 <div class="card-body">
+			                   <div class="media d-flex">
+			                     <div class="media-body text-left">
+			                       <h6 class="text-muted">Monthly Net Purchases
+			             		<a href="genled.php" target="blank"> <i class="la la-external-link warning"></i></a>
+
+			                       </h6>
+			                       <br>
+			                       <h3>Rs.<?php echo number_format($netsales) ?>/-</h3>
+			                     </div>
+			                     <div class="align-self-center">
+			                       <i class="la la-industry warning font-large-2 float-right"></i>
+			                     </div>
+			                   </div>
+			                 </div>
+			               </div>
+			             </div>
+
+
+
+				<?php 
+
+
+
+				$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE typeid=4 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+								$salesr=0;
+								while($row=mysqli_fetch_array($rows)){
+
+									$dr = $row['dr'];
+									$salesr=$salesr+$dr;
+								} 
+
+
+								?>
+			             <div class="card pull-up">
+			               <div class="card-content">
+			                 <div class="card-body">
+			                   <div class="media d-flex">
+			                     <div class="media-body text-left">
+			                       <h6 class="text-muted">Monthly Expenses
+			             		<a href="expr.php" target="blank"> <i class="la la-external-link danger"></i></a>
+
+			                       </h6>
+			                       <br>
+			                       <h3>Rs.<?php echo number_format($salesr) ?>/-</h3>
+			                     </div>
+			                     <div class="align-self-center">
+			                       <i class="la la-dollar danger font-large-2 float-right"></i>
+			                     </div>
+			                   </div>
+			                 </div>
+			               </div>
+			             </div>
+
+
+			             
+
+
+			           </div>
+
+
+
+			<div class="col-lg-4">
+			             <div class="card pull-up">
+			               <div class="card-content">
+			                 <div class="card-body">
+			                   <div class="media d-flex">
+			                     <div class="media-body text-left">
+			                       <h6 class="text-muted">Current Cash Status
+			             		<a href="addcash.php" target="blank"> <i class="la la-external-link primary"></i></a>
+
+			                       </h6>
+			                       <br>
+			                         <?php
+			                         $tb=0;
+			                          $rows =mysqli_query($con,"SELECT * FROM acts where purpose='cash'  ORDER BY name" ) or die(mysqli_error($con));
+			                                   
+			                           while($row=mysqli_fetch_array($rows)){
+			                             
+			                             $id = $row['id'];
+			                             $name = $row['name'];
+			                             $balance = $row['balance'];
+			                             $tb=$tb+$balance;
+			                           
+			                           ?>
+			                     
+
+			                           <h4><?php echo $name ?>: 
+			                           <br> &nbsp; &nbsp; &nbsp; Rs. <?php echo number_format($balance);   ?>/-</h4>
+			                           <hr>
+			                        
+
+			                       <?php } ?>
+
+
+			                  <h3>Total : Rs. <?php echo number_format($tb) ?>/-</h3>
+			                      
+
+			                     </div>
+			                     <div class="align-self-center">
+			                       <i class="la la-money primary font-large-2 float-right"></i>
+			                     </div>
+			                   </div>
+			                 </div>
+			               </div>
+			             </div>
+
+
+
+			             	<?php 
+
+
+
+			             	$rows =mysqli_query($con,"SELECT stock FROM items" ) or die(mysqli_error($con));
+			             					$salesr=0;
+			             					while($row=mysqli_fetch_array($rows)){
+
+			             						$dr = $row['stock'];
+			             						$salesr=$salesr+$dr;
+			             					} 
+
+
+			             					?>
+			                          <div class="card pull-up">
+			                            <div class="card-content">
+			                              <div class="card-body">
+			                                <div class="media d-flex">
+			                                  <div class="media-body text-left">
+			                                    <h6 class="text-muted">Stock Inventory
+			                          		<a href="viewitems.php" target="blank"> <i class="la la-external-link "></i></a>
+
+			                                    </h6>
+			                                    <br>
+			                                    <h3>Total <?php echo number_format($salesr) ?> Items</h3>
+			                                  </div>
+			                                  <div class="align-self-center">
+			                                    <i class="la la-cubes  font-large-2 float-right"></i>
+			                                  </div>
+			                                </div>
+			                              </div>
+			                            </div>
+			                          </div>
+
+
+			                          
+			             
+
+
+			           </div>
+
+
 
 		</div>
 
@@ -154,28 +378,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 	</div>
 </div>
 
-<script>
-window.onload = function () {
- 
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	exportEnabled: true,
-	theme: "light1", // "light1", "light2", "dark1", "dark2"
-	title:{
-		text: "Simple Column Chart with Index Labels"
-	},
-	data: [{
-		type: "column", //change type to bar, line, area, pie, etc
-		//indexLabel: "{y}", //Shows y value on all Data Points
-		indexLabelFontColor: "#5A5757",
-		indexLabelPlacement: "outside",   
-		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-chart.render();
- 
-}
-</script>
+
 
 <?php include"include/footer.php" ?>
 

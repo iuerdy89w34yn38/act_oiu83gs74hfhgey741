@@ -6,7 +6,6 @@
 
   <title>Customer Sale Invoice  - <?php echo $comp_name ?>  </title>
 
-
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
   <script type="text/javascript" src="dist/jautocalc.js"></script>
@@ -71,6 +70,7 @@
   <?php if(isset($_POST['send'])){
 
 
+
     $x= count($home = $_POST['qty1']);
 
     for ($i=0; $i < $x; $i++) {
@@ -100,15 +100,29 @@
 
 
 
-
     $act = $_POST['act'];
     $pay = $_POST['pay'];
+
+    $rows =mysqli_query($con,"SELECT * FROM customers where id=$act ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $actname = $row['name'];
+      $actbalance = $row['balance'];
+      $acttype = $row['type'];
+      $acttypeid = $row['typeid'];
+
+    }
+
+    $chequeno = $_POST['chequeno'];
+    $chequeamt = $_POST['chequeamt'];
+
 
     $subt = $_POST['sub_total'];
     $amount = preg_replace("/[^0-9^.]/", '', $subt); 
 
     $datec=date('Y-m-d');
     $dateup=date('Y-m-d');
+
+
 
     if($pay=='credit'){
 
@@ -139,18 +153,17 @@
 
 
 
-      $desp='Goods are Sold from '.$destname.' on Credit';
+      $desp='Goods are Sold to '.$destname.' on Credit';
 
                     //Journal Entry
       $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
 
-      $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
-      mysqli_query($con, $sqls)or die(mysqli_error($con));
+  $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
+  mysqli_query($con, $sqls)or die(mysqli_error($con));
 
-      $sqls = "UPDATE customers SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
-      mysqli_query($con, $sqls)or die(mysqli_error($con));
-
+  $sqls = "UPDATE customers SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
+  mysqli_query($con, $sqls)or die(mysqli_error($con));
 
 
 
@@ -161,12 +174,12 @@
 
       }
 
-      $desp='Goods Sold to '.$destname;
+      $desp='Goods are Sold to '.$destname.' on Credit';
 
 
       $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-      $desp='Sale Invoice';
+      $desp='Credit Sale';
 
       $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
@@ -176,31 +189,34 @@
 
 
       $destid=$pay;
+      $srcid=$act;
 
-      if($destid==200016){
-        $srcid=200019;
-        $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($rows)){ 
-          $srcname = $row['name'];
-          $srcbalance = $row['balance'];
-          $srctype = $row['type'];
-          $srctypeid = $row['typeid'];
-        }
+      if($srcid==200019){ //Cash in Hands
 
-        $rows =mysqli_query($con,"SELECT * FROM acts where id=$destid ORDER BY name" ) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($rows)){ 
-          $destname = $row['name'];
-          $destbalance = $row['balance'];
-          $desttype = $row['type'];
-          $desttypeid = $row['typeid'];
+          $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
+          while($row=mysqli_fetch_array($rows)){ 
+            $srcname = $row['name'];
+            $srcbalance = $row['balance'];
+            $srctype = $row['type'];
+            $srctypeid = $row['typeid'];
+          }
 
-        }
+
+          $destid=200016;
+          $rows =mysqli_query($con,"SELECT * FROM acts where id=$destid ORDER BY name" ) or die(mysqli_error($con));
+          while($row=mysqli_fetch_array($rows)){ 
+            $destname = $row['name'];
+            $destbalance = $row['balance'];
+            $desttype = $row['type'];
+            $desttypeid = $row['typeid'];
+
+          }
 
             //First Entry
+    
 
-
-        $srcbalance=$srcbalance+$amount;
-        $destbalance=$destbalance+$amount;
+         $srcbalance=$srcbalance+$amount;
+         $destbalance=$destbalance+$amount;
 
 
 
@@ -208,14 +224,14 @@
         $desp='Goods Sold to '.$destname.'From'.$srcname;
 
                           //Journal Entry
-        $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+         $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,dr,datec,dateup,invoiceno,invoicepic)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup','$invoiceno','$invoicepic')")or die( mysqli_error($con) );
 
 
-        $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
-        mysqli_query($con, $sqls)or die(mysqli_error($con));
+         $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
+         mysqli_query($con, $sqls)or die(mysqli_error($con));
 
-        $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
-        mysqli_query($con, $sqls)or die(mysqli_error($con));
+         $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
+         mysqli_query($con, $sqls)or die(mysqli_error($con));
 
 
 
@@ -223,60 +239,149 @@
 
 
                           //Ledger Entry
-        $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($rows)){ 
+         $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+         while($row=mysqli_fetch_array($rows)){ 
           $jid = $row['id'];
 
         }
+
 
         $desp='Goods Sold to '.$destname.'From'.$srcname;
 
 
         $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-        $desp='Sale Invoice';
+        $desp=$srcname.' Sale';
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        $desp='Goods Sold to '.$destname.'From'.$srcname;
+
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        $desp=$srcname.' Sale';
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+      }
+      else if($destid==200032){ //Cheque 
+
+        $srcid=200019;
+          $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
+          while($row=mysqli_fetch_array($rows)){ 
+            $srcname = $row['name'];
+            $srcbalance = $row['balance'];
+            $srctype = $row['type'];
+            $srctypeid = $row['typeid'];
+          }
+
+          $rows =mysqli_query($con,"SELECT * FROM acts where id=$destid ORDER BY name" ) or die(mysqli_error($con));
+          while($row=mysqli_fetch_array($rows)){ 
+            $destname = $row['name'];
+            $destbalance = $row['balance'];
+            $desttype = $row['type'];
+            $desttypeid = $row['typeid'];
+
+          }
+
+            //First Entry
+    
+
+         $srcbalance=$srcbalance+$chequeamt;
+         $destbalance=$destbalance+$amount;
+         $chequebal=$amount-$chequeamt;
+         $actbalance=$actbalance+$chequebal;
+
+
+
+
+        $desp='Goods Sold to '.$destname.'From'.$srcname.' No. '.$chequeno;
+
+                          //Journal Entry
+         $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,datec,dateup,invoiceno,invoicepic,chequeno,chequeamt)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup','$invoiceno','$invoicepic','$chequeno','$chequeamt')")or die( mysqli_error($con) );
+
+
+         $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
+         mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+         $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
+         mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+         $sqls = "UPDATE customers SET `balance` = '$actbalance' WHERE `id` = $act"  ;
+         mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+
+
+
+
+
+                          //Ledger Entry
+         $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+         while($row=mysqli_fetch_array($rows)){ 
+          $jid = $row['id'];
+
+        }
+
+
+        $desp='Goods Sold to '.$destname.'From'.$srcname.' No. '.$chequeno;
+
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        $desp=$srcname.' Sale';
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        $desp='Goods Sold to '.$destname.'From'.$srcname.' No. '.$chequeno;
+
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        $desp=$srcname.' Sale';
 
         $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
       }
       else{
-        $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($rows)){ 
-          $srcname = $row['name'];
-          $srcbalance = $row['balance'];
-          $srctype = $row['type'];
-          $srctypeid = $row['typeid'];
-        }
-
         $srcid=200019;
-        $rows =mysqli_query($con,"SELECT * FROM acts where id=$destid ORDER BY name" ) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($rows)){ 
-          $destname = $row['name'];
-          $destbalance = $row['balance'];
-          $desttype = $row['type'];
-          $desttypeid = $row['typeid'];
+      $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
+      while($row=mysqli_fetch_array($rows)){ 
+        $srcname = $row['name'];
+        $srcbalance = $row['balance'];
+        $srctype = $row['type'];
+        $srctypeid = $row['typeid'];
+      }
 
-        }
+      
+      $rows =mysqli_query($con,"SELECT * FROM acts where id=$destid ORDER BY name" ) or die(mysqli_error($con));
+      while($row=mysqli_fetch_array($rows)){ 
+        $destname = $row['name'];
+        $destbalance = $row['balance'];
+        $desttype = $row['type'];
+        $desttypeid = $row['typeid'];
+
+      }
 
         //First Entry
-
-        $srcbalance=$srcbalance+$amount;
-        $destbalance=$destbalance+$amount;
-
-
+ 
+      $srcbalance=$srcbalance+$amount;
+      $destbalance=$destbalance+$amount;
 
 
-        $desp='Goods are Sold on Cash';
+
+
+      $desp='Goods Sold to '.$destname.'From'.$srcname;
 
                       //Journal Entry
-        $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+     $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup,invoiceno,invoicepic)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup','$invoiceno','$invoicepic')")or die( mysqli_error($con) );
 
 
-        $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
-        mysqli_query($con, $sqls)or die(mysqli_error($con));
+     $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
+     mysqli_query($con, $sqls)or die(mysqli_error($con));
 
-        $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
-        mysqli_query($con, $sqls)or die(mysqli_error($con));
+     $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
+     mysqli_query($con, $sqls)or die(mysqli_error($con));
 
 
 
@@ -284,312 +389,280 @@
 
 
                       //Ledger Entry
-        $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($rows)){ 
-          $jid = $row['id'];
-
-        }
-
-        $desp='Goods Sold to '.$destname.'From'.$srcname;
-
-
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
-
-        $desp='Sale Invoice';
-
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
-
-      }
+     $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+     while($row=mysqli_fetch_array($rows)){ 
+      $jid = $row['id'];
 
     }
 
 
-    $x= count($home = $_POST['qty1']);
 
-    for ($i=0; $i < $x; $i++) {
-
-      $pid = $_POST['item'][$i];
-      $qty = $_POST['qty1'][$i];
-      $price = $_POST['price1'][$i];
+    $desp='Goods Sold to '.$destname.'From'.$srcname;
 
 
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-      $rows =mysqli_query($con,"SELECT name,stock FROM items where id=$pid" ) or die(mysqli_error($con));
+    $desp=$srcname.' Sale';
 
-      while($row=mysqli_fetch_array($rows)){
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-        $name = $row['name'];
-        $stock = $row['stock'];
-      }
-
-      $stock=$stock-$qty;
-      $type='out';
-      $date=date('Y-m-d');
+    $desp='Goods Sold to '.$destname.'From'.$srcname;
 
 
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-                      //Journal Entry
-      $data=mysqli_query($con,"INSERT INTO itemslog (jid,pid,type,name,price,quantity,subtotal,datec)VALUES ('$jid','$pid','$type','$name','$price','$qty','$amount','$date')")or die( mysqli_error($con) );
+    $desp=$srcname.' Sale';
 
-      $sqls = "UPDATE items SET `stock` = '$stock' WHERE `id` = $pid"  ;
-      mysqli_query($con, $sqls)or die(mysqli_error($con));
-
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
     }
-    $msg = 'Successfull';
-
-
 
   }
 
-  ?>
 
-  <?php $link="cussale.php"; ?>
+  $x= count($home = $_POST['qty1']);
 
-  <?php include"include/header.php" ?>
-  <?php include"include/sidebar.php" ?>
+  for ($i=0; $i < $x; $i++) {
 
-  <div class="app-content content">
-   <div class="content-wrapper">
-
-    <form name="cart" method="POST" action="">
+    $pid = $_POST['item'][$i];
+    $qty = $_POST['qty1'][$i];
+    $price = $_POST['price1'][$i];
 
 
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header" style="padding-bottom: 0px;">
-            <h4 class="card-title">Customer Sale Invoice</h4>
-          </div>
-          <div class="card-block">
-            <div class="card-body">
 
-              <div class="row">
+    $rows =mysqli_query($con,"SELECT name,stock FROM items where id=$pid" ) or die(mysqli_error($con));
 
-                <div class="col-sm-1">
+    while($row=mysqli_fetch_array($rows)){
 
-                </div>
-                <div class="col-sm-3">
-                  <center><span>Date:</span></center>
-                  <input readonly type="date" class="form-control" name="date" value="<?php echo date('Y-m-d') ?>">
-                </div>
+      $name = $row['name'];
+      $stock = $row['stock'];
+    }
 
-                <div class="col-sm-3">
-                  <center><span>Select Customer Account:</span></center>
-                  <select class="form-control select2" name="act">
+    $stock=$stock+$qty;
+    $type='in';
+    $date=date('Y-m-d');
 
-                    <?php
 
-                    $rows =mysqli_query($con,"SELECT * FROM customers  ORDER BY name" ) or die(mysqli_error($con));
+                      //Journal Entry
+    $data=mysqli_query($con,"INSERT INTO itemslog (jid,pid,type,name,price,quantity,subtotal,datec)VALUES ('$jid','$pid','$type','$name','$price','$qty','$amount','$date')")or die( mysqli_error($con) );
 
-                    while($row=mysqli_fetch_array($rows)){
+    $sqls = "UPDATE items SET `stock` = '$stock' WHERE `id` = $pid"  ;
+    mysqli_query($con, $sqls)or die(mysqli_error($con));
 
-                      $id = $row['id'];
-                      $name = $row['name']; ?>
 
-                      <option value="<?php echo $id ?>"><?php echo $name ?></option>
+  }
+  $msg = 'Successfull';
 
-                    <?php } ?>
 
-                  </select>
 
-                </div>
-                <div class="col-sm-3">
-                  <center><span>Payment Type:</span></center>
-                  <select class="form-control select2" name="pay">
-                    <option value="credit">Credit</option>
 
-                    <?php
 
-                    $rows =mysqli_query($con,"SELECT * FROM acts WHERE purpose ='cash'  ORDER BY name" ) or die(mysqli_error($con));
+}
 
-                    while($row=mysqli_fetch_array($rows)){
+?>
 
-                      $id = $row['id'];
-                      $name = $row['name']; ?>
+<?php $link="cussale.php"; ?>
 
-                      <option value="<?php echo $id ?>"><?php echo $name ?></option>
+<?php include"include/header.php" ?>
+<?php include"include/sidebar.php" ?>
 
-                    <?php } ?>
+<div class="app-content content">
+ <div class="content-wrapper">
 
-                  </select>
+  <form name="cart" method="POST" action="" enctype="multipart/form-data">
 
-                </div>
+
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header" style="padding-bottom: 0px;">
+          <h4 class="card-title">Make Purchase Invoice</h4>
+        </div>
+        <div class="card-block">
+          <div class="card-body">
+
+            <div class="row">
+
+              <div class="col-sm-1">
+
               </div>
-              <hr>
+              <div class="col-sm-3">
+                <center><span>Date:</span></center>
+                <input readonly type="date" class="form-control" name="date" value="<?php echo date('Y-m-d') ?>">
+              </div>
 
+              <div class="col-sm-3">
+                <center><span>Select Customer Account:</span></center>
+                <select class="form-control select2" name="act">
 
+                  <?php
 
+                  $rows =mysqli_query($con,"SELECT * FROM customers  ORDER BY name" ) or die(mysqli_error($con));
 
+                  while($row=mysqli_fetch_array($rows)){
 
+                    $id = $row['id'];
+                    $name = $row['name']; ?>
 
-              <table name="cart" class="table table-striped table-bordered">
-                <tr>
-                  <th style="width:250px;">Product</th>
-                  <th  style="width:150px;">Qty</th>
-                  <th  style="width:150px;">Price</th>
+                    <option value="<?php echo $id ?>"><?php echo $name ?></option>
 
+                  <?php } ?>
 
-                  <th colspan="3">Item Total</th>
-                  <th><button name="add"  class="btn btn-primary"><i class="la la-plus"></i></button></th>
-                </tr>
+                </select>
 
+              </div>
+              <div class="col-sm-3">
+                <center><span>Payment Type:</span></center>
+                <select class="form-control select2" id="multiOptions" name="pay">
+                  <option value="credit">Credit</option>
 
+                  <?php
 
-                <tr name="line_items">
+                  $rows =mysqli_query($con,"SELECT * FROM acts WHERE purpose ='cash'  ORDER BY name" ) or die(mysqli_error($con));
 
-                  <td>
+                  while($row=mysqli_fetch_array($rows)){
 
-                   <select class="form-control " name="item[]">
-                     <?php
+                    $id = $row['id'];
+                    $name = $row['name']; ?>
 
-                     $rows =mysqli_query($con,"SELECT * FROM items WHERE pause =0  ORDER BY name" ) or die(mysqli_error($con));
+                    <option value="<?php echo $id ?>"><?php echo $name ?></option>
 
-                     while($row=mysqli_fetch_array($rows)){
+                  <?php } ?>
 
-                       $id = $row['id'];
-                       $name = $row['name']; ?>
+                </select>
 
-                       <option value="<?php echo $id ?>"><?php echo $name ?></option>
-
-                     <?php } ?>
-
-                   </select>
-                 </td>
-                 <td><input  class="form-control" type="number" name="qty" id="qty" value=""></td>
-                 <td><input class="form-control" type="number" name="price" id="price" value="">
-                  <input style="display: none;" type="text" name="item_total" id="item_total" value="" jAutoCalc="{qty} * {price}"></td>
-
-                  <td colspan="3">
-                    <input class="mycon" style="width:60px;" type="text" name="qty1[]"  id="qty1" value="" readonly> * 
-                    <input class="mycon" style="width:60px;"  type="text" name="price1[]" id="price1" value=""  readonly> = 
-                    <input  class="mycon" style="width:80px;" type="text" name="item_total1[]" id="item_total1"  readonly value="">
-                  </td>
-                  <td><button name="remove" class="btn btn-danger"><i class="la la-close"></i></button></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>Total</td>
-                  <td><div class="input-group"><h4 style="margin-top:12px;">Rs. &nbsp; </h4><input class="form-control"   type="text" name="sub_total" value=""  readonly jAutoCalc="SUM({item_total})"><h4 style="margin-top:12px;">/- </h4> </div></td>
-
-                </tr>
-
-
-
-
-
-              </table>
-              <hr>
-              <center><button name="send"  class="btn btn-primary">Send Data</button></center>
-
-
-              <center><h2>
-
-                <?php if(!empty($msg)) { ?>
-
-                  <br>
-                  <hr>
-                  <br>
-                  <?php echo $msg ; } ?></h2></center>
-                </div>
               </div>
             </div>
-          </div>
+            
 
-        </form>
+            <div class="row" id="chequediv">
+              <div class="col-sm-3">
+              </div>
+              <div class="col-sm-3">
+                <center><span>Cheque No :</span></center>
+                <input type="text" name="chequeno" class="form-control">
 
-        <div class="row">
-         <div class="col-lg-2">
-         </div>
-         <div class="col-lg-8">
-           <div class="card">
-            <div id="heading1" class="card-header" role="tab">
-              <a data-toggle="collapse" data-parent="#accordionWrapa1" href="#accordion1" aria-expanded="false"
-              aria-controls="accordion1" class="card-title lead">View Quick Inventory</a>
+              </div>
+              <div class="col-sm-3">
+                <center><span>Cheque Amount :</span></center>
+                <input type="text" name="chequeamt" class="form-control">
+
+              </div>
+
+
             </div>
-            <div id="accordion1" role="tabpanel" aria-labelledby="heading1" class="collapse hide">
-              <div class="card-content">
-                     <div class="card-body">
-                        <div class="row align-conter-center">
+            <hr>
 
-                         <div class="col-sm-4">
-                          <h4>Name</h4>
-                        </div>
-                         <div class="col-sm-4">
-                          <h4>Brand</h4>
-                        </div>
-                         <div class="col-sm-2">
-                          <h6>Weight</h6>
-                        </div>
-                        <div class="col-sm-2">
-                          <h4>Stock </h4>
-                        </div>
-                        
 
-                      </div>
-                      <br>
-                      <hr><br>
-                      <?php
 
-                      $rows =mysqli_query($con,"SELECT * FROM items Where id!=1 AND pause=0 ORDER BY name" ) or die(mysqli_error($con));
 
-                      while($row=mysqli_fetch_array($rows)){
 
-                        $name = $row['name'];
-                        $brand=$row['brand'];
-                        $wgt=$row['weight']; 
-                        $stock=$row['stock']; 
 
-                        ?>
-                        <div class="row  align-items-center" align="">
+            <table name="cart" class="table table-striped table-bordered">
+              <tr>
+                <th style="width:250px;">Product</th>
+                <th  style="width:150px;">Qty</th>
+                <th  style="width:150px;">Price</th>
 
-                         <div class="col-sm-4">
-                          <h5><?php echo $name ?></h5>
-                        </div> 
-                        
-                         <div class="col-sm-4">
-                          <?php
 
-                          $rowsl =mysqli_query($con,"SELECT * FROM itemsb Where id=$brand ORDER BY name" ) or die(mysqli_error($con));
+                <th colspan="3">Item Total</th>
+                <th><button name="add"  class="btn btn-primary"><i class="la la-plus"></i></button></th>
+              </tr>
 
-                          while($rowl=mysqli_fetch_array($rowsl)){
 
-                            $brandname = $rowl['name'];?>
-                             <h5><?php echo $brandname ?></h5>
-                            <?php }
-                            ?>
-                          
-                        </div> 
-                        
-                         <div class="col-sm-2">
-                          <h5><?php echo $wgt ?> g</h5>
-                        </div> 
 
-                         <div class="col-sm-2">
-                          <h5><?php echo $stock ?></h5>
-                        </div> 
+              <tr name="line_items">
 
-                      </div>
-                      <hr>
+                <td>
 
-                    <?php } ?>
-                    </div>
+                 <select class="form-control " name="item[]">
+                   <?php
+
+                   $rows =mysqli_query($con,"SELECT * FROM items WHERE pause =0  ORDER BY name" ) or die(mysqli_error($con));
+
+                   while($row=mysqli_fetch_array($rows)){
+
+                     $id = $row['id'];
+                     $name = $row['name']; ?>
+
+                     <option value="<?php echo $id ?>"><?php echo $name ?></option>
+
+                   <?php } ?>
+
+                 </select>
+               </td>
+               <td><input  class="form-control" type="number" name="qty" id="qty" value=""></td>
+               <td><input class="form-control" type="number" name="price" id="price" value="">
+                <input style="display: none;" type="text" name="item_total" id="item_total" value="" jAutoCalc="{qty} * {price}"></td>
+
+                <td colspan="3">
+                  <input class="mycon" style="width:60px;" type="text" name="qty1[]"  id="qty1" value="" readonly> * 
+                  <input class="mycon" style="width:60px;"  type="text" name="price1[]" id="price1" value=""  readonly> = 
+                  <input  class="mycon" style="width:80px;" type="text" name="item_total1[]" id="item_total1"  readonly value="">
+                </td>
+                <td><button name="remove" class="btn btn-danger"><i class="la la-close"></i></button></td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Total</td>
+                <td><div class="input-group"><h4 style="margin-top:12px;">Rs. &nbsp; </h4><input class="form-control"   type="text" name="sub_total" value=""  readonly jAutoCalc="SUM({item_total})"><h4 style="margin-top:12px;">/- </h4> </div></td>
+
+              </tr>
+
+
+
+
+
+            </table>
+            <hr>
+            <center><button name="send"  class="btn btn-primary">Send Data</button></center>
+            
+
+            <center><h2>
+
+              <?php if(!empty($msg)) { ?>
+
+                <br>
+                <hr>
+                <br>
+                <?php echo $msg ; } ?></h2></center>
               </div>
             </div>
           </div>
         </div>
-      </div>
+
+      </form>
+
+
+
+
     </div>
-
-
-
   </div>
-</div>
 
 
 
 
 </body>
+
+<script type="text/javascript">
+  
+  $(document).ready(function () {
+
+  $('#chequediv').hide();
+
+  $("#multiOptions").change(function () {
+      if ($(this).val() == "200032" ) {
+         $('#chequediv').show();
+         
+      }
+      else { 
+          $('#chequediv').hide();
+           }
+  });
+  });
+
+</script>
+
 <script type="text/javascript">
 
   $('#qty').keyup(function() {

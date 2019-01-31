@@ -93,7 +93,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
          <div class="row align-conter-center">
 
           <div class="col-sm-1">
-           <h4>ID</h4>
+           <h6>Invoice</h6>
          </div>
           <div class="col-sm-7">
            <h4>Description</h4>
@@ -154,7 +154,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
      else{ ?>
 
       <?php
-      $rowsl =mysqli_query($con,"SELECT * FROM ledger  where jid='$id' ORDER BY id " ) or die(mysqli_error($con));
+      $rowsl =mysqli_query($con,"SELECT * FROM ledger  where jid='$id' ORDER BY id  LIMIT 2" ) or die(mysqli_error($con));
 
       while($rowl=mysqli_fetch_array($rowsl)){
 
@@ -171,7 +171,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
         <div class="row  align-items-center" align="">
 
          <div class="col-sm-1">
-          <h5><?php echo $lid ;?></h5>
+          <h5><?php echo $id ;?></h5>
         </div> 
         
          <div class="col-sm-7">
@@ -212,7 +212,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
    </div>
 
            <?php
-
+           $clbalance=0;
            $rows =mysqli_query($con,"SELECT balance FROM ledger where actid = 200016 AND datec='$date' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
 
            while($row=mysqli_fetch_array($rows)){
@@ -226,7 +226,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
              </div>
              <div class="col-sm-4">
               <hr>
-              <h3> Closing Balance: <strong>Rs. <?php if(!empty($clbalance))  echo number_format($clbalance) ?>/-</strong></h3>
+              <h3> Closing Balance: <strong>Rs. <?php if($clbalance===0) echo '0'; else echo number_format($clbalance)?>/-</strong></h3>
               
             </div>
           </div>
