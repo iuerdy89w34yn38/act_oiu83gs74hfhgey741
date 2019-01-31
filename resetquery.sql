@@ -2,8 +2,8 @@ UPDATE acts set balance = 0;
 TRUNCATE TABLE itemslog;
 TRUNCATE TABLE ledger;
 TRUNCATE TABLE journal;
-TRUNCATE TABLE customers;
-TRUNCATE TABLE vendors;
+DELETE * FROM customers;
+DELETE * FROM vendors;
 TRUNCATE TABLE items;
-TRUNCATE TABLE itemsb;
+DELETE * FROM itemsb WHERE id=0;
 
