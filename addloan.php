@@ -480,12 +480,7 @@ if(isset($_POST['submitloan'])){
        <hr>
 
        <form action="" method="post">
-        <h2>Add <?php 
-        echo $date=date('Y-m-d');
-        echo ' - ';
-        echo $date=date('Y-m-d' , strtotime('-1 days'));
-
-        ?></h2>
+        <h2>Pay Loan</h2>
         <div class="row">
 
           <div class="col-sm-1">

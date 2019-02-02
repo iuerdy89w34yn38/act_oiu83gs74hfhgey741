@@ -104,8 +104,11 @@
 
 
 
-
       <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title">Accounts</span></a>
+        <ul class="menu-content">
+
+
+      <li class=" nav-item"><a href="#"></i><span class="menu-title">General Accounts</span></a>
         <ul class="menu-content">
 
 
@@ -118,7 +121,7 @@
         </ul>
       </li>
 
-      <li class=" nav-item"><a href="#"><i class="la la-truck"></i><span class="menu-title">Vendors</span></a>
+      <li class=" nav-item"><a href="#"></i><span class="menu-title">Vendors</span></a>
         <ul class="menu-content">
 
 
@@ -131,7 +134,7 @@
       </li>
 
 
-      <li class=" nav-item"><a href="#"><i class="la la-cart-plus"></i><span class="menu-title">Customers</span></a>
+      <li class=" nav-item"><a href="#"></i><span class="menu-title">Customers</span></a>
         <ul class="menu-content">
 
           <li class="<?php if($link=="addcust.php") echo "active"; ?>"><a class="menu-item" href="addcust.php" > Add Customers Account</a> </li>
@@ -141,6 +144,10 @@
 
         </ul>
       </li>
+
+        </ul>
+      </li>
+
 
 
       <li class=" navigation-header">

@@ -15,7 +15,6 @@
   <link rel="stylesheet" type="text/css" href="css/vendors.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/selects/select2.min.css">
 
-
   <title>Login </title>
   
 </head>

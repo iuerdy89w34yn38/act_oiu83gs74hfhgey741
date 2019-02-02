@@ -615,7 +615,7 @@
 
             </table>
             <hr>
-            <center><button name="send"  class="btn btn-primary">Send Data</button></center>
+            <center><button name="send"  class="btn btn-primary">Add</button></center>
             
 
             <center><h2>

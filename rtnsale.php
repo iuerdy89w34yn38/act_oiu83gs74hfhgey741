@@ -462,7 +462,7 @@
 
 ?>
 
-<?php $link="addpur.php"; ?>
+<?php $link="rtnsale.php"; ?>
 
 <?php include"include/header.php" ?>
 <?php include"include/sidebar.php" ?>
@@ -633,7 +633,7 @@
 
             </table>
             <hr>
-            <center><button name="send"  class="btn btn-primary">Send Data</button></center>
+            <center><button name="send"  class="btn btn-primary">Add</button></center>
             
 
             <center><h2>
