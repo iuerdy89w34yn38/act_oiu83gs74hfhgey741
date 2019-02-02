@@ -16,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/selects/select2.min.css">
 
 
-  <title>Login <?php echo $comp_name ?> </title>
+  <title>Login </title>
   
 </head>
 <body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
@@ -34,7 +34,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
         <div class="card-header border-0">
           <div class="card-title text-center">
             <div class="p-1">
-              <img src="images/logo.png" alt="branding logo">
+              <img src="images/logo.png" alt="logo" style="max-width: 200px;">
             </div>
           </div>
           <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
@@ -45,11 +45,9 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
           <div class="card-body">
             <form class="form-horizontal form-simple" action="" method="post" novalidate>
               <fieldset class="form-group position-relative has-icon-left mb-0">
-                <input type="text" name="username" class="form-control form-control-lg input-lg" id="username" placeholder="Your Username"
+                <input type="text" name="username" class="form-control form-control-lg input-lg" id="username" placeholder="Enter Username"
                 required>
-                <div class="form-control-position">
-                  <i class="ft-user"></i>
-                </div>
+
               </fieldset>
               <br>
               <fieldset class="form-group position-relative has-icon-left">

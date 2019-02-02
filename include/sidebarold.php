@@ -16,7 +16,7 @@
 
 
       <li class=" navigation-header">
-        <span>Activities / Tranasctions</span>
+        <span>Invoices</span>
       </li>
 
 
@@ -34,59 +34,61 @@
           <li class="<?php if($link=="wdcash.php") echo "active"; ?>"><a class="menu-item" href="wdcash.php" >Withdraw Cash</a> </li>
 
 
-          <li class="<?php if($link=="paypur.php") echo "active"; ?>"><a class="menu-item" href="paypur.php" >Accounts Payables </a> </li>
+        </ul>
+      </li>
+
+      <li class=" nav-item"><a href="#"><i class="la la-codepen"></i><span class="menu-title">Sales</span></a>
+
+        <ul class="menu-content">
+
+         
+
+          <li class="<?php if($link=="cussale.php") echo "active"; ?>"><a class="menu-item" href="cussale.php" >Customer Sale</a> </li>
+
+          <li class="<?php if($link=="cntsale.php") echo "active"; ?>"><a class="menu-item" href="cntsale.php" >Counter Sale</a> </li>
 
           <li class="<?php if($link=="recsale.php") echo "active"; ?>"><a class="menu-item" href="recsale.php" >Accounts Receivealbes</a> </li>
 
-
+          <li class="<?php if($link=="rtnsale.php") echo "active"; ?>"><a class="menu-item" href="rtnsale.php" >Return Sales</a> </li>
 
         </ul>
       </li>
 
 
-
-
-      <li class=" nav-item"><a href="#"><i class="la la-clipboard"></i><span class="menu-title">Invoices / Bills</span></a>
+      <li class=" nav-item"><a href="#"><i class="la la-industry"></i><span class="menu-title">Purchase</span></a>
         <ul class="menu-content">
 
 
-          <li class=""><a href="#"><span class="menu-title">Sales</span></a>
+          <li class="<?php if($link=="addpur.php") echo "active"; ?>"><a class="menu-item" href="addpur.php" >Add Purchase</a> </li>
 
-            <ul class="menu-content">
+          <li class="<?php if($link=="paypur.php") echo "active"; ?>"><a class="menu-item" href="paypur.php" >Accounts Payables </a> </li>
 
-             
+          <li class="<?php if($link=="rtnpur.php") echo "active"; ?>"><a class="menu-item" href="rtnpur.php" >Return Purchase </a> </li>
 
-              <li class="<?php if($link=="cussale.php") echo "active"; ?>"><a class="menu-item" href="cussale.php" >Customer Sale</a> </li>
+       
+        </ul>
+      </li>
 
-              <li class="<?php if($link=="cntsale.php") echo "active"; ?>"><a class="menu-item" href="cntsale.php" >Counter Sale</a> </li>
+      <li class=" nav-item"><a href="#"><i class="la la-credit-card"></i><span class="menu-title">Payments</span></a>
+        <ul class="menu-content">
 
-
-              <li class="<?php if($link=="rtnsale.php") echo "active"; ?>"><a class="menu-item" href="rtnsale.php" >Return Sales</a> </li>
-
-            </ul>
-          </li>
-          <li class=""><a href="#"></i><span class="menu-title">Purchase</span></a>
-            <ul class="menu-content">
-
-
-              <li class="<?php if($link=="addpur.php") echo "active"; ?>"><a class="menu-item" href="addpur.php" >Add Purchase</a> </li>
-
-
-              <li class="<?php if($link=="rtnpur.php") echo "active"; ?>"><a class="menu-item" href="rtnpur.php" >Return Purchase </a> </li>
-
-           
-            </ul>
-          </li>
-
+       
 
           <li class="<?php if($link=="addexp.php") echo "active"; ?>"><a class="menu-item" href="addexp.php" >Add Expenses </a> </li>
 
           <li class="<?php if($link=="addast.php") echo "active"; ?>"><a class="menu-item" href="addast.php" >Add Fixed Assets</a> </li>
+
+        </ul>
+      </li>
+
+      <li class=" nav-item"><a href="#"><i class="la la-clipboard"></i><span class="menu-title">Invoices / Bills</span></a>
+        <ul class="menu-content">
+
        
 
           <li class="<?php if($link=="viewpinv.php") echo "active"; ?>"><a class="menu-item" href="viewpinv.php" >View Purchase Invoice </a> </li>
 
-          <li class="<?php if($link=="viewinv.php") echo "active"; ?>"><a class="menu-item" href="viewinv.php" >View Invoices </a> </li>
+          <li class="<?php if($link=="viewinv.php") echo "active"; ?>"><a class="menu-item" href="viewinv.php" >View Our Invoices / Bills</a> </li>
 
         </ul>
       </li>
@@ -156,11 +158,11 @@
 
           <li class="<?php if($link=="genled.php") echo "active"; ?>"><a class="menu-item" href="genled.php" > General Ledger</a> </li>
 
-          <li class="<?php if($link=="genledcus.php") echo "active"; ?>"><a class="menu-item" href="genledcus.php" > Customer Ledger</a> </li>
-
-          <li class="<?php if($link=="genledvend.php") echo "active"; ?>"><a class="menu-item" href="genledvend.php" > Vendor Ledger</a> </li>
-
  
+          <li class="<?php if($link=="paypur.php") echo "active"; ?>"><a class="menu-item" href="paypur.php" >Accounts Payables </a> </li>
+
+          <li class="<?php if($link=="recsale.php") echo "active"; ?>"><a class="menu-item" href="recsale.php" >Accounts Receivealbes</a> </li>
+
 
         </ul>
       </li>
@@ -202,7 +204,7 @@
 
           <li class="<?php if($link=="viewitems.php") echo "active"; ?>"><a class="menu-item" href="viewitems.php" >View Stock </a> </li>
 
-          <li class="<?php if($link=="additems.php") echo "active"; ?>"><a class="menu-item" href="additems.php" >View Products</a> </li>
+          <li class="<?php if($link=="additems.php") echo "active"; ?>"><a class="menu-item" href="additems.php" >Add Products</a> </li>
 
         </ul>
       </li>

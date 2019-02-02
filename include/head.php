@@ -139,6 +139,12 @@ rel="stylesheet">
 	    color: #FFFFFF;
 	}
 
+	.select2-container--default .select2-selection--single {
+	    min-width: 150px;
+	}
+	.select2-container--open  {
+	    min-width: 150px !important;
+	}
 
 
 	body.vertical-layout.vertical-menu-modern.menu-expanded .content, body.vertical-layout.vertical-menu-modern.menu-expanded .footer {
