@@ -76,7 +76,7 @@
 
     $rows =mysqli_query($con,"SELECT * FROM vendors where id=$act ORDER BY name" ) or die(mysqli_error($con));
     while($row=mysqli_fetch_array($rows)){ 
-      $actname = $row['name'];
+       $actname = $row['name'];
       $actbalance = $row['balance'];
       $acttype = $row['type'];
       $acttypeid = $row['typeid'];
@@ -409,6 +409,7 @@
     $pid = $_POST['item'][$i];
     $qty = $_POST['qty1'][$i];
     $price = $_POST['price1'][$i];
+    $pprice = $_POST['pprice'][$i];
 
 
 
@@ -428,7 +429,7 @@
                       //Journal Entry
     $data=mysqli_query($con,"INSERT INTO itemslog (jid,pid,type,name,price,quantity,subtotal,datec)VALUES ('$jid','$pid','$type','$name','$price','$qty','$amount','$date')")or die( mysqli_error($con) );
 
-    $sqls = "UPDATE items SET `stock` = '$stock' WHERE `id` = $pid"  ;
+    $sqls = "UPDATE items SET `stock` = '$stock',`price` = '$pprice' WHERE `id` = $pid"  ;
     mysqli_query($con, $sqls)or die(mysqli_error($con));
 
 
@@ -559,6 +560,7 @@
             <table name="cart" class="table table-striped table-bordered">
               <tr>
                 <th style="width:250px;">Product</th>
+                <th  style="width:100px;">Sell Price</th>
                 <th  style="width:150px;">Qty</th>
                 <th  style="width:150px;">Price</th>
 
@@ -589,6 +591,7 @@
 
                  </select>
                </td>
+               <td><input  class="form-control" type="number" name="pprice" id="pprice" value=""></td>
                <td><input  class="form-control" type="number" name="qty" id="qty" value=""></td>
                <td><input class="form-control" type="number" name="price" id="price" value="">
                 <input style="display: none;" type="text" name="item_total" id="item_total" value="" jAutoCalc="{qty} * {price}"></td>
@@ -601,6 +604,7 @@
                 <td><button name="remove" class="btn btn-danger"><i class="la la-close"></i></button></td>
               </tr>
               <tr>
+                <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>Total</td>

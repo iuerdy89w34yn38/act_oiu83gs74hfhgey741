@@ -438,8 +438,8 @@
       $stock = $row['stock'];
     }
 
-    $stock=$stock+$qty;
-    $type='in';
+    $stock=$stock-$qty;
+    $type='out';
     $date=date('Y-m-d');
 
 

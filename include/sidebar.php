@@ -209,7 +209,7 @@
 
           <li class="<?php if($link=="viewitems.php") echo "active"; ?>"><a class="menu-item" href="viewitems.php" >View Stock </a> </li>
 
-          <li class="<?php if($link=="additems.php") echo "active"; ?>"><a class="menu-item" href="additems.php" >View Products</a> </li>
+          <li class="<?php if($link=="additems.php") echo "active"; ?>"><a class="menu-item" href="additems.php" >New Products</a> </li>
 
         </ul>
       </li>

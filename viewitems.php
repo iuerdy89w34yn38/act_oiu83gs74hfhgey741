@@ -180,118 +180,107 @@ if(isset($_POST['del'])){
 
 
 
+
+
 <div class="col-sm-12">
   <div class="card">
-    <div class="card-header" style="padding-bottom: 0px;">
-      <h4 class="card-title">View Products</h4>
+    <div class="card-header">
+      <h2>View Products</h2>
+      <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+      <div class="heading-elements">
+        <ul class="list-inline mb-0">
+          <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+          <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+          <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+          <li><a data-action="close"><i class="ft-x"></i></a></li>
+        </ul>
+      </div>
     </div>
     <div class="card-block">
       <div class="card-body">
+       
+     
        <form action="" method="post">
-         <div class="row align-conter-center">
+        
+        <table class="table table-striped table-bordered dataex-select-multi ">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Brand</th>
+              <th>Description</th>
+              <th>Weight</th>
+              <th>Stock</th>
+              <th>Price</th>
+              <th>Active</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>  
+            <?php
 
-          <div class="col-sm-2">
-           <h4>Name</h4>
-         </div>
-          <div class="col-sm-2">
-           <h4>Brand</h4>
-         </div>
-          <div class="col-sm-3">
-           <h4>Description</h4>
-         </div>
-          <div class="col-sm-1">
-           <h6>Weight</h6>
-         </div>
-         <div class="col-sm-1">
-           <h4>Stock </h4>
-         </div>
-         <div class="col-sm-1">
-           <h4>Active</h4>
-         </div>
-         <div class="col-sm-1">
-           <span>Update</span>
+                    $rows =mysqli_query($con,"SELECT * FROM items  ORDER BY name" ) or die(mysqli_error($con));
 
-         </div>
-         <div class="col-sm-1">
-           <span>Delete</span>
+                    while($row=mysqli_fetch_array($rows)){
 
-         </div>
+                      $id = $row['id'];
+                      $name = $row['name'];
+                      $brand=$row['brand'];
+                      $desp=$row['desp'];
+                      $wgt=$row['weight']; 
+                      $stock=$row['stock']; 
+                      $price=$row['price']; 
+                      $pause=$row['pause']; 
 
-       </div>
-       <br>
-       <hr><br>
-       <?php
+                      ?>
+            <tr>
 
-       $rows =mysqli_query($con,"SELECT * FROM items Where id!=1 ORDER BY name" ) or die(mysqli_error($con));
+                  
+                      <td><?php echo $name ?></td>
+                      
+                       <td><?php
 
-       while($row=mysqli_fetch_array($rows)){
+                        $rowsl =mysqli_query($con,"SELECT * FROM itemsb Where id=$brand ORDER BY name" ) or die(mysqli_error($con));
 
-         $id = $row['id'];
-         $name = $row['name'];
-         $brand=$row['brand'];
-         $desp=$row['desp'];
-         $wgt=$row['weight']; 
-         $stock=$row['stock']; 
-         $pause=$row['pause']; 
+                        while($rowl=mysqli_fetch_array($rowsl)){
 
-         ?>
-         <div class="row  align-items-center" align="">
+                          $brandname = $rowl['name'];?>
+                          <?php echo $brandname ?>
+                          <?php }
+                          ?>
+                        
+                      </td>
+                      
+                       <td><?php echo $desp ?></td>
+                      
+                       <td><?php echo $wgt ?> </td> 
 
-          <div class="col-sm-2">
-           <h5><?php echo $name ?></h5>
-         </div> 
-         
-          <div class="col-sm-2">
-           <?php
+                       <td><?php echo $stock ?></td> 
+                       <td><?php echo $price ?></td> 
 
-           $rowsl =mysqli_query($con,"SELECT * FROM itemsb Where id=$brand ORDER BY name" ) or die(mysqli_error($con));
+                      <td><?php if($pause==0) echo 'Yes'; else echo 'No' ;?> </td>
+                      
+                      <td>
 
-           while($rowl=mysqli_fetch_array($rowsl)){
+                        <button name="id" class="btn btn-primary" value="<?php echo $id ?>"><i class="la la-pencil"></i></button>
 
-             $brandname = $rowl['name'];?>
-              <h5><?php echo $brandname ?></h5>
-             <?php }
-             ?>
+                    
+                        <button name="del" class="btn btn-danger" value="<?php echo $id ?>"><i class="la la-trash"></i></button>
+                      </td>
+
+            </tr>
            
-         </div> 
-         
-          <div class="col-sm-3">
-           <h5><?php echo $desp ?></h5>
-         </div> 
-         
-          <div class="col-sm-1">
-           <h5><?php echo $wgt ?></h5>
-         </div> 
 
-          <div class="col-sm-1">
-           <h5><?php echo $stock ?></h5>
-         </div> 
+                  <?php } ?>
+               
+          </tbody>
+        </table>
+ </form>
 
-         <div class="col-sm-1">
-           <h5 ><?php if($pause==0) echo 'Yes'; else echo 'No' ;?> </h5>
-         </div>
-         <div class="col-sm-1">
-
-           <button name="id" class="btn btn-primary" value="<?php echo $id ?>"><i class="la la-pencil"></i></button>
-
-         </div>
-         <div class="col-sm-1">
-
-
-           <button name="del" class="btn btn-danger" value="<?php echo $id ?>"><i class="la la-trash"></i></button>
-         </div>
-
-       </div>
-       <hr>
-
-     <?php } ?>
-   </form>
-
-   <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
- </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
+
 
 
 
@@ -445,7 +434,7 @@ if(isset($_POST['del'])){
           <select class="select select2 form-control" name="pid">
             <?php
 
-            $rowsl =mysqli_query($con,"SELECT * FROM items WHERE id!=1 ORDER BY name" ) or die(mysqli_error($con));
+            $rowsl =mysqli_query($con,"SELECT * FROM items ORDER BY name" ) or die(mysqli_error($con));
 
             while($rowl=mysqli_fetch_array($rowsl)){
 

@@ -193,48 +193,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 						<hr>
 					</div>
 
-
-						<?php
-
-						$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =6 ORDER BY name" ) or die(mysqli_error($con));
-
-						while($row=mysqli_fetch_array($rows)){
-
-							$bsname = $row['name'];
-							$bsbalance = $row['balance'];
-							$bsfasst=$bsfasst+$bsbalance;
-							?>
-							<div class="row">
-								<div class="col-sm-8">
-									<center><h6><?php echo $bsname ?>:</h6></center>
-
-
-								</div>
-								<div class="col-sm-4">
-									<center><h6><?php echo number_format($bsbalance)?></h6></center>
-
-								</div>
-							</div>
-						<?php } ?>
-
-						<div style="background: lightgrey;">
-						<hr>
-						<div class="row">
-							<div class="col-sm-8">
-								<strong> <center><h6 style="font-weight: 600">Fixed Assets:</h6></center></strong>
-								
-
-							</div>
-							<div class="col-sm-4">
-							<center><h6 style="font-weight: 600"><?php echo number_format($bsfasst)?></h6></center>
-								
-
-							</div>
-						</div>
-						<hr>
-					</div>
-
-
 						<?php
 
 						$rows =mysqli_query($con,"SELECT * FROM customers WHERE balance>0 ORDER BY name" ) or die(mysqli_error($con));
@@ -277,9 +235,118 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 					</div>
 
 
+
+						<?php
+
+						$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =6 ORDER BY name" ) or die(mysqli_error($con));
+
+						while($row=mysqli_fetch_array($rows)){
+
+							$bsname = $row['name'];
+							$bsbalance = $row['balance'];
+							$bsfasst=$bsfasst+$bsbalance;
+							?>
+							<div class="row">
+								<div class="col-sm-8">
+									<center><h6><?php echo $bsname ?>:</h6></center>
+
+
+								</div>
+								<div class="col-sm-4">
+									<center><h6><?php echo number_format($bsbalance)?></h6></center>
+
+								</div>
+							</div>
+						<?php } ?>
+
+						<div style="background: lightgrey;">
+						<hr>
+						<div class="row">
+							<div class="col-sm-8">
+								<strong> <center><h6 style="font-weight: 600">Fixed Assets:</h6></center></strong>
+								
+
+							</div>
+							<div class="col-sm-4">
+							<center><h6 style="font-weight: 600"><?php echo number_format($bsfasst)?></h6></center>
+								
+
+							</div>
+						</div>
+						<hr>
+					</div>
+
+
+
 					</div>
 
 					<div class="col-md-6">
+
+							<?php
+
+							$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =3 ORDER BY name" ) or die(mysqli_error($con));
+
+							while($row=mysqli_fetch_array($rows)){
+
+								$bsname = $row['name'];
+								$bsbalance = $row['balance'];
+								$bslib=$bslib+$bsbalance;
+							}
+								?>
+								<div class="row">
+									<div class="col-sm-8">
+										<center><h6>Loans:</h6></center>
+
+
+									</div>
+									<div class="col-sm-4">
+										<center><h6><?php echo number_format($bslib)?></h6></center>
+
+									</div>
+								</div>
+
+
+							<?php
+
+							$rows =mysqli_query($con,"SELECT * FROM vendors WHERE balance>0 ORDER BY name" ) or die(mysqli_error($con));
+
+							while($row=mysqli_fetch_array($rows)){
+
+
+								$bsbalance = $row['balance'];
+								$bsvend=$bsvend+$bsbalance;
+							}
+								?>
+								<div class="row">
+									<div class="col-sm-8">
+										<center><h6>Vendors Payments:</h6></center>
+
+
+									</div>
+									<div class="col-sm-4">
+										<center><h6><?php echo number_format($bsvend)?></h6></center>
+
+									</div>
+								</div>
+
+
+							<div style="background: lightgrey;">
+							<hr>
+							<div class="row">
+								<?php $bsap=$bslib+$bsvend ?>
+								<div class="col-sm-8">
+									<center><h6 style="font-weight: 600">Total Accounts Payables:</h6></center>
+
+
+								</div>
+								<div class="col-sm-4">
+
+									<center><h6 style="font-weight: 600"><?php echo number_format($bsap)?></h6></center>
+
+								</div>
+						    </div>
+						    <hr>
+						</div>
 
 							<?php
 
@@ -359,71 +426,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 						    <hr>
 						</div>
 
-							<?php
-
-							$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =3 ORDER BY name" ) or die(mysqli_error($con));
-
-							while($row=mysqli_fetch_array($rows)){
-
-								$bsname = $row['name'];
-								$bsbalance = $row['balance'];
-								$bslib=$bslib+$bsbalance;
-							}
-								?>
-								<div class="row">
-									<div class="col-sm-8">
-										<center><h6>Loans:</h6></center>
-
-
-									</div>
-									<div class="col-sm-4">
-										<center><h6><?php echo number_format($bslib)?></h6></center>
-
-									</div>
-								</div>
-
-
-							<?php
-
-							$rows =mysqli_query($con,"SELECT * FROM vendors WHERE balance>0 ORDER BY name" ) or die(mysqli_error($con));
-
-							while($row=mysqli_fetch_array($rows)){
-
-
-								$bsbalance = $row['balance'];
-								$bsvend=$bsvend+$bsbalance;
-							}
-								?>
-								<div class="row">
-									<div class="col-sm-8">
-										<center><h6>Vendors Payments:</h6></center>
-
-
-									</div>
-									<div class="col-sm-4">
-										<center><h6><?php echo number_format($bsvend)?></h6></center>
-
-									</div>
-								</div>
-
-
-							<div style="background: lightgrey;">
-							<hr>
-							<div class="row">
-								<?php $bsap=$bslib+$bsvend ?>
-								<div class="col-sm-8">
-									<center><h6 style="font-weight: 600">Total Accounts Payables:</h6></center>
-
-
-								</div>
-								<div class="col-sm-4">
-
-									<center><h6 style="font-weight: 600"><?php echo number_format($bsap)?></h6></center>
-
-								</div>
-						    </div>
-						    <hr>
-						</div>
+							
 
 						<?php
 

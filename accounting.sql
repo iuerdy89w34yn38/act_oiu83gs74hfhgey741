@@ -1,11 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.7.9
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1:3306
--- Generation Time: Jan 31, 2019 at 01:08 PM
--- Server version: 5.7.21
--- PHP Version: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -13,10 +5,7 @@ START TRANSACTION;
 
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+
 
 --
 -- Database: `accounting`
@@ -40,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `acts` (
   `nodel` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=MyISAM AUTO_INCREMENT=200037 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=200042 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `acts`
@@ -54,7 +43,9 @@ INSERT INTO `acts` (`id`, `typeid`, `type`, `name`, `slug`, `purpose`, `balance`
 (200022, 3, 'Liability', 'Vendors', 'vendors', 'liabilities', 0, 1),
 (200028, 10, 'Cost of Goods Sold', 'Purchase Return', 'purchase-return', 'inventory', 0, 1),
 (200029, 2, 'Revenue', 'Sales Return', 'sales-return', 'income', 0, 1),
-(200032, 5, 'Current Assets', 'Open Cheque', 'cheque', 'cash', 0, 1);
+(200032, 5, 'Current Assets', 'Open Cheque', 'cheque', 'cash', 0, 1),
+(200040, 10, 'Cost of Goods Sold', 'Purchase Discount', 'purchase-discount', 'inventory', 0, 1),
+(200041, 2, 'Revenue', 'Sales Discount', 'sales-discount', 'income', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -830,13 +821,6 @@ CREATE TABLE IF NOT EXISTS `customers` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=600002 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`) VALUES
-(600001, 200021, 'Customers', 'Test Customer 1', '123456789', 'ABC Company', '456789123', 'email@abccompany.com', 'Test Address Customer 1', 'Lahore', 'Pakistan', 0, '2018-12-17');
-
 -- --------------------------------------------------------
 
 --
@@ -868,7 +852,7 @@ CREATE TABLE IF NOT EXISTS `itemsb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `itemsb`
@@ -1009,15 +993,5 @@ CREATE TABLE IF NOT EXISTS `vendors` (
   `dated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=400002 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `vendors`
---
-
-INSERT INTO `vendors` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`) VALUES
-(400001, 200022, 'Vendors', 'Test Vendor 1', '123456789', 'ABC Company', '456789123', 'email@abccompany.com', 'Test Address Vendor 1', 'Lahore', 'Pakistan', 0, '2018-12-17');
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

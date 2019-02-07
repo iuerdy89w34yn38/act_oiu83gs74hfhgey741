@@ -5,5 +5,5 @@ TRUNCATE TABLE journal;
 DELETE * FROM customers;
 DELETE * FROM vendors;
 TRUNCATE TABLE items;
-DELETE * FROM itemsb WHERE id=0;
+DELETE * FROM itemsb WHERE id>1;
 

@@ -154,7 +154,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
      else{ ?>
 
       <?php
-      $rowsl =mysqli_query($con,"SELECT * FROM ledger  where jid='$id' ORDER BY id  LIMIT 2" ) or die(mysqli_error($con));
+      $rowsl =mysqli_query($con,"SELECT * FROM ledger  where jid='$id' ORDER BY id desc  LIMIT 2" ) or die(mysqli_error($con));
 
       while($rowl=mysqli_fetch_array($rowsl)){
 
