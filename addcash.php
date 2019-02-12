@@ -81,7 +81,7 @@ if(isset($_POST['submitcap'])){
 
     }
 
-    $desp='Cash is Desposited from '.$srcname;
+    $desp=$srcname;
 
 
     $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
@@ -141,7 +141,7 @@ if(isset($_POST['submitcap'])){
 
     }
 
-    $desp='Cash Desposited from '.$srcname;
+    $desp=$srcname;
 
 
     $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );

@@ -1,3 +1,11 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Feb 07, 2019 at 05:48 AM
+-- Server version: 5.7.21
+-- PHP Version: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -5,7 +13,10 @@ START TRANSACTION;
 
 
 
-
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `accounting`
@@ -29,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `acts` (
   `nodel` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=MyISAM AUTO_INCREMENT=200042 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=200043 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `acts`
@@ -45,7 +56,8 @@ INSERT INTO `acts` (`id`, `typeid`, `type`, `name`, `slug`, `purpose`, `balance`
 (200029, 2, 'Revenue', 'Sales Return', 'sales-return', 'income', 0, 1),
 (200032, 5, 'Current Assets', 'Open Cheque', 'cheque', 'cash', 0, 1),
 (200040, 10, 'Cost of Goods Sold', 'Purchase Discount', 'purchase-discount', 'inventory', 0, 1),
-(200041, 2, 'Revenue', 'Sales Discount', 'sales-discount', 'income', 0, 1);
+(200041, 2, 'Revenue', 'Sales Discount', 'sales-discount', 'income', 0, 1),
+(200042, 1, 'Capital', 'Capital A/c of Hamza Pervaiz', 'capital-a-c-of-hamza-pervaiz', 'capital', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -819,7 +831,14 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `balance` int(11) DEFAULT '0',
   `dated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=600002 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=600003 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`) VALUES
+(600002, 200021, 'Customers', 'Test Customer 4', '12345678', 'C Company', '1234567899', 'customer@email.com', 'Customer Address', 'Lahore', 'Pakistan', 0, '2019-02-07');
 
 -- --------------------------------------------------------
 
@@ -839,7 +858,14 @@ CREATE TABLE IF NOT EXISTS `items` (
   `stock` int(11) NOT NULL DEFAULT '0',
   `pause` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `brand`, `name`, `desp`, `price`, `quantity`, `weight`, `stock`, `pause`) VALUES
+(1, '3', 'Test Product', 'test desp', 0, 0, 90, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -852,14 +878,15 @@ CREATE TABLE IF NOT EXISTS `itemsb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `itemsb`
 --
 
 INSERT INTO `itemsb` (`id`, `name`) VALUES
-(1, 'None');
+(1, 'None'),
+(3, 'test');
 
 -- --------------------------------------------------------
 
@@ -992,6 +1019,17 @@ CREATE TABLE IF NOT EXISTS `vendors` (
   `balance` int(11) DEFAULT '0',
   `dated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=400002 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=400003 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `vendors`
+--
+
+INSERT INTO `vendors` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`) VALUES
+(400002, 200022, 'Vendors', 'Test Vendor 1', '12345678', 'V Company', '1234567899', 'vendor@email.com', 'Vendor Address', 'Islamabad', 'Pakistan', 0, '2019-02-07');
 COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  

@@ -234,7 +234,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header" style="padding-bottom: 0px;">
-                <h4 class="card-title">Withdraw Cash / Capital</h4>
+                <h4 class="card-title">Account Payables</h4>
               </div>
               <div class="card-block">
                 <div class="card-body">
@@ -242,7 +242,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                   <div class="row">
 
                     <div class="col-sm-4">
-                      <span>Select Drawing Capital Account</span>
+                      <span>Select Vendor Account</span>
                       <select class="form-control select2" name="act">
                         <?php
 

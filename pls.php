@@ -95,8 +95,16 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 									$name = $row['name'];
 									$cogsr = $row['balance'];
 								} 
+								$rows =mysqli_query($con,"SELECT * FROM acts WHERE id=200040  ORDER BY name" ) or die(mysqli_error($con));
 
-								$netcogs = $cogs-$cogsr;
+								while($row=mysqli_fetch_array($rows)){
+
+									$id = $row['id'];
+									$name = $row['name'];
+									$cogsd = $row['balance'];
+								} 
+
+								$netcogs = $cogs-$cogsr-$cogsd;
 
 
 								$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =4  ORDER BY name" ) or die(mysqli_error($con));
@@ -126,6 +134,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 									<hr>
 									<h4>Total Purchases:</h4>
 									<h4> Purchases Returns:</h4>
+									<h4> Purchases Discount:</h4>
 									<hr>
 									<h4> Purchases:</h4>
 									<hr>
@@ -148,7 +157,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 								<?php } ?>
 
 									<hr>
-									<h2> Net Profit:</h2>
+									<h2> Net Profit/Loss:</h2>
 								</div>
 								<div class="col-md-2">
 
@@ -159,6 +168,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 									<hr>
 									<h4><?php echo $cogs ?></h4>
 									<h4><?php echo $cogsr ?></h4>
+									<h4><?php echo $cogsd ?></h4>
 									<hr>
 									<h4><?php echo $netcogs ?></h4>
 									<hr>

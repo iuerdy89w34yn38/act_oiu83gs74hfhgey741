@@ -31,7 +31,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 
-
 <?php include"include/header.php" ?>
 <?php include"include/sidebar.php" ?>
 <div class="app-content content">
@@ -114,7 +113,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                $tdr=0;
                $tcr=0;
 
-               $rows =mysqli_query($con,"SELECT * FROM ledger  where datec>='$dates' and datec<='$datee'  AND ref=0 and (actid LIKE '$act' ) ORDER BY id" ) or die(mysqli_error($con));
+               $rows =mysqli_query($con,"SELECT * FROM ledger  where datec>='$dates' and datec<='$datee'  AND ref=0 and (actid LIKE '$act' ) ORDER BY id desc" ) or die(mysqli_error($con));
 
                while($row=mysqli_fetch_array($rows)){
 

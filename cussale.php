@@ -103,6 +103,7 @@
     $act = $_POST['act'];
     $pay = $_POST['pay'];
 
+
     $rows =mysqli_query($con,"SELECT * FROM customers where id=$act ORDER BY name" ) or die(mysqli_error($con));
     while($row=mysqli_fetch_array($rows)){ 
       $actname = $row['name'];
@@ -118,6 +119,18 @@
 
     $subt = $_POST['sub_total'];
     $amount = preg_replace("/[^0-9^.]/", '', $subt); 
+    $discount = $_POST['discount'];
+
+
+    $discid=200040;
+    $rows =mysqli_query($con,"SELECT * FROM acts where id=$discid ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $discname = $row['name'];
+      $discbalance = $row['balance'];
+      $disctype = $row['type'];
+      $disctypeid = $row['typeid'];
+    }
+
 
     $datec=date('Y-m-d');
     $dateup=date('Y-m-d');
@@ -148,7 +161,9 @@
       //First Entry
 
       $srcbalance=$srcbalance+$amount;
-      $destbalance=$destbalance+$amount;
+      $destbalance=$destbalance+$amount-$discount;
+      $aamount=$amount-$discount;
+      $discbalance=$discbalance+$discount;
 
 
 
@@ -165,6 +180,10 @@
   $sqls = "UPDATE customers SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
   mysqli_query($con, $sqls)or die(mysqli_error($con));
 
+  $sqls = "UPDATE acts SET `balance` = '$discbalance' WHERE `id` = $discid"  ;
+  mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+
 
 
                     //Ledger Entry
@@ -177,7 +196,15 @@
       $desp='Goods are Sold to '.$destname.' on Credit';
 
 
-      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
+
+
+      if(!empty($discount)){
+
+      $desp='Discount Given';
+
+      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid','$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) ); 
+      }
 
       $desp='Credit Sale';
 
@@ -614,6 +641,18 @@
 
 
             </table>
+
+              <div class="row">
+              <div class="col-md-8">
+              </div>
+              <div class="col-md-3" id="disdiv">
+                <div class="">
+                <span>Discount</span>
+              <input type="text" name="discount" class="form-control" value="0">
+            </div>
+            </div>
+
+            </div>
             <hr>
             <center><button name="send"  class="btn btn-primary">Add</button></center>
             
@@ -653,10 +692,12 @@
   $("#multiOptions").change(function () {
       if ($(this).val() == "200032" ) {
          $('#chequediv').show();
+         $('#disdiv').hide();
          
       }
       else { 
           $('#chequediv').hide();
+          $('#disdiv').show();
            }
   });
   });
