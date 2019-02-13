@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 07, 2019 at 05:48 AM
+-- Generation Time: Feb 13, 2019 at 01:35 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -40,24 +40,25 @@ CREATE TABLE IF NOT EXISTS `acts` (
   `nodel` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=MyISAM AUTO_INCREMENT=200043 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=200044 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `acts`
 --
 
 INSERT INTO `acts` (`id`, `typeid`, `type`, `name`, `slug`, `purpose`, `balance`, `nodel`) VALUES
-(200019, 2, 'Revenue', 'Sales Account', 'sales-account', 'income', 0, 1),
-(200018, 10, 'Cost of Goods Sold', 'Purchase Account', 'purchase-account', 'inventory', 0, 1),
-(200016, 5, 'Current Assets', 'Cash in Hands', 'cash-in-hands', 'cash', 0, 1),
+(200019, 2, 'Revenue', 'Sales Account', 'sales-account', 'income', 10000, 1),
+(200018, 10, 'Cost of Goods Sold', 'Purchase Account', 'purchase-account', 'inventory', 10000, 1),
+(200016, 5, 'Current Assets', 'Cash in Hands', 'cash-in-hands', 'cash', 10000, 1),
 (200021, 5, 'Current Assets', 'Customers', 'customers', 'assets', 0, 1),
 (200022, 3, 'Liability', 'Vendors', 'vendors', 'liabilities', 0, 1),
 (200028, 10, 'Cost of Goods Sold', 'Purchase Return', 'purchase-return', 'inventory', 0, 1),
 (200029, 2, 'Revenue', 'Sales Return', 'sales-return', 'income', 0, 1),
 (200032, 5, 'Current Assets', 'Open Cheque', 'cheque', 'cash', 0, 1),
-(200040, 10, 'Cost of Goods Sold', 'Purchase Discount', 'purchase-discount', 'inventory', 0, 1),
+(200040, 10, 'Cost of Goods Sold', 'Purchase Discount', 'purchase-discount', 'inventory', 1100, 1),
 (200041, 2, 'Revenue', 'Sales Discount', 'sales-discount', 'income', 0, 1),
-(200042, 1, 'Capital', 'Capital A/c of Hamza Pervaiz', 'capital-a-c-of-hamza-pervaiz', 'capital', 0, 0);
+(200042, 1, 'Capital', 'Capital A/c of Hamza Pervaiz', 'capital-a-c-of-hamza-pervaiz', 'capital', 30000, 0),
+(200043, 5, 'Current Assets', 'HBL bank', 'hbl-bank', 'cash', 13000, 0);
 
 -- --------------------------------------------------------
 
@@ -569,6 +570,31 @@ INSERT INTO `cities` (`ctval`, `city`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `color`
+--
+
+DROP TABLE IF EXISTS `color`;
+CREATE TABLE IF NOT EXISTS `color` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `color1` text NOT NULL,
+  `color2` text NOT NULL,
+  `color3` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `color`
+--
+
+INSERT INTO `color` (`id`, `name`, `color1`, `color2`, `color3`) VALUES
+(1, 'Blue', '#0D83DD', '#146fb4', '#0b5da0'),
+(2, 'Red', '#d61515', '#a21212', '#d43535'),
+(3, 'Green', '#35c313', '#239009', '#58ce3c');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `company`
 --
 
@@ -581,6 +607,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `comp_email` text NOT NULL,
   `comp_address` text NOT NULL,
   `comp_logo` text NOT NULL,
+  `theme` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -588,8 +615,8 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`id`, `comp_name`, `comp_owner`, `comp_phone`, `comp_email`, `comp_address`, `comp_logo`) VALUES
-(1, 'HP Accounting Software', 'Hamza Pervaiz', '03494965879', 'hamzapervaiz5@gmail.com', 'Lahore', '');
+INSERT INTO `company` (`id`, `comp_name`, `comp_owner`, `comp_phone`, `comp_email`, `comp_address`, `comp_logo`, `theme`) VALUES
+(1, 'HP Accounting Software', 'Hamza Pervaiz', '03494965879', 'hamzapervaiz5@gmail.com', 'Lahore', '', 1);
 
 -- --------------------------------------------------------
 
@@ -838,7 +865,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
 --
 
 INSERT INTO `customers` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`) VALUES
-(600002, 200021, 'Customers', 'Test Customer 4', '12345678', 'C Company', '1234567899', 'customer@email.com', 'Customer Address', 'Lahore', 'Pakistan', 0, '2019-02-07');
+(600002, 200021, 'Customers', 'Test Customer 4', '12345678', 'C Company', '1234567899', 'customer@email.com', 'Customer Address', 'Lahore', 'Pakistan', 9900, '2019-02-07');
 
 -- --------------------------------------------------------
 
@@ -865,7 +892,7 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 INSERT INTO `items` (`id`, `brand`, `name`, `desp`, `price`, `quantity`, `weight`, `stock`, `pause`) VALUES
-(1, '3', 'Test Product', 'test desp', 0, 0, 90, 0, 0);
+(1, '3', 'Test Product', 'test desp', 2, 0, 90, 20, 0);
 
 -- --------------------------------------------------------
 
@@ -907,7 +934,16 @@ CREATE TABLE IF NOT EXISTS `itemslog` (
   `subtotal` float NOT NULL DEFAULT '0',
   `datec` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `itemslog`
+--
+
+INSERT INTO `itemslog` (`id`, `jid`, `pid`, `type`, `name`, `price`, `quantity`, `weight`, `subtotal`, `datec`) VALUES
+(1, 2, 1, 'in', 'Test Product', 150, 20, 0, 3000, '2019-02-07'),
+(2, 4, 1, 'in', 'Test Product', 150, 50, 0, 7500, '2019-02-09'),
+(3, 5, 1, 'out', 'Test Product', 200, 50, 0, 10000, '2019-02-09');
 
 -- --------------------------------------------------------
 
@@ -930,7 +966,18 @@ CREATE TABLE IF NOT EXISTS `journal` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `journal`
+--
+
+INSERT INTO `journal` (`id`, `desp`, `invoiceno`, `invoicepic`, `chequeno`, `chequeamt`, `dract`, `cract`, `dr`, `cr`, `datec`, `dateup`) VALUES
+(1, 'Cash is Desposited fromCapital A/c of Hamza Pervaiz to Cash in Hands', '0', NULL, '0', 0, 200042, 200016, 10000, 0, '2019-02-07', '2019-02-07'),
+(2, 'Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. ', '', 'a4e057ad76aba3c8355b198ae6bc82e81.png', '0', 0, 200018, 400002, 3000, 3000, '2019-02-07', '2019-02-07'),
+(3, 'Cash is Desposited fromCapital A/c of Hamza Pervaiz to HBL bank', '0', NULL, '0', 0, 200043, 200042, 20000, 20000, '2019-02-09', '2019-02-09'),
+(4, 'Goods are Purchased from Test Vendor 1 Against Invoice No. mohan-990 Through HBL bank', 'mohan-990', '4d38f714efa43e74ec9d73249e1afdfa1.png', '0', 0, 200018, 200043, 0, 7500, '2019-02-09', '2019-02-09'),
+(5, 'Goods are Sold to Test Customer 4 on Credit', '0', NULL, '0', 0, 600002, 200019, 10000, 10000, '2019-02-09', '2019-02-09');
 
 -- --------------------------------------------------------
 
@@ -953,7 +1000,29 @@ CREATE TABLE IF NOT EXISTS `ledger` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ledger`
+--
+
+INSERT INTO `ledger` (`id`, `jid`, `typeid`, `ref`, `actid`, `desp`, `type`, `dr`, `cr`, `balance`, `datec`, `dateup`) VALUES
+(1, 1, 1, 0, 200042, 'Capital A/c of Hamza Pervaiz', 'Capital', '0', '10000', 10000, '2019-02-07', '2019-02-07'),
+(2, 1, 5, 0, 200016, 'Cash is Coming in Cash in Hands', 'Current Assets', '10000', '0', 10000, '2019-02-07', '2019-02-07'),
+(3, 2, 200022, 0, 400002, 'Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. ', 'Vendors', '0', '3000.00', 3000, '2019-02-07', '2019-02-07'),
+(4, 2, 10, 0, 200018, 'Purchase Account', 'Cost of Goods Sold', '2500', '0', 2500, '2019-02-07', '2019-02-07'),
+(5, 2, 10, 0, 200040, 'Discount Recieved', 'Cost of Goods Sold', '500', '0', 500, '2019-02-07', '2019-02-07'),
+(6, 3, 1, 0, 200042, 'Capital A/c of Hamza Pervaiz', 'Capital', '0', '20000', 30000, '2019-02-09', '2019-02-09'),
+(7, 3, 5, 0, 200043, 'Cash is Coming in HBL bank', 'Current Assets', '20000', '0', 20000, '2019-02-09', '2019-02-09'),
+(8, 4, 5, 0, 200043, 'Goods are Purchased from Test Vendor 1 Against Invoice No. mohan-990 Through HBL bank', 'Current Assets', '0', '7500.00', 13000, '2019-02-09', '2019-02-09'),
+(9, 4, 200022, 1, 400002, 'HBL bank Purchase', 'Vendors', '7000', '0', 3000, '2019-02-09', '2019-02-09'),
+(10, 4, 10, 1, 200040, 'Discount Recieved', 'Cost of Goods Sold', '500', '0', 1000, '2019-02-09', '2019-02-09'),
+(11, 4, 200022, 1, 400002, 'Goods are Purchased from Test Vendor 1 Against Invoice No. mohan-990 Through HBL bank', 'Vendors', '0', '7500.00', 3000, '2019-02-09', '2019-02-09'),
+(12, 4, 10, 0, 200018, 'HBL bank Purchase', 'Cost of Goods Sold', '7000', '0', 10000, '2019-02-09', '2019-02-09'),
+(13, 4, 10, 0, 200018, 'Discount Recieved', 'Cost of Goods Sold', '500', '0', 1000, '2019-02-09', '2019-02-09'),
+(14, 5, 2, 0, 200019, 'Goods are Sold to Test Customer 4 on Credit', 'Revenue', '0', '9900', 10000, '2019-02-09', '2019-02-09'),
+(15, 5, 10, 0, 200040, 'Discount Given', 'Cost of Goods Sold', '0', '100', 1100, '2019-02-09', '2019-02-09'),
+(16, 5, 200021, 0, 600002, 'Credit Sale', 'Customers', '10000.00', '0', 9900, '2019-02-09', '2019-02-09');
 
 -- --------------------------------------------------------
 
@@ -1026,10 +1095,9 @@ CREATE TABLE IF NOT EXISTS `vendors` (
 --
 
 INSERT INTO `vendors` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`) VALUES
-(400002, 200022, 'Vendors', 'Test Vendor 1', '12345678', 'V Company', '1234567899', 'vendor@email.com', 'Vendor Address', 'Islamabad', 'Pakistan', 0, '2019-02-07');
+(400002, 200022, 'Vendors', 'Test Vendor 1', '12345678', 'V Company', '1234567899', 'vendor@email.com', 'Vendor Address', 'Islamabad', 'Pakistan', 3000, '2019-02-07');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-  

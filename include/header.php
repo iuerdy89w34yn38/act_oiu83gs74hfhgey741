@@ -35,6 +35,7 @@
                 <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
                 
                 <a class="dropdown-item" href="reset.php"><i class="ft-check-square"></i> Reset</a>
+                <a class="dropdown-item" href="settings.php"><i class="ft-settings"></i> Settings</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="logout.php"><i class="ft-power"></i> Logout</a>
               </div>
             </li>

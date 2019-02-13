@@ -30,6 +30,22 @@ if(!isset($_SESSION['name'])){
  		$comp_email = $row['comp_email'];
  		$comp_address = $row['comp_address'];
  		$comp_logo = $row['comp_logo'];
+ 		$themeid = $row['theme'];
+
+
+ 		
+     }
+
+
+
+ $rows =mysqli_query($con,"SELECT * FROM color where id=$themeid" ) or die(mysqli_error($con));
+           
+ 	while($row=mysqli_fetch_array($rows)){
+ 		
+ 		$color1 = $row['color1'];
+ 		$color2 = $row['color2'];
+ 		$color3 = $row['color3'];
+
 
  		
      }
@@ -82,14 +98,14 @@ rel="stylesheet">
 
 <style type="text/css">
 .navigation > li {
-	    background: #0D83DD;
+	    background: <?php echo $color1  ?>;
 	    color: white;
 	}
 .navigation > li.open {
-	    background: #146fb4;
+	    background:  <?php echo $color2  ?>;
 	}
 .main-menu.menu-dark {
-	    background: #0D83DD;
+	    background:  <?php echo $color1  ?>;
 
 	}
 	.main-menu.menu-dark .navigation > li > a {
@@ -100,27 +116,27 @@ rel="stylesheet">
 	    padding: 8px 20px 8px 20px;
 	}
 	.main-menu.menu-dark .navigation > li .active > a{
-		background: #146fb4;
+		background:  <?php echo $color2  ?>;
 		
 	}
 	.main-menu.menu-dark .navigation > li ul .active > a{
 		color: white;
 	}
 	.main-menu.menu-dark .navigation > li.open > a{
-		background: #0D83DD;
+		background:  <?php echo $color1  ?>;
 	}
 	.main-menu.menu-dark .navigation li a {
-	    background: #0D83DD		;
+	    background:  <?php echo $color1  ?>		;
 	}
 	.main-menu.menu-dark .navigation > li.active > a {
-	    background: #146fb4;
+	    background:  <?php echo $color2  ?>;
 	}
 	.main-menu.menu-dark .navigation li a {
 	    color: #fff;
 
 	}
 	.navbar-semi-dark .navbar-header {
-	    background: #0665ae;
+	    background:  <?php echo $color3  ?>;
 	}
 	.header-navbar .navbar-header .navbar-brand .brand-logo {
 	    width: 100px;
@@ -134,8 +150,13 @@ rel="stylesheet">
 	}
 
 	.btn-primary {
-	    border-color: #146fb4 !important;
-	    background-color: #0d83dd !important;
+	    border-color:   <?php echo $color2  ?> !important;
+	    background-color:   <?php echo $color1  ?> !important;
+	    color: #FFFFFF;
+	}
+	.btn-primary:hover{
+	    border-color:   <?php echo $color2  ?> !important;
+	    background-color:   <?php echo $color2  ?> !important;
 	    color: #FFFFFF;
 	}
 
@@ -146,6 +167,10 @@ rel="stylesheet">
 	    min-width: 150px !important;
 	}
 
+	.select2-container--default .select2-results__options .select2-results__option[aria-selected=true] {
+	    background-color:  <?php echo $color2  ?>  !important;
+	    color: #FFFFFF !important;
+	}
 
 	body.vertical-layout.vertical-menu-modern.menu-expanded .content, body.vertical-layout.vertical-menu-modern.menu-expanded .footer {
 	    margin-left: 230px;
@@ -163,10 +188,13 @@ rel="stylesheet">
 
 
 	body .content .content-wrapper{
-	    background: #0b5da0;
+	    background:  <?php echo $color3  ?>;
+	}
+	html body {
+	    background:  <?php echo $color3  ?>;
 	}
 	html body .content.app-content {
-	    background: #0b5da0;
+	    background:  <?php echo $color3  ?>;
 	}
 
 
