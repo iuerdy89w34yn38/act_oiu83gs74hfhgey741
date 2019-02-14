@@ -1,9 +1,11 @@
 UPDATE acts set balance = 0;
-TRUNCATE TABLE itemslog;
+UPDATE customers set balance = 0;
+UPDATE vendors set balance = 0;
+DELETE  FROM journal;
+DELETE  FROM itemslog;
+
 TRUNCATE TABLE ledger;
-TRUNCATE TABLE journal;
-DELETE * FROM customers;
-DELETE * FROM vendors;
 TRUNCATE TABLE items;
-DELETE * FROM itemsb WHERE id>1;
+
+DELETE FROM itemsb WHERE id>1;
 

@@ -75,7 +75,16 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 									$salesr = $row['balance'];
 								}
 
-								$netsales = $sales-$salesr;
+								$rows =mysqli_query($con,"SELECT * FROM acts WHERE id=200039  ORDER BY name" ) or die(mysqli_error($con));
+
+								while($row=mysqli_fetch_array($rows)){
+
+									$id = $row['id'];
+									$name = $row['name'];
+									$salesd = $row['balance'];
+								} 
+
+								$netsales = $sales-$salesr-$salesd;
 
 								$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =10 AND id!=200028  ORDER BY name" ) or die(mysqli_error($con));
 
@@ -95,7 +104,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 									$name = $row['name'];
 									$cogsr = $row['balance'];
 								} 
-								$rows =mysqli_query($con,"SELECT * FROM acts WHERE id=200040  ORDER BY name" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT * FROM acts WHERE id=200038  ORDER BY name" ) or die(mysqli_error($con));
 
 								while($row=mysqli_fetch_array($rows)){
 
@@ -129,6 +138,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 								<div class="col-md-6">
 									<h4>Total Sales:</h4>
 									<h4> Sales Return:</h4>
+									<h4> Sales Discount:</h4>
 									<hr>
 									<h4> Net Sales : </h4>
 									<hr>
@@ -163,6 +173,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 									<h4> <?php echo $sales ?></h4>
 									<h4> <?php echo $salesr ?></h4>
+									<h4> <?php echo $salesd ?></h4>
 									<hr>
 									<h4><?php echo $netsales ?></h4>
 									<hr>

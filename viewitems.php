@@ -6,7 +6,7 @@
   <?php include"include/head.php" ?>
 
 
-  <title>Edit Customers - <?php echo $comp_name ?>  </title>
+  <title>View Inventory - <?php echo $comp_name ?>  </title>
   
   <style type="text/css">
     hr{
@@ -260,11 +260,13 @@ if(isset($_POST['del'])){
                       <td><?php if($pause==0) echo 'Yes'; else echo 'No' ;?> </td>
                       
                       <td>
+                        <div class="form-group">
 
                         <button name="id" class="btn btn-primary" value="<?php echo $id ?>"><i class="la la-pencil"></i></button>
 
                     
                         <button name="del" class="btn btn-danger" value="<?php echo $id ?>"><i class="la la-trash"></i></button>
+                      </div>
                       </td>
 
             </tr>
@@ -300,121 +302,59 @@ if(isset($_POST['del'])){
     <div class="card-block">
       <div class="card-body">
          <div class="row align-conter-center">
+          <table class="table table-striped table-bordered dataex-select-multi ">
+            <thead>
+              <tr>
+                <th>Date</th>
 
-          <div class="col-sm-2">
-           <h4>Date</h4>
-         </div>
-          <div class="col-sm-2">
-           <h4>Invoice</h4>
-         </div>
-          <div class="col-sm-4">
-           <h4>Name</h4>
-         </div>
-          <div class="col-sm-2">
-           <h4>Quantity</h4>
-         </div>
-          <div class="col-sm-2">
-           <h6>Price</h6>
-         </div>
+                <th>Invoice</th>
+                <th>Price</th>
+                <th>SubTotal</th>
+                <th>Invt.</th>
+              </tr>
+            </thead>
+            <tbody>  
+              <?php
+
+                      $rows =mysqli_query($con,"SELECT * FROM itemslog WHERE pid=$pid ORDER BY name" ) or die(mysqli_error($con));
+
+                      while($row=mysqli_fetch_array($rows)){
+
+                        $id = $row['id'];
+                        $jid = $row['jid'];
+                        $price=$row['price']; 
+                        $subtotal=$row['subtotal']; 
+                        $datec=$row['datec']; 
+                        $type=$row['type']; 
 
 
+                        ?>
+              <tr>
+
+                         <td><?php echo $datec ?></td> 
+                  
+                        
+                         <td>  <h5><a href="viewpay.php?id=<?php echo $jid ?>" target="blank"><?php echo $jid ?></a></h5>  </td>
+                                              
+
+                         <td><?php echo $price ?></td> 
+                         <td><?php echo $subtotal ?></td> 
+                         <td style="text-transform: capitalize;"><?php echo $type ?></td> 
+
+                       
+
+
+              </tr>
+             
+
+                    <?php } ?>
+                 
+            </tbody>
+          </table>
+         </div>
+       
        </div>
-       <br>
-       <h3>Sold</h3>
-       <hr><br>
-       <?php
-
-       $rows =mysqli_query($con,"SELECT * FROM itemslog Where pid=$pid AND type='out' ORDER BY jid desc" ) or die(mysqli_error($con));
-
-       while($row=mysqli_fetch_array($rows)){
-
-         $jid = $row['jid'];
-         $name = $row['name'];
-         $date=$row['datec'];
-         $qty=$row['quantity']; 
-         $price=$row['price']; 
-
-         ?>
-         <div class="row  align-items-center" align="">
-
-          <div class="col-sm-2">
-           <h5><?php echo $date ?></h5>
-         </div> 
-          
-         
-          <div class="col-sm-2">
-           <h5><a href="viewpay.php?id=<?php echo $jid ?>" target="blank"><?php echo $jid ?></a></h5>
-         </div> 
-         
-          <div class="col-sm-4">
-           <h5><?php echo $name ?></h5>
-         </div>
-         
-          <div class="col-sm-2">
-           <h5><?php echo $qty ?></h5>
-         </div> 
-
-          <div class="col-sm-2">
-           <h5>Rs. <?php echo number_format($price) ?>/-</h5>
-         </div> 
-
-
-
-
        </div>
-       <hr>
-
-     <?php } ?>
- <br>
-       <h3>Purchased</h3>
-       <hr><br>
-       <?php
-
-       $rows =mysqli_query($con,"SELECT * FROM itemslog Where pid=$pid AND type='in' ORDER BY jid desc" ) or die(mysqli_error($con));
-
-       while($row=mysqli_fetch_array($rows)){
-
-         $jid = $row['jid'];
-         $name = $row['name'];
-         $date=$row['datec'];
-         $qty=$row['quantity']; 
-         $price=$row['price']; 
-
-         ?>
-         <div class="row  align-items-center" align="">
-
-          <div class="col-sm-2">
-           <h5><?php echo $date ?></h5>
-         </div> 
-          
-         
-          <div class="col-sm-2">
-           <h5><a href="viewpay.php?id=<?php echo $jid ?>" target="blank"><?php echo $jid ?></a></h5>
-         </div> 
-         
-          <div class="col-sm-4">
-           <h5><?php echo $name ?></h5>
-         </div>
-         
-          <div class="col-sm-2">
-           <h5><?php echo $qty ?></h5>
-         </div> 
-
-          <div class="col-sm-2">
-           <h5>Rs. <?php echo number_format($price) ?>/-</h5>
-         </div> 
-
-
-
-
-       </div>
-       <hr>
-
-     <?php } ?>
-
-
- </div>
-</div>
 </div>
 </div>
 </div>

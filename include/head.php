@@ -119,6 +119,11 @@ rel="stylesheet">
 		background:  <?php echo $color2  ?>;
 		
 	}
+	.main-menu.menu-dark .navigation > li.open > a {
+	    color: #bfbfbf;
+
+	    border-right: 4px solid   <?php echo $color2  ?>;
+	}
 	.main-menu.menu-dark .navigation > li ul .active > a{
 		color: white;
 	}
@@ -136,7 +141,7 @@ rel="stylesheet">
 
 	}
 	.navbar-semi-dark .navbar-header {
-	    background:  <?php echo $color3  ?>;
+	    background:  <?php if($themeid==4) echo '#000'; else  echo $color3 ;  ?>;
 	}
 	.header-navbar .navbar-header .navbar-brand .brand-logo {
 	    width: 100px;
@@ -170,6 +175,18 @@ rel="stylesheet">
 	.select2-container--default .select2-results__options .select2-results__option[aria-selected=true] {
 	    background-color:  <?php echo $color2  ?>  !important;
 	    color: #FFFFFF !important;
+	}
+
+	.page-item.active .page-link {
+	    background-color:  <?php echo $color1  ?>;
+	    border-color:  <?php echo $color2  ?>;
+	}
+	html body a {
+	    color:   <?php echo $color2  ?>;
+	}
+	html body a:hover{
+	    color:   <?php echo $color1  ?>;
+	    text-decoration: underline;
 	}
 
 	body.vertical-layout.vertical-menu-modern.menu-expanded .content, body.vertical-layout.vertical-menu-modern.menu-expanded .footer {

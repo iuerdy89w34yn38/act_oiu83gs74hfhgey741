@@ -25,7 +25,7 @@
           <ul class="nav navbar-nav float-right">
             <li class="dropdown dropdown-user nav-item">
               <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                <span class="mr-1">Welcome,
+                <span class="mr-1">
                   <span class="user-name text-bold-700" style="text-transform: uppercase;"><?php echo $username ?> </span>
                 </span>
                 <span class="avatar avatar-online">

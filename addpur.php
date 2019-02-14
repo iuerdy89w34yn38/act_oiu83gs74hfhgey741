@@ -83,6 +83,17 @@
 
     }
 
+
+    $discid=200038;
+    $rows =mysqli_query($con,"SELECT * FROM acts where id=$discid ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $discname = $row['name'];
+      $discbalance = $row['balance'];
+      $disctype = $row['type'];
+      $disctypeid = $row['typeid'];
+    }
+
+
     $invoiceno = $_POST['invoiceno'];
     $chequeno = $_POST['chequeno'];
     $chequeamt = $_POST['chequeamt'];
@@ -132,14 +143,6 @@
         $desttypeid = $row['typeid'];
       }
 
-      $discid=200040;
-      $rows =mysqli_query($con,"SELECT * FROM acts where id=$discid ORDER BY name" ) or die(mysqli_error($con));
-      while($row=mysqli_fetch_array($rows)){ 
-        $discname = $row['name'];
-        $discbalance = $row['balance'];
-        $disctype = $row['type'];
-        $disctypeid = $row['typeid'];
-      }
 
       //First Entry
 
@@ -219,14 +222,6 @@
           }
 
 
-          $discid=200040;
-          $rows =mysqli_query($con,"SELECT * FROM acts where id=$discid ORDER BY name" ) or die(mysqli_error($con));
-          while($row=mysqli_fetch_array($rows)){ 
-            $discname = $row['name'];
-            $discbalance = $row['balance'];
-            $disctype = $row['type'];
-            $disctypeid = $row['typeid'];
-          }
 
             //First Entry
     
@@ -275,6 +270,7 @@
         $desp=$srcname.' Purchase';
 
         $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
+
         if(!empty($discount)){
 
         $desp='Discount Recieved';
@@ -320,14 +316,8 @@
           }
 
 
-          $discid=200040;
-          $rows =mysqli_query($con,"SELECT * FROM acts where id=$discid ORDER BY name" ) or die(mysqli_error($con));
-          while($row=mysqli_fetch_array($rows)){ 
-            $discname = $row['name'];
-            $discbalance = $row['balance'];
-            $disctype = $row['type'];
-            $disctypeid = $row['typeid'];
-          }
+   
+
 
             //First Entry
     
@@ -407,14 +397,7 @@
       }
 
 
-          $discid=200040;
-          $rows =mysqli_query($con,"SELECT * FROM acts where id=$discid ORDER BY name" ) or die(mysqli_error($con));
-          while($row=mysqli_fetch_array($rows)){ 
-            $discname = $row['name'];
-            $discbalance = $row['balance'];
-            $disctype = $row['type'];
-            $disctypeid = $row['typeid'];
-          }
+
 
             //First Entry
       
@@ -525,7 +508,7 @@
 
 
   }
-  $msg = 'Successfull';
+  $msg = 'Successful';
 
 
 
@@ -682,7 +665,7 @@
 
                  </select>
                </td>
-               <td><input  class="form-control" type="number" name="pprice" id="pprice" value=""></td>
+               <td><input  class="form-control" type="number" name="pprice[]" id="pprice" value=""></td>
                <td><input  class="form-control" type="number" name="qty" id="qty" value=""></td>
                <td><input class="form-control" type="number" name="price" id="price" value="">
                 <input style="display: none;" type="text" name="item_total" id="item_total" value="" jAutoCalc="{qty} * {price}"></td>
