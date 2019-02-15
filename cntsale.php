@@ -98,12 +98,6 @@
 
 
 
-
-
-
-
-
-
     $subt = $_POST['sub_total'];
     $amount = preg_replace("/[^0-9^.]/", '', $subt); 
 
@@ -111,48 +105,66 @@
     $dateup=date('Y-m-d');
 
     
+    $discount = $_POST['discount'];
 
-        $destid=200016;
 
-        $srcid=200019;
+    $destid=200016;
 
-        $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($rows)){ 
-          $srcname = $row['name'];
-          $srcbalance = $row['balance'];
-          $srctype = $row['type'];
-          $srctypeid = $row['typeid'];
-        }
+    $srcid=200019;
 
-        $rows =mysqli_query($con,"SELECT * FROM acts where id=$destid ORDER BY name" ) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($rows)){ 
-          $destname = $row['name'];
-          $destbalance = $row['balance'];
-          $desttype = $row['type'];
-          $desttypeid = $row['typeid'];
+    $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $srcname = $row['name'];
+      $srcbalance = $row['balance'];
+      $srctype = $row['type'];
+      $srctypeid = $row['typeid'];
+    }
 
-        }
+    $rows =mysqli_query($con,"SELECT * FROM acts where id=$destid ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $destname = $row['name'];
+      $destbalance = $row['balance'];
+      $desttype = $row['type'];
+      $desttypeid = $row['typeid'];
+
+    }
+
+    $discid=200039;
+    $rows =mysqli_query($con,"SELECT * FROM acts where id=$discid ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $discname = $row['name'];
+      $discbalance = $row['balance'];
+      $disctype = $row['type'];
+      $disctypeid = $row['typeid'];
+    }
+
 
             //First Entry
 
 
-        $srcbalance=$srcbalance+$amount;
-        $destbalance=$destbalance+$amount;
+    $srcbalance=$srcbalance+$amount-$discount;
+    $destbalance=$destbalance+$amount;
+    $aamount=$amount-$discount;
+    $discbalance=$discbalance+$discount;
 
 
 
 
-        $desp='Goods Sold to '.$destname.' through Counter Sale';
+    $desp='Goods Sold to '.$destname.' through Counter Sale';
 
                           //Journal Entry
-        $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+    $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
 
-        $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
-        mysqli_query($con, $sqls)or die(mysqli_error($con));
+    $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
+    mysqli_query($con, $sqls)or die(mysqli_error($con));
 
-        $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
-        mysqli_query($con, $sqls)or die(mysqli_error($con));
+    $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
+    mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+    $sqls = "UPDATE acts SET `balance` = '$discbalance' WHERE `id` = $discid"  ;
+    mysqli_query($con, $sqls)or die(mysqli_error($con));
+
 
 
 
@@ -160,22 +172,31 @@
 
 
                           //Ledger Entry
-        $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($rows)){ 
-          $jid = $row['id'];
+    $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $jid = $row['id'];
 
-        }
+    }
 
-        $desp='Goods Sold to '.$destname.' Counter Sale';
+    $desp='Goods Sold to '.$destname.' Counter Sale';
 
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
 
-        $desp='Counter Sale Invoice';
+    
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+    if(!empty($discount)){
 
-  
+    $desp='Discount Given';
+
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid','$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) ); 
+    }
+
+    $desp='Counter Sale ';
+
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+
 
 
     $x= count($home = $_POST['qty1']);
@@ -238,7 +259,7 @@
           <div class="card-block">
             <div class="card-body">
 
-     
+
 
 
 
@@ -299,7 +320,21 @@
 
 
               </table>
+
+
+                <div class="row">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-3" id="disdiv">
+                  <div class="">
+                  <span>Discount</span>
+                <input type="text" name="discount" class="form-control" value="0">
+              </div>
+              </div>
+
+              </div>
               <hr>
+
               <center><button name="send"  class="btn btn-primary">Sale</button></center>
 
 
@@ -311,97 +346,100 @@
                   <hr>
                   <br>
                   <?php echo $msg ; } ?></h2></center>
-              <center><h2>
+                  <center><h2>
 
-                <?php if(!empty($msg1)) { ?>
+                    <?php if(!empty($msg1)) { ?>
 
-                  <br>
-                  <hr>
-                  <br>
-                  <?php echo $msg1 ; } ?></h2></center>
+                      <br>
+                      <hr>
+                      <br>
+                      <?php echo $msg1 ; } ?></h2></center>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
 
-        </form>
+            </form>
 
-        <div class="row">
-         <div class="col-lg-2">
-         </div>
-         <div class="col-lg-8">
-           <div class="card">
-            <div id="heading1" class="card-header" role="tab">
-              <a data-toggle="collapse" data-parent="#accordionWrapa1" href="#accordion1" aria-expanded="false"
-              aria-controls="accordion1" class="card-title lead">View Quick Inventory (Active Items)</a>
-            </div>
-            <div id="accordion1" role="tabpanel" aria-labelledby="heading1" class="collapse hide">
-              <div class="card-content">
-                     <div class="card-body">
-                        <div class="row align-conter-center">
+            <div class="row">
+             <div class="col-lg-2">
+             </div>
+             <div class="col-lg-8">
+               <div class="card">
+                <div id="heading1" class="card-header" role="tab">
+                  <a data-toggle="collapse" data-parent="#accordionWrapa1" href="#accordion1" aria-expanded="false"
+                  aria-controls="accordion1" class="card-title lead">View Quick Inventory (Active Items)</a>
+                </div>
+                <div id="accordion1" role="tabpanel" aria-labelledby="heading1" class="collapse hide">
+                  <div class="card-content">
+                   <div class="card-body">
+                    <div class="row align-conter-center">
 
-                         <div class="col-sm-4">
-                          <h4>Name</h4>
-                        </div>
-                         <div class="col-sm-4">
-                          <h4>Brand</h4>
-                        </div>
-                         <div class="col-sm-2">
-                          <h6>Weight</h6>
-                        </div>
-                        <div class="col-sm-2">
-                          <h4>Stock </h4>
-                        </div>
-                        
+                      <table class="table table-striped table-bordered dataex-select-multi ">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Brand</th>
 
-                      </div>
-                      <br>
-                      <hr><br>
-                      <?php
+                            <th>Stock</th>
+                            <th>Price</th>
 
-                      $rows =mysqli_query($con,"SELECT * FROM items Where id!=1 AND pause=0 ORDER BY name" ) or die(mysqli_error($con));
 
-                      while($row=mysqli_fetch_array($rows)){
-
-                        $name = $row['name'];
-                        $brand=$row['brand'];
-                        $wgt=$row['weight']; 
-                        $stock=$row['stock']; 
-
-                        ?>
-                        <div class="row  align-items-center" align="">
-
-                         <div class="col-sm-4">
-                          <h5><?php echo $name ?></h5>
-                        </div> 
-                        
-                         <div class="col-sm-4">
+                          </tr>
+                        </thead>
+                        <tbody>  
                           <?php
 
-                          $rowsl =mysqli_query($con,"SELECT * FROM itemsb Where id=$brand ORDER BY name" ) or die(mysqli_error($con));
+                          $rows =mysqli_query($con,"SELECT * FROM items  ORDER BY name" ) or die(mysqli_error($con));
 
-                          while($rowl=mysqli_fetch_array($rowsl)){
+                          while($row=mysqli_fetch_array($rows)){
 
-                            $brandname = $rowl['name'];?>
-                             <h5><?php echo $brandname ?></h5>
-                            <?php }
+                            $id = $row['id'];
+                            $name = $row['name'];
+                            $brand=$row['brand'];
+
+                            $stock=$row['stock']; 
+                            $price=$row['price']; 
+
                             ?>
-                          
-                        </div> 
-                        
-                         <div class="col-sm-2">
-                          <h5><?php echo $wgt ?> g</h5>
-                        </div> 
+                            <tr>
 
-                         <div class="col-sm-2">
-                          <h5><?php echo $stock ?></h5>
-                        </div> 
 
-                      </div>
-                      <hr>
+                              <td><?php echo $name ?></td>
 
-                    <?php } ?>
-                    </div>
+                              <td><?php
+
+                              $rowsl =mysqli_query($con,"SELECT * FROM itemsb Where id=$brand ORDER BY name" ) or die(mysqli_error($con));
+
+                              while($rowl=mysqli_fetch_array($rowsl)){
+
+                                $brandname = $rowl['name'];?>
+                                <?php echo $brandname ?>
+                              <?php }
+                              ?>
+
+                            </td>
+
+
+
+                            <td><?php echo $stock ?></td> 
+                            <td><?php echo $price ?></td> 
+
+                     
+                      
+
+
+                          </tr>
+
+
+                        <?php } ?>
+
+                      </tbody>
+                    </table>
+
+
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -412,7 +450,7 @@
 
 
   </div>
-</div>
+
 
 
 
@@ -420,10 +458,10 @@
 </body>
 <script type="text/javascript">
 
-  $('#qty').keyup(function() {
+  $('#qty').change(function() {
     $('#qty1').val($(this).val());
   });
-  $('#price').keyup(function() {
+  $('#price').change(function() {
     $('#price1').val($(this).val());
   });
   $('#item_total').change(function() {

@@ -14,29 +14,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <?php $link="addacts.php"; ;?>
 
 
-<?php
-if(isset($_POST['submit'])){
-    $msg="Unsuccessful" ;
-    
-     $name=$_POST['name'];
-     $typeid=$_POST['type'];
-
-     $rows =mysqli_query($con,"SELECT * FROM act_t WHERE id=$typeid  " ) or die(mysqli_error($con));
-               
-       while($row=mysqli_fetch_array($rows)){
-         
-         $type = $row['name'];
-       }
-
-     $purpose=$_POST['purpose'];
-     $bal=$_POST['bal'];
-     $slug=strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $name));
-$data=mysqli_query($con,"INSERT INTO acts (name,typeid,type,slug,purpose,balance)VALUES ('$name','$typeid','$type','$slug','$purpose','$bal')")or die( mysqli_error($con) );
-	$msg="Successful" ;
-    
-}
-?>
-
 
 
 <?php include"include/header.php" ?>

@@ -57,7 +57,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
              <form action="tdetail.php" method="get">
               <?php
               $opbalance=Null;
-              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM ledger  where datec>='$dates' and datec<='$datee' AND ref=0 and (actid LIKE '$act' ) ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM ledger  where datec>='$dates' and datec<='$datee' AND (actid LIKE '$act' ) ORDER BY id desc limit 1" ) or die(mysqli_error($con));
 
               while($row=mysqli_fetch_array($rows)){
                 $opbalance = $row['balance'];

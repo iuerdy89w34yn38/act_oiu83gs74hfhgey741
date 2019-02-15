@@ -207,12 +207,13 @@ if(isset($_POST['del'])){
             <tr>
               <th>Name</th>
               <th>Brand</th>
-              <th>Description</th>
+              <th>Product Description</th>
               <th>Weight</th>
               <th>Stock</th>
               <th>Price</th>
               <th>Active</th>
-              <th>Action</th>
+              <th>Edit</th>
+              <th>Del</th>
             </tr>
           </thead>
           <tbody>  
@@ -260,13 +261,19 @@ if(isset($_POST['del'])){
                       <td><?php if($pause==0) echo 'Yes'; else echo 'No' ;?> </td>
                       
                       <td>
-                        <div class="form-group">
+                     
 
                         <button name="id" class="btn btn-primary" value="<?php echo $id ?>"><i class="la la-pencil"></i></button>
 
+
+                      </td>    
+                      <td>
+                       
+
                     
                         <button name="del" class="btn btn-danger" value="<?php echo $id ?>"><i class="la la-trash"></i></button>
-                      </div>
+             
+
                       </td>
 
             </tr>
@@ -296,6 +303,8 @@ if(isset($_POST['del'])){
 </div>
 <div class="col-sm-8">
   <div class="card">
+
+
     <div class="card-header" style="padding-bottom: 0px;">
       <h4 class="card-title">View Products</h4>
     </div>
@@ -363,14 +372,16 @@ if(isset($_POST['del'])){
 
 <form action="" method="POST">
 <div class="row">
-<div class="col-sm-4">
+<div class="col-sm-3">
 </div>
-<div class="col-sm-4">
+<div class="col-sm-5">
   <div class="card">
     <div class="card-block">
       <div class="card-body">
         <h6>Select Product to view Recent Purchased Price </h6> 
-        <div class="input-group">
+        <div class="row">
+
+        <div class="col-md-8">
           <select class="select select2 form-control" name="pid">
             <?php
 
@@ -387,10 +398,12 @@ if(isset($_POST['del'])){
               ?>
 
           </select>
-
+        </div>
+        <div class="col-md-4">
 
            <input type="submit" class="btn">
         </div>
+      </div>
       </div>
     </div>
   </div>

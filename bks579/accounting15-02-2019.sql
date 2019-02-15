@@ -52,7 +52,7 @@ CREATE TABLE `acts` (
 INSERT INTO acts VALUES
 ("200019","2","Revenue","Sales Account","sales-account","income","0","1"),
 ("200018","10","Cost of Goods Sold","Purchase Account","purchase-account","inventory","0","1"),
-("200016","5","Current Assets","Cash in Hands","cash-in-hands","cash","0","1"),
+("200016","5","Current Assets","Cash in Hands","cash-in-hands","cash","50000","1"),
 ("200021","5","Current Assets","Customers","customers","assets","0","1"),
 ("200022","3","Liability","Vendors","vendors","liabilities","0","1"),
 ("200028","10","Cost of Goods Sold","Purchase Return","purchase-return","inventory","0","1"),
@@ -60,7 +60,7 @@ INSERT INTO acts VALUES
 ("200032","5","Current Assets","Open Cheque","cheque","cash","0","1"),
 ("200038","10","Cost of Goods Sold","Purchase Discount","purchase-discount","inventory","0","1"),
 ("200039","2","Revenue","Sales Discount","sales-discount","income","0","1"),
-("200042","1","Capital","Capital A/C","capital-a-c-of-hamza-pervaiz","capital","0","0"),
+("200042","1","Capital","Capital A/c of Hamza Pervaiz","capital-a-c-of-hamza-pervaiz","capital","50000","0"),
 ("200043","5","Current Assets","HBL bank","hbl-bank","cash","0","0");
 
 
@@ -826,9 +826,11 @@ CREATE TABLE `items` (
   `stock` int(11) NOT NULL DEFAULT '0',
   `pause` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 
+INSERT INTO items VALUES
+("1","4","Galaxy A9","Test Description for Product","0","0","780","0","0");
 
 
 
@@ -837,11 +839,12 @@ CREATE TABLE `itemsb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 
 INSERT INTO itemsb VALUES
-("1","None");
+("1","None"),
+("4","Samsung");
 
 
 
@@ -879,9 +882,11 @@ CREATE TABLE `journal` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2005003 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2005004 DEFAULT CHARSET=latin1;
 
 
+INSERT INTO journal VALUES
+("2005003","Cash is Desposited fromCapital A/c of Hamza Pervaiz to Cash in Hands","0","","0","0","200042","200016","50000","0","2019-02-15","2019-02-15");
 
 
 
@@ -900,9 +905,12 @@ CREATE TABLE `ledger` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 
+INSERT INTO ledger VALUES
+("1","2005003","1","0","200042","Capital A/c of Hamza Pervaiz","Capital","0","50000","50000","2019-02-15","2019-02-15"),
+("2","2005003","5","0","200016","Cash is Coming in Cash in Hands","Current Assets","50000","0","50000","2019-02-15","2019-02-15");
 
 
 

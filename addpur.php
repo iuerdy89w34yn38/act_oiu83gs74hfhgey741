@@ -1,4 +1,4 @@
-<!doctype html>
+  <!doctype html>
 <html>
 <head>
   <?php include"include/connect.php" ?>
@@ -657,11 +657,21 @@
                    while($row=mysqli_fetch_array($rows)){
 
                      $id = $row['id'];
+                     $brand = $row['brand'];
                      $name = $row['name']; ?>
 
-                     <option value="<?php echo $id ?>"><?php echo $name ?></option>
+                     <option value="<?php echo $id ?>">
+                      <?php
 
-                   <?php } ?>
+                      $rows1 =mysqli_query($con,"SELECT * FROM itemsb WHERE id=$brand  ORDER BY name" ) or die(mysqli_error($con));
+
+                      while($row1=mysqli_fetch_array($rows1)){
+
+                        $bname = $row1['name']; ?>
+
+                      <?php echo $bname ?> <?php echo $name ?></option>
+
+                   <?php } } ?>
 
                  </select>
                </td>

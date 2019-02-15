@@ -165,22 +165,38 @@ rel="stylesheet">
 	    color: #FFFFFF;
 	}
 
-	.select2-container--default .select2-selection--single {
-	    min-width: 150px;
+
+	
+	.select2-container {
+
+	    min-width: 100% !important; 
 	}
-	.select2-container--open  {
-	    min-width: 150px !important;
-	}
+
+
 
 	.select2-container--default .select2-results__options .select2-results__option[aria-selected=true] {
 	    background-color:  <?php echo $color2  ?>  !important;
 	    color: #FFFFFF !important;
 	}
 
+	.table-striped tbody tr.odd.selected, .table-striped tbody tr.even.selected {
+	    background-color: <?php echo $color2  ?>;
+	    color: #fff;
+	}
+
 	.page-item.active .page-link {
 	    background-color:  <?php echo $color1  ?>;
 	    border-color:  <?php echo $color2  ?>;
 	}
+	.table td {
+	    padding: 0.5rem 1rem;
+	    text-align: center;
+	}
+
+	select.form-control:not([size]):not([multiple]) {
+	    height: 35px;
+	}
+
 	html body a {
 	    color:   <?php echo $color2  ?>;
 	}
@@ -189,15 +205,14 @@ rel="stylesheet">
 	    text-decoration: underline;
 	}
 
-	body.vertical-layout.vertical-menu-modern.menu-expanded .content, body.vertical-layout.vertical-menu-modern.menu-expanded .footer {
-	    margin-left: 230px;
+
 	}
 	body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu {
-	    width: 230px;
+	    min-width: 230px;
 	}
 	body.vertical-layout.vertical-menu-modern.menu-expanded .navbar .navbar-header {
 	    float: left;
-	    width: 230px;
+	    min-width: 230px;
 	}
 
 

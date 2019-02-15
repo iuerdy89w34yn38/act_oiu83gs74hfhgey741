@@ -719,6 +719,91 @@
       </form>
 
 
+            <div class="row">
+             <div class="col-lg-2">
+             </div>
+             <div class="col-lg-8">
+               <div class="card">
+                <div id="heading1" class="card-header" role="tab">
+                  <a data-toggle="collapse" data-parent="#accordionWrapa1" href="#accordion1" aria-expanded="false"
+                  aria-controls="accordion1" class="card-title lead">View Quick Inventory (Active Items)</a>
+                </div>
+                <div id="accordion1" role="tabpanel" aria-labelledby="heading1" class="collapse hide">
+                  <div class="card-content">
+                   <div class="card-body">
+                    <div class="row align-conter-center">
+
+                      <table class="table table-striped table-bordered dataex-select-multi ">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Brand</th>
+
+                            <th>Stock</th>
+                            <th>Price</th>
+
+
+                          </tr>
+                        </thead>
+                        <tbody>  
+                          <?php
+
+                          $rows =mysqli_query($con,"SELECT * FROM items  ORDER BY name" ) or die(mysqli_error($con));
+
+                          while($row=mysqli_fetch_array($rows)){
+
+                            $id = $row['id'];
+                            $name = $row['name'];
+                            $brand=$row['brand'];
+
+                            $stock=$row['stock']; 
+                            $price=$row['price']; 
+
+                            ?>
+                            <tr>
+
+
+                              <td><?php echo $name ?></td>
+
+                              <td><?php
+
+                              $rowsl =mysqli_query($con,"SELECT * FROM itemsb Where id=$brand ORDER BY name" ) or die(mysqli_error($con));
+
+                              while($rowl=mysqli_fetch_array($rowsl)){
+
+                                $brandname = $rowl['name'];?>
+                                <?php echo $brandname ?>
+                              <?php }
+                              ?>
+
+                            </td>
+
+
+
+                            <td><?php echo $stock ?></td> 
+                            <td><?php echo $price ?></td> 
+
+                     
+                      
+
+
+                          </tr>
+
+
+                        <?php } ?>
+
+                      </tbody>
+                    </table>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 
     </div>
@@ -752,10 +837,10 @@
 
 <script type="text/javascript">
 
-  $('#qty').keyup(function() {
+  $('#qty').change(function() {
     $('#qty1').val($(this).val());
   });
-  $('#price').keyup(function() {
+  $('#price').change(function() {
     $('#price1').val($(this).val());
   });
   $('#item_total').change(function() {

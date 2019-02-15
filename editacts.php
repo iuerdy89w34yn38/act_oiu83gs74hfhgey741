@@ -21,6 +21,31 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 <?php if (!empty($_POST['id']))  $id=$_POST['id'] ;?>
 
+
+<?php
+if(isset($_POST['submit'])){
+    $msg="Unsuccessful" ;
+    
+     $name=$_POST['name'];
+     $typeid=$_POST['type'];
+
+     $rows =mysqli_query($con,"SELECT * FROM act_t WHERE id=$typeid  " ) or die(mysqli_error($con));
+               
+       while($row=mysqli_fetch_array($rows)){
+         
+         $type = $row['name'];
+       }
+
+     $purpose=$_POST['purpose'];
+     $bal=0;
+     $slug=strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $name));
+$data=mysqli_query($con,"INSERT INTO acts (name,typeid,type,slug,purpose,balance)VALUES ('$name','$typeid','$type','$slug','$purpose','$bal')")or die( mysqli_error($con) );
+  $msg="Successful" ;
+    
+}
+?>
+
+
 <?php
 if(isset($_POST['update'])){
     $msg="Unsuccessful" ;
@@ -88,6 +113,8 @@ if(isset($_POST['del'])){
   	  	      <h4 class="card-title">Edit  Account</h4>
   	  	    </div>
   	  	    <div class="card-block">
+
+
   	  	      <div class="card-body">
   	  	      	<form action="" method="post">
   	  	      	<div class="row">
@@ -133,10 +160,79 @@ if(isset($_POST['del'])){
 
   	  	<div class="col-sm-12">
   	  	  <div class="card">
+               <section>
+                  <div id="headingCollapse1" class="card-header text-center">
+                   <a data-toggle="collapse" href="#collapse1" aria-expanded="false" aria-controls="collapse62"
+                      class="card-title  collapsed"><i class="la la-plus"></i> Add Account</a>
+                   </div>
+                   <div id="collapse1" role="tabpanel" aria-labelledby="headingCollapse1" class="border no-border-top card-collapse collapse"
+                     aria-expanded="false">
+                     <div class="card-content">
+                       <div class="card-body" style="background: white;">
+                         
+                                      <form action="" method="post">
+                                      <div class="row">
+
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-3">
+                                          <span>Name</span>
+                                            <input type="text" class="form-control" name="name" placeholder="Accout Name">
+                                        </div>
+                                         <div class="col-sm-3">
+                                           <span>Type</span>
+                                           <br>
+                                           <select class="form-control select2" name="type">
+                                             <?php
+
+                                             $rows =mysqli_query($con,"SELECT * FROM act_t  ORDER BY name" ) or die(mysqli_error($con));
+                                                       
+                                               while($row=mysqli_fetch_array($rows)){
+                                                 
+                                                 $id = $row['id'];
+                                                 $name = $row['name']; ?>
+
+                                             <option value="<?php echo $id ?>"><?php echo $name ?></option>
+
+                                             <?php } ?>
+
+                                           </select>
+
+                                         </div>
+                                        <div class="col-sm-3">
+                                          <span>Purpose</span>
+                                          <br>
+                                          <select class="form-control select2" name="purpose">
+                                             <option value="other">Other</option>
+                                             <option value="cash">Manage Cash</option>
+                                             <option value="capital">Manage Capital</option>
+                                             <option value="expenses">Manage Expenses</option>
+                                             <option value="inventory">Manage Inventory</option>
+                                             <option value="income">Manage Income</option>
+                                             <option value="assets">Manage Assets</option>
+                                            <option value="liabilities">Manage Liabilities</option>
+                                          </select>
+
+                                        </div>
+
+                                        <div class="col-sm-1">
+                                          <span>&nbsp;</span>
+                                            <input type="submit" class="btn btn-primary" name="submit" value="Add">
+                                        </div>
+                                        
+                                      </div>
+                                    </form>
+                     
+
+                  </div>
+               
+               
+            </section>
   	  	    <div class="card-header" style="padding-bottom: 0px;">
   	  	      <h4 class="card-title">View Existing Accounts</h4>
   	  	    </div>
   	  	    <div class="card-block">
+
   	  	      <div class="card-body">
   	  	      	<form action="" method="POST">
   	  	      	<div class="row align-conter-center">

@@ -108,42 +108,18 @@
         <ul class="menu-content">
 
 
-      <li class=" nav-item"><a href="#"></i><span class="menu-title">General Accounts</span></a>
-        <ul class="menu-content">
 
 
-
-          <li class="<?php if($link=="addacts.php") echo "active"; ?>"><a class="menu-item" href="addacts.php" > Add New Account</a> </li>
-
-          <li class="<?php if($link=="editacts.php") echo "active"; ?>"><a class="menu-item" href="editacts.php" > View / Edit Account</a> </li>
+          <li class="<?php if($link=="editacts.php") echo "active"; ?>"><a class="menu-item" href="editacts.php" > General Accounts</a> </li>
 
 
-        </ul>
-      </li>
-
-      <li class=" nav-item"><a href="#"></i><span class="menu-title">Vendors</span></a>
-        <ul class="menu-content">
+          <li class="<?php if($link=="editvend.php") echo "active"; ?>"><a class="menu-item" href="editvend.php" >Vendors Accounts</a> </li>
 
 
-          <li class="<?php if($link=="addvend.php") echo "active"; ?>"><a class="menu-item" href="addvend.php" > Add Vendor Account</a> </li>
+          <li class="<?php if($link=="editcust.php") echo "active"; ?>"><a class="menu-item" href="editcust.php" >Customers Accounts</a> </li>
 
-          <li class="<?php if($link=="editvend.php") echo "active"; ?>"><a class="menu-item" href="editvend.php" > View or Edit Vendor</a> </li>
+      
 
-
-        </ul>
-      </li>
-
-
-      <li class=" nav-item"><a href="#"></i><span class="menu-title">Customers</span></a>
-        <ul class="menu-content">
-
-          <li class="<?php if($link=="addcust.php") echo "active"; ?>"><a class="menu-item" href="addcust.php" > Add Customers Account</a> </li>
-
-          <li class="<?php if($link=="editcust.php") echo "active"; ?>"><a class="menu-item" href="editcust.php" > View or Edit Customers</a> </li>
-
-
-        </ul>
-      </li>
 
         </ul>
       </li>

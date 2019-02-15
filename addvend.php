@@ -14,6 +14,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <?php $link="addvend.php"; ;?>
 
 
+
 <?php
 if(isset($_POST['submit'])){
     $msg="Unsuccessful" ;

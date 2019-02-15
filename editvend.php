@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -17,6 +14,32 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <?php $link="editvend.php"; ;?>
 
 <?php if (!empty($_GET['id']))  $id=$_GET['id'] ;?>
+
+
+<?php
+if(isset($_POST['submit'])){
+    $msg="Unsuccessful" ;
+    
+     $name=$_POST['name'];
+     $mobile=$_POST['mobile'];
+     $company=$_POST['company'];
+     $email=$_POST['email'];
+     $phone=$_POST['phone'];
+     $address=$_POST['address'];
+     $city=$_POST['city'];
+     $country=$_POST['country'];
+     $date=date('Y-m-d');
+     $typeid=200022;
+
+
+
+    $data=mysqli_query($con,"INSERT INTO vendors (name,typeid,mobile,company,email,phone,address,city,country,dated)VALUES ('$name','$typeid','$mobile','$company','$email','$phone','$address','$city','$country','$date')")or die( mysqli_error($con) );
+  $msg="Successful" ;
+    
+}
+?>
+
+
 
 <?php
 if(isset($_POST['update'])){
@@ -193,6 +216,98 @@ if(isset($_GET['del'])){
 
 <div class="col-sm-12">
   <div class="card">
+
+       <section>
+          <div id="headingCollapse1" class="card-header text-center">
+           <a data-toggle="collapse" href="#collapse1" aria-expanded="false" aria-controls="collapse62"
+              class="card-title  collapsed"><i class="la la-plus"></i> Add Account</a>
+           </div>
+           <div id="collapse1" role="tabpanel" aria-labelledby="headingCollapse1" class="border no-border-top card-collapse collapse"
+             aria-expanded="false">
+             <div class="card-content">
+               <div class="card-body" style="background: white;">
+                 
+                                        <form action="" method="post">
+                                        <div class="row">
+
+                                           <div class="col-sm-4">
+                                             <span>Name</span>
+                                               <input type="text" class="form-control" name="name" placeholder="Vendor Name">
+                                           </div>
+                                           <div class="col-sm-4">
+                                             <span>Mobile</span>
+                                               <input type="text" class="form-control" name="mobile" placeholder="Vendor Mobile">
+                                           </div>
+                                           <div class="col-sm-4">
+                                             <span>Company</span>
+                                               <input type="text" class="form-control" name="company" placeholder="Vendor Company">
+                                           </div>
+                                           <div class="col-sm-4">
+                                             <span>Email</span>
+                                               <input type="email" class="form-control" name="email" placeholder="Vendor Email">
+                                           </div>
+                                           <div class="col-sm-4">
+                                             <span>Phone</span>
+                                               <input type="text" class="form-control" name="phone" placeholder="Company Phone">
+                                           </div>
+                                          <div class="col-sm-6">
+                                            <span>Street Address</span>
+                                              <input type="text" class="form-control" name="address" placeholder="Address">
+                                          </div>
+                                           <div class="col-sm-3">
+                                             <span>City</span>
+                                             <select class="form-control select2" name="city">
+                                               <option value="*"> None </option>
+                                               <?php
+
+                                               $rows =mysqli_query($con,"SELECT * FROM cities ORDER BY city" ) or die(mysqli_error($con));
+                                                         
+                                                 while($row=mysqli_fetch_array($rows)){
+                                                   
+                                                   $name = $row['city']; ?>
+
+                                               <option value="<?php echo $name ?>"><?php echo $name ?></option>
+
+                                               <?php } ?>
+
+                                             </select>
+
+                                           </div>
+                                          <div class="col-sm-3">
+                                            <span>Country</span>
+                                            <select class="form-control select2" name="country">
+                                              <?php
+
+                                              $rows =mysqli_query($con,"SELECT * FROM countries ORDER BY country" ) or die(mysqli_error($con));
+                                                        
+                                                while($row=mysqli_fetch_array($rows)){
+                                                  
+                                                  $name = $row['country']; ?>
+
+                                              <option value="<?php echo $name ?>" <?php if($name=='Pakistan') echo 'selected' ?>><?php echo $name ?></option>
+
+                                              <?php } ?>
+
+                                            </select>
+
+                                          </div>
+
+                                           <div class="col-sm-5">
+                                           </div>
+                                          <div class="col-sm-1">
+                                            <span>&nbsp;</span>
+                                              <input type="submit" class="btn btn-primary" name="submit" value="Add Vendor">
+                                          </div>
+                                          
+                                        </div>
+                                      </form>
+                                       
+
+          </div>
+       
+       
+    </section>
+    
     <div class="card-header" style="padding-bottom: 0px;">
       <h4 class="card-title">View Existing Vendors</h4>
     </div>

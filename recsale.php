@@ -26,7 +26,18 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
     $subt = $_POST['amount'];
     $amount = preg_replace("/[^0-9^.]/", '', $subt); 
+    $discount = $_POST['discount'];
 
+
+    $discid=200039;
+    $rows =mysqli_query($con,"SELECT * FROM acts where id=$discid ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $discname = $row['name'];
+      $discbalance = $row['balance'];
+      $disctype = $row['type'];
+      $disctypeid = $row['typeid'];
+    }
+    
     $datec=date('Y-m-d');
     $dateup=date('Y-m-d');
 
@@ -57,7 +68,9 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
     
 
          $srcbalance=$srcbalance-$amount;
-         $destbalance=$destbalance+$amount;
+         $destbalance=$destbalance+$amount-$discount;
+         $aamount=$amount-$discount;
+         $discbalance=$discbalance+$discount;
 
 
 
@@ -73,6 +86,10 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
          $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
          mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+         $sqls = "UPDATE acts SET `balance` = '$discbalance' WHERE `id` = $discid"  ;
+         mysqli_query($con, $sqls)or die(mysqli_error($con));
+
 
 
 
@@ -93,7 +110,15 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
         $desp='Cash to '.$destname;
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        if(!empty($discount)){
+
+        $desp='Early Payment Discount Given';
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid','$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) ); 
+        }
+
 
       }
       else if($destid==200032){ //Cheque 
@@ -185,10 +210,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
       }
 
         //First Entry
-    
-      $srcbalance=$srcbalance-$amount;
-      $destbalance=$destbalance+$amount;
+  
 
+  $srcbalance=$srcbalance-$amount;
+  $destbalance=$destbalance+$amount-$discount;
+  $aamount=$amount-$discount;
+  $discbalance=$discbalance+$discount;
 
 
 
@@ -203,6 +230,11 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
      $sqls = "UPDATE customers SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
      mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+     $sqls = "UPDATE acts SET `balance` = '$discbalance' WHERE `id` = $discid"  ;
+     mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+
 
 
 
@@ -223,7 +255,16 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
     $desp='Cash to '.$destname;;
 
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
+
+    
+
+    if(!empty($discount)){
+
+    $desp='Early Payment Discount Given';
+
+    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid','$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) ); 
+    }
 
     }
 
@@ -298,6 +339,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                       <div class="col-sm-2" id="chequediv">
                         <center><span>Cheque No :</span></center>
                         <input type="text" name="chequeno" class="form-control">
+
+                    </div>
+
+                      <div class="col-sm-2" id="disdiv">
+                        <center><span>Discount :</span></center>  
+                         <input type="number" name="discount" class="form-control" value="0">
 
                     </div>
                     <div class="col-sm-1">
@@ -417,6 +464,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <?php include"include/footer.php" ?>
 
 </body>
+
 <script type="text/javascript">
   
   $(document).ready(function () {
@@ -426,14 +474,17 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
   $("#multiOptions").change(function () {
       if ($(this).val() == "200032" ) {
          $('#chequediv').show();
+         $('#disdiv').hide();
          
       }
       else { 
           $('#chequediv').hide();
+          $('#disdiv').show();
            }
   });
   });
 
 </script>
+
 
 </html>

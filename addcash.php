@@ -57,7 +57,7 @@ if(isset($_POST['submitcap'])){
 
 
 
-    $desp='Cash is Desposited from'.$srcname.' to '.$destname;
+    $desp='Cash is Desposited from '.$srcname.' to '.$destname;
 
                               //Journal Entry
     $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,dr,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$datec','$dateup')")or die( mysqli_error($con) );
@@ -581,6 +581,8 @@ $msg = 'Successful';
   	  	    </div>
   	  	  </div>
   	  	</div>
+
+
 
 
 
