@@ -26,7 +26,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <div class="app-content content">
 	<div class="content-wrapper">
 		<div class="row">
-			<div class="col-sm-4">
+			<div class="col-lg-4">
 				<div class="card  pull-up">
 					<div class="card-header">
 						<h4 class="card-title">Net Profit</h4>
@@ -68,7 +68,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 									$name = $row['name'];
 									$salesr = $row['balance'];
 								}
-
 								$netsales = $sales-$salesr;
 
 								$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =10 AND id!=200028  ORDER BY name" ) or die(mysqli_error($con));
@@ -223,7 +222,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 						$sales=$sales+$cr;
 					} 
 
-					$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=200029 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+					$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=200029 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
 					$salesr=0;
 					while($row=mysqli_fetch_array($rows)){
 
@@ -366,7 +365,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 											<h4><?php echo $name ?>: 
-												<br> &nbsp; &nbsp; &nbsp; Rs. <?php echo number_format($balance);   ?>/-</h4>
+											 <span style="text-align: right;">Rs. <?php echo number_format($balance);   ?>/- </span></h4>
 												<hr>
 
 

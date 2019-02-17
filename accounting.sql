@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 14, 2019 at 04:44 AM
+-- Generation Time: Feb 17, 2019 at 02:40 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `act_t` (
   `slug` varchar(20) DEFAULT NULL,
   `name` text NOT NULL,
   `balance` text NOT NULL,
+  `tbshow` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
@@ -79,15 +80,15 @@ CREATE TABLE IF NOT EXISTS `act_t` (
 -- Dumping data for table `act_t`
 --
 
-INSERT INTO `act_t` (`id`, `slug`, `name`, `balance`) VALUES
-(1, 'capital', 'Capital', 'credit'),
-(2, 'revenue', 'Revenue', 'credit'),
-(3, 'liability', 'Liability', 'credit'),
-(4, 'expenses', 'Expenses', 'debit'),
-(5, 'current assets', 'Current Assets', 'debit'),
-(6, 'fixed assets', 'Fixed Assets', 'debit'),
-(7, 'drawing capital', 'Drawing Capital', 'debit'),
-(10, 'cogs', 'Cost of Goods Sold', '');
+INSERT INTO `act_t` (`id`, `slug`, `name`, `balance`, `tbshow`) VALUES
+(1, 'capital', 'Capital', 'credit', 3),
+(2, 'revenue', 'Revenue', 'credit', 5),
+(3, 'liability', 'Liability', 'credit', 1),
+(4, 'expenses', 'Expenses', 'debit', 7),
+(5, 'current assets', 'Current Assets', 'debit', 0),
+(6, 'fixed assets', 'Fixed Assets', 'debit', 2),
+(7, 'drawing capital', 'Drawing Capital', 'debit', 4),
+(10, 'cogs', 'Cost of Goods Sold', 'debit', 6);
 
 -- --------------------------------------------------------
 

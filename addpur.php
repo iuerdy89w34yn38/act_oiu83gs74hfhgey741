@@ -146,8 +146,8 @@
 
       //First Entry
 
-      $srcbalance=$srcbalance+$amount;
-      $destbalance=$destbalance+$amount-$discount;
+      $srcbalance=$srcbalance+$amount-$discount;
+      $destbalance=$destbalance+$amount;
       $aamount=$amount-$discount;
       $discbalance=$discbalance+$discount;
 
@@ -182,11 +182,11 @@
       $desp='Goods are Purchased from '.$srcname.' on Credit Against Invoice No. '.$invoiceno ;
 
 
-      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
 
       $desp='Purchase Account';
 
-      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
+      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
       if(!empty($discount)){
 

@@ -52,6 +52,8 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
             </div>
           </div>
         </div>
+
+
       </form>
 
       <?php if (!empty($_GET['id'])){
@@ -256,6 +258,71 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
   </div>
 
 <?php } } ?>
+<style type="text/css">
+ .table td{
+    text-align: left;
+  }
+  .table thead td{
+    font-weight: 600;
+  }
+</style>
+
+
+  <div class="card">
+  <div class="card-header" style="padding-bottom: 0px;">
+    <h4 class="card-title">View Recent Invoices</h4>
+  </div>
+  <div class="card-block">
+    <div class="card-body">
+     <form action="" method="get">
+       <div class="row align-conter-center">
+
+      
+
+       <div class="col-sm-12">
+
+        <table class="table ">
+          <thead>
+            <tr>
+              <td>Invoice</td>
+              <td>Description</td>
+              <td>View/Edit</td>
+          </thead>
+          <tbody>
+
+            <?php
+
+            $rows =mysqli_query($con,"SELECT * FROM journal  ORDER BY id desc" ) or die(mysqli_error($con));
+
+            while($row=mysqli_fetch_array($rows)){
+
+              $id = $row['id'];
+              $desp = $row['desp'];
+              ?>
+
+            <tr>
+              <td><?php echo $id ?></td>
+              <td><?php echo $desp ?></td>
+              <td><button name="id" value="<?php echo $id ?>">View</button></td>
+
+            </tr>
+          <?php } ?>
+
+          </tbody>
+
+        </table>
+       </div>
+      
+
+     </div>
+
+
+ </form>
+
+ <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
+</div>
+</div>
+</div>
 
 
 </div>

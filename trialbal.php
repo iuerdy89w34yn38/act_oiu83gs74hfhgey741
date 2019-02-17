@@ -80,7 +80,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
               $etdbalance =0;
               $etcbalance =0;
 
-              $rowsty =mysqli_query($con,"SELECT * FROM act_t  where id LIKE '$act' ORDER BY name" ) or die(mysqli_error($con));
+              $rowsty =mysqli_query($con,"SELECT * FROM act_t  where id LIKE '$act' ORDER BY tbshow" ) or die(mysqli_error($con));
 
               while($rowty=mysqli_fetch_array($rowsty)){
 
