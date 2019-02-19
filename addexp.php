@@ -242,7 +242,7 @@ if(isset($_POST['submit'])){
                   </div>
   		  	      	<div class="col-sm-1">
   			  	      	<span>&nbsp;</span>
-  			  	          <input type="submit" class="btn btn-primary" name="submit" value="Add Expense">
+  			  	          <input type="submit" class="btn btn-primary block-element" name="submit" value="Add Expense">
   		  	      	</div>
   		  	      	
   	  	      	</div>

@@ -15,6 +15,7 @@ type="text/javascript"></script>
 <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
 
 
+<script src="js/scripts/extensions/block-ui.js" type="text/javascript"></script>
 
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN MODERN JS-->

@@ -335,7 +335,7 @@
               </div>
               <hr>
 
-              <center><button name="send"  class="btn btn-primary">Sale</button></center>
+              <center><button name="send"  class="btn btn-primary block-element">Sale</button></center>
 
 
               <center><h2>
@@ -519,6 +519,7 @@ type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
 
 
+<script src="js/scripts/extensions/block-ui.js" type="text/javascript"></script>
 
 
 </html>

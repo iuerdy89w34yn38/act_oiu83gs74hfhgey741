@@ -162,6 +162,16 @@ rel="stylesheet">
 	    background-color:   <?php echo $color2  ?> !important;
 	    color: #FFFFFF;
 	}
+	.btn-outline-primary {
+	    border-color:  <?php echo $color2  ?> ;
+
+	    color:  <?php echo $color2  ?> ;
+	}
+	.btn-outline-primary:hover{
+	    border-color:  <?php echo $color2  ?> ;
+		background-color:  <?php echo $color2  ?> ;
+	    color:  #fff ;
+	}
 
 
 	
@@ -189,6 +199,12 @@ rel="stylesheet">
 	.table td {
 	    padding: 0.5rem 1rem;
 	    text-align: center;
+	}
+	
+	.dataTables_wrapper table {
+
+	    width: 100% !important;
+
 	}
 
 	select.form-control:not([size]):not([multiple]) {

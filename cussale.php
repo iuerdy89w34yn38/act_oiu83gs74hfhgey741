@@ -206,7 +206,7 @@
       $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid','$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) ); 
       }
 
-      $desp='Credit Sale';
+      $desp='Sale Account';
 
       $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
@@ -243,8 +243,8 @@
             //First Entry
     
 
-        $srcbalance=$srcbalance+$amount-$discount;
-        $destbalance=$destbalance+$amount;
+        $srcbalance=$srcbalance+$amount;
+        $destbalance=$destbalance+$amount-$discount;
         $aamount=$amount-$discount;
         $discbalance=$discbalance+$discount;
 
@@ -252,7 +252,7 @@
 
 
 
-        $desp='Goods Sold to '.$destname.' From '.$srcname;
+        $desp='Goods Sold are sold to '.$actname.' - Sales Account Credited';
 
                           //Journal Entry
          $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup')")or die( mysqli_error($con) );
@@ -280,40 +280,45 @@
         }
 
 
-        $desp='Goods Sold to '.$destname.' From '.$srcname;
+        $desp='Goods Sold are sold to '.$actname.' - Sales Account Credited';
 
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
+
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
       if(!empty($discount)){
 
       $desp='Discount Given';
 
-      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid',1,'$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) );
+      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid',1,'$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) );
+
+      $desp='Discount Given to '.$actname;
+
+      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) );
 }
 
-        $desp=$destname.' Sale';
+        $desp='Payment Received to '.$destname;
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
 
-        $desp='Goods Sold to '.$destname.' From '.$srcname;
+      
+        $desp='Goods Sold are sold to '.$actname.' - Sales Account Credited';
 
 
-
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
 
         if(!empty($discount)){
 
         $desp='Discount Given';
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid','$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) ); 
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid','$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) ); 
         }
 
 
-        $desp=$destname.' Sale';
+        $desp='Payment Received to '.$destname;
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
 
       }
       else if($destid==200032){ //Cheque 
@@ -396,6 +401,8 @@
 
       }
       else{
+
+
         $srcid=200019;
       $rows =mysqli_query($con,"SELECT * FROM acts where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
       while($row=mysqli_fetch_array($rows)){ 
@@ -415,78 +422,88 @@
 
       }
 
-        //First Entry
-       $srcbalance=$srcbalance+$amount-$discount;
-       $destbalance=$destbalance+$amount;
-       $aamount=$amount-$discount;
-       $discbalance=$discbalance+$discount;
+      
+                  //First Entry
+          
 
-
-
-
-      $desp='Goods Sold to '.$destname.' From '.$srcname;
-
-                      //Journal Entry
-     $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup')")or die( mysqli_error($con) );
-
-
-     $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
-     mysqli_query($con, $sqls)or die(mysqli_error($con));
-
-     $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
-     mysqli_query($con, $sqls)or die(mysqli_error($con));
-
-     $sqls = "UPDATE acts SET `balance` = '$discbalance' WHERE `id` = $discid"  ;
-     mysqli_query($con, $sqls)or die(mysqli_error($con));
+              $srcbalance=$srcbalance+$amount;
+              $destbalance=$destbalance+$amount-$discount;
+              $aamount=$amount-$discount;
+              $discbalance=$discbalance+$discount;
 
 
 
 
 
+              $desp='Goods Sold are sold to '.$actname.' - Sales Account Credited';
+
+                                //Journal Entry
+               $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+
+               $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
+               mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+               $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
+               mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+               $sqls = "UPDATE acts SET `balance` = '$discbalance' WHERE `id` = $discid"  ;
+               mysqli_query($con, $sqls)or die(mysqli_error($con));
 
 
 
-                      //Ledger Entry
-     $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
-     while($row=mysqli_fetch_array($rows)){ 
-      $jid = $row['id'];
-
-    }
 
 
 
-    $desp='Goods Sold to '.$destname.' From '.$srcname;
+                                //Ledger Entry
+               $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+               while($row=mysqli_fetch_array($rows)){ 
+                $jid = $row['id'];
+
+              }
 
 
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
-
-    if(!empty($discount)){
-
-    $desp='Discount Given';
-
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid','$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) ); 
-    }
+              $desp='Goods Sold are sold to '.$actname.' - Sales Account Credited';
 
 
-    $desp=$destname.' Sale';
 
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+              $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-    $desp='Goods Sold to '.$destname.' From '.$srcname;
+            if(!empty($discount)){
+
+            $desp='Discount Given';
+
+            $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid',1,'$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) );
+
+            
+            $desp='Discount Given from '.$actname;
+
+            $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) );
+      }
+
+              $desp='Payment Received to '.$destname;
+
+              $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
+
+            
+              $desp='Goods Sold are sold to '.$actname.' - Sales Account Credited';
 
 
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
+              $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
-      if(!empty($discount)){
 
-      $desp='Discount Given';
+              if(!empty($discount)){
 
-      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid',1,'$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) );
-  }
+              $desp='Discount Given';
 
-    $desp=$destname.' Sale';
+              $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid','$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) ); 
+              }
 
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+
+              $desp='Payment Received to '.$destname;
+
+              $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
+
 
     }
 
@@ -700,7 +717,7 @@
 
             </div>
             <hr>
-            <center><button name="send"  class="btn btn-primary">Add</button></center>
+            <center><button name="send"  class="btn btn-primary block-element">Add</button></center>
             
 
             <center><h2>
@@ -899,5 +916,6 @@ type="text/javascript"></script>
 
 
 
+<script src="js/scripts/extensions/block-ui.js" type="text/javascript"></script>
 
 </html>

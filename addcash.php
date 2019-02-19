@@ -491,7 +491,7 @@ $msg = 'Successful';
                   </div>
                   <div class="col-sm-1">
                     <span>&nbsp;</span>
-                      <input type="submit" class="btn btn-primary" name="submitcap" value="Add">
+                      <input type="submit" class="btn btn-primary block-element" name="submitcap" value="Add">
                   </div>
                   
                 </div>
@@ -566,7 +566,7 @@ $msg = 'Successful';
   		  	      	</div>
   		  	      	<div class="col-sm-1">
   			  	      	<span>&nbsp;</span>
-  			  	          <input type="submit" class="btn btn-primary" name="submittrans" value="Add">
+  			  	          <input type="submit" class="btn btn-primary block-element" name="submittrans" value="Add">
   		  	      	</div>
   		  	      	
   	  	      	</div>

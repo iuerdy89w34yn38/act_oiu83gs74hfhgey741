@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 17, 2019 at 02:40 AM
+-- Generation Time: Feb 19, 2019 at 12:41 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -860,14 +860,15 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `balance` int(11) DEFAULT '0',
   `dated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=600003 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=600004 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customers`
 --
 
 INSERT INTO `customers` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`) VALUES
-(600002, 200021, 'Customers', 'Test Customer 4', '12345678', 'C Company', '1234567899', 'customer@email.com', 'Customer Address', 'Lahore', 'Pakistan', 0, '2019-02-07');
+(600002, 200021, 'Customers', 'Test Customer 4', '12345678', 'C Company', '1234567899', 'customer@email.com', 'Customer Address', 'Lahore', 'Pakistan', 0, '2019-02-07'),
+(600003, 200021, 'Customers', 'Test Customer 6', '12345678', 'C Company', '1234567899', 'customer@email.com', 'Customer Address', 'Lahore', 'Pakistan', 0, '2019-02-07');
 
 -- --------------------------------------------------------
 
@@ -887,7 +888,14 @@ CREATE TABLE IF NOT EXISTS `items` (
   `stock` int(11) NOT NULL DEFAULT '0',
   `pause` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `brand`, `name`, `desp`, `price`, `quantity`, `weight`, `stock`, `pause`) VALUES
+(1, '4', 'Test Product 2', 'test desp', 0, 0, 780, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -900,14 +908,15 @@ CREATE TABLE IF NOT EXISTS `itemsb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `itemsb`
 --
 
 INSERT INTO `itemsb` (`id`, `name`) VALUES
-(1, 'None');
+(1, 'None'),
+(4, 'Test Brand');
 
 -- --------------------------------------------------------
 
