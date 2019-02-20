@@ -313,54 +313,85 @@ if(isset($_POST['submitloan'])){
   <div class="content-wrapper">
 
 
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-block">
+          <div class="card-body">
+           
+            <h2>Current Cash Status</h2>
+           
+           <?php // Overall - For all types of Account from Ledger by account type
+           $gtotal=0;
+           $allrows =mysqli_query($con,"SELECT id,name FROM acts WHERE purpose='cash'  ORDER BY name" ) or die(mysqli_error($con));
+           while($allrow=mysqli_fetch_array($allrows)){
+            $actid = $allrow['id'];
+            $actname = $allrow['name'];
+            
+            $tcr=0;
+            $tdr=0;
+            $total=0;
+            $rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+
+            while($row=mysqli_fetch_array($rows)){
+              $cr = $row['cr'];
+              $tcr=$tcr+$cr;
+            } 
+            $rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+            
+            while($row=mysqli_fetch_array($rows)){
+              $dr = $row['dr'];
+              $tdr=$tdr+$dr;
+            } 
+            $total=$tdr-$tcr;
+            $gtotal=$gtotal+$total;
+            ?>
+
+       
+
+           <div class="row align-items-center">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-4">
+                                
+              <h3><?php echo $actname ?>:</h3>
+            </div>
+            <div class="col-md-2">
+                                
+              <h3>Rs. <?php echo number_format($total);   ?>/-</h3>
+            </div>
+            </div>
+
+
+            <?php } ?>
+    
+    
+
+
+          <hr>
+          <div class="row align-items-center">
+           <div class="col-md-3">
+           </div>
+           <div class="col-md-4">
+                               
+             <h3>Total :</h3>
+           </div>
+           <div class="col-md-2">
+                               
+             <h3>Rs. <?php echo number_format($gtotal) ?>/-</h3>
+           </div>
+           </div>
+
+        </div>
+      </div>
+    </div>
+
+
 
     <div class="col-sm-12">
       <div class="card">
         <div class="card-block">
           <div class="card-body">
 
-            <h2>Current Cash Status</h2>
-            <?php
-            $tb=0;
-            $rows =mysqli_query($con,"SELECT * FROM acts where purpose='cash'  ORDER BY name" ) or die(mysqli_error($con));
-
-            while($row=mysqli_fetch_array($rows)){
-
-              $id = $row['id'];
-              $name = $row['name'];
-              $balance = $row['balance'];
-              $tb=$tb+$balance;
-
-              ?>
-              <div class="row align-items-center">
-                <div class="col-md-3">
-                </div>
-                <div class="col-md-4">
-
-                  <h3><?php echo $name ?>:</h3>
-                </div>
-                <div class="col-md-2">
-
-                  <h3>Rs. <?php echo number_format($balance);   ?>/-</h3>
-                </div>
-              </div>
-
-            <?php } ?>
-
-
-            <div class="row align-items-center">
-             <div class="col-md-3">
-             </div>
-             <div class="col-md-4">
-              <hr>                 
-              <h3>Total :</h3>
-            </div>
-            <div class="col-md-2">
-             <hr>                  
-             <h3>Rs. <?php echo number_format($tb) ?>/-</h3>
-           </div>
-         </div>
-         <hr>
 
          <form action="" method="post">
           <h2>Add Loan</h2>

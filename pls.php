@@ -18,12 +18,37 @@
 data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 <?php $link="pls.php"; ;?>
+<style type="text/css">
+
+	table{
+		font-size: 16px;
+	}
+	.mh{
+		font-weight: 900;
+		font-size: 18px;
+		border-style: double;
+	}
+	.spc{
+
+		border: 0px solid !important;
+	}
+</style>
 
 
 <?php include"include/header.php" ?>
 <?php include"include/sidebar.php" ?>
 <div class="app-content content">
 	<div class="content-wrapper">
+
+
+
+		<?php if (!empty($_POST['dates'])) {
+		 $dates=$_POST['dates'] ;
+		 $datee=$_POST['datee'] ;
+
+		
+		?>
+
 		<div class="row">
 			<div class="col-sm-1">
 			</div>
@@ -44,168 +69,285 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 						<div class="card-body">
 
 							<div class="row">
-
 								<?php
 								$netprofit = 0;
 								$balance = 0;
 								$sales = 0;
 								$salesr = 0;
+								$salesd = 0;
 								$netsales = 0;
 								$cogs= 0;
 								$cogsr= 0;
+								$cogsd= 0;
 								$netcogs= 0;
 								$expenses= 0;
+								$tax= 0;
 								$gp= 0;
 
-								$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =2 AND id!=200029  ORDER BY name" ) or die(mysqli_error($con));
+								
+									$gtotal=0;
+									$lmonth = date('Y-m-d', strtotime(' -30 day'));
+									$allrows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =2 AND id!=200029  ORDER BY name" ) or die(mysqli_error($con));
+									while($allrow=mysqli_fetch_array($allrows)){
+										$actid = $allrow['id'];
+										$actname = $allrow['name'];
+										
+										$tcr=0;
+										$tdr=0;
+										$total=0;
 
-								while($row=mysqli_fetch_array($rows)){
+										$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+										while($row=mysqli_fetch_array($rows)){
+											$cr = $row['cr'];
+											$tcr=$tcr+$cr;
+										} 
+										$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+										while($row=mysqli_fetch_array($rows)){
+											$dr = $row['dr'];
+											$tdr=$tdr+$dr;
+										} 
+										$balance=$tdr-$tcr;	
+										$sales=$sales+$balance;
+									}
+								
 
-									$id = $row['id'];
-									$name = $row['name'];
-									$balance = $row['balance'];
-									$sales=$sales+$balance;
+								$allrows =mysqli_query($con,"SELECT * FROM acts WHERE id=200029  ORDER BY name" ) or die(mysqli_error($con));
+								while($allrow=mysqli_fetch_array($allrows)){
+									$actid = $allrow['id'];
+									$actname = $allrow['name'];
+									
+									$tcr=0;
+									$tdr=0;
+									$total=0;
+
+									$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$cr = $row['cr'];
+										$tcr=$tcr+$cr;
+									} 
+									$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$dr = $row['dr'];
+										$tdr=$tdr+$dr;
+									} 
+									$balance=$tdr-$tcr;	
+									$salesr=$salesr+$balance;
 								}
-								$rows =mysqli_query($con,"SELECT * FROM acts WHERE id=200029  ORDER BY name" ) or die(mysqli_error($con));
 
-								while($row=mysqli_fetch_array($rows)){
+								$allrows =mysqli_query($con,"SELECT * FROM acts WHERE id=200039  ORDER BY name" ) or die(mysqli_error($con));
+								while($allrow=mysqli_fetch_array($allrows)){
+									$actid = $allrow['id'];
+									$actname = $allrow['name'];
+									
+									$tcr=0;
+									$tdr=0;
+									$total=0;
 
-									$id = $row['id'];
-									$name = $row['name'];
-									$salesr = $row['balance'];
+									$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$cr = $row['cr'];
+										$tcr=$tcr+$cr;
+									} 
+									$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$dr = $row['dr'];
+										$tdr=$tdr+$dr;
+									} 
+									$balance=$tdr-$tcr;	
+									$salesd=$salesd+$balance;
 								}
 
-								$rows =mysqli_query($con,"SELECT * FROM acts WHERE id=200039  ORDER BY name" ) or die(mysqli_error($con));
+								
+								$netsales1 = $sales-$salesr-$salesd;
+								$netsales = abs($netsales1);
 
-								while($row=mysqli_fetch_array($rows)){
+								
 
-									$id = $row['id'];
-									$name = $row['name'];
-									$salesd = $row['balance'];
-								} 
+								$allrows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =10 AND id!=200028  ORDER BY name" ) or die(mysqli_error($con));
+								while($allrow=mysqli_fetch_array($allrows)){
+									$actid = $allrow['id'];
+									$actname = $allrow['name'];
+									
+									$tcr=0;
+									$tdr=0;
+									$total=0;
 
-								$netsales = $sales-$salesr-$salesd;
-
-								$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =10 AND id!=200028  ORDER BY name" ) or die(mysqli_error($con));
-
-								while($row=mysqli_fetch_array($rows)){
-
-									$id = $row['id'];
-									$name = $row['name'];
-									$balance = $row['balance'];
+									$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$cr = $row['cr'];
+										$tcr=$tcr+$cr;
+									} 
+									$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$dr = $row['dr'];
+										$tdr=$tdr+$dr;
+									} 
+									$balance=$tdr-$tcr;	
 									$cogs=$cogs+$balance;
-								} 
+								}
 
-								$rows =mysqli_query($con,"SELECT * FROM acts WHERE id=200028  ORDER BY name" ) or die(mysqli_error($con));
 
-								while($row=mysqli_fetch_array($rows)){
 
-									$id = $row['id'];
-									$name = $row['name'];
-									$cogsr = $row['balance'];
-								} 
-								$rows =mysqli_query($con,"SELECT * FROM acts WHERE id=200038  ORDER BY name" ) or die(mysqli_error($con));
+								$allrows =mysqli_query($con,"SELECT * FROM acts WHERE id=200028  ORDER BY name" ) or die(mysqli_error($con));
+								while($allrow=mysqli_fetch_array($allrows)){
+									$actid = $allrow['id'];
+									$actname = $allrow['name'];
+									
+									$tcr=0;
+									$tdr=0;
+									$total=0;
 
-								while($row=mysqli_fetch_array($rows)){
+									$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$cr = $row['cr'];
+										$tcr=$tcr+$cr;
+									} 
+									$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$dr = $row['dr'];
+										$tdr=$tdr+$dr;
+									} 
+									$balance=$tdr-$tcr;	
+									$cogsr=$cogsr+$balance;
+								}
 
-									$id = $row['id'];
-									$name = $row['name'];
-									$cogsd = $row['balance'];
-								} 
+
+
+								$allrows =mysqli_query($con,"SELECT * FROM acts WHERE id=200038  ORDER BY name" ) or die(mysqli_error($con));
+								while($allrow=mysqli_fetch_array($allrows)){
+									$actid = $allrow['id'];
+									$actname = $allrow['name'];
+									
+									$tcr=0;
+									$tdr=0;
+									$total=0;
+
+									$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$cr = $row['cr'];
+										$tcr=$tcr+$cr;
+									} 
+									$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$dr = $row['dr'];
+										$tdr=$tdr+$dr;
+									} 
+									$balance=$tdr-$tcr;	
+									$cogsd=$cogsd+$balance;
+								}
+
+
+
 
 								$netcogs = $cogs-$cogsr-$cogsd;
 
 
-								$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =4  ORDER BY name" ) or die(mysqli_error($con));
+										
+										$rows =mysqli_query($con,"SELECT id,name FROM acts WHERE typeid =4  ORDER BY name" ) or die(mysqli_error($con));
+										while($row=mysqli_fetch_array($rows)){
+											$actid = $row['id'];
+											$actname = $row['name'];
+									
+									
+									$tcr=0;
+									$tdr=0;
 
-								while($row=mysqli_fetch_array($rows)){
 
-									$id = $row['id'];
-									$name = $row['name'];
-									$balance = $row['balance'];
+									$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$cr = $row['cr'];
+										$tcr=$tcr+$cr;
+									} 
+									$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									while($row=mysqli_fetch_array($rows)){
+										$dr = $row['dr'];
+										$tdr=$tdr+$dr;
+									} 
+									$balance=$tdr-$tcr;	
 									$expenses=$expenses+$balance;
-								} 
+
+								}
+
 
 								$gp=$netsales-$netcogs;
 								$netprofit=$gp-$expenses;
-
 								?>
 
 
-
-								<div class="col-md-2">
+								<div class="col-md-1">
 								</div>
-								<div class="col-md-6">
-									<h4>Total Sales:</h4>
-									<h4> Sales Return:</h4>
-									<h4> Sales Discount:</h4>
-									<hr>
-									<h4> Net Sales : </h4>
-									<hr>
-									<h4>Total Purchases:</h4>
-									<h4> Purchases Returns:</h4>
-									<h4> Purchases Discount:</h4>
-									<hr>
-									<h4> Purchases:</h4>
-									<hr>
-									
-									<h4  style=""> Gross Profit:</h4>
-									<br>
-									
-									<h4> Expenses:</h4>
-									<?php
-									$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =4  ORDER BY name" ) or die(mysqli_error($con));
+								<div class="col-md-10">
+									<table class="table table-striped table-bordered">
 
-									while($row=mysqli_fetch_array($rows)){
+										<tr>
+											<td>Total Sales:</td>
+											<td><?php echo $sales ?></td>
+										</tr>
+	
+										<tr>
+											<td>Sales Returns:</td>
+											<td><?php echo $salesr ?></td>
+										</tr>
+	
+										<tr>
+											<td>Sales Discount:</td>
+											<td><?php echo $salesd ?></td>
+										</tr>
+	
+										<tr class="mh">
+											<td>Net Sales:</td>
+											<td><?php echo $netsales ?></td>
+										</tr>
+	
+										<tr class="spc">
+											<td class="spc">&nbsp;</td>
+											<td class="spc">&nbsp;</td>
+										</tr>
+	
+										<tr>
+											<td>Total Purchases:</td>
+											<td><?php echo $cogs ?></td>
+										</tr>
+										<tr>
+											<td>Purchases Return:</td>
+											<td><?php echo $cogsr ?></td>
+										</tr>
+										<tr>
+											<td>Purchases Discount:</td>
+											<td><?php echo $cogsd ?></td>
+										</tr>
+										<tr class="mh">
+											<td>Net Purchases:</td>
+											<td><?php echo $netcogs ?></td>
+										</tr>
+
+										<tr class="spc">
+											<td class="spc">&nbsp;</td>
+											<td class="spc">&nbsp;</td>
+										</tr>
+	
+										
+										<tr class="mh">
+											<td>Expenses:</td>
+											<td><?php echo $expenses ?></td>
+										</tr>
+										
+
+										
+										<tr class="mh">
+											<td>Tax Deduction:</td>
+											<td><?php echo $tax ?></td>
+										</tr>
 
 
-										$name = $row['name'];
-										$balance = $row['balance'];
 
-									?>
-									<h4> &nbsp; &nbsp; <?php echo $name ?>:</h4>
-								<?php } ?>
+										<tr class="mh">
+											<td>Net Profit:</td>
+											<td><?php echo $netprofit ?></td>
+										</tr>
 
-									<hr>
-									<h2> Net Profit/Loss:</h2>
+									</table>
 								</div>
-								<div class="col-md-2">
-
-									<h4> <?php echo $sales ?></h4>
-									<h4> <?php echo $salesr ?></h4>
-									<h4> <?php echo $salesd ?></h4>
-									<hr>
-									<h4><?php echo $netsales ?></h4>
-									<hr>
-									<h4><?php echo $cogs ?></h4>
-									<h4><?php echo $cogsr ?></h4>
-									<h4><?php echo $cogsd ?></h4>
-									<hr>
-									<h4><?php echo $netcogs ?></h4>
-									<hr>
-									
-
-									<h4><?php echo $gp ?></h4>
-									<br>
-									
-									<h4>  <?php echo $expenses ?></h4>
-										<?php
-										$rows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =4  ORDER BY name" ) or die(mysqli_error($con));
-
-										while($row=mysqli_fetch_array($rows)){
-
-
-											$name = $row['name'];
-											$balance = $row['balance'];
-
-										?>
-										<h4><?php echo $balance ?></h4>
-									<?php } ?>
-									<hr>
-									<h2> <?php echo number_format($netprofit) ?></h2>
-
-								</div>
-
 
 
 
@@ -220,6 +362,47 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 		
 
+
+		<?php } ?>
+
+
+		<?php 
+		if (empty($_POST['dates'])) {
+		 $dates=date('Y-m-d');
+		 $datee=date('Y-m-d');
+		}
+		?>
+		<form action="" method="POST">
+		  <div class="row">
+		    <div class="col-sm-2">
+		    </div>
+		    <div class="col-sm-8">
+		      <div class="card">
+		        <div class="card-block">
+		          <div class="card-body">
+		            <div class="row align-items-center">
+		              <div class="col-md-5">
+		                <p>Starting Date:</p>
+		                <div class="input-group">
+		                  <input type="date" class="form-control" name="dates" value="<?php echo $dates ?>"> 
+		                </div>
+		              </div>
+		              <div class="col-md-5">
+
+		                <p>Ending Date:</p>
+		                <div class="input-group">
+		                  <input type="date" class="form-control" name="datee" value="<?php echo $datee ?>">
+		                </div>
+		              </div>
+		              <div class="col-md-2"> <input type="submit" class="btn">        </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+
+		  </div>
+		</form>
 
 
 

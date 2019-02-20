@@ -219,18 +219,46 @@ if(isset($_POST['del'])){
           <tbody>  
             <?php
 
-                    $rows =mysqli_query($con,"SELECT * FROM items  ORDER BY name" ) or die(mysqli_error($con));
+                    $rows1 =mysqli_query($con,"SELECT * FROM items  ORDER BY name" ) or die(mysqli_error($con));
 
-                    while($row=mysqli_fetch_array($rows)){
+                    while($row1=mysqli_fetch_array($rows1)){
 
-                      $id = $row['id'];
-                      $name = $row['name'];
-                      $brand=$row['brand'];
-                      $desp=$row['desp'];
-                      $wgt=$row['weight']; 
-                      $stock=$row['stock']; 
-                      $price=$row['price']; 
-                      $pause=$row['pause']; 
+                      $id = $row1['id'];
+                      $name = $row1['name'];
+                      $brand=$row1['brand'];
+                      $desp=$row1['desp'];
+                      $wgt=$row1['weight']; 
+
+                      $price=$row1['price']; 
+                      $pause=$row1['pause']; 
+
+
+                      $tcr=0;
+                      $tdr=0;
+                      $tpdr=0;
+                      $total=0;
+                      $gtotal=0;
+
+                      $rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$id AND type='in' ORDER BY id desc" ) or die(mysqli_error($con));
+                      $sales=0;
+                      while($row=mysqli_fetch_array($rows)){
+                        $cr = $row['quantity'];
+                        $tcr=$tcr+$cr;
+                      } 
+                      $rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$id AND type='out' ORDER BY id desc" ) or die(mysqli_error($con));
+                      $salesr=0;
+                      while($row=mysqli_fetch_array($rows)){
+                        $dr = $row['quantity'];
+                        $tdr=$tdr+$dr;
+                      } 
+                      $rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$id AND type='preturn' ORDER BY id desc" ) or die(mysqli_error($con));
+                      $salesr=0;
+                      while($row=mysqli_fetch_array($rows)){
+                        $dr = $row['quantity'];
+                        $tpdr=$tpdr+$dr;
+                      } 
+                      $total=$tcr-$tdr-$tpdr; 
+                      $gtotal=$gtotal+$total;
 
                       ?>
             <tr>
@@ -255,7 +283,7 @@ if(isset($_POST['del'])){
                       
                        <td><?php echo $wgt ?> </td> 
 
-                       <td><?php echo $stock ?></td> 
+                       <td><?php echo $gtotal ?></td> 
                        <td><?php echo $price ?></td> 
 
                       <td><?php if($pause==0) echo 'Yes'; else echo 'No' ;?> </td>
@@ -318,6 +346,7 @@ if(isset($_POST['del'])){
 
                 <th>Invoice</th>
                 <th>Price</th>
+                <th>Quantity</th>
                 <th>SubTotal</th>
                 <th>Invt.</th>
               </tr>
@@ -332,6 +361,7 @@ if(isset($_POST['del'])){
                         $id = $row['id'];
                         $jid = $row['jid'];
                         $price=$row['price']; 
+                        $quantity=$row['quantity']; 
                         $subtotal=$row['subtotal']; 
                         $datec=$row['datec']; 
                         $type=$row['type']; 
@@ -347,6 +377,7 @@ if(isset($_POST['del'])){
                                               
 
                          <td><?php echo $price ?></td> 
+                         <td><?php echo $quantity ?></td> 
                          <td><?php echo $subtotal ?></td> 
                          <td style="text-transform: capitalize;"><?php echo $type ?></td> 
 

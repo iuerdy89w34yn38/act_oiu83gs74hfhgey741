@@ -341,20 +341,39 @@ if(isset($_GET['del'])){
          </div>
 
        </div>
-       <?php
+      <?php
 
-       $rows =mysqli_query($con,"SELECT * FROM vendors" ) or die(mysqli_error($con));
+      $rows1 =mysqli_query($con,"SELECT * FROM vendors  ORDER BY name" ) or die(mysqli_error($con));
 
-       while($row=mysqli_fetch_array($rows)){
+      while($row1=mysqli_fetch_array($rows1)){
 
-         $id = $row['id'];
-         $name = $row['name'];
-         $mobile=$row['mobile'];
-         $company=$row['company'];
-         $city=$row['city']; 
-         $balance=$row['balance']; 
+        $id = $row1['id'];
+        $name = $row1['name'];
+        $mobile=$row1['mobile'];
+        $company=$row1['company'];
+        $city=$row1['city']; 
+        $balance=$row1['balance']; 
 
-         ?>
+
+        $tcr=0;
+        $tdr=0;
+        $total=0;
+        $rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$id " ) or die(mysqli_error($con));
+
+        while($row=mysqli_fetch_array($rows)){
+          $cr = $row['cr'];
+          $tcr=$tcr+$cr;
+        } 
+        $rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$id " ) or die(mysqli_error($con));
+
+        while($row=mysqli_fetch_array($rows)){
+          $dr = $row['dr'];
+          $tdr=$tdr+$dr;
+        } 
+        $total1=$tdr-$tcr;
+        $total=abs($total1);
+
+        ?>
          <div class="row  align-items-center" align="">
 
           <div class="col-sm-2">
@@ -374,7 +393,7 @@ if(isset($_GET['del'])){
          </div> 
 
          <div class="col-sm-2">
-           <h5 ><?php echo $balance ?> </h5>
+           <h5 ><?php echo $total ?> </h5>
          </div>
          <div class="col-sm-1">
 

@@ -257,18 +257,37 @@ if(isset($_POST['del'])){
                 <hr><br> 
   	  	      	<?php
 
-  	  	      	$rows =mysqli_query($con,"SELECT * FROM acts  ORDER BY name" ) or die(mysqli_error($con));
+  	  	      	$rows1s =mysqli_query($con,"SELECT * FROM acts  ORDER BY name" ) or die(mysqli_error($con));
   	  	      	          
-  	  	      		while($row=mysqli_fetch_array($rows)){
+  	  	      		while($rows1=mysqli_fetch_array($rows1s)){
   	  	      			
-  	  	      			$id = $row['id'];
-  	  	      			$name = $row['name']; 
-                    $type = $row['type']; 
-                    $purpose = $row['purpose']; 
-                    $balance = $row['balance']; 
-  	  	      			$nodel = $row['nodel']; 
+  	  	      			$id = $rows1['id'];
+  	  	      			$name = $rows1['name']; 
+                    $type = $rows1['type']; 
+                    $purpose = $rows1['purpose']; 
+                    $balance = $rows1['balance']; 
+  	  	      			$nodel = $rows1['nodel']; 
 
-  	  	      		?>
+
+                    $tcr=0;
+                    $tdr=0;
+                    $total=0;
+                    $rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$id " ) or die(mysqli_error($con));
+
+                    while($row=mysqli_fetch_array($rows)){
+                      $cr = $row['cr'];
+                      $tcr=$tcr+$cr;
+                    } 
+                    $rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$id " ) or die(mysqli_error($con));
+
+                    while($row=mysqli_fetch_array($rows)){
+                      $dr = $row['dr'];
+                      $tdr=$tdr+$dr;
+                    } 
+                    $total1=$tdr-$tcr;
+                    $total=abs($total1);
+                    ?>
+  	  	      		
   	  	      	<div class="row  align-items-center" align="">
 
   		  	      	<div class="col-sm-3">
@@ -281,7 +300,12 @@ if(isset($_POST['del'])){
                     <h5 style="text-transform: capitalize;"><?php echo $purpose ?> </h5>
                   </div>
   		  	      	<div class="col-sm-2">
-  			  	      	<h5 style="text-transform: capitalize;">Rs. <?php echo number_format($balance); ?>/-</h5>
+  			  	      	<h5 style="text-transform: capitalize;">
+
+                    <?php if($id==200021 OR $id==200022) {
+                      echo ' - ';
+                    } else{ ?>
+                      Rs. <?php echo number_format($total); } ?>/-</h5>
   		  	      	</div>
   		  	      	<div class="col-sm-1">
   			  	      	<button name="id" class="btn btn-primary" value="<?php echo $id ?>">Edit</button>

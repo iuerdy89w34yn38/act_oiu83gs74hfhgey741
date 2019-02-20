@@ -541,6 +541,32 @@
 
   ?>
 
+  <style type="text/css">
+    @media (max-width: 576px) {
+
+
+      form .form-control {
+
+          color: #d32f2f;
+      }
+
+      .table {
+          width: 700px;
+      }
+      .card-body {
+
+          max-width: 350px;
+      }
+
+      html body .content.app-content {
+
+          width: 800px;
+      }
+
+
+
+  </style>
+
   <?php $link="addpur.php"; ?>
 
   <?php include"include/header.php" ?>
@@ -555,7 +581,18 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header" style="padding-bottom: 0px;">
+
             <h4 class="card-title">Make Purchase</h4>
+      <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+
+            <div class="heading-elements">
+              <ul class="list-inline mb-0">
+                <li><a data-action="reload"><i class="la la-retweet"></i></a></li>
+                <li><a data-action="collapse"><i class="la la-minus"></i></a></li>
+                <li><a data-action="expand"><i class="la la-square-o"></i></a></li>
+                <li><a data-action="close"><i class="la la-close"></i></a></li>
+              </ul>
+            </div>
           </div>
           <div class="card-block">
             <div class="card-body">
@@ -662,7 +699,7 @@
                   <th  style="width:150px;">Price</th>
 
 
-                  <th colspan="3">Item Total</th>
+                  <th colspan="3" style="width:250px;">Item Total</th>
                   <th><button name="add"  class="btn btn-primary"><i class="la la-plus"></i></button></th>
                 </tr>
 
@@ -715,7 +752,7 @@
                       <td>&nbsp;</td>
                       <td>&nbsp;</td>
                       <td>Total</td>
-                      <td><div class="input-group"><h4 style="margin-top:12px;">Rs. &nbsp; </h4><input class="form-control"   type="text" name="sub_total" value=""  readonly jAutoCalc="SUM({item_total})"><h4 style="margin-top:12px;">/- </h4> </div></td>
+                      <td colspan="5"><div class="input-group"><h4 style="margin-top:12px;">Rs. &nbsp; </h4><input class="form-control"   type="text" name="sub_total" value=""  readonly jAutoCalc="SUM({item_total})"><h4 style="margin-top:12px;">/- </h4> </div></td>
 
                     </tr>
 
