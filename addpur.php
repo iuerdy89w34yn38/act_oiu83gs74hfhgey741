@@ -7,48 +7,7 @@
     <title>Make Purchase  - <?php echo $comp_name ?>  </title>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-    <script type="text/javascript" src="dist/jautocalc.js"></script>
-    <script type="text/javascript">
-      <!--
-        $(document).ready(function() {
-
-          function autoCalcSetup() {
-            $('form[name=cart]').jAutoCalc('destroy');
-            $('form[name=cart] tr[name=line_items]').jAutoCalc({keyEventsFire: true, decimalPlaces: 2, emptyAsZero: true});
-            $('form[name=cart]').jAutoCalc({decimalPlaces: 2});
-          }
-          autoCalcSetup();
-
-
-          $('button[name=remove]').click(function(e) {
-            e.preventDefault();
-
-            var form = $(this).parents('form')
-            $(this).parents('tr').remove();
-            autoCalcSetup();
-
-          });
-
-          $('button[name=add]').click(function(e) {
-            e.preventDefault();
-
-            var $table = $(this).parents('table');
-            var $top = $table.find('tr[name=line_items]').first();
-            var $new = $top.clone(true);
-
-            $new.jAutoCalc('destroy');
-            $new.insertBefore($top);
-            $new.find('input[type=text]').val('');
-            autoCalcSetup();
-            $("select2").select2();
-
-          });
-
-        });
-        //-->
-      </script>
 
       <style type="text/css">
       .mycon {
@@ -58,7 +17,7 @@
         padding: 8px 10px;
       }
       .table th, .table td {
-        padding: 5px 6px;
+        padding: 15px 16px;
         text-align: center;
         vertical-align: middle;
       }
@@ -550,8 +509,8 @@
           color: #d32f2f;
       }
 
-      .table {
-          width: 700px;
+      .table {  
+          width: 700px !important;
       }
       .card-body {
 
@@ -575,7 +534,7 @@
   <div class="app-content content">
    <div class="content-wrapper">
 
-    <form name="cart" method="POST" action="" enctype="multipart/form-data">
+    <form method="POST" action="" enctype="multipart/form-data">
 
 
       <div class="col-sm-12">
@@ -687,80 +646,42 @@
               <hr>
 
 
+             
+
+              <table style="min-width: 700px;">
+                <thead>
+                  <tr>
+                    <th style="min-width: 300px;">Product Name  </th>
+                    <th>Selling Price</th>
+                    <th>Quantity </th>
+                    <th>Pur. Price </th>
+                    <th>Total </th>
+                    <th>Total </th>
+                  </tr>
+                </thead>
+                <tbody>
+                 
+                 <tr><td> <select class="form-control select2" name="item[]"> <?php $rows =mysqli_query($con,"SELECT * FROM items WHERE pause =0 ORDER BY name" ) or die(mysqli_error($con)); while($row=mysqli_fetch_array($rows)){ $id = $row['id']; $brand = $row['brand']; $name = $row['name']; ?> <option value="<?php echo $id ?>"><?php $rows1 =mysqli_query($con,"SELECT * FROM itemsb WHERE id=$brand ORDER BY name" ) or die(mysqli_error($con));while($row1=mysqli_fetch_array($rows1)){ $bname = $row1['name']; ?><?php echo $bname ?> <?php echo $name ?></option><?php } } ?></select> </td><td><input class="form-control" type="number" name="pprice[]" id="pprice" value=""></td><td><input class="form-control"  type="number" oninput="wrt('0')" name="qty1[]" ></td><td><input  class="form-control"  type="number" oninput="wrt('0')" name="price1[]" ></td><td><input class="form-control"  type="number" name="item_total1[]" id="c" disabled="" ></td><td>  <button class="add_form_field btn btn-primary" type="button"><i class="la la-plus"></i> </button>
+</td></tr>
 
 
 
 
-              <table name="cart" class="table table-striped table-bordered">
-                <tr>
-                  <th style="width:250px;">Product</th>
-                  <th  style="width:100px;">Sell Price</th>
-                  <th  style="width:150px;">Qty</th>
-                  <th  style="width:150px;">Price</th>
+                </tbody>
+
+                <tfoot>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: right;">Grand Total:</td>
+                    <td><input class="form-control" type="text" name="sub_total" id="d" value="0" readonly=""  ></td>
+                  
+                </tfoot>
+              </table>
+              <br><br>
 
 
-                  <th colspan="3" style="width:250px;">Item Total</th>
-                  <th><button name="add"  class="btn btn-primary"><i class="la la-plus"></i></button></th>
-                </tr>
-
-
-
-                <tr name="line_items">
-
-                  <td>
-
-                   <select class="form-control " name="item[]">
-                     <?php
-
-                     $rows =mysqli_query($con,"SELECT * FROM items WHERE pause =0  ORDER BY name" ) or die(mysqli_error($con));
-
-                     while($row=mysqli_fetch_array($rows)){
-
-                       $id = $row['id'];
-                       $brand = $row['brand'];
-                       $name = $row['name']; ?>
-
-                       <option value="<?php echo $id ?>">
-                        <?php
-
-                        $rows1 =mysqli_query($con,"SELECT * FROM itemsb WHERE id=$brand  ORDER BY name" ) or die(mysqli_error($con));
-
-                        while($row1=mysqli_fetch_array($rows1)){
-
-                          $bname = $row1['name']; ?>
-
-                          <?php echo $bname ?> <?php echo $name ?></option>
-
-                        <?php } } ?>
-
-                      </select>
-                    </td>
-                    <td><input  class="form-control" type="number" name="pprice[]" id="pprice" value=""></td>
-                    <td><input  class="form-control" type="number" name="qty" id="qty" value=""></td>
-                    <td><input class="form-control" type="number" name="price" id="price" value="">
-                      <input style="display: none;" type="text" name="item_total" id="item_total" value="" jAutoCalc="{qty} * {price}"></td>
-
-                      <td colspan="3">
-                        <input class="mycon" style="width:60px;" type="text" name="qty1[]"  id="qty1" value="" readonly> * 
-                        <input class="mycon" style="width:60px;"  type="text" name="price1[]" id="price1" value=""  readonly> = 
-                        <input  class="mycon" style="width:80px;" type="text" name="item_total1[]" id="item_total1"  readonly value="">
-                      </td>
-                      <td><button name="remove" class="btn btn-danger"><i class="la la-close"></i></button></td>
-                    </tr>
-                    <tr>
-                      <td>&nbsp;</td>
-                      <td>&nbsp;</td>
-                      <td>&nbsp;</td>
-                      <td>Total</td>
-                      <td colspan="5"><div class="input-group"><h4 style="margin-top:12px;">Rs. &nbsp; </h4><input class="form-control"   type="text" name="sub_total" value=""  readonly jAutoCalc="SUM({item_total})"><h4 style="margin-top:12px;">/- </h4> </div></td>
-
-                    </tr>
-
-
-
-
-
-                  </table>
                   <div class="row">
                     <div class="col-md-8">
                     </div>
@@ -803,91 +724,11 @@
 
       </body>
 
-      <script type="text/javascript">
-
-        $(document).ready(function () {
-
-          $('#chequediv').hide();
-
-          $("#multiOptions").change(function () {
-            if ($(this).val() == "200032" ) {
-             $('#chequediv').show();
-             $('#disdiv').hide();
-
-           }
-           else { 
-            $('#chequediv').hide();
-            $('#disdiv').show();
-          }
-        });
-        });
-
-      </script>
-
-      <script type="text/javascript">
-
-        $('#qty').keyup(function() {
-          $('#qty1').val($(this).val());
-        });
-        $('#price').keyup(function() {
-          $('#price1').val($(this).val());
-        });
-        $('#item_total').change(function() {
-          $('#item_total1').val($(this).val());
-        });
 
 
-
-
-      </script>
-
-
-
-
-
-
-      <!-- BEGIN VENDOR JS-->
-      <script src="dist/lol.js" type="text/javascript"></script>
-      <!-- BEGIN VENDOR JS-->
-      <!-- BEGIN PAGE VENDOR JS-->
-      <script src="vendors/js/charts/chart.min.js" type="text/javascript"></script>
-      <script src="vendors/js/charts/raphael-min.js" type="text/javascript"></script>
-      <script src="vendors/js/charts/morris.min.js" type="text/javascript"></script>
-      <script src="vendors/js/charts/jvector/jquery-jvectormap-2.0.3.min.js"
-      type="text/javascript"></script>
-      <script src="vendors/js/charts/jvector/jquery-jvectormap-world-mill.js"
-      type="text/javascript"></script>
-      <script src="data/jvector/visitor-data.js" type="text/javascript"></script>
-      <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
-      <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
-
-
-
-      <!-- END PAGE VENDOR JS-->
-      <!-- BEGIN MODERN JS-->
-      <script src="js/core/app-menu.js" type="text/javascript"></script>
-      <script src="js/core/app.js" type="text/javascript"></script>
-      <script src="js/scripts/customizer.js" type="text/javascript"></script>
-      <!-- END MODERN JS-->
-      <!-- BEGIN PAGE LEVEL JS-->
-      <script src="js/scripts/pages/dashboard-sales.js" type="text/javascript"></script>
-
-      <script src="js/scripts/tables/datatables-extensions/datatables-sources.js"
-      type="text/javascript"></script>
-
-      <script src="js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
-      <script src="js/scripts/modal/components-modal.js" type="text/javascript"></script>
-
-      <script src="js/scripts/tables/datatables-extensions/datatable-button/datatable-html5.js"
-      type="text/javascript"></script>
-
-      <script src="js/scripts/tables/datatables/datatable-api.js" type="text/javascript"></script>
-
-
-      <script src="js/scripts/extensions/block-ui.js" type="text/javascript"></script>
-      <!-- END PAGE LEVEL JS-->
-
-
+<?php include 'include/footer.php'; ?>
 
 
       </html>
+
+   

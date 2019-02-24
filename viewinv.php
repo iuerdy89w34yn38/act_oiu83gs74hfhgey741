@@ -272,11 +272,11 @@ if(isset($_GET['delinv'])){
       </div>
 
 
-      <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
     </div>
   </div>
 </div>
 </div>
+      <?php if($userrole=='admin'){ ?>
 
 <form action="" method="GET">
 <div class="row">
@@ -291,6 +291,8 @@ if(isset($_GET['delinv'])){
       data-target="#default">
       <i class="la la-trash"></i> Delete Invoice!
     </button>
+
+
     <!-- Modal -->
     <div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
     aria-hidden="true">
@@ -334,6 +336,8 @@ if(isset($_GET['delinv'])){
 
 </form>
 
+  <?php } ?>
+
 
 <?php } } ?>
 <style type="text/css">
@@ -344,6 +348,9 @@ if(isset($_GET['delinv'])){
   font-weight: 600;
 }
 </style>
+
+
+<center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
 
 <div class="row">
   <div class="col-md-1">

@@ -25,6 +25,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <?php include"include/sidebar.php" ?>
 <div class="app-content content">
 <div class="content-wrapper">
+<?php if($userrole=='admin') { ?>
 <div class="row">
 	<div class="col-lg-4">
 		<div class="card  pull-up">
@@ -607,6 +608,260 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 </div>
 
 
+<?php }else{?>
+	<div class="row">
+
+
+
+	<?php $lmonth = date('Y-m-d', strtotime(' -30 day')); ?>
+
+	<div class="col-lg-6">
+
+		<?php 
+
+		$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=200019 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+		$sales=0;
+		while($row=mysqli_fetch_array($rows)){
+
+			$cr = $row['cr'];
+			$sales=$sales+$cr;
+		} 
+
+		$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=200029 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+		$salesr=0;
+		while($row=mysqli_fetch_array($rows)){
+
+			$dr = $row['dr'];
+			$salesr=$salesr+$dr;
+		} 
+
+		$netsales=$sales-$salesr;
+
+		?>
+		<div class="card pull-up">
+
+			<div class="card-content">
+				<div class="card-body">
+					<div class="media d-flex">
+						<div class="media-body text-left">
+							<h6 class="text-muted">Monthly Net Sales 
+								<a href="genled.php" target="blank"> <i class="la la-external-link success"></i></a>
+
+							</h6> 
+							<br>
+							<h3>Rs.<?php echo number_format($netsales) ?>/-</h3>
+						</div>
+						<div class="align-self-center">
+							<i class="la la-codepen success font-large-2 float-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<?php 
+
+		$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=200018 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+		$sales=0;
+		while($row=mysqli_fetch_array($rows)){
+
+			$dr = $row['dr'];
+			$sales=$sales+$dr;
+		} 
+
+		$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=200028 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+		$salesr=0;
+		while($row=mysqli_fetch_array($rows)){
+
+			$cr = $row['cr'];
+			$salesr=$salesr+$cr;
+		} 
+
+		$netsales=$sales-$salesr;
+
+		?>
+		<div class="card pull-up">
+			<div class="card-content">
+				<div class="card-body">
+					<div class="media d-flex">
+						<div class="media-body text-left">
+							<h6 class="text-muted">Monthly Net Purchases
+								<a href="genled.php" target="blank"> <i class="la la-external-link warning"></i></a>
+
+							</h6>
+							<br>
+							<h3>Rs.<?php echo number_format($netsales) ?>/-</h3>
+						</div>
+						<div class="align-self-center">
+							<i class="la la-industry warning font-large-2 float-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<?php 
+
+
+
+		$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE typeid=4 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+		$salesr=0;
+		while($row=mysqli_fetch_array($rows)){
+
+			$dr = $row['dr'];
+			$salesr=$salesr+$dr;
+		} 
+
+
+		?>
+		<div class="card pull-up">
+			<div class="card-content">
+				<div class="card-body">
+					<div class="media d-flex">
+						<div class="media-body text-left">
+							<h6 class="text-muted">Monthly Expenses
+								<a href="expr.php" target="blank"> <i class="la la-external-link danger"></i></a>
+
+							</h6>
+							<br>
+							<h3>Rs.<?php echo number_format($salesr) ?>/-</h3>
+						</div>
+						<div class="align-self-center">
+							<i class="la la-dollar danger font-large-2 float-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+	</div>
+
+
+
+	<div class="col-lg-6">
+		<div class="card pull-up">
+			<div class="card-content">
+				<div class="card-body">
+					<div class="media d-flex">
+						<div class="media-body text-left" style="padding-right: 20px;">
+							<h6 class="text-muted">Current Cash Status
+								<a href="addcash.php" target="blank"> <i class="la la-external-link primary"></i></a>
+
+							</h6>
+							<br>
+
+
+							<?php // Overall - For all types of Account from Ledger by account type
+							$gtotal=0;
+							$allrows =mysqli_query($con,"SELECT id,name FROM acts WHERE purpose='cash'  ORDER BY name" ) or die(mysqli_error($con));
+							while($allrow=mysqli_fetch_array($allrows)){
+								$actid = $allrow['id'];
+								$actname = $allrow['name'];
+								
+								$tcr=0;
+								$tdr=0;
+								$total=0;
+								$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+
+								while($row=mysqli_fetch_array($rows)){
+									$cr = $row['cr'];
+									$tcr=$tcr+$cr;
+								} 
+								$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+								
+								while($row=mysqli_fetch_array($rows)){
+									$dr = $row['dr'];
+									$tdr=$tdr+$dr;
+								} 
+								$total=$tdr-$tcr;
+								$gtotal=$gtotal+$total;
+								?>
+
+								<h4><?php echo $actname ?>: 
+									<span style="text-align: right;">Rs. <?php echo number_format($total);   ?>/- </span></h4>
+									<hr>
+
+							<?php } ?>
+				
+
+								<h3>Total : Rs. <?php echo number_format($gtotal) ?>/-</h3>
+
+
+							</div>
+							<div class="align-self-center">
+								<i class="la la-money primary font-large-2 float-right"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<?php // For Inventory
+			$gtotal=0;
+
+			$allrows =mysqli_query($con,"SELECT id,name FROM items ORDER BY name" ) or die(mysqli_error($con));
+			while($allrow=mysqli_fetch_array($allrows)){
+				$actid = $allrow['id'];
+				$actname = $allrow['name'];
+
+				$tcr=0;
+				$tdr=0;
+				$tpdr=0;
+				$total=0;
+
+				$rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$actid AND type='in' ORDER BY id desc" ) or die(mysqli_error($con));
+				$sales=0;
+				while($row=mysqli_fetch_array($rows)){
+					$cr = $row['quantity'];
+					$tcr=$tcr+$cr;
+				} 
+				$rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$actid AND type='out' ORDER BY id desc" ) or die(mysqli_error($con));
+				$salesr=0;
+				while($row=mysqli_fetch_array($rows)){
+					$dr = $row['quantity'];
+					$tdr=$tdr+$dr;
+				} 
+				$rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$actid AND type='preturn' ORDER BY id desc" ) or die(mysqli_error($con));
+				$salesr=0;
+				while($row=mysqli_fetch_array($rows)){
+					$dr = $row['quantity'];
+					$tpdr=$tpdr+$dr;
+				} 
+				$total=$tcr-$tdr-$tpdr;	
+				$gtotal=$gtotal+$total;
+				
+				 }	?>
+		
+
+
+
+
+			<div class="card pull-up">
+				<div class="card-content">
+					<div class="card-body">
+						<div class="media d-flex">
+							<div class="media-body text-left">
+								<h6 class="text-muted">Stock Inventory
+									<a href="viewitems.php" target="blank"> <i class="la la-external-link "></i></a>
+
+								</h6>
+								<br>
+								<h3>Total <?php echo number_format($gtotal) ?> Items</h3>
+							</div>
+							<div class="align-self-center">
+								<i class="la la-cubes  font-large-2 float-right"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
 
@@ -615,6 +870,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 
+<?php } ?>
 
 </div>
 </div>

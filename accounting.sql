@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 19, 2019 at 12:41 PM
+-- Generation Time: Feb 24, 2019 at 07:28 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -982,6 +982,32 @@ CREATE TABLE IF NOT EXISTS `ledger` (
   `balance` int(11) NOT NULL DEFAULT '0',
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loginlog`
+--
+
+DROP TABLE IF EXISTS `loginlog`;
+CREATE TABLE IF NOT EXISTS `loginlog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `datec` date NOT NULL,
+  `timec` time NOT NULL,
+  `dt` text NOT NULL,
+  `dip` text NOT NULL,
+  `diph` text NOT NULL,
+  `dorg` text NOT NULL,
+  `dcount` text NOT NULL,
+  `dcountry` text NOT NULL,
+  `dcity` text NOT NULL,
+  `dos` text NOT NULL,
+  `dbrow` text NOT NULL,
+  `dbr` text NOT NULL,
+  `dres` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

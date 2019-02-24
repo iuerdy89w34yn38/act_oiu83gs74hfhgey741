@@ -147,13 +147,16 @@
 
         </ul>
       </li>
+      <li class="<?php if($link=="trialbal.php") echo "active"; ?> nav-item"><a href="trialbal.php"><i class="la la-database"></i><span class="menu-title">Trial Balance</span></a>
+
+      </li>
+
+      <?php if($userrole=='admin'){ ?>
 
       <li class="<?php if($link=="balsheet.php") echo "active"; ?> nav-item"><a href="balsheet.php"><i class="la la-columns"></i><span class="menu-title">Balance Sheet</span></a>
 
       </li>
-      <li class="<?php if($link=="trialbal.php") echo "active"; ?> nav-item"><a href="trialbal.php"><i class="la la-database"></i><span class="menu-title">Trial Balance</span></a>
-
-      </li>
+  
 
       <li class=" nav-item"><a href="#"><i class="la la-server"></i><span class="menu-title">Other Reports</span></a>
         <ul class="menu-content">
@@ -168,6 +171,8 @@
 
         </ul>
       </li>
+
+    <?php } ?>
 
 
 
