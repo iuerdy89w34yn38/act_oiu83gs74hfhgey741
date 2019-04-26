@@ -176,7 +176,7 @@ rel="stylesheet">
 	
 	.select2-container {
 
-	    min-width: 100% !important; 
+	    min-width: 90% !important; 
 	}
 
 

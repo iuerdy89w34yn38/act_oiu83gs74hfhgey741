@@ -10,7 +10,7 @@
 type="text/javascript"></script>
 <script src="vendors/js/charts/jvector/jquery-jvectormap-world-mill.js"
 type="text/javascript"></script>
-<script src="data/jvector/visitor-data.js" type="text/javascript"></script>
+
 <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
 <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
 
@@ -24,7 +24,7 @@ type="text/javascript"></script>
 <script src="js/scripts/customizer.js" type="text/javascript"></script>
 <!-- END MODERN JS-->
 <!-- BEGIN PAGE LEVEL JS-->
-<script src="js/scripts/pages/dashboard-sales.js" type="text/javascript"></script>
+
 
 <script src="js/scripts/tables/datatables-extensions/datatables-sources.js"
 type="text/javascript"></script>

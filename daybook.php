@@ -57,7 +57,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <div class="col-sm-12">
   <div class="card">
     <div class="card-header" style="padding-bottom: 0px;">
-      <h4 class="card-title">Daybook for <?php echo $date ?></h4><div class="heading-elements">
+      <h4 class="card-title">Cash in Hands Daybook for <?php echo $date ?></h4><div class="heading-elements">
             <ul class="list-inline mb-0">
               <li><a data-action="reload"><i class="la la-retweet"></i></a></li>
               <li><a data-action="collapse"><i class="la la-minus"></i></a></li>

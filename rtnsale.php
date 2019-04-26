@@ -29,30 +29,6 @@
 
 
 
-    $x= count($home = $_POST['qty1']);
-
-    for ($i=0; $i < $x; $i++) {
-
-      $pid = $_POST['item'][$i];
-      $qty = $_POST['qty1'][$i];
-
-      $rows =mysqli_query($con,"SELECT stock FROM items where id=$pid ORDER BY name" ) or die(mysqli_error($con));
-      while($row=mysqli_fetch_array($rows)){ 
-        $stock = $row['stock'];
-
-      }
-      if($qty>$stock){
-
-        $msg = 'Quantity is greater than Stock';
-        exit($msg);
-
-
-      }
-
-
-
-    }
-
 
 
 
@@ -60,8 +36,9 @@
 
     $act = $_POST['act'];
     $pay = $_POST['pay'];
+    $reason = $_POST['reason'];
 
-    $rows =mysqli_query($con,"SELECT * FROM vendors where id=$act ORDER BY name" ) or die(mysqli_error($con));
+    $rows =mysqli_query($con,"SELECT * FROM customers where id=$act ORDER BY name" ) or die(mysqli_error($con));
     while($row=mysqli_fetch_array($rows)){ 
       $actname = $row['name'];
       $actbalance = $row['balance'];
@@ -266,7 +243,7 @@
          $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
          mysqli_query($con, $sqls)or die(mysqli_error($con));
 
-         $sqls = "UPDATE vendors SET `balance` = '$actbalance' WHERE `id` = $act"  ;
+         $sqls = "UPDATE customers SET `balance` = '$actbalance' WHERE `id` = $act"  ;
          mysqli_query($con, $sqls)or die(mysqli_error($con));
 
 
@@ -450,12 +427,12 @@
               </div>
 
               <div class="col-sm-3">
-                <center><span>Select Vendor Account:</span></center>
+                <center><span>Select Customer Account:</span></center>
                 <select class="form-control select2" name="act">
 
                   <?php
 
-                  $rows =mysqli_query($con,"SELECT * FROM vendors  ORDER BY name" ) or die(mysqli_error($con));
+                  $rows =mysqli_query($con,"SELECT * FROM customers  ORDER BY name" ) or die(mysqli_error($con));
 
                   while($row=mysqli_fetch_array($rows)){
 
@@ -495,7 +472,6 @@
 
 
 
-
               <div class="col-sm-2">
               </div>
               <div class="col-sm-3">
@@ -524,6 +500,19 @@
 
               </div>
 
+
+            </div>
+
+
+            <div class="row">
+
+              <div class="col-sm-3">
+
+              </div>
+              <div class="col-sm-6">
+                <center><span>Reason:</span></center>
+                <input type="text" class="form-control" name="reason" value="">
+              </div>
 
             </div>
             <hr>

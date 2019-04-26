@@ -375,7 +375,7 @@ if(isset($_GET['del'])){
          $tdr=$tdr+$dr;
        } 
        $total1=$tdr-$tcr;
-       $total=abs($total1);
+       $total=$total1;
 
        ?>
        <div class="row  align-items-center" align="">

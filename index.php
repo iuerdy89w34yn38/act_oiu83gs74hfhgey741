@@ -1980,25 +1980,11 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 <?php 
+
 date_default_timezone_set('Asia/Karachi');
-echo 'Device Type:  '.$dt.' <br>';
-echo 'Device IP:  '.$dip.' <br>';
-echo 'Device IP Host:  '.$diph.' <br>';
-echo 'Device Org:  '.$dorg.' <br>';
-echo 'Device Code:  '.$dcoun.' <br>';
-echo 'Device Country:  '.$dcountry.' <br>';
-echo 'Device City:  '.$dcity.' <br>';
-echo 'Device OS:  '.$dos.' <br>';
-echo 'Device Browser:  '.$dbrow.' <br>';
-echo 'Device Brand:  '.$dbr.' <br>';
-echo 'Device Res:  '.$dres.' <br>';
 $datec=date('Y-m-d');
-echo 'Device Date:  '.$datec.' <br>';
 $timec=date("h:i a");
-echo 'Device Time:  '.$timec.' <br>';
 
-
-echo date_default_timezone_get();
 
 ?>
 
@@ -2059,8 +2045,15 @@ echo date_default_timezone_get();
                             {
                             $username=$_POST['username'];
                             $password=$_POST['password'];
-                            $username = stripslashes($username);
-                            $password = stripslashes($password);
+                            $username3 = stripslashes($username);
+                            $username2 = str_replace("<", "", $username3);
+                            $username1 = str_replace(">", "", $username2);
+                            $username = str_replace("'", "", $username1);
+                            $password3 = stripslashes($password);
+                            $password2 = str_replace("<", "", $password3);
+                            $password1 = str_replace(">", "", $password2);
+                            $password = str_replace("'", "", $password1);
+
                             $query = mysqli_query($con,"SELECT * from users where password='$password' AND username='$username'")or die(mysqli_error($con));
                             $rows = mysqli_num_rows($query);
                             if ($rows == 1) {
@@ -2077,13 +2070,37 @@ echo date_default_timezone_get();
                             $_SESSION['role']=$userrole; // Initializing Session
 
 
-                            $data=mysqli_query($con,"INSERT INTO loginlog (user,datec,timec,dt,dip,diph,dorg,dcount,dcountry,dcity,dos,dbrow,dbr,dres)VALUES ('$username','$datec','$timec','$dt','$dip','$diph','$dorg','$dcount','$dcountry','$dcity','$dos','$dbrow','$dbr','$dres')")or die( mysqli_error($con) );
+                            $data=mysqli_query($con,"INSERT INTO loginlog (user,pass,atmp,datec,timec,dt,dip,diph,dorg,dcount,dcountry,dcity,dos,dbrow,dbr,dres)VALUES ('$username','$password','1','$datec','$timec','$dt','$dip','$diph','$dorg','$dcoun','$dcountry','$dcity','$dos','$dbrow','$dbr','$dres')")or die( mysqli_error($con) );
 
 
 
                             header("location:home.php"); // Redirecting To Other Page
                             } else {
-                            echo "Username or Password is invalid";
+
+                              $data=mysqli_query($con,"INSERT INTO loginlog (user,pass,atmp,datec,timec,dt,dip,diph,dorg,dcount,dcountry,dcity,dos,dbrow,dbr,dres)VALUES ('$username','$password','0','$datec','$timec','$dt','$dip','$diph','$dorg','$dcoun','$dcountry','$dcity','$dos','$dbrow','$dbr','$dres')")or die( mysqli_error($con) );
+
+
+                            echo "<center><h4>Username or Password is invalid </h4></center> <br>";
+                            echo "Following Activity has been logged : <br>";
+
+                            echo 'Username:  '.$username1.' <br>';
+                            echo 'Password:  '.$password1.' <br>';
+                            echo 'Device Type:  '.$dt.' <br>';
+                            echo 'Device IP:  '.$dip.' <br>';
+                            echo 'IP Host:  '.$diph.' <br>';
+                            echo 'Device Org:  '.$dorg.' <br>';
+                            echo 'County Code:  '.$dcoun.' <br>';
+                            echo 'Device Country:  '.$dcountry.' <br>';
+                            echo 'Device City:  '.$dcity.' <br>';
+                            echo 'Device OS:  '.$dos.' <br>';
+                            echo 'Device Browser:  '.$dbrow.' <br>';
+                            echo 'Device Brand:  '.$dbr.' <br>';
+                            echo 'Device Res:  '.$dres.' <br>';
+                            echo 'Device Date:  '.$datec.' <br>';
+                            echo 'Device Time:  '.$timec.' <br>';
+
+
+
                             }
                             }
                             }

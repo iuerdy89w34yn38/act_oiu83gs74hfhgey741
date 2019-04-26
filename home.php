@@ -113,12 +113,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$tdr=0;
 							$total=0;
 
-							$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>'$lmonth' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$cr = $row['cr'];
 								$tcr=$tcr+$cr;
 							} 
-							$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>'$lmonth' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$dr = $row['dr'];
 								$tdr=$tdr+$dr;
@@ -192,17 +192,17 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$tdr=0;
 							$total=0;
 
-							$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>'$lmonth' AND ref=0 ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$cr = $row['cr'];
 								$tcr=$tcr+$cr;
 							} 
-							$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>'$lmonth' AND ref=0 ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$dr = $row['dr'];
 								$tdr=$tdr+$dr;
 							} 
-							$balance=$tdr-$tcr;	
+							$balance=$tcr-$tdr;	
 							$cogsd=$cogsd+$balance;
 						}
 
@@ -279,26 +279,77 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 			<div class="card-body">
 				<div class="media d-flex">
 					<div class="media-body text-left">
-						<?php
-						$tb=0;
-						$rows =mysqli_query($con,"SELECT * FROM customers where balance!=0  ORDER BY name" ) or die(mysqli_error($con));
+						<?php // Overall - For all types of Account from Ledger by account type
+						$vendpay=0;
+						$allrows =mysqli_query($con,"SELECT id,name FROM vendors ORDER BY name" ) or die(mysqli_error($con));
+						while($allrow=mysqli_fetch_array($allrows)){
+							$actid = $allrow['id'];
+							$actname = $allrow['name'];
+							
+							$tcr=0;
+							$tdr=0;
+							$total=0;
+							$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
 
-						while($row=mysqli_fetch_array($rows)){
+							while($row=mysqli_fetch_array($rows)){
+								$cr = $row['cr'];
+								$tcr=$tcr+$cr;
+							} 
+							$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+							
+							while($row=mysqli_fetch_array($rows)){
+								$dr = $row['dr'];
+								$tdr=$tdr+$dr;
+							} 
 
-							$id = $row['id'];
-							$balance = $row['balance'];
-							$tb = $tb+$balance;
+							$total=$tdr-$tcr;
+							if($total>0){
+							$vendpay=$vendpay+$total;
+							
 
-						}
-						?>
+							?>
+						<?php } } ?>
+
+						<?php // Overall - For all types of Account from Ledger by account type
+						
+						$allrows =mysqli_query($con,"SELECT id,name FROM customers ORDER BY name" ) or die(mysqli_error($con));
+						while($allrow=mysqli_fetch_array($allrows)){
+							$actid = $allrow['id'];
+							$actname = $allrow['name'];
+							
+							$tcr=0;
+							$tdr=0;
+							$total=0;
+							$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+
+							while($row=mysqli_fetch_array($rows)){
+								$cr = $row['cr'];
+								$tcr=$tcr+$cr;
+							} 
+							$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+							
+							while($row=mysqli_fetch_array($rows)){
+								$dr = $row['dr'];
+								$tdr=$tdr+$dr;
+							} 
+
+							$total=$tdr-$tcr;
+							if($total>0){
+							$vendpay=$vendpay+$total;
+							
+
+							?>
+						<?php } } ?>
+
+
 						<h4 class="text-muted">Accounts Receiveables
-							<a href="genled.php" target="blank"> <i class="la la-external-link warning"></i></a>
+							<a href="recsale.php" target="blank"> <i class="la la-external-link warning"></i></a>
 						</h4>
 
 
 
 						<br>
-						<h3>Rs.<?php echo number_format($tb) ?>/-</h3>
+						<h3>Rs.<?php echo number_format($vendpay) ?>/-</h3>
 					</div>
 					<div class="align-self-center">
 						<i class="la la-industry warning font-large-2 float-right"></i>
@@ -315,26 +366,76 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 			<div class="card-body">
 				<div class="media d-flex">
 					<div class="media-body text-left">
-						<?php
-						$tb=0;
-						$rows =mysqli_query($con,"SELECT * FROM vendors where balance!=0  ORDER BY name" ) or die(mysqli_error($con));
+					
+					<?php // Overall - For all types of Account from Ledger by account type
+					$vendpay=0;
+					$allrows =mysqli_query($con,"SELECT id,name FROM vendors ORDER BY name" ) or die(mysqli_error($con));
+					while($allrow=mysqli_fetch_array($allrows)){
+						$actid = $allrow['id'];
+						$actname = $allrow['name'];
+						
+						$tcr=0;
+						$tdr=0;
+						$total=0;
+						$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
 
 						while($row=mysqli_fetch_array($rows)){
+							$cr = $row['cr'];
+							$tcr=$tcr+$cr;
+						} 
+						$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+						
+						while($row=mysqli_fetch_array($rows)){
+							$dr = $row['dr'];
+							$tdr=$tdr+$dr;
+						} 
 
-							$id = $row['id'];
-							$balance = $row['balance'];
-							$tb = $tb+$balance;
+						$total=$tcr-$tdr;
+						if($total>0){
+						$vendpay=$vendpay+$total;
+						
 
-						}
 						?>
+					<?php } } ?>
+
+					<?php // Overall - For all types of Account from Ledger by account type
+				
+					$allrows =mysqli_query($con,"SELECT id,name FROM customers ORDER BY name" ) or die(mysqli_error($con));
+					while($allrow=mysqli_fetch_array($allrows)){
+						$actid = $allrow['id'];
+						$actname = $allrow['name'];
+						
+						$tcr=0;
+						$tdr=0;
+						$total=0;
+						$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+
+						while($row=mysqli_fetch_array($rows)){
+							$cr = $row['cr'];
+							$tcr=$tcr+$cr;
+						} 
+						$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+						
+						while($row=mysqli_fetch_array($rows)){
+							$dr = $row['dr'];
+							$tdr=$tdr+$dr;
+						} 
+
+						$total=$tcr-$tdr;
+						if($total>0){
+						$vendpay=$vendpay+$total;
+						
+
+						?>
+					<?php } } ?>
 
 
 						<h4 class="text-muted">Accounts Payables
-							<a href="genled.php" target="blank"> <i class="la la-external-link warning"></i></a>
+							<a href="paypur.php" target="blank"> <i class="la la-external-link warning"></i></a>
 
 						</h4>
 						<br>
-						<h3>Rs.<?php echo number_format($netsales) ?>/-</h3>
+						<h3>Rs.<?php echo number_format($vendpay) ?>/-</h3>
 					</div>
 					<div class="align-self-center">
 						<i class="la la-industry warning font-large-2 float-right"></i>
@@ -570,7 +671,9 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 			$total=$tcr-$tdr-$tpdr;	
 			$gtotal=$gtotal+$total;
 			
-			 }	?>
+			 }	
+
+			 ?>
 	
 
 

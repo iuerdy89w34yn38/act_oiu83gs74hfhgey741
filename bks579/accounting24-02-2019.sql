@@ -914,7 +914,9 @@ CREATE TABLE `ledger` (
 
 CREATE TABLE `loginlog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(41) NOT NULL,
+  `user` text NOT NULL,
+  `pass` text NOT NULL,
+  `atmp` int(11) NOT NULL,
   `datec` date NOT NULL,
   `timec` text NOT NULL,
   `dt` text NOT NULL,
@@ -929,11 +931,39 @@ CREATE TABLE `loginlog` (
   `dbr` text NOT NULL,
   `dres` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 
 INSERT INTO loginlog VALUES
-("1","hamza56","2019-02-24","09:57 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768");
+("5","text OR 1=1","admin","0","2019-02-24","10:51 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("6","105 OR 1=1","admin","0","2019-02-24","10:53 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("7","105\" OR 1=\"1","admin","0","2019-02-24","10:53 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("8","text OR 1=1","admin","0","2019-02-24","10:54 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("9"," or =","admin","0","2019-02-24","10:54 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("10","justuser////","admin","0","2019-02-24","10:54 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("11","<?php","admin","0","2019-02-24","10:55 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("12","<br>","admin","0","2019-02-24","10:55 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("13","<?php echo 4 ?>","admin","0","2019-02-24","10:56 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("14","<?php echo $date; ?>","admin","0","2019-02-24","10:56 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("15","<hello","admin","0","2019-02-24","10:56 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("16","<?php","admin","0","2019-02-24","10:56 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("17","<br> date<hr>","admin","0","2019-02-24","10:57 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("18","justuser","admin","0","2019-02-24","11:05 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("19","br>","admin","0","2019-02-24","11:05 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("20","justuser","admin","0","2019-02-24","11:12 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("21","justuser","admin","0","2019-02-24","11:13 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("22","justuser","admin","0","2019-02-24","11:13 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("23","hello","admin","0","2019-02-24","11:14 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("24","justuser","admin","0","2019-02-24","11:14 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("25","just\"user","admin","0","2019-02-24","11:14 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("26","just\"\"user","admin","0","2019-02-24","11:15 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("27","justuser","admin","0","2019-02-24","11:15 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("28","justuser","admin","0","2019-02-24","11:15 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("29","br","admin","0","2019-02-24","11:15 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("30","?php","admin","0","2019-02-24","11:15 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("31","justuser","admin","0","2019-02-24","11:17 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("32","justuser","password OR 1=1","0","2019-02-24","11:19 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768"),
+("33","hamza56","admin990","1","2019-02-24","11:24 pm","Computer","39.45.194.235","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 72.0.3626.119","PC / Laptop","1366x768");
 
 
 

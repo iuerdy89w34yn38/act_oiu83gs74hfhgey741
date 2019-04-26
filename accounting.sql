@@ -3,14 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 24, 2019 at 07:28 AM
+-- Generation Time: Feb 26, 2019 at 07:06 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -883,6 +883,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `name` text NOT NULL,
   `desp` text NOT NULL,
   `price` int(11) NOT NULL DEFAULT '0',
+  `sellprice` int(11) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT '0',
   `weight` int(11) NOT NULL DEFAULT '0',
   `stock` int(11) NOT NULL DEFAULT '0',
@@ -894,8 +895,8 @@ CREATE TABLE IF NOT EXISTS `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `brand`, `name`, `desp`, `price`, `quantity`, `weight`, `stock`, `pause`) VALUES
-(1, '4', 'Test Product 2', 'test desp', 0, 0, 780, 0, 0);
+INSERT INTO `items` (`id`, `brand`, `name`, `desp`, `price`, `sellprice`, `quantity`, `weight`, `stock`, `pause`) VALUES
+(1, '4', 'Test Product 2', 'test desp', 0, 0, 0, 780, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -994,9 +995,11 @@ CREATE TABLE IF NOT EXISTS `ledger` (
 DROP TABLE IF EXISTS `loginlog`;
 CREATE TABLE IF NOT EXISTS `loginlog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` int(11) NOT NULL,
+  `user` text NOT NULL,
+  `pass` text NOT NULL,
+  `atmp` int(11) NOT NULL,
   `datec` date NOT NULL,
-  `timec` time NOT NULL,
+  `timec` text NOT NULL,
   `dt` text NOT NULL,
   `dip` text NOT NULL,
   `diph` text NOT NULL,
@@ -1009,7 +1012,7 @@ CREATE TABLE IF NOT EXISTS `loginlog` (
   `dbr` text NOT NULL,
   `dres` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

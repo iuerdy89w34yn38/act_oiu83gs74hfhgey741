@@ -107,6 +107,15 @@ if(isset($_POST['del'])){
       <div class="card">
         <div class="card-header" style="padding-bottom: 0px;">
           <h4 class="card-title">Edit  Product Details</h4>
+          <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+          <div class="heading-elements">
+            <ul class="list-inline mb-0">
+              <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+              <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+              <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+              <li><a data-action="close"><i class="ft-x"></i></a></li>
+            </ul>
+          </div>
         </div>
         <div class="card-block">
           <div class="card-body">
@@ -210,15 +219,17 @@ if(isset($_POST['del'])){
               <th>Product Description</th>
               <th>Weight</th>
               <th>Stock</th>
+              <th>Selling</th>
               <th>Price</th>
+              <th>Value</th>
               <th>Active</th>
               <th>Edit</th>
-              <th>Del</th>
+              <!-- <th>Del</th> -->
             </tr>
           </thead>
           <tbody>  
             <?php
-
+                  $tvalue=0;
                     $rows1 =mysqli_query($con,"SELECT * FROM items  ORDER BY name" ) or die(mysqli_error($con));
 
                     while($row1=mysqli_fetch_array($rows1)){
@@ -230,6 +241,7 @@ if(isset($_POST['del'])){
                       $wgt=$row1['weight']; 
 
                       $price=$row1['price']; 
+                      $sell=$row1['sellprice']; 
                       $pause=$row1['pause']; 
 
 
@@ -260,6 +272,9 @@ if(isset($_POST['del'])){
                       $total=$tcr-$tdr-$tpdr; 
                       $gtotal=$gtotal+$total;
 
+                      $value=$gtotal*$price;
+                      $tvalue=$tvalue+$value;
+
                       ?>
             <tr>
 
@@ -284,7 +299,9 @@ if(isset($_POST['del'])){
                        <td><?php echo $wgt ?> </td> 
 
                        <td><?php echo $gtotal ?></td> 
+                       <td><?php echo $sell ?></td> 
                        <td><?php echo $price ?></td> 
+                       <td><?php echo number_format($value) ?></td> 
 
                       <td><?php if($pause==0) echo 'Yes'; else echo 'No' ;?> </td>
                       
@@ -294,7 +311,8 @@ if(isset($_POST['del'])){
                         <button name="id" class="btn btn-primary" value="<?php echo $id ?>"><i class="la la-pencil"></i></button>
 
 
-                      </td>    
+                      </td> 
+                      <!--   
                       <td>
                        
 
@@ -302,7 +320,7 @@ if(isset($_POST['del'])){
                         <button name="del" class="btn btn-danger" value="<?php echo $id ?>"><i class="la la-trash"></i></button>
              
 
-                      </td>
+                      </td> -->
 
             </tr>
            
@@ -310,6 +328,15 @@ if(isset($_POST['del'])){
                   <?php } ?>
                
           </tbody>
+          <tfoot>
+            <tr>
+
+              <th colspan="7" style="text-align: right;">Total Inventory Value</th>
+              <th><?php echo number_format($tvalue); ?></th>
+              <th colspan="3"></th>
+
+            </tr>
+          </tfoot>
         </table>
  </form>
 

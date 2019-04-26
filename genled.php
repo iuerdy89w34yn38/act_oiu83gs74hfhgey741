@@ -209,7 +209,7 @@ if (empty($_POST['dates'])) {
                 </div>
               </div>
 
-              <div class="col-sm-4">
+              <div class="col-sm-3">
                 <p>Select Account</p>
                 <select class="form-control select2" name="act">
                   <option value="%"> All </option>
@@ -225,34 +225,13 @@ if (empty($_POST['dates'])) {
                     <option value="<?php echo $slug ?>" <?php if(!empty($act)) if($act==$slug) echo 'selected'; ?>><?php echo $name ?></option>
 
                   <?php } ?>
-                  <?php
-
-                  $rows =mysqli_query($con,"SELECT * FROM customers  ORDER BY name" ) or die(mysqli_error($con));
-
-                  while($row=mysqli_fetch_array($rows)){
-
-                    $slug = $row['id'];
-                    $name = $row['name']; ?>
-
-                    <option value="<?php echo $slug ?>" <?php if(!empty($act)) if($act==$slug) echo 'selected'; ?>><?php echo $name ?></option>
-
-                  <?php } ?>
-                  <?php
-
-                  $rows =mysqli_query($con,"SELECT * FROM vendors  ORDER BY name" ) or die(mysqli_error($con));
-
-                  while($row=mysqli_fetch_array($rows)){
-
-                    $slug = $row['id'];
-                    $name = $row['name']; ?>
-
-                    <option value="<?php echo $slug ?>" <?php if(!empty($act)) if($act==$slug) echo 'selected'; ?>><?php echo $name ?></option>
-
-                  <?php } ?>
+              
 
                 </select>
 
               </div>
+
+              <div class="col-md-1">     </div>
               <div class="col-md-1"> <input type="submit" class="btn">        </div>
             </div>
           </div>

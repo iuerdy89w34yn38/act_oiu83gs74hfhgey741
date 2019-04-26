@@ -210,7 +210,7 @@
 
 
 
-        $desp='Goods Sold are sold to '.$actname.' - Sales Account Credited';
+        $desp='Goods Sold are sold to '.$actname.' - through Cash in Hands';
 
                           //Journal Entry
          $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup')")or die( mysqli_error($con) );
