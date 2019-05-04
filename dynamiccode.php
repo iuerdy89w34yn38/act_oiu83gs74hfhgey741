@@ -21,13 +21,13 @@ while($row=mysqli_fetch_array($rows)){
 $tcr=0;
 $tdr=0;
 $total=0;
-$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid " ) or die(mysqli_error($con));
 
 while($row=mysqli_fetch_array($rows)){
 	$cr = $row['cr'];
 	$tcr=$tcr+$cr;
 } 
-$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid " ) or die(mysqli_error($con));
 
 while($row=mysqli_fetch_array($rows)){
 	$dr = $row['dr'];
@@ -52,13 +52,13 @@ while($allrow=mysqli_fetch_array($allrows)){
 	$tcr=0;
 	$tdr=0;
 	$total=0;
-	$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+	$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid " ) or die(mysqli_error($con));
 
 	while($row=mysqli_fetch_array($rows)){
 		$cr = $row['cr'];
 		$tcr=$tcr+$cr;
 	} 
-	$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+	$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid " ) or die(mysqli_error($con));
 	
 	while($row=mysqli_fetch_array($rows)){
 		$dr = $row['dr'];
@@ -84,13 +84,13 @@ while($allrow=mysqli_fetch_array($allrows)){
 		$tcr=0;
 		$tdr=0;
 		$total=0;
-		$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+		$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid " ) or die(mysqli_error($con));
 
 		while($row=mysqli_fetch_array($rows)){
 			$cr = $row['cr'];
 			$tcr=$tcr+$cr;
 		} 
-		$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+		$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid " ) or die(mysqli_error($con));
 		
 		while($row=mysqli_fetch_array($rows)){
 			$dr = $row['dr'];
@@ -118,13 +118,13 @@ while($allrow=mysqli_fetch_array($allrows)){
 		$tcr=0;
 		$tdr=0;
 		$total=0;
-		$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+		$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid " ) or die(mysqli_error($con));
 
 		while($row=mysqli_fetch_array($rows)){
 			$cr = $row['cr'];
 			$tcr=$tcr+$cr;
 		} 
-		$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid " ) or die(mysqli_error($con));
+		$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid " ) or die(mysqli_error($con));
 		
 		while($row=mysqli_fetch_array($rows)){
 			$dr = $row['dr'];
@@ -154,13 +154,13 @@ while($allrow=mysqli_fetch_array($allrows)){
 		$tdr=0;
 		$total=0;
 
-		$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+		$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
 		$sales=0;
 		while($row=mysqli_fetch_array($rows)){
 			$cr = $row['cr'];
 			$tcr=$tcr+$cr;
 		} 
-		$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+		$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
 		$salesr=0;
 		while($row=mysqli_fetch_array($rows)){
 			$dr = $row['dr'];
@@ -228,6 +228,6 @@ while($allrow=mysqli_fetch_array($allrows)){
 </html>
 <!--
 
-DELETE FROM journal where id = 2005003;
-DELETE FROM ledger where jid = 2005003
+DELETE FROM transaction where id = 2005003;
+DELETE FROM journal where jid = 2005003
 -->

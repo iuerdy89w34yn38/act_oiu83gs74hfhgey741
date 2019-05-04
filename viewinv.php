@@ -31,8 +31,8 @@ if(isset($_GET['delinv'])){
 
 
 
-  $data=mysqli_query($con,"DELETE FROM journal where id = $inv")or die( mysqli_error($con) );
-  $data=mysqli_query($con,"DELETE FROM ledger where jid = $inv")or die( mysqli_error($con) );
+  $data=mysqli_query($con,"DELETE FROM transaction where id = $inv")or die( mysqli_error($con) );
+  $data=mysqli_query($con,"DELETE FROM journal where jid = $inv")or die( mysqli_error($con) );
   $data=mysqli_query($con,"DELETE FROM itemslog where jid = $inv")or die( mysqli_error($con) );
 
   $msg=" Deleted Invoice" ;
@@ -81,7 +81,7 @@ if(isset($_GET['delinv'])){
 
        $id=$_GET['id'] ;
 
-       $rows =mysqli_query($con,"SELECT * FROM journal  where id='$id' ORDER BY id limit 1" ) or die(mysqli_error($con));
+       $rows =mysqli_query($con,"SELECT * FROM transaction  where id='$id' ORDER BY id limit 1" ) or die(mysqli_error($con));
 
        while($row=mysqli_fetch_array($rows)){
 
@@ -381,7 +381,7 @@ if(isset($_GET['delinv'])){
 
                       <?php
 
-                      $rows =mysqli_query($con,"SELECT * FROM journal  ORDER BY id desc LIMIT 20" ) or die(mysqli_error($con));
+                      $rows =mysqli_query($con,"SELECT * FROM transaction  ORDER BY id desc LIMIT 20" ) or die(mysqli_error($con));
 
                       while($row=mysqli_fetch_array($rows)){
 

@@ -943,11 +943,11 @@ CREATE TABLE IF NOT EXISTS `itemslog` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `journal`
+-- Table structure for table `transaction`
 --
 
-DROP TABLE IF EXISTS `journal`;
-CREATE TABLE IF NOT EXISTS `journal` (
+DROP TABLE IF EXISTS `transaction`;
+CREATE TABLE IF NOT EXISTS `transaction` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `desp` text NOT NULL,
   `invoiceno` varchar(21) NOT NULL DEFAULT '0',
@@ -966,11 +966,11 @@ CREATE TABLE IF NOT EXISTS `journal` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ledger`
+-- Table structure for table `journal`
 --
 
-DROP TABLE IF EXISTS `ledger`;
-CREATE TABLE IF NOT EXISTS `ledger` (
+DROP TABLE IF EXISTS `journal`;
+CREATE TABLE IF NOT EXISTS `journal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jid` int(11) NOT NULL,
   `typeid` int(11) NOT NULL DEFAULT '0',

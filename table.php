@@ -57,8 +57,8 @@ if(isset($_POST['submitcap'])){
      $dateup=date('Y-m-d');
      $desp='Cash is Drawn from '.$srcname.' to '.$destname;
      
-//Journal Entry
-    $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dractbal,cractbal,opbalance,clbalance,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$srcbalance','$destbalance','$op','$cl','$datec','$dateup')")or die( mysqli_error($con) );
+//transaction Entry
+    $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,cr,dractbal,cractbal,opbalance,clbalance,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$srcbalance','$destbalance','$op','$cl','$datec','$dateup')")or die( mysqli_error($con) );
 
 
     $sqls = "UPDATE acts SET `balance` = '$srcbalance',`cr` = '$newsrccr' WHERE `id` = $srcid"  ;
@@ -69,7 +69,7 @@ if(isset($_POST['submitcap'])){
 
 
 //Ledger Entry
-     $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+     $rows =mysqli_query($con,"SELECT id FROM transaction ORDER BY id desc limit 1" ) or die(mysqli_error($con));
       while($row=mysqli_fetch_array($rows)){ 
         $jid = $row['id'];
 
@@ -77,11 +77,11 @@ if(isset($_POST['submitcap'])){
 
       $desp='Cash drawn from '.$srcname;
       
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+    $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
       $desp='Cash to '.$destname;
       
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+    $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
 	$msg="Successful" ;
     

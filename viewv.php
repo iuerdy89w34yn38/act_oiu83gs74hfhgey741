@@ -66,7 +66,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
        <?php
 
 
-       $rows =mysqli_query($con,"SELECT * FROM ledger  where jid='$jid' ORDER BY id " ) or die(mysqli_error($con));
+       $rows =mysqli_query($con,"SELECT * FROM journal  where jid='$jid' ORDER BY id " ) or die(mysqli_error($con));
 
        while($row=mysqli_fetch_array($rows)){
 

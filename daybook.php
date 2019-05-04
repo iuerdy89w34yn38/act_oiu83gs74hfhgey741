@@ -71,7 +71,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
         
         <?php
         $opbalance=Null;
-        $rows =mysqli_query($con,"SELECT balance,cr,dr FROM ledger where actid = 200016 AND datec<'$date' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+        $rows =mysqli_query($con,"SELECT balance,cr,dr FROM journal where actid = 200016 AND datec<'$date' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
 
         while($row=mysqli_fetch_array($rows)){
 
@@ -110,7 +110,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
        $tdr=0;
        $tcr=0;
 
-       $rows =mysqli_query($con,"SELECT * FROM journal  where datec='$date' ORDER BY id " ) or die(mysqli_error($con));
+       $rows =mysqli_query($con,"SELECT * FROM transaction  where datec='$date' ORDER BY id " ) or die(mysqli_error($con));
 
        while($row=mysqli_fetch_array($rows)){
 
@@ -154,7 +154,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
      else{ ?>
 
       <?php
-      $rowsl =mysqli_query($con,"SELECT * FROM ledger  where jid='$id' AND ref!=1 ORDER BY id desc  LIMIT 3" ) or die(mysqli_error($con));
+      $rowsl =mysqli_query($con,"SELECT * FROM journal  where jid='$id' AND ref!=1 ORDER BY id desc  LIMIT 3" ) or die(mysqli_error($con));
 
       while($rowl=mysqli_fetch_array($rowsl)){
 
@@ -213,7 +213,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
            <?php
            $clbalance=0;
-           $rows =mysqli_query($con,"SELECT balance FROM ledger where actid = 200016 AND datec<='$date' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+           $rows =mysqli_query($con,"SELECT balance FROM journal where actid = 200016 AND datec<='$date' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
 
            while($row=mysqli_fetch_array($rows)){
 

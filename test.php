@@ -122,8 +122,8 @@
 
          $desp='Goods are Purchased from '.$srcname.' on Credit';
 
-                    //Journal Entry
-         $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dractbal,cractbal,opbalance,clbalance,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$srcbalance','$destbalance','$op','$cl','$datec','$dateup')")or die( mysqli_error($con) );
+                    //transaction Entry
+         $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,cr,dractbal,cractbal,opbalance,clbalance,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$srcbalance','$destbalance','$op','$cl','$datec','$dateup')")or die( mysqli_error($con) );
 
 
          $sqls = "UPDATE vendors SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
@@ -148,8 +148,8 @@
 
          $desp='Purchased Goods Invoice';
 
-                    //Journal Entry
-         $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,dr,dractbal,cractbal,opbalance,clbalance,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$srcbalance','$destbalance','$op','$cl','$datec','$dateup')")or die( mysqli_error($con) );
+                    //transaction Entry
+         $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,dr,dractbal,cractbal,opbalance,clbalance,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$srcbalance','$destbalance','$op','$cl','$datec','$dateup')")or die( mysqli_error($con) );
 
 
          $sqls = "UPDATE acts SET `balance` = '$destbalance',`dr` = '$destbalance' WHERE `id` = $destid"  ;
@@ -161,7 +161,7 @@
 
 
                     //Ledger Entry
-         $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+         $rows =mysqli_query($con,"SELECT id FROM transaction ORDER BY id desc limit 1" ) or die(mysqli_error($con));
          while($row=mysqli_fetch_array($rows)){ 
           $jid = $row['id'];
 
@@ -170,11 +170,11 @@
         $desp='Goods Purchased from '.$srcname;
         $srctype='vendor';
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
         $desp='Purchase Invoice';
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
 
       }
@@ -219,8 +219,8 @@
 
            $desp='Goods are Purchased on Cash';
 
-                      //Journal Entry
-           $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dractbal,cractbal,opbalance,clbalance,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$srcbalance','$destbalance','$op','$cl','$datec','$dateup')")or die( mysqli_error($con) );
+                      //transaction Entry
+           $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,cr,dractbal,cractbal,opbalance,clbalance,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$srcbalance','$destbalance','$op','$cl','$datec','$dateup')")or die( mysqli_error($con) );
 
 
            $sqls = "UPDATE acts SET `balance` = '$srcbalance',`cr` = '$srcbalance' WHERE `id` = $srcid"  ;
@@ -245,8 +245,8 @@
 
            $desp='Purchased Goods Invoice';
 
-                      //Journal Entry
-           $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dractbal,cractbal,opbalance,clbalance,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$srcbalance','$destbalance','$op','$cl','$datec','$dateup')")or die( mysqli_error($con) );
+                      //transaction Entry
+           $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,cr,dractbal,cractbal,opbalance,clbalance,datec,dateup)VALUES ('$desp','$srcid','$destid','$amount','$srcbalance','$destbalance','$op','$cl','$datec','$dateup')")or die( mysqli_error($con) );
 
 
            $sqls = "UPDATE acts SET `balance` = '$destbalance',`dr` = '$destbalance' WHERE `id` = $destid"  ;
@@ -258,7 +258,7 @@
 
 
                       //Ledger Entry
-           $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+           $rows =mysqli_query($con,"SELECT id FROM transaction ORDER BY id desc limit 1" ) or die(mysqli_error($con));
            while($row=mysqli_fetch_array($rows)){ 
             $jid = $row['id'];
 
@@ -266,11 +266,11 @@
 
           $desp='Goods Purchased from '.$srcname;
 
-          $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+          $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
           $desp='Purchase Invoice';
 
-          $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+          $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
 
       }
@@ -295,7 +295,7 @@
 
 
         $date=date('Y-m-d');
-                      //Journal Entry
+                      //transaction Entry
         $data=mysqli_query($con,"INSERT INTO itemslog (jid,pid,name,price,quantity,weight,subtotal,datec)VALUES ('$jid','$pid','$name','$price','$qty','$wgt','$amount','$date')")or die( mysqli_error($con) );
 
 

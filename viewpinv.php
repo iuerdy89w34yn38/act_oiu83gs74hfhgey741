@@ -51,7 +51,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
                       <?php
 
-                      $rows =mysqli_query($con,"SELECT invoiceno FROM journal WHERE invoicepic!='Null' AND dract=200018 " ) or die(mysqli_error($con));
+                      $rows =mysqli_query($con,"SELECT invoiceno FROM transaction WHERE invoicepic!='Null' AND dract=200018 " ) or die(mysqli_error($con));
 
                       while($row=mysqli_fetch_array($rows)){
 
@@ -77,7 +77,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
        $id=$_GET['id'] ;
 
-       $rows =mysqli_query($con,"SELECT invoicepic FROM journal  where invoiceno='$id' ORDER BY id limit 1" ) or die(mysqli_error($con));
+       $rows =mysqli_query($con,"SELECT invoicepic FROM transaction  where invoiceno='$id' ORDER BY id limit 1" ) or die(mysqli_error($con));
 
        while($row=mysqli_fetch_array($rows)){
 

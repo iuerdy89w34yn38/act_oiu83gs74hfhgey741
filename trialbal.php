@@ -146,7 +146,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                   
                   if($actid==200022){
 
-                    $rows =mysqli_query($con,"SELECT * FROM ledger  where datec<'$dates'  AND ref=0 and typeid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
+                    $rows =mysqli_query($con,"SELECT * FROM journal  where datec<'$dates'  AND ref=0 and typeid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
 
                     while($row=mysqli_fetch_array($rows)){
 
@@ -163,7 +163,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                     $btdbalance = $btdbalance + $btdr;
                     $btcbalance = $btcbalance + $btcr;
 
-                    $rows =mysqli_query($con,"SELECT * FROM ledger  where datec<='$datee' and datec>'$dates' AND ref=0 and typeid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
+                    $rows =mysqli_query($con,"SELECT * FROM journal  where datec<='$datee' and datec>'$dates' AND ref=0 and typeid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
 
                     while($row=mysqli_fetch_array($rows)){
 
@@ -179,7 +179,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                     $ctdbalance = $ctdbalance + $ctdr;
                     $ctcbalance = $ctcbalance + $ctcr;
                     
-                    $rows =mysqli_query($con,"SELECT * FROM ledger  where datec<='$datee' AND ref=0 and  typeid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
+                    $rows =mysqli_query($con,"SELECT * FROM journal  where datec<='$datee' AND ref=0 and  typeid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
 
                     while($row=mysqli_fetch_array($rows)){
 
@@ -209,7 +209,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                   }
                   else if($actid==200021){
 
-                    $rows =mysqli_query($con,"SELECT * FROM ledger  where datec<'$dates'  AND ref=0 and typeid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
+                    $rows =mysqli_query($con,"SELECT * FROM journal  where datec<'$dates'  AND ref=0 and typeid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
 
                     while($row=mysqli_fetch_array($rows)){
 
@@ -229,7 +229,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
           
 
 
-                    $rows =mysqli_query($con,"SELECT * FROM ledger  where datec<='$datee'  AND ref=0 and  typeid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
+                    $rows =mysqli_query($con,"SELECT * FROM journal  where datec<='$datee'  AND ref=0 and  typeid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
 
                     while($row=mysqli_fetch_array($rows)){
 
@@ -258,7 +258,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
                 }else{
 
-                  $rows =mysqli_query($con,"SELECT * FROM ledger  where datec<'$dates'  AND ref=0 and actid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
+                  $rows =mysqli_query($con,"SELECT * FROM journal  where datec<'$dates'  AND ref=0 and actid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
 
                   while($row=mysqli_fetch_array($rows)){
 
@@ -277,7 +277,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
       
 
 
-                  $rows =mysqli_query($con,"SELECT * FROM ledger  where datec<='$datee'  AND ref=0  and actid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
+                  $rows =mysqli_query($con,"SELECT * FROM journal  where datec<='$datee'  AND ref=0  and actid LIKE '$actid' ORDER BY id" ) or die(mysqli_error($con));
 
                   while($row=mysqli_fetch_array($rows)){
 

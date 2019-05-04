@@ -138,7 +138,7 @@ rel="stylesheet">
 
 	}
 	.navbar-semi-dark .navbar-header {
-	    background:  <?php if($themeid==4) echo '#000'; else  echo $color3 ;  ?>;
+	    background:  <?php if($themeid==4) echo '#000'; else if($themeid==2) echo '#a21212'; else  echo $color3 ;  ?>;
 	}
 	.header-navbar .navbar-header .navbar-brand .brand-logo {
 	    width: 100px;

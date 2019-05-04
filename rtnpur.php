@@ -110,8 +110,8 @@
 
       $desp='Purchase Returned from '.$destname.' on Credit Against Invoice No. '.$invoiceno.' due to '.$reason ;
 
-                    //Journal Entry
-      $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup,invoiceno)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup','$invoiceno')")or die( mysqli_error($con) );
+                    //transaction Entry
+      $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,cr,dr,datec,dateup,invoiceno)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup','$invoiceno')")or die( mysqli_error($con) );
 
 
   $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
@@ -123,7 +123,7 @@
 
 
                     //Ledger Entry
-      $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+      $rows =mysqli_query($con,"SELECT id FROM transaction ORDER BY id desc limit 1" ) or die(mysqli_error($con));
       while($row=mysqli_fetch_array($rows)){ 
         $jid = $row['id'];
 
@@ -132,11 +132,11 @@
       $desp='Purchase Returned from '.$destname.' on Credit Against Invoice No. '.$invoiceno.' due to '.$reason ;
 
 
-      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+      $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
       $desp='Credit Balance Returned for '.$destname;
 
-      $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+      $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
 
     }
@@ -177,8 +177,8 @@
          $desp='Purchase Returned from '.$actname.' to '.$destname.' due to '.$reason.' for Invoice '.$invoiceno;
 
 
-                          //Journal Entry
-         $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,datec,dateup,invoiceno)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup','$invoiceno')")or die( mysqli_error($con) );
+                          //transaction Entry
+         $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,cr,datec,dateup,invoiceno)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup','$invoiceno')")or die( mysqli_error($con) );
 
 
          $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
@@ -193,7 +193,7 @@
 
 
                           //Ledger Entry
-         $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+         $rows =mysqli_query($con,"SELECT id FROM transaction ORDER BY id desc limit 1" ) or die(mysqli_error($con));
          while($row=mysqli_fetch_array($rows)){ 
           $jid = $row['id'];
 
@@ -203,20 +203,20 @@
          $desp='Purchase Returned from '.$actname.' to '.$destname.' due to '.$reason.' for Invoice '.$invoiceno;
 
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
         $desp=$srcname.' Purchase Returned';
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
          $desp='Purchase Returned from '.$actname.' to '.$destname.' due to '.$reason.' for Invoice '.$invoiceno;
 
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
         $desp=$srcname.' Purchase Returned';
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
       }
       else if($destid==200032){ //Cheque 
@@ -252,8 +252,8 @@
 
          $desp='Purchase Returned from '.$actname.' to '.$destname.' No. '.$chequeno.' due to '.$reason.' for Invoice '.$invoiceno;
 
-                          //Journal Entry
-         $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,datec,dateup,invoiceno,chequeno,chequeamt)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup','$invoiceno','$chequeno','$chequeamt')")or die( mysqli_error($con) );
+                          //transaction Entry
+         $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,cr,datec,dateup,invoiceno,chequeno,chequeamt)VALUES ('$desp','$destid','$srcid','$amount','$datec','$dateup','$invoiceno','$chequeno','$chequeamt')")or die( mysqli_error($con) );
 
 
          $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
@@ -271,7 +271,7 @@
 
 
                           //Ledger Entry
-         $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+         $rows =mysqli_query($con,"SELECT id FROM transaction ORDER BY id desc limit 1" ) or die(mysqli_error($con));
          while($row=mysqli_fetch_array($rows)){ 
           $jid = $row['id'];
 
@@ -282,20 +282,20 @@
          $desp='Purchase Returned from '.$actname.' to '.$destname.' No. '.$chequeno.' due to '.$reason.' for Invoice '.$invoiceno;
 
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
         $desp=$srcname.' Purchase Returned';
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
          $desp='Purchase Returned from '.$actname.' to '.$destname.' No. '.$chequeno.' due to '.$reason.' for Invoice '.$invoiceno;
 
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
         $desp=$srcname.' Purchase Returned';
 
-        $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+        $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
       }
       else{
@@ -329,8 +329,8 @@
          $desp='Purchase Returned from '.$actname.' to '.$destname.' due to '.$reason.' for Invoice '.$invoiceno;
 
 
-                      //Journal Entry
-     $data=mysqli_query($con,"INSERT INTO journal (desp,dract,cract,cr,dr,datec,dateup,invoiceno)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup','$invoiceno')")or die( mysqli_error($con) );
+                      //transaction Entry
+     $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,cr,dr,datec,dateup,invoiceno)VALUES ('$desp','$destid','$srcid','$amount','$amount','$datec','$dateup','$invoiceno')")or die( mysqli_error($con) );
 
 
      $sqls = "UPDATE acts SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
@@ -345,7 +345,7 @@
 
 
                       //Ledger Entry
-     $rows =mysqli_query($con,"SELECT id FROM journal ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+     $rows =mysqli_query($con,"SELECT id FROM transaction ORDER BY id desc limit 1" ) or die(mysqli_error($con));
      while($row=mysqli_fetch_array($rows)){ 
       $jid = $row['id'];
 
@@ -357,22 +357,22 @@
       
 
 
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+    $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
     $desp=$srcname.' Purchase Returned';
 
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+    $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,ref,balance,dr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
   
          $desp='Purchase Returned from '.$actname.' to '.$destname.' due to '.$reason.' for Invoice '.$invoiceno;
 
 
 
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+    $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,ref,balance,cr,datec,dateup)VALUES ('$jid','$act','$desp','$acttype','$acttypeid',1,'$actbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
     $desp=$srcname.' Purchase Returned';
 
-    $data=mysqli_query($con,"INSERT INTO ledger (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
+    $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
     }
 
@@ -402,7 +402,7 @@
     $date=date('Y-m-d');
 
 
-                      //Journal Entry
+                      //transaction Entry
     $data=mysqli_query($con,"INSERT INTO itemslog (jid,pid,type,name,price,quantity,subtotal,datec)VALUES ('$jid','$pid','$type','$name','$price','$qty','$amount','$date')")or die( mysqli_error($con) );
 
     $sqls = "UPDATE items SET `stock` = '$stock' WHERE `id` = $pid"  ;
@@ -504,7 +504,7 @@
 
                     <?php
 
-                    $rows =mysqli_query($con,"SELECT invoiceno FROM journal WHERE invoicepic!='Null' AND dract=200018 " ) or die(mysqli_error($con));
+                    $rows =mysqli_query($con,"SELECT invoiceno FROM transaction WHERE invoicepic!='Null' AND dract=200018 " ) or die(mysqli_error($con));
 
                     while($row=mysqli_fetch_array($rows)){
 

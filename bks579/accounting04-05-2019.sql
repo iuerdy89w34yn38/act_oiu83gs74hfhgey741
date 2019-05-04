@@ -51,17 +51,17 @@ CREATE TABLE `acts` (
 
 
 INSERT INTO acts VALUES
-("200019","2","Revenue","Sales Account","sales-account","income","8000","1"),
-("200018","10","Cost of Goods Sold","Purchase Account","purchase-account","inventory","7050","1"),
-("200016","5","Current Assets","Cash in Hands","cash-in-hands","cash","3200","1"),
+("200019","2","Revenue","Sales Account","sales-account","income","0","1"),
+("200018","10","Cost of Goods Sold","Purchase Account","purchase-account","inventory","0","1"),
+("200016","5","Current Assets","Cash in Hands","cash-in-hands","cash","0","1"),
 ("200021","5","Current Assets","Customers","customers","assets","0","1"),
 ("200022","3","Liability","Vendors","vendors","liabilities","0","1"),
 ("200028","10","Cost of Goods Sold","Purchase Return","purchase-return","inventory","0","1"),
 ("200029","2","Revenue","Sales Return","sales-return","income","0","1"),
 ("200032","5","Current Assets","Open Cheque","cheque","cash","0","1"),
-("200038","10","Cost of Goods Sold","Purchase Discount","purchase-discount","inventory","250","1"),
+("200038","10","Cost of Goods Sold","Purchase Discount","purchase-discount","inventory","0","1"),
 ("200039","2","Revenue","Sales Discount","sales-discount","income","0","1"),
-("200042","1","Capital","Capital A/c of Hamza Pervaiz","capital-a-c-of-hamza-pervaiz","capital","5000","0"),
+("200042","1","Capital","Capital A/c of Hamza Pervaiz","capital-a-c-of-hamza-pervaiz","capital","0","0"),
 ("200043","5","Current Assets","HBL bank","hbl-bank","cash","0","0");
 
 
@@ -811,7 +811,7 @@ CREATE TABLE `customers` (
 
 
 INSERT INTO customers VALUES
-("600002","200021","Customers","Test Customer 4","12345678","C Company","1234567899","customer@email.com","Customer Address","Lahore","Pakistan","8000","2019-02-07"),
+("600002","200021","Customers","Test Customer 4","12345678","C Company","1234567899","customer@email.com","Customer Address","Lahore","Pakistan","0","2019-02-07"),
 ("600003","200021","Customers","Test Customer 6","12345678","C Company","1234567899","customer@email.com","Customer Address","Lahore","Pakistan","0","2019-02-07");
 
 
@@ -833,7 +833,7 @@ CREATE TABLE `items` (
 
 
 INSERT INTO items VALUES
-("1","4","Test Product 2","test desp","150","200","0","780","7","0");
+("1","4","Test Product 2","test desp","0","0","0","780","0","0");
 
 
 
@@ -864,41 +864,30 @@ CREATE TABLE `itemslog` (
   `subtotal` float NOT NULL DEFAULT '0',
   `datec` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1004007 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1004003 DEFAULT CHARSET=latin1;
 
 
-INSERT INTO itemslog VALUES
-("1004003","2005004","1","in","Test Product 2","150","10","0","1500","2019-02-26"),
-("1004004","2005005","1","in","Test Product 2","150","12","0","1800","2019-02-26"),
-("1004005","2005006","1","in","Test Product 2","150","25","0","3750","2019-02-26"),
-("1004006","2005007","1","out","Test Product 2","200","40","0","8000","2019-02-26");
 
 
 
 
 CREATE TABLE `journal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jid` int(11) NOT NULL,
+  `typeid` int(11) NOT NULL DEFAULT '0',
+  `ref` int(11) NOT NULL DEFAULT '0',
+  `actid` int(11) NOT NULL,
   `desp` text NOT NULL,
-  `invoiceno` varchar(21) NOT NULL DEFAULT '0',
-  `invoicepic` text,
-  `chequeno` varchar(21) NOT NULL DEFAULT '0',
-  `chequeamt` int(11) NOT NULL DEFAULT '0',
-  `dract` int(11) NOT NULL DEFAULT '0',
-  `cract` int(11) NOT NULL DEFAULT '0',
-  `dr` int(11) NOT NULL DEFAULT '0',
-  `cr` int(11) NOT NULL DEFAULT '0',
+  `type` varchar(20) NOT NULL,
+  `dr` varchar(11) DEFAULT '0',
+  `cr` varchar(11) DEFAULT '0',
+  `balance` int(11) NOT NULL DEFAULT '0',
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2005008 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
-INSERT INTO journal VALUES
-("2005003","Cash is Desposited from Capital A/c of Hamza Pervaiz to Cash in Hands","0","","0","0","200042","200016","5000","0","2019-02-26","2019-02-26"),
-("2005004","Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. ","","8c90f8d86a5eb9dc824f3474e43f88e61.png","0","0","200018","400002","1500","1500","2019-02-26","2019-02-26"),
-("2005005","Goods are Purchased from Test Vendor 1 Against Invoice No.  Through Cash in Hands","","ee6521eca1c0d6066b41d39d941c47991.png","0","0","200018","200016","0","1800","2019-02-26","2019-02-26"),
-("2005006","Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. ","","45309281bce0710cfe18c71e281a34321.png","0","0","200018","400002","3750","3750","2019-02-26","2019-02-26"),
-("2005007","Goods are Sold to Test Customer 4 on Credit","0","","0","0","600002","200019","8000","8000","2019-02-26","2019-02-26");
 
 
 
@@ -917,23 +906,28 @@ CREATE TABLE `ledger` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 
 INSERT INTO ledger VALUES
-("1","2005003","1","0","200042","Capital A/c of Hamza Pervaiz","Capital","0","5000","5000","2019-02-26","2019-02-26"),
-("2","2005003","5","0","200016","Cash is Coming in Cash in Hands","Current Assets","5000","0","5000","2019-02-26","2019-02-26"),
-("3","2005004","200022","0","400002","Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. ","Vendors","0","1500","1500","2019-02-26","2019-02-26"),
-("4","2005004","10","0","200018","Purchase Account","Cost of Goods Sold","1500","0","1500","2019-02-26","2019-02-26"),
-("5","2005005","5","0","200016","Goods are Purchased from Test Vendor 1 Against Invoice No.  Through Cash in Hands","Current Assets","0","1800","3200","2019-02-26","2019-02-26"),
-("6","2005005","200022","1","400002","Cash in Hands Purchase","Vendors","1800","0","1500","2019-02-26","2019-02-26"),
-("7","2005005","200022","1","400002","Goods are Purchased from Test Vendor 1 Against Invoice No.  Through Cash in Hands","Vendors","0","1800","1500","2019-02-26","2019-02-26"),
-("8","2005005","10","0","200018","Cash in Hands Purchase","Cost of Goods Sold","1800","0","3300","2019-02-26","2019-02-26"),
-("9","2005006","10","0","200038","Discount Recieved","Cost of Goods Sold","0","250","250","2019-02-26","2019-02-26"),
-("10","2005006","200022","0","400002","Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. ","Vendors","0","3500","5000","2019-02-26","2019-02-26"),
-("11","2005006","10","0","200018","Purchase Account","Cost of Goods Sold","3750","0","7050","2019-02-26","2019-02-26"),
-("12","2005007","2","0","200019","Goods are Sold to Test Customer 4 on Credit","Revenue","0","8000","8000","2019-02-26","2019-02-26"),
-("13","2005007","200021","0","600002","Sale Account","Customers","8000","0","8000","2019-02-26","2019-02-26");
+("1","2005003","1","0","200042","Capital Account of Ram","Capital","0","10000","10000","2019-05-01","2019-05-01"),
+("2","2005003","5","0","200016","Cash is Coming in Cash in Hands","Current Assets","10000","0","10000","2019-05-01","2019-05-01"),
+("3","2005004","200022","0","400002","Goods are Purchased from Mohan on Credit Against Invoice No. 900pay1","Vendors","0","2000","2000","2019-05-01","2019-05-01"),
+("4","2005004","10","0","200018","Purchase Account","Cost of Goods Sold","2000","0","2000","2019-05-01","2019-05-01"),
+("5","2005005","5","0","200016","Payment Made from Cash in Hands","Current Assets","0","1000","9000","2019-05-01","2019-05-01"),
+("6","2005005","200022","0","400002","Payment Made to Mohan","Vendors","1000","0","1000","2019-05-01","2019-05-01"),
+("7","2005006","2","0","200019","Goods are Sold to Suresh on Credit","Revenue","0","2000","2000","2019-05-01","2019-05-01"),
+("8","2005006","200021","0","600002","Sale Account","Customers","2000","0","2000","2019-05-01","2019-05-01"),
+("9","2005007","200021","0","600002","Recieve Payment Against Sales Invoice From Suresh To Cash in Hands","Customers","0","3000","-1000","2019-05-01","2019-05-01"),
+("10","2005007","5","0","200016","Cash to Cash in Hands","Current Assets","3000","0","12000","2019-05-01","2019-05-01"),
+("11","2005008","200022","0","400002","Goods are Purchased from Mohan on Credit Against Invoice No. 7y887y8","Vendors","0","2000","3000","2019-05-01","2019-05-01"),
+("12","2005008","10","0","200018","Purchase Account","Cost of Goods Sold","2000","0","4000","2019-05-01","2019-05-01"),
+("13","2005009","5","0","200016","Payment Made from Cash in Hands","Current Assets","0","1000","11000","2019-05-01","2019-05-01"),
+("14","2005009","200022","0","400002","Payment Made to Mohan","Vendors","1000","0","2000","2019-05-01","2019-05-01"),
+("15","2005010","2","0","200019","Goods are Sold to Suresh on Credit","Revenue","0","2000","4000","2019-05-01","2019-05-01"),
+("16","2005010","200021","0","600002","Sale Account","Customers","2000","0","1000","2019-05-01","2019-05-01"),
+("17","2005011","200021","0","600002","Recieve Payment Against Sales Invoice From Suresh To Cash in Hands","Customers","0","1000","0","2019-05-01","2019-05-01"),
+("18","2005011","5","0","200016","Cash to Cash in Hands","Current Assets","1000","0","12000","2019-05-01","2019-05-01");
 
 
 
@@ -977,6 +971,27 @@ INSERT INTO stats VALUES
 
 
 
+CREATE TABLE `transaction` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `desp` text NOT NULL,
+  `invoiceno` varchar(21) NOT NULL DEFAULT '0',
+  `invoicepic` text,
+  `chequeno` varchar(21) NOT NULL DEFAULT '0',
+  `chequeamt` int(11) NOT NULL DEFAULT '0',
+  `dract` int(11) NOT NULL DEFAULT '0',
+  `cract` int(11) NOT NULL DEFAULT '0',
+  `dr` int(11) NOT NULL DEFAULT '0',
+  `cr` int(11) NOT NULL DEFAULT '0',
+  `datec` date NOT NULL,
+  `dateup` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2005003 DEFAULT CHARSET=latin1;
+
+
+
+
+
+
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
@@ -1011,7 +1026,7 @@ CREATE TABLE `vendors` (
 
 
 INSERT INTO vendors VALUES
-("400002","200022","Vendors","Test Vendor 1","12345678","V Company","1234567899","vendor@email.com","Vendor Address","Islamabad","Pakistan","5000","2019-02-07");
+("400002","200022","Vendors","Test Vendor 1","12345678","V Company","1234567899","vendor@email.com","Vendor Address","Islamabad","Pakistan","0","2019-02-07");
 
 
 

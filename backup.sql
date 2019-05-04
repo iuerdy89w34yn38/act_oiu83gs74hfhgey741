@@ -860,7 +860,7 @@ INSERT INTO itemslog VALUES
 
 
 
-CREATE TABLE `journal` (
+CREATE TABLE `transaction` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `desp` text NOT NULL,
   `dract` int(11) NOT NULL DEFAULT '0',
@@ -873,7 +873,7 @@ CREATE TABLE `journal` (
 ) ENGINE=MyISAM AUTO_INCREMENT=205630 DEFAULT CHARSET=latin1;
 
 
-INSERT INTO journal VALUES
+INSERT INTO transaction VALUES
 ("205623","Loan is Acquired fromLoan from Hassan  to Cash in Hands","200024","200016","80000","0","2019-01-06","2019-01-06"),
 ("205624","Loan is Acquired fromLoan from Hassan  to Cash in Bank","200017","200024","10000","10000","2019-01-06","2019-01-06"),
 ("205625","Goods are Purchased on Cash","200018","200017","23000","23000","2019-01-06","2019-01-06"),
@@ -885,7 +885,7 @@ INSERT INTO journal VALUES
 
 
 
-CREATE TABLE `ledger` (
+CREATE TABLE `journal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jid` int(11) NOT NULL,
   `typeid` int(11) NOT NULL DEFAULT '0',
@@ -901,7 +901,7 @@ CREATE TABLE `ledger` (
 ) ENGINE=MyISAM AUTO_INCREMENT=760562 DEFAULT CHARSET=latin1;
 
 
-INSERT INTO ledger VALUES
+INSERT INTO journal VALUES
 ("760548","205623","3","200024","Loan is Acquired from Loan from Hassan ","Liability","0","80000","80000","2019-01-06","2019-01-06"),
 ("760549","205623","5","200016","Cash is Coming in Cash in Hands","Current Assets","80000","0","80000","2019-01-06","2019-01-06"),
 ("760550","205624","3","200024","Loan is Acquired from Loan from Hassan ","Liability","0","10000","90000","2019-01-06","2019-01-06"),

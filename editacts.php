@@ -272,13 +272,13 @@ if(isset($_POST['del'])){
                     $tcr=0;
                     $tdr=0;
                     $total=0;
-                    $rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$id " ) or die(mysqli_error($con));
+                    $rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$id " ) or die(mysqli_error($con));
 
                     while($row=mysqli_fetch_array($rows)){
                       $cr = $row['cr'];
                       $tcr=$tcr+$cr;
                     } 
-                    $rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$id " ) or die(mysqli_error($con));
+                    $rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$id " ) or die(mysqli_error($con));
 
                     while($row=mysqli_fetch_array($rows)){
                       $dr = $row['dr'];

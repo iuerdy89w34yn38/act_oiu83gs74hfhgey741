@@ -64,7 +64,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header" style="padding-bottom: 0px;">
-            <h4 class="card-title">Voucher Journal</h4>
+            <h4 class="card-title">Voucher transaction</h4>
           </div>
           <div class="card-block">
             <div class="card-body">
@@ -93,7 +93,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
              <?php
 
 
-             $rows =mysqli_query($con,"SELECT * FROM ledger  where jid='$jid' ORDER BY id " ) or die(mysqli_error($con));
+             $rows =mysqli_query($con,"SELECT * FROM journal  where jid='$jid' ORDER BY id " ) or die(mysqli_error($con));
 
              while($row=mysqli_fetch_array($rows)){
 
@@ -143,7 +143,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
        $id=$_GET['id'] ;
 
-       $rows =mysqli_query($con,"SELECT * FROM journal  where id='$id' ORDER BY id limit 1" ) or die(mysqli_error($con));
+       $rows =mysqli_query($con,"SELECT * FROM transaction  where id='$id' ORDER BY id limit 1" ) or die(mysqli_error($con));
 
        while($row=mysqli_fetch_array($rows)){
 

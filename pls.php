@@ -95,12 +95,12 @@ table{
 									$tdr=0;
 									$total=0;
 
-									$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
 									while($row=mysqli_fetch_array($rows)){
 										$cr = $row['cr'];
 										$tcr=$tcr+$cr;
 									} 
-									$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+									$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
 									while($row=mysqli_fetch_array($rows)){
 										$dr = $row['dr'];
 										$tdr=$tdr+$dr;
@@ -119,12 +119,12 @@ table{
 								$tdr=0;
 								$total=0;
 
-								$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$cr = $row['cr'];
 									$tcr=$tcr+$cr;
 								} 
-								$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$dr = $row['dr'];
 									$tdr=$tdr+$dr;
@@ -142,12 +142,12 @@ table{
 								$tdr=0;
 								$total=0;
 
-								$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$cr = $row['cr'];
 									$tcr=$tcr+$cr;
 								} 
-								$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$dr = $row['dr'];
 									$tdr=$tdr+$dr;
@@ -170,12 +170,12 @@ table{
 								$tdr=0;
 								$total=0;
 
-								$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$cr = $row['cr'];
 									$tcr=$tcr+$cr;
 								} 
-								$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$dr = $row['dr'];
 									$tdr=$tdr+$dr;
@@ -195,12 +195,12 @@ table{
 								$tdr=0;
 								$balance=0;
 
-								$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$cr = $row['cr'];
 									$tcr=$tcr+$cr;
 								} 
-								$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$dr = $row['dr'];
 									$tdr=$tdr+$dr;
@@ -219,12 +219,12 @@ table{
 								$tdr=0;
 								$balance=0;
 
-								$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$cr = $row['cr'];
 									$tcr=$tcr+$cr;
 								} 
-								$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$dr = $row['dr'];
 									$tdr=$tdr+$dr;
@@ -250,12 +250,12 @@ table{
 								$tdr=0;
 
 
-								$rows =mysqli_query($con,"SELECT cr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$cr = $row['cr'];
 									$tcr=$tcr+$cr;
 								} 
-								$rows =mysqli_query($con,"SELECT dr FROM ledger WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$dr = $row['dr'];
 									$tdr=$tdr+$dr;
