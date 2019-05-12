@@ -234,7 +234,7 @@ if(isset($_POST['submit'])){
 
                   <div class="col-sm-2">
                     <span>Amount Rs: </span>
-                      <input type="number" class="form-control" name="amount" placeholder="0">
+                      <input type="number" class="form-control" required="" name="amount" placeholder="0">
                   </div>
                  
 

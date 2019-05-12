@@ -963,9 +963,11 @@ CREATE TABLE `loginlog` (
   `dbr` text NOT NULL,
   `dres` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 
+INSERT INTO loginlog VALUES
+("5","hamza56","admin990","1","2019-05-05","10:09 am","Computer","39.45.234.208","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768");
 
 
 

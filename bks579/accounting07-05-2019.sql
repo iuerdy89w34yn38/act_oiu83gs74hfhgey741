@@ -47,13 +47,13 @@ CREATE TABLE `acts` (
   `nodel` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=MyISAM AUTO_INCREMENT=200044 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=200046 DEFAULT CHARSET=latin1;
 
 
 INSERT INTO acts VALUES
 ("200019","2","Revenue","Sales Account","sales-account","income","0","1"),
 ("200018","10","Cost of Goods Sold","Purchase Account","purchase-account","inventory","3600000","1"),
-("200016","5","Current Assets","Cash in Hands","cash-in-hands","cash","10000000","1"),
+("200016","5","Current Assets","Cash in Hands","cash-in-hands","cash","15493000","1"),
 ("200021","5","Current Assets","Customers","customers","assets","0","1"),
 ("200022","3","Liability","Vendors","vendors","liabilities","0","1"),
 ("200028","10","Cost of Goods Sold","Purchase Return","purchase-return","inventory","180000","1"),
@@ -62,7 +62,9 @@ INSERT INTO acts VALUES
 ("200038","10","Cost of Goods Sold","Purchase Discount","purchase-discount","inventory","0","1"),
 ("200039","2","Revenue","Sales Discount","sales-discount","income","0","1"),
 ("200042","1","Capital","Capital A/c of Hamza Pervaiz","capital-a-c-of-hamza-pervaiz","capital","15000000","0"),
-("200043","5","Current Assets","HBL bank","hbl-bank","cash","5000000","0");
+("200043","5","Current Assets","HBL bank","hbl-bank","cash","5000000","0"),
+("200044","3","Liability","Loan From Bank","loan-from-bank","liabilities","5500000","0"),
+("200045","4","Expenses","Office Rent","office-rent","expenses","7000","0");
 
 
 
@@ -888,7 +890,7 @@ CREATE TABLE `journal` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 
 INSERT INTO journal VALUES
@@ -899,7 +901,11 @@ INSERT INTO journal VALUES
 ("5","2005005","200022","0","400002","Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. 900pay1","Vendors","0","3600000","3600000","2019-05-04","2019-05-04"),
 ("6","2005005","10","0","200018","Purchase Account","Cost of Goods Sold","3600000","0","3600000","2019-05-04","2019-05-04"),
 ("7","2005006","10","0","200028","Purchase Returned from Test Vendor 1 on Credit Against Invoice No. 900pay1 due to Dull ","Cost of Goods Sold","0","180000","180000","2019-05-04","2019-05-04"),
-("8","2005006","200022","0","400002","Credit Balance Returned for Test Vendor 1","Vendors","180000","0","3420000","2019-05-04","2019-05-04");
+("8","2005006","200022","0","400002","Credit Balance Returned for Test Vendor 1","Vendors","180000","0","3420000","2019-05-04","2019-05-04"),
+("9","2005007","3","0","200044","Loan is Acquired from Loan From Bank","Liability","0","5500000","5500000","2019-05-07","2019-05-07"),
+("10","2005007","5","0","200016","Cash is Coming in Cash in Hands","Current Assets","5500000","0","15500000","2019-05-07","2019-05-07"),
+("11","2005008","5","0","200016","Expense from Cash in Hands","Current Assets","0","7000","15493000","2019-05-07","2019-05-07"),
+("12","2005008","4","0","200045","Cash paid for Office Rent","Expenses","7000","0","7000","2019-05-07","2019-05-07");
 
 
 
@@ -963,9 +969,12 @@ CREATE TABLE `loginlog` (
   `dbr` text NOT NULL,
   `dres` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 
+INSERT INTO loginlog VALUES
+("5","hamza56","admin990","1","2019-05-05","10:09 am","Computer","39.45.234.208","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768"),
+("6","hamza56","admin990","1","2019-05-06","11:52 pm","Computer","39.45.234.208","","AS45595 Pakistan Telecom Company Limited","PK","Pakistan","Lahore","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768");
 
 
 
@@ -997,14 +1006,16 @@ CREATE TABLE `transaction` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2005007 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2005009 DEFAULT CHARSET=latin1;
 
 
 INSERT INTO transaction VALUES
 ("2005003","Cash is Desposited from Capital A/c of Hamza Pervaiz to Cash in Hands","0","","0","0","200042","200016","10000000","0","2019-05-04","2019-05-04"),
 ("2005004","Cash is Desposited fromCapital A/c of Hamza Pervaiz to HBL bank","0","","0","0","200043","200042","5000000","5000000","2019-05-04","2019-05-04"),
 ("2005005","Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. 900pay1","900pay1","68dab5348f86dc3b1e3525d46c8aa9a81.png","0","0","200018","400002","3600000","3600000","2019-05-04","2019-05-04"),
-("2005006","Purchase Returned from Test Vendor 1 on Credit Against Invoice No. 900pay1 due to Dull ","900pay1","","0","0","400002","200028","180000","180000","2019-05-04","2019-05-04");
+("2005006","Purchase Returned from Test Vendor 1 on Credit Against Invoice No. 900pay1 due to Dull ","900pay1","","0","0","400002","200028","180000","180000","2019-05-04","2019-05-04"),
+("2005007","Loan is Acquired fromLoan From Bank to Cash in Hands","0","","0","0","200044","200016","5500000","0","2019-05-07","2019-05-07"),
+("2005008","Rent for Office","0","","0","0","200016","200045","0","7000","2019-05-07","2019-05-07");
 
 
 

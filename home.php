@@ -177,7 +177,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 								$dr = $row['dr'];
 								$tdr=$tdr+$dr;
 							} 
-							$balance=$tdr-$tcr;	
+							$balance=$tcr-$tdr;	
 							$cogsr=$cogsr+$balance;
 						}
 

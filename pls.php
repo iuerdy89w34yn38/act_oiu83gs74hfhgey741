@@ -205,7 +205,7 @@ table{
 									$dr = $row['dr'];
 									$tdr=$tdr+$dr;
 								} 
-								$balance=$tdr-$tcr;	
+								$balance=$tcr-$tdr;	
 								$cogsr=$cogsr+$balance;
 							}
 
