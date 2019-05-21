@@ -52,6 +52,7 @@ type="text/javascript"></script>
 
 <script src="vendors/js/tables/datatable/dataTables.select.min.js" type="text/javascript"></script>
 
+
 <script src="js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
 <script src="js/scripts/modal/components-modal.js" type="text/javascript"></script>
 

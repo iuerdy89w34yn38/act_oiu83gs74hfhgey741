@@ -314,35 +314,24 @@ if(isset($_GET['del'])){
     <div class="card-block">
       <div class="card-body">
        <form action="" method="get">
-         <div class="row align-conter-center">
 
-          <div class="col-sm-2">
-           <h2>Name</h2>
-         </div>
-          <div class="col-sm-2">
-           <h2>Mobile</h2>
-         </div>
-          <div class="col-sm-2">
-           <h2>Company</h2>
-         </div>
-          <div class="col-sm-2">
-           <h2>City</h2>
-         </div>
-         <div class="col-sm-2">
-           <h2>Balance </h2>
-         </div>
-         <div class="col-sm-1">
-           <span>Update</span>
+        <table id="ex1" class="table table-bordered table-striped  dataex-select-multi">
 
-         </div>
-         <div class="col-sm-1">
-           <span>Delete</span>
+          <thead>
+            
+            <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Mobile</td>
+            <td>Company</td>
+            <td>City</td>
+            <td>Balance</td>
+            <td>Update</td>
+          </tr>
+          </thead> 
 
-         </div>
-
-       </div>
-      <?php
-
+          <tbody>
+            <?php
       $rows1 =mysqli_query($con,"SELECT * FROM vendors  ORDER BY name" ) or die(mysqli_error($con));
 
       while($row1=mysqli_fetch_array($rows1)){
@@ -373,43 +362,29 @@ if(isset($_GET['del'])){
         $total1=$tdr-$tcr;
         $total=abs($total1);
 
-        ?>
-         <div class="row  align-items-center" align="">
+              ?>
+                <tr>
+                  <td><?php echo $id ?></td>
+                  <td><?php echo $name ?></td>
+                  <td><?php echo $mobile ?> </td>
+                  <td><?php echo $company ?> </td>
+                  <td><?php echo $city ?> </td>
+                  <td><?php echo $total ?> </td>
+                  <td>
+                    <button name="id" class="btn btn-primary" value="<?php echo $id ?>">Edit</button>
 
-          <div class="col-sm-2">
-           <h5><?php echo $name ?></h5>
-         </div> 
-         
-          <div class="col-sm-2">
-           <h5><?php echo $mobile ?></h5>
-         </div> 
-         
-          <div class="col-sm-2">
-           <h5><?php echo $company ?></h5>
-         </div> 
-         
-          <div class="col-sm-2">
-           <h5><?php echo $city ?></h5>
-         </div> 
+                    <button name="del" class="btn btn-danger" value="<?php echo $id ?>">Del</button>
 
-         <div class="col-sm-2">
-           <h5 ><?php echo $total ?> </h5>
-         </div>
-         <div class="col-sm-1">
+                  </td>
 
-           <button name="id" class="btn btn-primary" value="<?php echo $id ?>">Update</button>
+                </tr>
 
-         </div>
-         <div class="col-sm-1">
+                <?php } ?>
 
-
-           <button name="del" class="btn btn-danger" value="<?php echo $id ?>">Delete</button>
-         </div>
-
-       </div>
-       <hr>
-
-     <?php } ?>
+          </tbody>
+        </table>
+        
+        
    </form>
 
    <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>

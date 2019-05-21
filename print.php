@@ -298,12 +298,8 @@ if(isset($_GET['delinv'])){
                <h4>  <?php echo number_format($itotal) ?> </h4>
              </div>
            </div>
-           
-         <?php } ?>
-
-
-
-       <?php } ?>
+      
+      <?php } ?>
 
 
        <?php
@@ -330,7 +326,8 @@ if(isset($_GET['delinv'])){
 
          <br><hr><br>
 
-
+           
+         
        <div class="row align-conter-center">
 
          <div class="col-sm-7">
@@ -381,6 +378,8 @@ if(isset($_GET['delinv'])){
 
         </div>
 
+        <?php  } ?>
+
 
        
 
@@ -390,7 +389,7 @@ if(isset($_GET['delinv'])){
 
 
 
-        <div style="margin: 300px 30px 40px 30px; border:1px solid black">
+        <div style="margin: 300px 30px 40px 30px; border:1px solid black; position: absolute;width: 92%;">
 
 
 

@@ -956,12 +956,17 @@ CREATE TABLE `loginlog` (
   `dbr` text NOT NULL,
   `dres` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 
 INSERT INTO loginlog VALUES
 ("5","hamza56","admin990","1","2019-05-20","09:51 am","Computer","119.160.65.53","host-53-net-65-160-119.mobilinkinfinity.net.pk","AS45669 PMCL /LDI IP TRANSIT","PK","Pakistan","Lahore","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768"),
-("6","hamza56","admin990","1","2019-05-21","08:11 am","Computer","119.160.67.116","host-116-net-67-160-119.mobilinkinfinity.net.pk","AS45669 PMCL /LDI IP TRANSIT","PK","Pakistan","Lahore","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768");
+("6","hamza56","admin990","1","2019-05-21","08:11 am","Computer","119.160.67.116","host-116-net-67-160-119.mobilinkinfinity.net.pk","AS45669 PMCL /LDI IP TRANSIT","PK","Pakistan","Lahore","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768"),
+("7","hamza56","admin990","1","2019-05-21","09:25 am","Computer","","","","","","","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768"),
+("8","hamza56","admin990","1","2019-05-21","09:25 am","Computer","","","","","","","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768"),
+("9","hamza56","admin990","1","2019-05-21","09:50 am","Computer","","","","","","","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768"),
+("10","hamza56","admin990","1","2019-05-21","09:50 am","Computer","","","","","","","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768"),
+("11","hamza56","admin990","1","2019-05-21","10:24 pm","Computer","","","","","","","Windows 10","Chrome 73.0.3683.86","PC / Laptop","1366x768");
 
 
 

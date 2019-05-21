@@ -318,102 +318,78 @@ if(isset($_GET['del'])){
   <div class="card-block">
     <div class="card-body">
      <form action="" method="get">
-       <div class="row align-conter-center">
-
-        <div class="col-sm-2">
-         <h2>Name</h2>
-       </div>
-       <div class="col-sm-2">
-         <h2>Mobile</h2>
-       </div>
-       <div class="col-sm-2">
-         <h2>Company</h2>
-       </div>
-       <div class="col-sm-2">
-         <h2>City</h2>
-       </div>
-       <div class="col-sm-2">
-         <h2>Balance </h2>
-       </div>
-       <div class="col-sm-1">
-         <span>Update</span>
-
-       </div>
-       <div class="col-sm-1">
-         <span>Delete</span>
-
-       </div>
-
-     </div>
-     <?php
-
-     $rows1 =mysqli_query($con,"SELECT * FROM customers  ORDER BY name" ) or die(mysqli_error($con));
-
-     while($row1=mysqli_fetch_array($rows1)){
-
-       $id = $row1['id'];
-       $name = $row1['name'];
-       $mobile=$row1['mobile'];
-       $company=$row1['company'];
-       $city=$row1['city']; 
-       $balance=$row1['balance']; 
 
 
-       $tcr=0;
-       $tdr=0;
-       $total=0;
-       $rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$id " ) or die(mysqli_error($con));
+      <table id="ex1" class="table table-bordered table-striped  dataex-select-multi">
 
-       while($row=mysqli_fetch_array($rows)){
-         $cr = $row['cr'];
-         $tcr=$tcr+$cr;
-       } 
-       $rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$id " ) or die(mysqli_error($con));
+        <thead>
+          
+          <tr>
+          <td>ID</td>
+          <td>Name</td>
+          <td>Mobile</td>
+          <td>Company</td>
+          <td>City</td>
+          <td>Balance</td>
+          <td>Update</td>
+        </tr>
+        </thead> 
 
-       while($row=mysqli_fetch_array($rows)){
-         $dr = $row['dr'];
-         $tdr=$tdr+$dr;
-       } 
-       $total1=$tdr-$tcr;
-       $total=$total1;
+        <tbody>
+          <?php
+         $rows1 =mysqli_query($con,"SELECT * FROM customers  ORDER BY name" ) or die(mysqli_error($con));
 
-       ?>
-       <div class="row  align-items-center" align="">
+         while($row1=mysqli_fetch_array($rows1)){
 
-        <div class="col-sm-2">
-         <h5><?php echo $name ?></h5>
-       </div> 
-       
-       <div class="col-sm-2">
-         <h5><?php echo $mobile ?></h5>
-       </div> 
-       
-       <div class="col-sm-2">
-         <h5><?php echo $company ?></h5>
-       </div> 
-       
-       <div class="col-sm-2">
-         <h5><?php echo $city ?></h5>
-       </div> 
-
-       <div class="col-sm-2">
-         <h5 ><?php echo $total ?> </h5>
-       </div>
-       <div class="col-sm-1">
-
-         <button name="id" class="btn btn-primary" value="<?php echo $id ?>">Update</button>
-
-       </div>
-       <div class="col-sm-1">
+           $id = $row1['id'];
+           $name = $row1['name'];
+           $mobile=$row1['mobile'];
+           $company=$row1['company'];
+           $city=$row1['city']; 
+           $balance=$row1['balance']; 
 
 
-         <button name="del" class="btn btn-danger" value="<?php echo $id ?>">Delete</button>
-       </div>
+           $tcr=0;
+           $tdr=0;
+           $total=0;
+           $rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$id " ) or die(mysqli_error($con));
 
-     </div>
-     <hr>
+           while($row=mysqli_fetch_array($rows)){
+             $cr = $row['cr'];
+             $tcr=$tcr+$cr;
+           } 
+           $rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$id " ) or die(mysqli_error($con));
 
-   <?php } ?>
+           while($row=mysqli_fetch_array($rows)){
+             $dr = $row['dr'];
+             $tdr=$tdr+$dr;
+           } 
+           $total1=$tdr-$tcr;
+           $total=$total1;
+
+            ?>
+              <tr>
+                <td><?php echo $id ?></td>
+                <td><?php echo $name ?></td>
+                <td><?php echo $mobile ?> </td>
+                <td><?php echo $company ?> </td>
+                <td><?php echo $city ?> </td>
+                <td><?php echo $total ?> </td>
+                <td>
+                  <button name="id" class="btn btn-primary" value="<?php echo $id ?>">Edit</button>
+
+                  <button name="del" class="btn btn-danger" value="<?php echo $id ?>">Del</button>
+
+                </td>
+
+              </tr>
+
+              <?php } ?>
+
+        </tbody>
+      </table>
+      
+      
  </form>
 
  <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>

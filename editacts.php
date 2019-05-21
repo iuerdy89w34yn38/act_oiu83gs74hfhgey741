@@ -228,6 +228,9 @@ if(isset($_POST['del'])){
                
                
             </section>
+
+       
+
   	  	    <div class="card-header" style="padding-bottom: 0px;">
   	  	      <h4 class="card-title">View Existing Accounts</h4>
   	  	    </div>
@@ -235,92 +238,77 @@ if(isset($_POST['del'])){
 
   	  	      <div class="card-body">
   	  	      	<form action="" method="POST">
-  	  	      	<div class="row align-conter-center">
-
-  		  	      	<div class="col-sm-3">
-  			  	      	<h2>Name</h2>
-  		  	      	</div>
-                  <div class="col-sm-2">
-                    <h2>Type </h2>
-                  </div>
-                  <div class="col-sm-2">
-                    <h2>Purpose </h2>
-                  </div>
-  		  	      	<div class="col-sm-2">
-  			  	      	<h2>Balance </h2>
-  		  	      	</div>
-  		  	      	<div class="col-sm-3">
-                    <h2>Update / Delete </h2>
-  		  	      	</div>
-  		  	      	
-  	  	      	</div>
-                <hr><br> 
-  	  	      	<?php
-
-  	  	      	$rows1s =mysqli_query($con,"SELECT * FROM acts  ORDER BY name" ) or die(mysqli_error($con));
-  	  	      	          
-  	  	      		while($rows1=mysqli_fetch_array($rows1s)){
-  	  	      			
-  	  	      			$id = $rows1['id'];
-  	  	      			$name = $rows1['name']; 
-                    $type = $rows1['type']; 
-                    $purpose = $rows1['purpose']; 
-                    $balance = $rows1['balance']; 
-  	  	      			$nodel = $rows1['nodel']; 
 
 
-                    $tcr=0;
-                    $tdr=0;
-                    $total=0;
-                    $rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$id " ) or die(mysqli_error($con));
+                  <table id="ex1" class="table table-bordered table-striped  dataex-select-multi">
 
-                    while($row=mysqli_fetch_array($rows)){
-                      $cr = $row['cr'];
-                      $tcr=$tcr+$cr;
-                    } 
-                    $rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$id " ) or die(mysqli_error($con));
+                    <thead>
+                      
+                      <tr>
+                      <td>ID</td>
+                      <td>Name</td>
+                      <td>Type</td>
+                      <td>Purpose</td>
+                      <td>Balance</td>
+                      <td>Update</td>
+                    </tr>
+                    </thead> 
 
-                    while($row=mysqli_fetch_array($rows)){
-                      $dr = $row['dr'];
-                      $tdr=$tdr+$dr;
-                    } 
-                    $total1=$tdr-$tcr;
-                    $total=abs($total1);
-                    ?>
-  	  	      		
-  	  	      	<div class="row  align-items-center" align="">
+                    <tbody>
+                      <?php
+                     
+                    $rows1s =mysqli_query($con,"SELECT * FROM acts  ORDER BY name" ) or die(mysqli_error($con));
+                              
+                      while($rows1=mysqli_fetch_array($rows1s)){
+                        
+                        $id = $rows1['id'];
+                        $name = $rows1['name']; 
+                        $type = $rows1['type']; 
+                        $purpose = $rows1['purpose']; 
+                        $balance = $rows1['balance']; 
+                        $nodel = $rows1['nodel']; 
 
-  		  	      	<div class="col-sm-3">
-  			  	      	<h5><?php echo $name ?></h5>
-  		  	      	</div>
-                  <div class="col-sm-2">
-                    <h5 style="text-transform: capitalize;"><?php echo $type ?> </h5>
-                  </div>
-                  <div class="col-sm-2">
-                    <h5 style="text-transform: capitalize;"><?php echo $purpose ?> </h5>
-                  </div>
-  		  	      	<div class="col-sm-2">
-  			  	      	<h5 style="text-transform: capitalize;">
 
-                    <?php if($id==200021 OR $id==200022) {
-                      echo ' - ';
-                    } else{ ?>
-                      Rs. <?php echo number_format($total); } ?>/-</h5>
-  		  	      	</div>
-  		  	      	<div class="col-sm-1">
-  			  	      	<button name="id" class="btn btn-primary" value="<?php echo $id ?>">Edit</button>
+                        $tcr=0;
+                        $tdr=0;
+                        $total=0;
+                        $rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$id " ) or die(mysqli_error($con));
 
-  		  	      	</div>
-  		  	      	<div class="col-sm-1">
-                    <?php if($nodel==0){ ?>
-  			  	      	<button name="del" class="btn btn-danger" value="<?php echo $id ?>">Del</button>
-                  <?php } ?>
-  		  	      	</div>
-  		  	      	
-  	  	      	</div>
+                        while($row=mysqli_fetch_array($rows)){
+                          $cr = $row['cr'];
+                          $tcr=$tcr+$cr;
+                        } 
+                        $rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$id " ) or die(mysqli_error($con));
+
+                        while($row=mysqli_fetch_array($rows)){
+                          $dr = $row['dr'];
+                          $tdr=$tdr+$dr;
+                        } 
+                        $total1=$tdr-$tcr;
+                        $total=abs($total1);
+                        ?>
+                          <tr>
+                            <td><?php echo $id ?></td>
+                            <td><?php echo $name ?></td>
+                            <td><?php echo $type ?> </td>
+                            <td><?php echo $purpose ?> </td>
+                            <td><?php echo $total ?> </td>
+                            <td>
+                              <button name="id" class="btn btn-primary" value="<?php echo $id ?>">Edit</button>
+                              <?php if($nodel==0){ ?>
+                              <button name="del" class="btn btn-danger" value="<?php echo $id ?>">Del</button>
+                               <?php } ?>
+                            </td>
+
+                          </tr>
+
+                          <?php } ?>
+
+                    </tbody>
+                  </table>
   	  	      	
-  	  	      	<hr>
-  	  	      <?php } ?>
+
+
   	  	      </form>
 
   	  	      <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
@@ -334,8 +322,18 @@ if(isset($_POST['del'])){
     
   </div>
 </div>
+
 <?php include'include/footer.php'; ?>
 
+
+<script type="text/javascript">
+
+      $('#ex1').DataTable( {
+          "order": [[ 1, "asc" ]]
+      } );
+      $.fn.dataTableExt.sErrMode = 'throw';
+
+</script>
 
 </body>
 </html>
