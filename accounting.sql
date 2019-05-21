@@ -883,7 +883,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `name` text NOT NULL,
   `desp` text NOT NULL,
   `price` int(11) NOT NULL DEFAULT '0',
-  `sellprice` int(11) NOT NULL,
+  `sellprice` int(11) NOT NULL DEFAULT '0',
   `quantity` int(11) NOT NULL DEFAULT '0',
   `weight` int(11) NOT NULL DEFAULT '0',
   `stock` int(11) NOT NULL DEFAULT '0',

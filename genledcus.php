@@ -63,13 +63,13 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                 $opbalance = $row['balance'];
 
               } 
-
+              
 
               ?>
               <?php
               $opbalance=Null;
               $datey=date('Y-m-d' , strtotime($dates.'-1 days'));
-              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM journal where actid LIKE '$act'  AND ref=0  AND datec<'$dates' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM journal where actid LIKE '$act'  AND datec<'$dates' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
 
               while($row=mysqli_fetch_array($rows)){
 
@@ -114,7 +114,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                $tdr=0;
                $tcr=0;
 
-               $rows =mysqli_query($con,"SELECT * FROM journal  where datec>='$dates' and datec<='$datee'  AND ref=0 and (actid LIKE '$act' ) ORDER BY id" ) or die(mysqli_error($con));
+               $rows =mysqli_query($con,"SELECT * FROM journal  where datec>='$dates' and datec<='$datee'  AND  (actid LIKE '$act' ) ORDER BY id" ) or die(mysqli_error($con));
 
                while($row=mysqli_fetch_array($rows)){
 

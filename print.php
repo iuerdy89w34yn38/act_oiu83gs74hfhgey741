@@ -44,38 +44,6 @@ if(isset($_GET['delinv'])){
 
 
 
-<?php if (!empty($_GET['id'])){
- $id=$_GET['id'] ; 
-}?>
-
-
-<?php include"include/header.php" ?>
-<?php include"include/sidebar.php" ?>
-<div class="app-content content">
-  <div class="content-wrapper">
-
-
-    <form action="" method="GET">
-      <div class="row">
-        <div class="col-sm-4">
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-block">
-              <div class="card-body">
-
-                <h6>Enter ID:</h2>
-                  <div class="input-group">
-                    <input type="number" class="form-control" name="id" value="<?php if (!empty($id)) echo $id ; ?>"> <input type="submit" class="btn">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-      </form>
 
       <?php if (!empty($_GET['id'])){
 
@@ -148,6 +116,56 @@ if(isset($_GET['delinv'])){
                  </div>
                </div>
                <br>
+
+               <?php
+
+
+               $rows2 =mysqli_query($con,"SELECT * FROM journal where jid='$id' AND ( type LIKE 'Vendors' OR type LIKE 'Customers' )  ORDER BY id limit 1" ) or die(mysqli_error($con));
+
+               while($row2=mysqli_fetch_array($rows2)){
+
+                  $red = 1;
+                  $type = $row2['type'];
+                 $actid = $row2['actid']; 
+
+                 $rows3 =mysqli_query($con,"SELECT * FROM $type where id='$actid' " ) or die(mysqli_error($con));
+
+                 while($row3=mysqli_fetch_array($rows3)){
+
+
+                    $dname = $row3['name'];
+                    $dcompany = $row3['company'];
+                    $dcity = $row3['city'];
+                   $dmobile = $row3['mobile']; 
+
+
+                 }
+
+                 ?>
+
+                  <div class="row text-center">
+
+                   <div class="col-sm-1">
+
+                   </div>
+                   <div class="col-sm-2">
+                    <h4><?php echo $type ?> :</h4>
+                  </div>
+                  <div class="col-sm-8">
+                    <h4><?php echo $dname ?> - <?php echo $dcompany ?> - <?php echo $dcity ?> - <?php echo $dmobile ?> </h4>
+                  </div>
+
+
+
+                </div>
+
+
+                <br>
+                
+
+               <?php } ?>
+
+               <?php if(empty($red)){ ?>
                <div class="row align-conter-center">
 
                 <div class="col-sm-1">
@@ -190,6 +208,8 @@ if(isset($_GET['delinv'])){
 
            </div>
            <br>
+
+         <?php } ?>
 
 
            <hr>
@@ -265,168 +285,34 @@ if(isset($_GET['delinv'])){
           <h3> Total: <strong>Rs. <?php echo number_format($amount) ?>/-</strong></h3>
 
         </div>
+
+
+        <h1></h1>
         <br>
         <br>
         <br>
 
       </div>
-
-        <a href="print.php?id=<?php echo $id ?>" target="blank" class="btn btn-outline-primary block btn-lg" >
-        <i class="la la-print"></i> Print Invoice!      </a>
+        <div style="margin-top: 400px;">
 
 
-    </div>
-  </div>
-</div>
-</div>
-      <?php if($userrole=='admin'){ ?>
-
-<form action="" method="GET">
-<div class="row">
-  <div class="col-md-4">
-  </div>
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-body">
-    <div class="form-group">
-
-   
 
 
-      <button type="button" class="btn btn-outline-danger block btn-lg" data-toggle="modal"
-      data-target="#default">
-      <i class="la la-trash"></i> Delete Invoice!
-    </button>
+          <hr>
 
 
-    <!-- Modal -->
-    <div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-danger">
-          <h4 class="modal-title" id="myModalLabel1">Are You Sure!</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-         
+          <h2>&nbsp; &nbsp; Customer Details:</h2>
 
-          <p>
-            Deleting an Inovice will Delete all the records from the transaction regarding that Invoice ID.
-           
-
-          </p>
-        
-
-        </div>
-        <div class="modal-footer">
-          <p>
-            Are you still want to Delelte this Invoice?
-          </p>
-          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">No</button>
-    
-          <button type="submit" class="btn btn-danger" name="delinv" value="<?php echo $id ?>">Yes!</button>
-  
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-</form>
-
-  <?php } ?>
-
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
 
 <?php } } ?>
-<style type="text/css">
-.table td{
-  text-align: left;
-}
-.table thead td{
-  font-weight: 600;
-}
-</style>
-
-
-<center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
-
-<div class="row">
-  <div class="col-md-1">
-  </div>
-  <div class="col-md-10">
-
-    <div class="card">
-      <div class="card-header" style="padding-bottom: 0px;">
-        <h4 class="card-title">View Recent 20  Invoices</h4>
-      </div>
-      <div class="card-block">
-        <div class="card-body">
-         <form action="" method="get">
-             <div class="row align-conter-center">
 
 
 
-               <div class="col-sm-12">
-
-                <table class="table table-bordered table-striped  dataex-select-multi ">
-                  <thead>
-                    <tr>
-                      <td>Invoice</td>
-                      <td>Description</td>
-                      <td>View/Edit</td>
-                    </thead>
-                    <tbody>
-
-                      <?php
-
-                      $rows =mysqli_query($con,"SELECT * FROM transaction  ORDER BY id desc LIMIT 20" ) or die(mysqli_error($con));
-
-                      while($row=mysqli_fetch_array($rows)){
-
-                        $id = $row['id'];
-                        $desp = $row['desp'];
-                        ?>
-
-                        <tr>
-                          <td><?php echo $id ?></td>
-                          <td><?php echo $desp ?></td>
-                          <td><button class="btn btn-primary  block-element" name="id" value="<?php echo $id ?>">View</button></td>
-
-                        </tr>
-                      <?php } ?>
-
-                    </tbody>
-
-                  </table>
-                </div>
-
-
-              </div>
-
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-
-
-
-</div>
-</div>
-  <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
 
 
 
