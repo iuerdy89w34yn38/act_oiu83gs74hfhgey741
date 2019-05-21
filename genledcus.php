@@ -73,6 +73,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
               while($row=mysqli_fetch_array($rows)){
 
+
                 $opbalance = $row['balance'];
 
               }

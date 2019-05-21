@@ -143,17 +143,48 @@ if(isset($_GET['delinv'])){
 
                  ?>
 
-                  <div class="row text-center">
+                  <div class="row text-left">
 
-                   <div class="col-sm-1">
+                   <div class="col-sm-2">
 
                    </div>
                    <div class="col-sm-2">
-                    <h4><?php echo $type ?> :</h4>
+                    <h4>ID:</h4>
                   </div>
-                  <div class="col-sm-8">
-                    <h4><?php echo $dname ?> - <?php echo $dcompany ?> - <?php echo $dcity ?> - <?php echo $dmobile ?> </h4>
+                  <div class="col-sm-3">
+                    <h4><?php echo $actid ?>  </h4>
                   </div>
+                   <div class="col-sm-2">
+                    <h4> Address:</h4>
+                  </div>
+                  <div class="col-sm-3">
+                    <h4> <?php echo $dcity ?> </h4>
+                  </div>
+
+
+
+
+                </div>
+
+
+                  <div class="row text-left">
+
+                   <div class="col-sm-2">
+
+                   </div>
+                   <div class="col-sm-2">
+                    <h4>Name:</h4>
+                  </div>
+                  <div class="col-sm-3">
+                    <h4><?php echo $dname ?>  </h4>
+                  </div>
+                   <div class="col-sm-2">
+                    <h4> Phone:</h4>
+                  </div>
+                  <div class="col-sm-3">
+                    <h4> <?php echo $dmobile ?> </h4>
+                  </div>
+
 
 
 
@@ -274,40 +305,111 @@ if(isset($_GET['delinv'])){
 
        <?php } ?>
 
+
+       <?php
+       $tdr=0;
+       $tcr=0;
+       $tbalance=0;
+
+
+       $rows =mysqli_query($con,"SELECT * FROM journal  where datec='$datec'  AND actid = '$actid'  AND jid<=$id ORDER BY id" ) or die(mysqli_error($con));
+
+       while($row=mysqli_fetch_array($rows)){
+
+         $dr=$row['dr'];
+         $cr=$row['cr']; 
+
+         $tdr=$tdr+$dr;
+         $tcr=$tcr+$cr;
+
+         $tbalance = $tbalance + $dr;
+         $tbalance = $tbalance - $cr;
+
+       }
+         ?>
+
+         <br><hr><br>
+
+
        <div class="row align-conter-center">
 
-         <div class="col-sm-8">
+         <div class="col-sm-7">
          </div>
-         <div class="col-sm-4">
-          <hr>
-          <br>
+         <div class="col-sm-2">
+        
 
-          <h3> Total: <strong>Rs. <?php echo number_format($amount) ?>/-</strong></h3>
+          <h3> Total: </h3>
+        
+
+
+
+
+
+
+
+        </div>
+
+        <div class="col-sm-2">
+          <h3>
+          <strong>Rs. <?php echo number_format($amount) ?>/-</strong>
+        </h3>
+        </div>
+
+
+      </div>
+       <div class="row align-conter-center">
+
+         <div class="col-sm-7">
+         </div>
+         <div class="col-sm-2">
+     
+
+
+
+
+            <h3> Closing Balance: </h3>
+
+
+
+
+        </div>
+
+        <div class="col-sm-2">
+          <h3>
+          <strong>Rs. <?php if($tbalance===0) echo '0' ; else echo number_format($tbalance) ?>/-</strong>
+        </h3>
 
         </div>
 
 
-        <h1></h1>
-        <br>
-        <br>
-        <br>
+       
+
 
       </div>
-        <div style="margin-top: 400px;">
 
 
 
 
-          <hr>
+        <div style="margin: 300px 30px 40px 30px; border:1px solid black">
 
 
-          <h2>&nbsp; &nbsp; Customer Details:</h2>
+
+
+
 
           <br>
           <br>
           <br>
           <br>
           <br>
+
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+
+        </div>
 
 <?php } } ?>
 
