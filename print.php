@@ -389,18 +389,15 @@ if(isset($_GET['delinv'])){
 
 
 
-        <div style="margin: 300px 30px 40px 30px; border:1px solid black; position: absolute;width: 92%;">
+        <div style="position: fixed;    bottom: 0;width: 92%;">
+        <div style="border:1px solid black;">
 
 
 
 
 
 
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
+
 
           <br>
           <br>
@@ -408,7 +405,52 @@ if(isset($_GET['delinv'])){
           <br>
           <br>
 
+            </div>
+            <br>
+            <br>
+         
+         <table>
+           <tr>
+              <td>
+                <center>
+                  <h2>Prepared By:</h2>
+                  <br>
+                  <h2 style="font-family: none;">_________________</h2>
+                  <br>
+                </center>
+              </td>
+              <td>
+                <center>
+                  <h2>Approved By:</h2>
+                  <br>
+                  <h2 style="font-family: none;">_________________</h2>
+                  <br>
+                </center>
+              </td>
+              <td>
+                <center>
+                  <h2>Dealer Stamp:</h2>
+                  <br>
+                  <h2 style="font-family: none;">_________________</h2>
+                  <br>
+                </center>
+                </td>
+                <td>
+                  <center>
+                    <h2>Recieved By:</h2>
+                    <br>
+                    <h2 style="font-family: none;">_________________</h2>
+                    <br>
+                  </center>
+                </td>
+           </tr>
+         </table>
+         
+         <br>
+         <br>
         </div>
+
+
 
 <?php } } ?>
 

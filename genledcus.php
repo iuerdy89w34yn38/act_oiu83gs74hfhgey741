@@ -42,9 +42,13 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header" style="padding-bottom: 0px;">
+
+            <h4 class="card-title"><br><?php echo $comp_name ?></h4>
+            <br>
             <h4 class="card-title">Ledger form <?php echo $dates ?> to <?php echo $datee ?></h4>
 
             <div class="heading-elements">
+
               <ul class="list-inline mb-0">
                 <li><a data-action="collapse"><i class="la la-minus"></i></a></li>
                 <li><a data-action="expand"><i class="la la-square-o"></i></a></li>
@@ -54,6 +58,82 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
           </div>
           <div class="card-content collpase show">
             <div class="card-body">
+
+              
+              <br>
+              <br>
+              <br>
+
+
+              <?php
+
+
+
+                $rows3 =mysqli_query($con,"SELECT * FROM customers where id='$act' " ) or die(mysqli_error($con));
+
+                while($row3=mysqli_fetch_array($rows3)){
+
+
+                   $dname = $row3['name'];
+                   $dcompany = $row3['company'];
+                   $dcity = $row3['city'];
+                  $dmobile = $row3['mobile']; 
+
+
+                }
+
+                ?>
+
+                 <div class="row text-left">
+
+                  <div class="col-sm-2">
+
+                  </div>
+                  <div class="col-sm-2">
+                   <h4>Customer ID:</h4>
+                 </div>
+                 <div class="col-sm-3">
+                   <h4><?php echo $act ?>  </h4>
+                 </div>
+                  <div class="col-sm-2">
+                   <h4> Address:</h4>
+                 </div>
+                 <div class="col-sm-3">
+                   <h4> <?php echo $dcity ?> </h4>
+                 </div>
+
+
+
+
+               </div>
+                  <div class="row text-left">
+
+                   <div class="col-sm-2">
+
+                   </div>
+                   <div class="col-sm-2">
+                    <h4>Name:</h4>
+                  </div>
+                  <div class="col-sm-3">
+                    <h4><?php echo $dname ?>  </h4>
+                  </div>
+                   <div class="col-sm-2">
+                    <h4> Phone:</h4>
+                  </div>
+                  <div class="col-sm-3">
+                    <h4> <?php echo $dmobile ?> </h4>
+                  </div>
+
+
+
+
+                </div>  
+
+                <br>
+                <br>
+                <br>
+
+
              <form action="tdetail.php" method="get">
               <?php
               $opbalance=Null;
@@ -83,113 +163,98 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
               <div class="row align-conter-center">
 
-                <div class="col-sm-8">
-                </div>
-                <div class="col-sm-4">
-                 <h3>Opening Balance: <strong>Rs. <?php  if($opbalance===0) echo '0' ; else echo number_format($opbalance);
-                 ?>/-</strong></h3>
-                 <hr>
-               </div>
-             </div>
+                <table class="table-striped table-bordered">
+                  <tr>
+                    <td colspan="3" > </td>
+                    <td> <h4>Opening Balance:</h4> </td>
+                    <td colspan="2"> <h3> <strong>Rs. <?php  if($opbalance===0) echo '0' ; else echo number_format($opbalance);
+                 ?>/-</strong></h3> </td>
 
-             <div class="row align-conter-center">
-
-              <div class="col-sm-2">
-               <h4>Invoice - Date</h4>
-             </div>
-             <div class="col-sm-6">
-               <h4>Description</h4>
-             </div>
-             <div class="col-sm-1">
-               <h4>Debit</h4>
-             </div>
-             <div class="col-sm-1">
-               <h4>Credit</h2>
-               </div>
-               <div class="col-sm-2">
-                 <h4>Balance</h2>
-                 </div>
-
-               </div>
-               <?php
-               $tdr=0;
-               $tcr=0;
-
-               $rows =mysqli_query($con,"SELECT * FROM journal  where datec>='$dates' and datec<='$datee'  AND  (actid LIKE '$act' ) ORDER BY id" ) or die(mysqli_error($con));
-
-               while($row=mysqli_fetch_array($rows)){
-
-                 $id = $row['id'];
-                 $jid = $row['jid'];
-                 $desp = $row['desp'];
-                 $dr=$row['dr'];
-                 $cr=$row['cr']; 
-                 $datec=$row['datec']; 
-                 $tdr=$tdr+$dr;
-                 $tcr=$tcr+$cr;
-
-                 $time = strtotime($datec);
-                 $mydate = date("m/d/Y", $time);
-
-                 $tbalance = $tbalance + $dr;
-                 $tbalance = $tbalance - $cr;
-                 ?>
-
-                 <hr>
-                 <div class="row  align-items-center" align="">
-
-                  <div class="col-sm-2">
-                   <h5><?php echo $jid ?> - <?php echo $mydate ?></h5>
-                 </div> 
-
-                 <div class="col-sm-6">
-                  <a href="viewpay.php?id=<?php echo $jid ?>" target="blank"><h6 style="color:#464855;text-decoration: underline;"><?php echo $desp ?></h6></a>
-                </div> 
-
-                <div class="col-sm-1">
-                 <h5><?php echo number_format($dr) ?></h5>
-               </div> 
-
-               <div class="col-sm-1">
-                 <h5><?php echo number_format($cr) ?></h5>
-               </div>
-
-               <div class="col-sm-2">
-                 <h5><?php echo number_format($tbalance); ?></h5>
-               </div> 
+                  </tr>
+                  <tr>
+                    <td> <h4>Invoice</h4> </td>
+                    <td> <h4>Date</h4> </td>
+                    <td> <h4>Description</h4> </td>
+                    <td> <h4>Debit</h4> </td>
+                    <td> <h4>Credit</h4> </td>
+                    <td> <h4>Balance</h4> </td>
+                  </tr>
 
 
-             </div>
+                      <?php
+                      $tdr=0;
+                      $tcr=0;
 
-           <?php } ?>
-         </form>
-         <div class="row align-conter-center">
+                      $rows =mysqli_query($con,"SELECT * FROM journal  where datec>='$dates' and datec<='$datee'  AND  (actid LIKE '$act' ) ORDER BY id" ) or die(mysqli_error($con));
 
-          <div class="col-sm-8 text-right">
-            <hr>
-            <h4>Total</h4>
-          </div>
-          <div class="col-sm-1">
-            <hr><strong><h5 style="font-weight: 600"><?php echo number_format($tdr) ?></h5></strong>
+                      while($row=mysqli_fetch_array($rows)){
 
-          </div>
-          <div class="col-sm-1">
-            <hr>
-            <strong><h5 style="font-weight: 600"><?php echo number_format($tcr) ?></h5></strong>
-          </div>
+                        $id = $row['id'];
+                        $jid = $row['jid'];
+                        $desp = $row['desp'];
+                        $dr=$row['dr'];
+                        $cr=$row['cr']; 
+                        $datec=$row['datec']; 
+                        $tdr=$tdr+$dr;
+                        $tcr=$tcr+$cr;
 
-        </div>
+                        $time = strtotime($datec);
+                        $mydate = date("m/d/Y", $time);
+
+                        $tbalance = $tbalance + $dr;
+                        $tbalance = $tbalance - $cr;
+                        ?>
+                        <tr>
+                          <td>
+                            <h5><?php echo $jid ?> </h5>
+                          </td> 
+                          <td>
+                            <h5><?php echo $mydate ?></h5>
+                          </td> 
+                          <td>
+                          <a href="viewpay.php?id=<?php echo $jid ?>" target="blank"><h6 style="color:#464855;text-decoration: underline;"><?php echo $desp ?></h6></a>
+                          </td>
+                          <td>
+                           <h5><?php echo number_format($dr) ?></h5>
+                          </td>
+                          <td>
+                          <h5><?php echo number_format($cr) ?></h5>
+                          </td>
+
+                          <td>
+                          <h5><?php echo number_format($tbalance); ?></h5>
+                          </td>
 
 
-        <div class="row align-conter-center">
+                        </tr>
 
-         <div class="col-sm-8">
-         </div>
-         <div class="col-sm-4">
-          <hr>
-          <h3> Closing Balance: <strong>Rs. <?php if($tbalance===0) echo '0' ; else echo number_format($tbalance) ?>/-</strong></h3>
-        </div>
-      </div>
+
+                  <?php } ?>
+
+
+
+
+                    <tr>
+                      <td colspan="2"> </td>
+                      <td> Total: </td>
+                      <td><strong><h5 style="font-weight: 600"><?php echo number_format($tdr) ?></h5></strong> </td>
+                      <td><strong><h5 style="font-weight: 600"><?php echo number_format($tcr) ?></h5></strong> </td>
+                      <td>
+                      </td>
+
+
+                    </tr>
+                   <tr>
+                     <td colspan="3" > </td>
+                     <td> <h4>Closing Balance:</h4> </td>
+                     <td colspan="2"> <h3> <strong>Rs. <?php if($tbalance===0) echo '0' ; else echo number_format($tbalance) ?>/-</strong></h3> </td>
+
+                   </tr>
+
+                </table>
+
+              </div>
+            </form>
 
 
       <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
@@ -200,6 +265,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 <?php } ?>
+<style type="text/css">
+  td{
+    padding: 10px 15px;
+
+  }
+</style>
 
 <?php 
 if (empty($_POST['dates'])) {

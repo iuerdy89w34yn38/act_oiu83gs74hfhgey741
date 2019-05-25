@@ -1,9 +1,17 @@
+
+<?php if (!empty($_GET['id'])){
+ $id=$_GET['id'] ; 
+}?>
+
+<?php header("location:viewinv.php?id=$id"); ?>
+
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
 
   <?php include"include/connect.php" ?>
   <?php include"include/head.php" ?>
+
 
   <title>Invoice - <?php echo $comp_name ?>  </title>
   <style type="text/css">

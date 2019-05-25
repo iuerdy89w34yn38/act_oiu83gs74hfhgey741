@@ -69,6 +69,58 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
           <div class="card-content collpase show">
             <div class="card-body">
 
+              <br>
+              <br>
+
+
+              <?php
+
+
+
+                $rows3 =mysqli_query($con,"SELECT * FROM acts where id='$act' " ) or die(mysqli_error($con));
+
+                while($row3=mysqli_fetch_array($rows3)){
+
+
+                   $chkid = $row3['id'];
+                   $chkname = $row3['name'];
+
+
+
+
+                ?>
+
+                 <div class="row text-left">
+
+                  <div class="col-sm-2">
+
+                  </div>
+                  <div class="col-sm-2">
+                   <h4>Account ID:</h4>
+                 </div>
+                 <div class="col-sm-2">
+                   <h4><?php echo $chkid ?>  </h4>
+                 </div>
+                  <div class="col-sm-2">
+                   <h4> Name:</h4>
+                 </div>
+                 <div class="col-sm-3">
+                   <h4> <?php echo $chkname ?> </h4>
+                 </div>
+
+
+
+
+               </div>
+
+                <br>
+
+              <?php } ?>
+                <br>
+                <br>
+
+
+
               <?php
               $opbalance=Null;
               $rows =mysqli_query($con,"SELECT balance,cr,dr FROM journal  where datec>='$dates' and datec<='$datee' AND ref=0 and (actid LIKE '$act' ) ORDER BY id desc limit 1" ) or die(mysqli_error($con));

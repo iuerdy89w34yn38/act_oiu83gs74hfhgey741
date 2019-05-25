@@ -20,7 +20,20 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 <?php $link="viewitems.php"; ;?>
 
-<?php if (!empty($_POST['id']))  $id=$_POST['id'] ;?>
+
+<?php 
+if (empty($_POST['dates'])) {
+ $dates=date('Y-m-d');
+ $datee=date('Y-m-d');
+}
+?>
+
+<?php if (!empty($_POST['pid'])) {
+ $dates=$_POST['dates'] ;
+ $datee=$_POST['datee'] ;
+ $id=$_POST['pid'] ;
+}
+?>
 
 <?php
 if(isset($_POST['update'])){
@@ -219,8 +232,8 @@ if(isset($_POST['del'])){
               <th>Product Description</th>
               <th>Weight</th>
               <th>Stock</th>
-              <th>Selling</th>
               <th>Price</th>
+              <th>Selling</th>
               <th>Value</th>
               <th>Active</th>
               <th>Edit</th>
@@ -272,7 +285,7 @@ if(isset($_POST['del'])){
                       $total=$tcr-$tdr-$tpdr; 
                       $gtotal=$gtotal+$total;
 
-                      $value=$gtotal*$price;
+                      $value=$gtotal*$sell;
                       $tvalue=$tvalue+$value;
 
                       ?>
@@ -298,9 +311,9 @@ if(isset($_POST['del'])){
                       
                        <td><?php echo $wgt ?> </td> 
 
-                       <td><?php echo $gtotal ?></td> 
+                       <td><?php echo $gtotal ?></td>
+                       <td><?php echo $price ?></td>  
                        <td><?php echo $sell ?></td> 
-                       <td><?php echo $price ?></td> 
                        <td><?php echo number_format($value) ?></td> 
 
                       <td><?php if($pause==0) echo 'Yes'; else echo 'No' ;?> </td>
@@ -354,19 +367,39 @@ if(isset($_POST['del'])){
 ?>
 
 <div class="row">
-<div class="col-sm-2">
-</div>
-<div class="col-sm-8">
+
+
+<div class="col-sm-12">
   <div class="card">
+
+    <?php 
+                      $rows =mysqli_query($con,"SELECT * FROM items WHERE id=$pid ORDER BY name" ) or die(mysqli_error($con));
+
+                      while($row=mysqli_fetch_array($rows)){
+
+                        $proid = $row['id'];
+                        $proname = $row['name']; }
+                        ?>
 
 
     <div class="card-header" style="padding-bottom: 0px;">
-      <h4 class="card-title">View Products</h4>
+      <h4 class="card-title"> <br><br>
+        View <?php echo $proname ?> Log:</h4> <br>
+
+      <div class="heading-elements">
+        <ul class="list-inline mb-0">
+          <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+          <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+          <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+          <li><a data-action="close"><i class="ft-x"></i></a></li>
+        </ul>
+      </div>
+
     </div>
     <div class="card-block">
       <div class="card-body">
          <div class="row align-conter-center">
-          <table class="table table-striped table-bordered dataex-select-multi ">
+          <table class="table table-bordered table-striped  dataex-select-multi ">
             <thead>
               <tr>
                 <th>Date</th>
@@ -381,7 +414,7 @@ if(isset($_POST['del'])){
             <tbody>  
               <?php
 
-                      $rows =mysqli_query($con,"SELECT * FROM itemslog WHERE pid=$pid ORDER BY name" ) or die(mysqli_error($con));
+                      $rows =mysqli_query($con,"SELECT * FROM itemslog WHERE datec>='$dates' and datec<='$datee' AND pid=$pid ORDER BY name" ) or die(mysqli_error($con));
 
                       while($row=mysqli_fetch_array($rows)){
 
@@ -415,6 +448,69 @@ if(isset($_POST['del'])){
              
 
                     <?php } ?>
+
+
+                    <?php
+                          $tvalue=0;
+                            $rows1 =mysqli_query($con,"SELECT * FROM items where id=$pid  ORDER BY name" ) or die(mysqli_error($con));
+
+                            while($row1=mysqli_fetch_array($rows1)){
+
+                              $id = $row1['id'];
+                              $name = $row1['name'];
+                              $brand=$row1['brand'];
+                              $desp=$row1['desp'];
+                              $wgt=$row1['weight']; 
+
+                              $price=$row1['price']; 
+                              $sell=$row1['sellprice']; 
+                              $pause=$row1['pause']; 
+
+
+                              $tcr=0;
+                              $tdr=0;
+                              $tpdr=0;
+                              $total=0;
+                              $gtotal=0;
+
+                              $rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$id AND type='in' ORDER BY id desc" ) or die(mysqli_error($con));
+                              $sales=0;
+                              while($row=mysqli_fetch_array($rows)){
+                                $cr = $row['quantity'];
+                                $tcr=$tcr+$cr;
+                              } 
+                              $rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$id AND type='out' ORDER BY id desc" ) or die(mysqli_error($con));
+                              $salesr=0;
+                              while($row=mysqli_fetch_array($rows)){
+                                $dr = $row['quantity'];
+                                $tdr=$tdr+$dr;
+                              } 
+                              $rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$id AND type='preturn' ORDER BY id desc" ) or die(mysqli_error($con));
+                              $salesr=0;
+                              while($row=mysqli_fetch_array($rows)){
+                                $dr = $row['quantity'];
+                                $tpdr=$tpdr+$dr;
+                              } 
+                              $total=$tcr-$tdr-$tpdr; 
+                              $gtotal=$gtotal+$total;
+
+                              $value=$gtotal*$sell;
+                              $tvalue=$tvalue+$value;
+
+                              ?>
+
+                              <tr>
+                                <td><?php echo $gtotal ?></td>
+                              </tr>
+
+
+
+
+
+
+
+
+                            <?php } ?>
                  
             </tbody>
           </table>
@@ -430,16 +526,32 @@ if(isset($_POST['del'])){
 
 <form action="" method="POST">
 <div class="row">
-<div class="col-sm-3">
+<div class="col-sm-1">
 </div>
-<div class="col-sm-5">
+<div class="col-sm-10">
   <div class="card">
     <div class="card-block">
       <div class="card-body">
         <h6>Select Product to view Recent Purchased Price </h6> 
         <div class="row">
+          <div class="col-md-3">
+            <p>Starting Date:</p>
+            <div class="input-group">
+              <input type="date" class="form-control" name="dates" value="<?php echo $dates ?>"> 
+            </div>
+          </div>
+          <div class="col-md-3">
 
-        <div class="col-md-8">
+            <p>Ending Date:</p>
+            <div class="input-group">
+              <input type="date" class="form-control" name="datee" value="<?php echo $datee ?>">
+            </div>
+          </div>
+
+
+        <div class="col-md-4">
+            <p>Product:</p>
+
           <select class="select select2 form-control" name="pid">
             <?php
 
@@ -457,7 +569,7 @@ if(isset($_POST['del'])){
 
           </select>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
 
            <input type="submit" class="btn">
         </div>
