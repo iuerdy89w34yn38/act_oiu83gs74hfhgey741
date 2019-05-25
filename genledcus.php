@@ -185,7 +185,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                       $tdr=0;
                       $tcr=0;
 
-                      $rows =mysqli_query($con,"SELECT * FROM journal  where datec>='$dates' and datec<='$datee'  AND  (actid LIKE '$act' ) AND ref=0 ORDER BY id" ) or die(mysqli_error($con));
+                      $rows =mysqli_query($con,"SELECT * FROM journal  where datec>='$dates' and datec<='$datee'  AND  (actid LIKE '$act' )  ORDER BY id" ) or die(mysqli_error($con));
 
                       while($row=mysqli_fetch_array($rows)){
 
