@@ -125,8 +125,9 @@ if(isset($_GET['delinv'])){
                while($row2=mysqli_fetch_array($rows2)){
 
                   $red = 1;
-                  $type = $row2['type'];
+                  $type1 = $row2['type'];
                  $actid = $row2['actid']; 
+                   $type=strtolower($type1);
 
                  $rows3 =mysqli_query($con,"SELECT * FROM $type where id='$actid' " ) or die(mysqli_error($con));
 
@@ -137,6 +138,7 @@ if(isset($_GET['delinv'])){
                     $dcompany = $row3['company'];
                     $dcity = $row3['city'];
                    $dmobile = $row3['mobile']; 
+
 
 
                  }
