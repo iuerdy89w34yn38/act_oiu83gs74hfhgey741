@@ -182,7 +182,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
                 <td>Description</td>
                 <td>Debit</td>
                 <td>Credit</td>
-                <td>Balance</td>
+                <td style="min-width: 150px">Balance</td>
               </tr>
               </thead> 
 
