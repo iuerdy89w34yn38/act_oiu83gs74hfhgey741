@@ -8,7 +8,6 @@
 
 
 
-
 <title>Balance Sheet - <?php echo $comp_name ?>  </title>
 
 <style type="text/css">
