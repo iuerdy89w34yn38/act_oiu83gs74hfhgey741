@@ -16,8 +16,8 @@
   </style>
   
 </head>
-<body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
-data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+<body style="background: none;" class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
+data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="window.print(); window.close();">
 
 <?php $link="genled.php"; ;?>
 
@@ -65,6 +65,32 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
           </div>
           <div class="card-content collpase show">
             <div class="card-body">
+              <br>
+              <div class="row">
+                <div class="col-sm-1 text-right">
+                </div>
+                <div class="col-sm-2 text-right">
+
+                  <img src="images/logo.png" style="max-width: 100px;">
+
+                </div>
+                <div class="col-sm-4">
+                  <h3>
+                  <?php echo $comp_name ?>
+                 </h3>
+                </div>
+                <div class="col-sm-4">
+
+                  <h3>
+
+                  <?php echo $comp_address ?>
+                 - 
+
+                  <?php echo $comp_phone ?>
+                </h3>
+                </div>
+
+              </div>
 
               <br>
               <br>
@@ -110,13 +136,10 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
                </div>
 
-                <br>
+
 
               <?php } ?>
                 <br>
-                <br>
-
-
 
               <?php
               $opbalance=Null;
