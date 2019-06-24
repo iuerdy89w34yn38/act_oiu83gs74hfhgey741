@@ -34,6 +34,11 @@ if (empty($_POST['dates'])) {
  $id=$_POST['pid'] ;
 }
 ?>
+<?php if (!empty($_POST['eid'])) {
+
+ $eid=$_POST['eid'] ;
+}
+?>
 
 <?php
 if(isset($_POST['update'])){
@@ -98,11 +103,11 @@ if(isset($_POST['del'])){
   <div class="content-wrapper">
 
 
-  	<?php if (!empty($id)) { ?>
+  	<?php if (!empty($eid)) { ?>
 
      <?php
 
-     $rows =mysqli_query($con,"SELECT * FROM items WHERE id=$id" ) or die(mysqli_error($con));
+     $rows =mysqli_query($con,"SELECT * FROM items WHERE id=$eid" ) or die(mysqli_error($con));
 
      while($row=mysqli_fetch_array($rows)){
 
@@ -183,7 +188,7 @@ if(isset($_POST['del'])){
              </div>
              <div class="col-sm-1">
                <span>&nbsp;</span>
-               <button name="update" class="btn btn-primary" value="<?php echo $id ?>">Update</button>
+               <button name="update" class="btn btn-primary" value="<?php echo $eid ?>">Update</button>
 
              </div>
 
@@ -321,7 +326,7 @@ if(isset($_POST['del'])){
                       <td>
                      
 
-                        <button name="id" class="btn btn-primary" value="<?php echo $id ?>"><i class="la la-pencil"></i></button>
+                        <button name="eid" class="btn btn-primary" value="<?php echo $id ?>"><i class="la la-pencil"></i></button>
 
 
                       </td> 
