@@ -97,15 +97,33 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
 
 
               <?php
+ 
+
+              if($act>400000 && $act<600000){
+                $acts='vendors';
+                $ref="'0' OR ref='1'";
+
+              }else
+              if($act>600000 && $act<800000){
+                $acts='customers';
+                $ref="'0' OR ref='1'";
+                
 
 
+              }else{
+                $acts='acts';
+                $ref=0;
 
-                $rows3 =mysqli_query($con,"SELECT * FROM acts where id='$act' " ) or die(mysqli_error($con));
+
+              }
+
+
+                $rows3 =mysqli_query($con,"SELECT * FROM $acts where id='$act' " ) or die(mysqli_error($con));
 
                 while($row3=mysqli_fetch_array($rows3)){
 
 
-                   $chkid = $row3['id'];
+                    $chkid = $row3['id'];
                    $chkname = $row3['name'];
 
 
@@ -124,7 +142,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
                  <div class="col-sm-2 text-left " >
                    <h4><?php echo $chkid ?>  </h4>
                  </div>
-                  <div class="col-sm-2 text-right"">
+                  <div class="col-sm-2 text-right">
                    <h4> Name:</h4>
                  </div>
                  <div class="col-sm-3 text-left">
@@ -143,7 +161,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
 
               <?php
               $opbalance=Null;
-              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM journal  where datec>='$dates' and datec<='$datee' AND ref=0 and (actid LIKE '$act' ) ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM journal  where datec>='$dates' and datec<='$datee' AND ( ref=$ref ) and (actid LIKE '$act' ) ORDER BY id desc limit 1" ) or die(mysqli_error($con));
 
               while($row=mysqli_fetch_array($rows)){
                 $opbalance = $row['balance'];
@@ -155,7 +173,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
               <?php
               $opbalance=Null;
               $datey=date('Y-m-d' , strtotime($dates.'-1 days'));
-              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM journal where actid LIKE '$act'  AND ref=0  AND datec<'$dates' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+              $rows =mysqli_query($con,"SELECT balance,cr,dr FROM journal where actid LIKE '$act'  AND ( ref=$ref )  AND datec<'$dates' ORDER BY id desc limit 1" ) or die(mysqli_error($con));
 
               while($row=mysqli_fetch_array($rows)){
 
@@ -191,7 +209,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
                 $tdr=0;
                 $tcr=0;
 
-                $rows =mysqli_query($con,"SELECT * FROM journal  where datec>='$dates' and datec<='$datee'  AND ref=0 and (actid LIKE '$act' ) ORDER BY id desc" ) or die(mysqli_error($con));
+                $rows =mysqli_query($con,"SELECT * FROM journal  where datec>='$dates' and datec<='$datee'  AND ( ref=$ref ) and (actid LIKE '$act' ) ORDER BY id desc" ) or die(mysqli_error($con));
 
                 while($row=mysqli_fetch_array($rows)){
 

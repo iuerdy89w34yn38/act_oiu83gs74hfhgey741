@@ -223,7 +223,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 
-<form action="printgenled.php" method="POST" target="blank">
+<form action="printledger.php" method="POST" target="blank">
   <div class="row">
     <div class="col-sm-1">
     </div>

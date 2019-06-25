@@ -19,7 +19,7 @@
   <body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
   data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
-  <?php $link="genledcus.php"; ;?>
+  <?php $link="genledvend.php"; ;?>
 
   <?php if (!empty($_POST['dates'])) {
    $dates=$_POST['dates'] ;
@@ -255,6 +255,63 @@
 
                 </div>
               </form>
+
+
+              
+
+
+
+<form action="printledger.php" method="POST" target="blank">
+  <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-10">
+      <div class="card">
+        <div class="card-block">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-3" style="display: none;">
+                <p>Starting Date:</p>
+                <div class="input-group">
+                  <input type="date" class="form-control" name="dates" value="<?php echo $dates ?>"> 
+                </div>
+              </div>
+              <div class="col-md-3" style="display: none;">
+
+                <p>Ending Date:</p>
+                <div class="input-group">
+                  <input type="date" class="form-control" name="datee" value="<?php echo $datee ?>">
+                </div>
+              </div>
+
+              <div class="col-sm-3" style="display: none;">
+                <p>Select Account</p>
+                <select class="form-control select2" name="act">
+              
+
+                    <option value="<?php echo $act ?>" ><?php echo $act ?></option>
+
+               
+
+
+                </select>
+
+              </div>
+
+              <div class="col-md-5">     </div>
+              <div class="col-md-1"> <button type="submit" class="btn btn-primary" > <i class="la la-print"></i> Print </button>    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+
+  
+
 
 
         <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>

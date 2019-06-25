@@ -1,17 +1,9 @@
-
-<?php if (!empty($_GET['id'])){
- $id=$_GET['id'] ; 
-}?>
-
-<?php header("location:viewinv.php?id=$id"); ?>
-
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
 
   <?php include"include/connect.php" ?>
   <?php include"include/head.php" ?>
-
 
   <title>Invoice - <?php echo $comp_name ?>  </title>
   <style type="text/css">
@@ -27,7 +19,24 @@
 <body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
 data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
-<?php $link="viewpay.php"; ;?>
+<?php $link="viewinv.php"; ;?>
+
+<?php
+if(isset($_GET['delinv'])){
+  $msg="Unsuccessful" ;
+  
+  $inv=$_GET['delinv'];
+
+  $data=mysqli_query($con,"DELETE FROM transaction where id = $inv")or die( mysqli_error($con) );
+  $data=mysqli_query($con,"DELETE FROM journal where jid = $inv")or die( mysqli_error($con) );
+  $data=mysqli_query($con,"DELETE FROM itemslog where jid = $inv")or die( mysqli_error($con) );
+
+  $msg=" Deleted Invoice" ;
+  
+}
+?>
+
+
 
 
 
@@ -51,7 +60,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
             <div class="card-block">
               <div class="card-body">
 
-                <h6>Enter ID:</h6>
+                <h6>Enter ID:</h2>
                   <div class="input-group">
                     <input type="number" class="form-control" name="id" value="<?php if (!empty($id)) echo $id ; ?>"> <input type="submit" class="btn">
                   </div>
@@ -60,92 +69,9 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
             </div>
           </div>
         </div>
+
+
       </form>
-
-
-
-
-      <?php if (!empty($_GET['id'])){
-        $jid=$_GET['id'] ; 
-        ?>
-
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header" style="padding-bottom: 0px;">
-            <h4 class="card-title">Voucher transaction</h4>
-          </div>
-          <div class="card-block">
-            <div class="card-body">
-
-
-             
-               <div class="row align-conter-center">
-
-                <div class="col-sm-2">
-                 <h4>Account</h4>
-               </div>
-                <div class="col-sm-5">
-                 <h4>Description</h4>
-               </div>
-                <div class="col-sm-2">
-                 <h4>Type</h4>
-               </div>
-                <div class="col-sm-2">
-                 <h4>Debit</h4>
-               </div>
-                <div class="col-sm-1">
-                 <h4>Credit</h4>
-               </div>
-
-             </div>
-             <?php
-
-
-             $rows =mysqli_query($con,"SELECT * FROM journal  where jid='$jid' ORDER BY id " ) or die(mysqli_error($con));
-
-             while($row=mysqli_fetch_array($rows)){
-
-               $id = $row['id'];
-               $actid = $row['actid'];
-               $desp = $row['desp'];
-               $type = $row['type'];
-               $dr=$row['dr'];
-               $cr=$row['cr'];
-
-               ?>
-
-               <hr>
-               <div class="row  align-items-center" align="">
-
-                <div class="col-sm-2">
-                 <h5><?php echo $actid ?></h5>
-               </div> 
-               
-                <div class="col-sm-5">
-                <h5><?php echo $desp ?></h5>
-               </div> 
-                <div class="col-sm-2">
-                  <p style="text-transform: capitalize;"><?php echo $type ?> </p>
-               </div> 
-               
-                <div class="col-sm-2">
-                 <h5><?php echo $dr ?></h5>
-               </div> 
-               
-                <div class="col-sm-1">
-                 <h5><?php echo $cr ?></h5>
-               </div> 
-
-
-             </div>
-
-           <?php }  
-         }
-         ?>
-        
-       </div>
-     </div></div>
-
 
       <?php if (!empty($_GET['id'])){
 
@@ -246,7 +172,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
               <div class="col-sm-8  ">
 
-              <h4><?php echo $desp ?></h4>
+                <a href="viewv.php?jid=<?php echo $id ?>" target="blank"><h4><?php echo $desp ?></h4></a>
               </div> 
               <br>
               <br>
@@ -264,41 +190,32 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
            <hr>
            <br>
-           <?php 
-          
-          $sql="SELECT id FROM itemslog WHERE jid=$id ";
+           <?php if(($dract>200000 AND $dract<400000) OR ($cract>200000 AND $cract<400000) ){ ?>
 
-          $result=mysqli_query($con,$sql);
-            $rowcount=mysqli_num_rows($result);
-           
+             <div class="row align-conter-center">
 
-           if(!empty($rowcount)){
-            ?>
-
-           <div class="row align-conter-center">
-
-             <div class="col-sm-1">
-             </div>
-             <div class="col-sm-4">
-               <h2> Product </h2>
-             </div>
-             <div class="col-sm-2">
-               <h2> Price </h2>
-             </div>
-             <div class="col-sm-2">
+               <div class="col-sm-1">
+               </div>
+               <div class="col-sm-4">
+                 <h2> Product </h2>
+               </div>
+               <div class="col-sm-2">
+                 <h2> Price </h2>
+               </div>
+               <div class="col-sm-2">
                 <h2> Quantity </h2>
-             </div>
-             <div class="col-sm-2">
+              </div>
+              <div class="col-sm-2">
                 <h2> Sub Total </h2>
-             </div>
-           </div>
-           <hr>
-           <br>
-           <?php 
-           $rowsp =mysqli_query($con,"SELECT * FROM itemslog  where jid='$id' " ) or die(mysqli_error($con));
-           $total=0;
+              </div>
+            </div>
+            <hr>
+            <br>
+            <?php 
+            $rowsp =mysqli_query($con,"SELECT * FROM itemslog  where jid='$id' " ) or die(mysqli_error($con));
+            $total=0;
 
-           while($rowp=mysqli_fetch_array($rowsp)){
+            while($rowp=mysqli_fetch_array($rowsp)){
 
              $pname = $rowp['name'];
              $pquantity = $rowp['quantity'];
@@ -309,14 +226,14 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
              $total=$total+$itotal;
 
              ?>
-           <div class="row align-conter-center">
+             <div class="row align-conter-center">
 
-             <div class="col-sm-1">
-             </div>
-             <div class="col-sm-4">
+               <div class="col-sm-1">
+               </div>
+               <div class="col-sm-4">
                 <h4> <?php echo $pname ?> </h4>
-             </div>
-             <div class="col-sm-2">
+              </div>
+              <div class="col-sm-2">
                <h4>  <?php echo $pprice ?> </h4>
              </div>
              <div class="col-sm-2">
@@ -327,41 +244,194 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
              </div>
            </div>
            
-           <?php } ?>
-
-            
-
          <?php } ?>
 
-           <div class="row align-conter-center">
-
-             <div class="col-sm-8">
-             </div>
-             <div class="col-sm-4">
-              <hr>
-              <br>
-
-              <h3> Total: <strong>Rs. <?php echo number_format($amount) ?>/-</strong></h3>
-              
-            </div>
-            <br>
-            <br>
-            <br>
-
-          </div>
 
 
-          <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
+       <?php } ?>
+
+       <div class="row align-conter-center">
+
+         <div class="col-sm-8">
+         </div>
+         <div class="col-sm-4">
+          <hr>
+          <br>
+
+          <h3> Total: <strong>Rs. <?php echo number_format($amount) ?>/-</strong></h3>
+
+        </div>
+        <br>
+        <br>
+        <br>
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5">
+        </div>
+
+        <div class="col-sm-2">
+
+        <a href="print.php?id=<?php echo $id ?>" target="blank" class="btn btn-outline-primary block btn-lg" >
+        <i class="la la-print"></i> Print    </a>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+      <?php if($userrole=='admin'){ ?>
+
+<form action="" method="GET">
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+    <div class="form-group">
+
+   
+
+
+      <button type="button" class="btn btn-outline-danger block btn-lg" data-toggle="modal"
+      data-target="#default">
+      <i class="la la-trash"></i> Delete Invoice!
+    </button>
+
+
+    <!-- Modal -->
+    <div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-danger">
+          <h4 class="modal-title" id="myModalLabel1">Are You Sure!</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         
+
+          <p>
+            Deleting an Inovice will Delete all the records from the transaction regarding that Invoice ID.
+           
+
+          </p>
+        
+
+        </div>
+        <div class="modal-footer">
+          <p>
+            Are you still want to Delelte this Invoice?
+          </p>
+          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">No</button>
+    
+          <button type="submit" class="btn btn-danger" name="delinv" value="<?php echo $id ?>">Yes!</button>
+
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</form>
+
+  <?php } ?>
+
 
 <?php } } ?>
+<style type="text/css">
+.table td{
+  text-align: left;
+}
+.table thead td{
+  font-weight: 600;
+}
+</style>
+
+
+<center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
+
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+
+    <div class="card">
+      <div class="card-header" style="padding-bottom: 0px;">
+        <h4 class="card-title">View Recent 20  Invoices</h4>
+      </div>
+      <div class="card-block">
+        <div class="card-body">
+         <form action="" method="get">
+             <div class="row align-conter-center">
+
+
+
+               <div class="col-sm-12">
+
+                <table class="table table-bordered table-striped  dataex-select-multi ">
+                  <thead>
+                    <tr>
+                      <td>Invoice</td>
+                      <td>Description</td>
+                      <td>View/Edit</td>
+                    </thead>
+                    <tbody>
+
+                      <?php
+
+                      $rows =mysqli_query($con,"SELECT * FROM transaction  ORDER BY id desc LIMIT 20" ) or die(mysqli_error($con));
+
+                      while($row=mysqli_fetch_array($rows)){
+
+                        $id = $row['id'];
+                        $desp = $row['desp'];
+                        ?>
+
+                        <tr>
+                          <td><?php echo $id ?></td>
+                          <td><?php echo $desp ?></td>
+                          <td><button class="btn btn-primary  block-element" name="id" value="<?php echo $id ?>">View</button></td>
+
+                        </tr>
+                      <?php } ?>
+
+                    </tbody>
+
+                  </table>
+                </div>
+
+
+              </div>
+
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
 
 
 </div>
 </div>
+  <center><h2><?php if(!empty($msg))  echo $msg ;?></h2></center>
+
 
 
 <?php include"include/footer.php" ?>
