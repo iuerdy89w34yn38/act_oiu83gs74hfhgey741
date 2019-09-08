@@ -14,7 +14,7 @@
 
 
 
-    $sql = "UPDATE company SET `theme` = '$themeid' WHERE `id` = 1";
+    $sql = "UPDATE users SET `theme` = '$themeid' WHERE `id` = 1";
 
     mysqli_query($con, $sql);
 
@@ -65,6 +65,50 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
               </div>
               <div class="col-sm-4">
                 <span>Select Theme</span>
+                <select class="form-control select2" name="color"  style="text-transform: capitalize;" >
+
+                  <?php
+
+                  $rows =mysqli_query($con,"SELECT * FROM color  ORDER BY name" ) or die(mysqli_error($con));
+
+                  while($row=mysqli_fetch_array($rows)){
+
+                    $colid = $row['id']; 
+                    $colname = $row['name']; 
+                    ?>
+
+                    <option value="<?php echo $colid ?>" <?php if($colid==$themeid) echo 'selected'?> ><?php echo $colname ?></option>
+
+                  <?php } ?>
+
+                </select>
+
+              </div>
+              
+
+             <div class="col-sm-1">
+               <span>&nbsp;</span>
+               <button name="update" class="btn btn-primary" value="">Update</button>
+
+             </div>
+
+           </div>
+         </form>
+
+         <br><hr>
+
+
+          <h4 class="card-title">Manage Users</h4>
+
+
+           <form action="" method="post">
+             <div class="row">
+
+
+              <div class="col-sm-3">
+              </div>
+              <div class="col-sm-4">
+                <span>Users: </span>
                 <select class="form-control select2" name="color"  style="text-transform: capitalize;" >
 
                   <?php

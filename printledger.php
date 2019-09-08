@@ -17,7 +17,7 @@
   
 </head>
 <body style="background: none;" class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
-data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="window.print(); window.close();">
+data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="window.print(); //window.close();">
 
 <?php $link="genled.php"; ;?>
 
@@ -209,7 +209,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
                 $tdr=0;
                 $tcr=0;
 
-                $rows =mysqli_query($con,"SELECT * FROM journal  where datec>='$dates' and datec<='$datee'  AND ( ref=$ref ) and (actid LIKE '$act' ) ORDER BY id desc" ) or die(mysqli_error($con));
+                $rows =mysqli_query($con,"SELECT * FROM journal  where datec>='$dates' and datec<='$datee'  AND ( ref=$ref ) and (actid LIKE '$act' ) ORDER BY id " ) or die(mysqli_error($con));
 
                 while($row=mysqli_fetch_array($rows)){
 
@@ -269,11 +269,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
 </div>
 </div>
 
-
 <?php } ?>
-
-
-
 
 </div>
 </div>
