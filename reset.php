@@ -26,7 +26,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 	<?php
 
 	// Name of the file
-	$filename = 'accounting.sql';
+	$filename = 'resetquery.sql';
 
 
 

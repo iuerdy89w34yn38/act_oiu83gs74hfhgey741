@@ -34,9 +34,9 @@
           <li class="<?php if($link=="wdcash.php") echo "active"; ?>"><a class="menu-item" href="wdcash.php" >Withdraw Cash</a> </li>
 
 
-          <li class="<?php if($link=="paypur.php") echo "active"; ?>"><a class="menu-item" href="paypur.php" >Accounts Payables </a> </li>
+          <li class="<?php if($link=="actpay.php") echo "active"; ?>"><a class="menu-item" href="actpay.php" >Accounts Payables </a> </li>
 
-          <li class="<?php if($link=="recsale.php") echo "active"; ?>"><a class="menu-item" href="recsale.php" >Accounts Receivealbes</a> </li>
+          <li class="<?php if($link=="actrec.php") echo "active"; ?>"><a class="menu-item" href="actrec.php" >Accounts Receivealbes</a> </li>
 
 
 

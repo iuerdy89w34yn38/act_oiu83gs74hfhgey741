@@ -314,7 +314,7 @@ if(isset($_POST['del'])){
                       
                        <td><?php echo $desp ?></td>
                       
-                       <td><?php echo $wgt ?> </td> 
+                       <td><?php echo $wgt ?> L </td> 
 
                        <td><?php echo $gtotal ?></td>
                        <td><?php echo $price ?></td>  

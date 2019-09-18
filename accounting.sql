@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 03, 2019 at 03:04 PM
+-- Generation Time: Sep 18, 2019 at 07:34 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `accounting`
+-- Database: `accountingn`
 --
 
 -- --------------------------------------------------------
@@ -47,18 +47,18 @@ CREATE TABLE IF NOT EXISTS `acts` (
 --
 
 INSERT INTO `acts` (`id`, `typeid`, `type`, `name`, `slug`, `purpose`, `balance`, `nodel`) VALUES
-(200019, 2, 'Revenue', 'Sales Account', 'sales-account', 'income', 82000, 1),
-(200018, 10, 'Cost of Goods Sold', 'Purchase Account', 'purchase-account', 'inventory', 78000, 1),
-(200016, 5, 'Current Assets', 'Cash in Hands', 'cash-in-hands', 'cash', 67300, 1),
+(200019, 2, 'Revenue', 'Sales Account', 'sales-account', 'income', 0, 1),
+(200018, 10, 'Cost of Goods Sold', 'Purchase Account', 'purchase-account', 'inventory', 0, 1),
+(200016, 5, 'Current Assets', 'Cash in Hands', 'cash-in-hands', 'cash', 0, 1),
 (200021, 5, 'Current Assets', 'Customers', 'customers', 'assets', 0, 1),
 (200022, 3, 'Liability', 'Vendors', 'vendors', 'liabilities', 0, 1),
-(200028, 10, 'Cost of Goods Sold', 'Purchase Return', 'purchase-return', 'inventory', 4500, 1),
+(200028, 10, 'Cost of Goods Sold', 'Purchase Return', 'purchase-return', 'inventory', 0, 1),
 (200029, 2, 'Revenue', 'Sales Return', 'sales-return', 'income', 0, 1),
 (200032, 5, 'Current Assets', 'Open Cheque', 'cheque', 'cash', 0, 1),
 (200038, 10, 'Cost of Goods Sold', 'Purchase Discount', 'purchase-discount', 'inventory', 0, 1),
-(200039, 2, 'Revenue', 'Sales Discount', 'sales-discount', 'income', 100, 1),
-(200042, 1, 'Capital', 'Capital A/c of Hamza Pervaiz', 'capital-a-c-of-hamza-pervaiz', 'capital', 75000, 0),
-(200043, 5, 'Current Assets', 'HBL bank', 'hbl-bank', 'cash', 42600, 0);
+(200039, 2, 'Revenue', 'Sales Discount', 'sales-discount', 'income', 0, 1),
+(200042, 1, 'Capital', 'Capital A/c of Hamza Pervaiz', 'capital-a-c-of-hamza-pervaiz', 'capital', 0, 0),
+(200043, 5, 'Current Assets', 'HBL bank', 'hbl-bank', 'cash', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -885,19 +885,20 @@ CREATE TABLE IF NOT EXISTS `items` (
   `price` int(11) NOT NULL DEFAULT '0',
   `sellprice` int(11) NOT NULL DEFAULT '0',
   `quantity` int(11) NOT NULL DEFAULT '0',
-  `weight` int(11) NOT NULL DEFAULT '0',
+  `weight` float NOT NULL DEFAULT '0',
   `stock` int(11) NOT NULL DEFAULT '0',
   `pause` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`id`, `brand`, `name`, `desp`, `price`, `sellprice`, `quantity`, `weight`, `stock`, `pause`) VALUES
-(1, '4', 'Test Product 1', 'test desp', 450, 550, 0, 780, 10, 0),
-(2, '5', 'Sample Product 2', 'Test Description', 2000, 2200, 0, 10, 2, 0);
+(1, '6', 'Water Bottle', '', 0, 0, 0, 1.5, 0, 0),
+(2, '7', 'Water Bottle', '', 0, 0, 0, 1, 0, 0),
+(3, '8', 'Water Bottle', '', 0, 0, 0, 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -910,7 +911,7 @@ CREATE TABLE IF NOT EXISTS `itemsb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `itemsb`
@@ -918,8 +919,9 @@ CREATE TABLE IF NOT EXISTS `itemsb` (
 
 INSERT INTO `itemsb` (`id`, `name`) VALUES
 (1, 'None'),
-(4, 'Test Brand 1'),
-(5, 'Test Brand 2');
+(6, 'Nestle'),
+(7, 'Gourmet'),
+(8, 'Doce');
 
 -- --------------------------------------------------------
 
@@ -940,23 +942,7 @@ CREATE TABLE IF NOT EXISTS `itemslog` (
   `subtotal` float NOT NULL DEFAULT '0',
   `datec` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1004015 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `itemslog`
---
-
-INSERT INTO `itemslog` (`id`, `jid`, `pid`, `type`, `name`, `price`, `quantity`, `weight`, `subtotal`, `datec`) VALUES
-(1004003, 2005005, 1, 'in', 'Test Product 1', 400, 50, 0, 38000, '2019-06-24'),
-(1004004, 2005005, 2, 'in', 'Sample Product 2', 1800, 10, 0, 38000, '2019-06-24'),
-(1004005, 2005006, 2, 'in', 'Sample Product 2', 2000, 5, 0, 10000, '2019-06-24'),
-(1004006, 2005007, 2, 'out', 'Sample Product 2', 2200, 8, 0, 17600, '2019-06-24'),
-(1004007, 2005008, 1, 'out', 'Test Product 1', 500, 20, 0, 14400, '2019-06-24'),
-(1004008, 2005008, 2, 'out', 'Sample Product 2', 2200, 2, 0, 14400, '2019-06-24'),
-(1004009, 2005009, 2, 'in', 'Sample Product 2', 2000, 5, 0, 21000, '2019-07-03'),
-(1004010, 2005009, 1, 'in', 'Test Product 1', 550, 20, 0, 21000, '2019-07-03'),
-(1004011, 2005010, 1, 'in', 'Test Product 1', 450, 20, 0, 9000, '2019-07-03'),
-(1004012, 2005011, 1, 'preturn', 'Test Product 1', 450, 10, 0, 4500, '2019-07-03');
+) ENGINE=MyISAM AUTO_INCREMENT=1004018 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -979,42 +965,7 @@ CREATE TABLE IF NOT EXISTS `journal` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `journal`
---
-
-INSERT INTO `journal` (`id`, `jid`, `typeid`, `ref`, `actid`, `desp`, `type`, `dr`, `cr`, `balance`, `datec`, `dateup`) VALUES
-(1, 2005003, 1, 0, 200042, 'Capital A/c of Hamza Pervaiz', 'Capital', '0', '50000', 50000, '2019-06-24', '2019-06-24'),
-(2, 2005003, 5, 0, 200016, 'Cash is Coming in Cash in Hands', 'Current Assets', '50000', '0', 50000, '2019-06-24', '2019-06-24'),
-(3, 2005004, 1, 0, 200042, 'Capital A/c of Hamza Pervaiz', 'Capital', '0', '25000', 75000, '2019-06-24', '2019-06-24'),
-(4, 2005004, 5, 0, 200043, 'Cash is Coming in HBL bank', 'Current Assets', '25000', '0', 25000, '2019-06-24', '2019-06-24'),
-(5, 2005005, 5, 0, 200016, 'Goods are Purchased from Test Vendor 1 Against Invoice No. 900pay1 Through Cash in Hands', 'Current Assets', '0', '38000', 12000, '2019-06-24', '2019-06-24'),
-(6, 2005005, 200022, 1, 400002, 'Cash in Hands Purchase', 'Vendors', '38000', '0', 0, '2019-06-24', '2019-06-24'),
-(7, 2005005, 200022, 1, 400002, 'Goods are Purchased from Test Vendor 1 Against Invoice No. 900pay1 Through Cash in Hands', 'Vendors', '0', '38000', 0, '2019-06-24', '2019-06-24'),
-(8, 2005005, 10, 0, 200018, 'Cash in Hands Purchase', 'Cost of Goods Sold', '38000', '0', 38000, '2019-06-24', '2019-06-24'),
-(9, 2005006, 200022, 0, 400002, 'Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. ', 'Vendors', '0', '10000', 10000, '2019-06-24', '2019-06-24'),
-(10, 2005006, 10, 0, 200018, 'Purchase Account', 'Cost of Goods Sold', '10000', '0', 48000, '2019-06-24', '2019-06-24'),
-(11, 2005007, 2, 0, 200019, 'Goods Sold are sold to Test Customer 4 - Sales Account Credited', 'Revenue', '0', '17600', 17600, '2019-06-24', '2019-06-24'),
-(12, 2005007, 200021, 1, 600002, 'Payment Received to HBL bank', 'Customers', '17600', '0', 0, '2019-06-24', '2019-06-24'),
-(13, 2005007, 200021, 1, 600002, 'Goods Sold are sold to Test Customer 4 - Sales Account Credited', 'Customers', '0', '17600', 0, '2019-06-24', '2019-06-24'),
-(14, 2005007, 5, 0, 200043, 'Payment Received to HBL bank', 'Current Assets', '17600', '0', 42600, '2019-06-24', '2019-06-24'),
-(15, 2005008, 2, 0, 200019, 'Goods Sold are sold to Test Customer 4 - Sales Account Credited', 'Revenue', '0', '14400', 32000, '2019-06-24', '2019-06-24'),
-(16, 2005008, 2, 1, 200039, 'Discount Given', 'Revenue', '100', '0', 100, '2019-06-24', '2019-06-24'),
-(17, 2005008, 200021, 1, 600002, 'Discount Given to Test Customer 4', 'Customers', '100', '0', 0, '2019-06-24', '2019-06-24'),
-(18, 2005008, 200021, 1, 600002, 'Payment Received to Cash in Hands', 'Customers', '14300', '0', 0, '2019-06-24', '2019-06-24'),
-(19, 2005008, 200021, 1, 600002, 'Goods Sold are sold to Test Customer 4 - Sales Account Credited', 'Customers', '0', '14400', 0, '2019-06-24', '2019-06-24'),
-(20, 2005008, 2, 0, 200039, 'Discount Given', 'Revenue', '100', '0', 100, '2019-06-24', '2019-06-24'),
-(21, 2005008, 5, 0, 200016, 'Payment Received to Cash in Hands', 'Current Assets', '14300', '0', 26300, '2019-06-24', '2019-06-24'),
-(22, 2005009, 200022, 0, 400002, 'Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. 900pay1', 'Vendors', '0', '21000', 31000, '2019-07-03', '2019-07-03'),
-(23, 2005009, 10, 0, 200018, 'Purchase Account', 'Cost of Goods Sold', '21000', '0', 69000, '2019-07-03', '2019-07-03'),
-(24, 2005010, 5, 0, 200016, 'Goods are Purchased from Test Vendor 1 Against Invoice No. 980pa78 Through Cash in Hands', 'Current Assets', '0', '9000', 17300, '2019-07-03', '2019-07-03'),
-(25, 2005010, 200022, 1, 400002, 'Cash in Hands Purchase', 'Vendors', '9000', '0', 31000, '2019-07-03', '2019-07-03'),
-(26, 2005010, 200022, 1, 400002, 'Goods are Purchased from Test Vendor 1 Against Invoice No. 980pa78 Through Cash in Hands', 'Vendors', '0', '9000', 31000, '2019-07-03', '2019-07-03'),
-(27, 2005010, 10, 0, 200018, 'Cash in Hands Purchase', 'Cost of Goods Sold', '9000', '0', 78000, '2019-07-03', '2019-07-03'),
-(28, 2005011, 10, 0, 200028, 'Purchase Returned from Test Vendor 1 on Credit Against Invoice No. 980pa78 due to Excess Quantity', 'Cost of Goods Sold', '0', '4500', 4500, '2019-07-03', '2019-07-03'),
-(29, 2005011, 200022, 0, 400002, 'Credit Balance Returned for Test Vendor 1', 'Vendors', '4500', '0', 26500, '2019-07-03', '2019-07-03');
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1100,22 +1051,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2005013 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `transaction`
---
-
-INSERT INTO `transaction` (`id`, `desp`, `invoiceno`, `invoicepic`, `chequeno`, `chequeamt`, `dract`, `cract`, `dr`, `cr`, `datec`, `dateup`) VALUES
-(2005003, 'Cash is Desposited from Capital A/c of Hamza Pervaiz to Cash in Hands', '0', NULL, '0', 0, 200042, 200016, 50000, 0, '2019-06-24', '2019-06-24'),
-(2005004, 'Cash is Desposited fromCapital A/c of Hamza Pervaiz to HBL bank', '0', NULL, '0', 0, 200043, 200042, 25000, 25000, '2019-06-24', '2019-06-24'),
-(2005005, 'Goods are Purchased from Test Vendor 1 Against Invoice No. 900pay1 Through Cash in Hands', '900pay1', '04d2ce52c7cb03d5768fdb4a43c42d621.png', '0', 0, 200018, 200016, 0, 38000, '2019-06-24', '2019-06-24'),
-(2005006, 'Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. ', '', 'd761e1cd9a69e5c8bfeee7193c28bf721.png', '0', 0, 200018, 400002, 10000, 10000, '2019-06-24', '2019-06-24'),
-(2005007, 'Goods Sold are sold to Test Customer 4 - Sales Account Credited', '0', NULL, '0', 0, 200043, 200019, 17600, 0, '2019-06-24', '2019-06-24'),
-(2005008, 'Goods Sold are sold to Test Customer 4 - through Cash in Hands', '0', NULL, '0', 0, 200016, 200019, 14400, 0, '2019-06-24', '2019-06-24'),
-(2005009, 'Goods are Purchased from Test Vendor 1 on Credit Against Invoice No. 900pay1', '900pay1', '278781ef8de9915ef2459d8f1ebfb2bb1.png', '0', 0, 200018, 400002, 21000, 21000, '2019-07-03', '2019-07-03'),
-(2005010, 'Goods are Purchased from Test Vendor 1 Against Invoice No. 980pa78 Through Cash in Hands', '980pa78', '294d3f84b2e3103de901ee42f742bc241.png', '0', 0, 200018, 200016, 0, 9000, '2019-07-03', '2019-07-03'),
-(2005011, 'Purchase Returned from Test Vendor 1 on Credit Against Invoice No. 980pa78 due to Excess Quantity', '980pa78', NULL, '0', 0, 400002, 200028, 4500, 4500, '2019-07-03', '2019-07-03');
+) ENGINE=MyISAM AUTO_INCREMENT=2005021 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1162,15 +1098,18 @@ CREATE TABLE IF NOT EXISTS `vendors` (
   `country` varchar(20) DEFAULT NULL,
   `balance` int(11) DEFAULT '0',
   `dated` date DEFAULT NULL,
+  `del` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=400003 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=400008 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `vendors`
 --
 
-INSERT INTO `vendors` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`) VALUES
-(400002, 200022, 'Vendors', 'Test Vendor 1', '12345678', 'V Company', '1234567899', 'vendor@email.com', 'Vendor Address', 'Islamabad', 'Pakistan', 26500, '2019-02-07');
+INSERT INTO `vendors` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`, `del`) VALUES
+(400002, 200022, 'Vendors', 'Test Vendor 1', '12345678', 'V Company', '1234567899', 'vendor@email.com', 'Vendor Address', 'Islamabad', 'Pakistan', 0, '2019-02-07', 0),
+(400006, 200022, 'Vendors', 'OpenVend', '', '', '', '', '', 'Islamabad', 'Pakistan', 0, '2019-09-18', 0),
+(400007, 200022, 'Vendors', 'VendOpen', '', '', '', '', '', 'Chak jhumra', 'Pakistan', 0, '2019-09-18', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

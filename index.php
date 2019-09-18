@@ -2065,7 +2065,6 @@ $timec=date("h:i a");
                                   $userrole = $rowx['role'];
                                   }
 
-
                             $_SESSION['name']=$username; // Initializing Session
                             $_SESSION['role']=$userrole; // Initializing Session
 

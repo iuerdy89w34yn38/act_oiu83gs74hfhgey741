@@ -227,10 +227,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$total=$tcr-$tdr-$tpdr;
 							$totalval=$total*$price;	
 							$bsinvt=$bsinvt+$totalval;
-								$bscash=$bscash+$bsinvt;
+
+							
 							
 							 }	
-
+							 
+								$bscash=$bscash+$bsinvt;
 							 ?>
 
 						<div class="row">
@@ -348,6 +350,8 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 					</div>
+
+<!------------------------------------------------------------------------------------------------------------------------->
 
 					<div class="col-md-6">
 

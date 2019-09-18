@@ -35,7 +35,7 @@ if(!isset($_SESSION['name'])){
  		
      }
 
- $rows =mysqli_query($con,"SELECT theme,invformat FROM users" ) or die(mysqli_error($con));
+ $rows =mysqli_query($con,"SELECT theme,invformat FROM users where `username`='$username'" ) or die(mysqli_error($con));
            
  	while($row=mysqli_fetch_array($rows)){
  		
