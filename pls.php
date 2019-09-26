@@ -293,7 +293,7 @@ table{
 
 									<tr class="mh">
 										<td>Net Sales:</td>
-										<td><?php echo number_format($netsales) ?></td>
+										<td><?php echo number_format($netsales,$floating) ?></td>
 									</tr>
 
 									<tr class="spc">
@@ -315,7 +315,7 @@ table{
 									</tr>
 									<tr class="mh">
 										<td>Net Purchases:</td>
-										<td><?php echo number_format($netcogs) ?></td>
+										<td><?php echo number_format($netcogs,$floating) ?></td>
 									</tr>
 
 									<tr class="spc">
@@ -340,7 +340,7 @@ table{
 
 									<tr class="mh">
 										<td>Net Profit / Loss:</td>
-										<td><?php echo number_format($netprofit) ?></td>
+										<td><?php echo number_format($netprofit,$floating) ?></td>
 									</tr>
 
 								</table>

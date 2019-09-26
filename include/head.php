@@ -29,7 +29,7 @@ if(!isset($_SESSION['name'])){
  		$comp_email = $row['comp_email'];
  		$comp_address = $row['comp_address'];
  		$comp_logo = $row['comp_logo'];
- 		$themeid = $row['theme'];
+ 		$floating = $row['floating'];
 
 
  		
@@ -65,13 +65,36 @@ if(!isset($_SESSION['name'])){
 
 
 
+<?php 
+  if(!empty($floating)){
+
+    if($floating!==0){  ?>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+    $("input[type$='number']").attr("step", "0.01");
+
+});
+</script>
+
+
+<?php } } ?>
+
+
+
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 
 
 <link rel="shortcut icon" type="image/x-icon" href="images/ico/favicon.ico">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
+<link href="css/css.css" rel="stylesheet">
 <link href="css/la/css/line-awesome.min.css"
 <link href="css/la/css/line-awesome-font-awesome.min.css"
 rel="stylesheet">
@@ -255,5 +278,11 @@ rel="stylesheet">
 	}
 
 
+
+.helptip{
+	padding: 2px 7px;
+	border-radius: 1rem;
+	margin-top: 8px;
+}
 	
 </style>

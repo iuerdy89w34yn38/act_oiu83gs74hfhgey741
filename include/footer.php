@@ -1,4 +1,7 @@
 
+
+
+
 <!-- BEGIN VENDOR JS-->
 <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
@@ -68,7 +71,7 @@ type="text/javascript"></script>
 
 <script src="js/scripts/modal/components-modal.js" type="text/javascript"></script>
 
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="js/canvasjs.min.js"></script>
 
 
 <!-- END PAGE LEVEL JS-->

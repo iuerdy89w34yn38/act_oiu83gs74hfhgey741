@@ -186,7 +186,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 								</div>
 								<div class="col-sm-4">
-									<center><h6><?php echo number_format($total)?></h6></center>
+									<center><h6><?php echo number_format($total,$floating)?></h6></center>
 
 								</div>
 							</div>
@@ -242,7 +242,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 							</div>
 							<div class="col-sm-4">
-								<center><h6 style="text-decoration:;"><?php echo number_format($bsinvt)?></h6></center>
+								<center><h6 style="text-decoration:;"><?php echo number_format($bsinvt,$floating)?></h6></center>
 
 							</div>
 						</div>
@@ -256,7 +256,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 							</div>
 							<div class="col-sm-4">
-							<center><h6 style="font-weight: 600"><?php echo number_format($bscash)?></h6></center>
+							<center><h6 style="font-weight: 600"><?php echo number_format($bscash,$floating)?></h6></center>
 								
 
 							</div>
@@ -282,7 +282,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 								</div>
 								<div class="col-sm-4">
-									<center><h6><?php echo number_format($bsar)?></h6></center>
+									<center><h6><?php echo number_format($bsar,$floating)?></h6></center>
 
 								</div>
 							</div>
@@ -297,7 +297,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 							</div>
 							<div class="col-sm-4">
-							<center><h6 style="font-weight: 600"><?php echo number_format($bsar)?></h6></center>
+							<center><h6 style="font-weight: 600"><?php echo number_format($bsar,$floating)?></h6></center>
 								
 
 							</div>
@@ -324,7 +324,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 								</div>
 								<div class="col-sm-4">
-									<center><h6><?php echo number_format($bsbalance)?></h6></center>
+									<center><h6><?php echo number_format($bsbalance,$floating)?></h6></center>
 
 								</div>
 							</div>
@@ -339,7 +339,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 							</div>
 							<div class="col-sm-4">
-							<center><h6 style="font-weight: 600"><?php echo number_format($bsfasst)?></h6></center>
+							<center><h6 style="font-weight: 600"><?php echo number_format($bsfasst,$floating)?></h6></center>
 								
 
 							</div>
@@ -373,7 +373,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 									</div>
 									<div class="col-sm-4">
-										<center><h6><?php echo number_format($bslib)?></h6></center>
+										<center><h6><?php echo number_format($bslib,$floating)?></h6></center>
 
 									</div>
 								</div>
@@ -397,7 +397,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 									</div>
 									<div class="col-sm-4">
-										<center><h6><?php echo number_format($bsvend)?></h6></center>
+										<center><h6><?php echo number_format($bsvend,$floating)?></h6></center>
 
 									</div>
 								</div>
@@ -414,7 +414,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 								</div>
 								<div class="col-sm-4">
 
-									<center><h6 style="font-weight: 600"><?php echo number_format($bsap)?></h6></center>
+									<center><h6 style="font-weight: 600"><?php echo number_format($bsap,$floating)?></h6></center>
 
 								</div>
 						    </div>
@@ -459,7 +459,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 									</div>
 									<div class="col-sm-4">
-										<center><h6><?php echo number_format($bsbalance)?></h6></center>
+										<center><h6><?php echo number_format($bsbalance,$floating)?></h6></center>
 
 									</div>
 								</div>
@@ -474,7 +474,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 								</div>
 								<div class="col-sm-4">
 
-									<center><h6 style="font-weight: 600"><?php echo number_format($bscapital)?></h6></center>
+									<center><h6 style="font-weight: 600"><?php echo number_format($bscapital,$floating)?></h6></center>
 
 								</div>
 						    </div>
@@ -517,7 +517,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 									</div>
 									<div class="col-sm-4">
-										<center><h6><?php echo number_format($bsdcap)?></h6></center>
+										<center><h6><?php echo number_format($bsdcap,$floating)?></h6></center>
 
 									</div>
 								</div>
@@ -532,7 +532,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 								</div>
 								<div class="col-sm-4">
 
-									<center><h6 style="font-weight: 600">-<?php echo number_format($bsdcap)?></h6></center>
+									<center><h6 style="font-weight: 600">-<?php echo number_format($bsdcap,$floating)?></h6></center>
 
 								</div>
 						    </div>
@@ -755,7 +755,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 								</div>
 								<div class="col-sm-4">
 
-									<center><h6 style="font-weight: 600"><?php echo number_format($netprofit)?></h6></center>
+									<center><h6 style="font-weight: 600"><?php echo number_format($netprofit,$floating)?></h6></center>
 
 								</div>
 						    </div>
@@ -797,7 +797,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 					</div>
 					<div class="col-sm-2">
-						<center><h4  style="font-weight: 600"><?php echo number_format($bslt)?></h4></center>
+						<center><h4  style="font-weight: 600"><?php echo number_format($bslt,$floating)?></h4></center>
 						
 
 					</div>

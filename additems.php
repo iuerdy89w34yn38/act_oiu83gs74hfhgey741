@@ -27,6 +27,42 @@ if(isset($_POST['submitp'])){
 
 
     $data=mysqli_query($con,"INSERT INTO items (name,desp,brand,weight)VALUES ('$name','$desp','$brand','$wgt')")or die( mysqli_error($con) );
+
+
+
+
+
+      $stock=$_POST['stock'];
+      $sell=$_POST['sell'];
+      $type='in';
+      $jid='000000';
+      $date=date('Y-m-d');
+
+      if ($stock>0) {
+
+
+
+   $rows =mysqli_query($con,"SELECT id FROM items ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $pid = $row['id'];
+
+    }
+
+      
+
+                      //transaction Entry
+      $data=mysqli_query($con,"INSERT INTO itemslog (jid,pid,type,name,price,quantity,subtotal,datec)VALUES ('$jid','$pid','$type','$name','$sell','$stock','$sell','$date')")or die( mysqli_error($con) );
+
+      $sqls = "UPDATE items SET `stock` = '$stock',`sellprice` = '$sell' WHERE `id` = $pid"  ;
+      mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+
+
+    }
+
+
+
+
   $msg="Successful" ;
     
 }
@@ -43,6 +79,8 @@ if(isset($_POST['submitc'])){
 
 
     $data=mysqli_query($con,"INSERT INTO itemsb (name)VALUES ('$name')")or die( mysqli_error($con) );
+
+
 	$msg1="Successful" ;
     
 }
@@ -145,17 +183,27 @@ if(isset($_POST['del'])){
                   </div>
 
 
-                  <div class="col-sm-1">
-                  </div>
-                  <div class="col-sm-9">
+                  <div class="col-sm-8">
                     <span>Description</span>
                       <input type="text" class="form-control" name="desp" placeholder="Description">
+                  </div>
+
+                  <div class="col-sm-2">
+                    <span>Selling</span>
+                      <input type="number" value="0" class="form-control" name="sell" placeholder="0">
+                  </div>
+
+                  <div class="col-sm-2">
+                    <span>Stock</span>
+                      <input type="number" value="0" class="form-control" name="stock" placeholder="0">
                   </div>
 
                   
 
 
                  
+                  <div class="col-sm-5">
+                  </div>
                   <div class="col-sm-1">
                     <span>&nbsp;</span>
                       <input type="submit" class="btn btn-primary" name="submitp" value="Add">

@@ -190,7 +190,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
               <thead>
                 <tr>
                 <td colspan="5" style="text-align: right;">Opening Balance:</td>
-                <td>Rs. <?php  if($opbalance===0) echo '0' ; else echo number_format($opbalance);               ?>/-</td>
+                <td>Rs. <?php  if($opbalance===0) echo '0' ; else echo number_format($opbalance,$floating);               ?>/-</td>
               </tr>
              
 
@@ -232,9 +232,9 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
                       <td><?php echo $mydate ?></td>
                       <td><?php echo $jid ?></td>
                       <td>  <a href="viewpay.php?id=<?php echo $jid ?>" target="blank"><?php echo $desp ?></a></td>
-                      <td><?php echo number_format($dr) ?></td>
-                      <td><?php echo number_format($cr) ?></td>
-                      <td><?php echo number_format($tbalance); ?></td>
+                      <td><?php echo number_format($dr,$floating) ?></td>
+                      <td><?php echo number_format($cr,$floating) ?></td>
+                      <td><?php echo number_format($tbalance,$floating); ?></td>
                     </tr>
 
                     <?php } ?>
@@ -247,14 +247,14 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" onload="
                 <td></td>
                 <td></td>
                 <td style="text-align: right;">Total:</td>
-                <td><?php echo number_format($tdr) ?></td>
-                <td><?php echo number_format($tcr) ?></td>
+                <td><?php echo number_format($tdr,$floating) ?></td>
+                <td><?php echo number_format($tcr,$floating) ?></td>
                 <td></td>
               </tr>
               <tr>
 
                 <td colspan="5" style="text-align: right;">Closing Balance:</td>
-                <td>Rs. <?php if($tbalance===0) echo '0' ; else echo number_format($tbalance) ?>/-</td>
+                <td>Rs. <?php if($tbalance===0) echo '0' ; else echo number_format($tbalance,$floating) ?>/-</td>
               </tr>
               </tfoot>
              </table>

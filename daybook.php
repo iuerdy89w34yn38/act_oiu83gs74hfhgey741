@@ -84,7 +84,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
           <div class="col-sm-8">
           </div>
           <div class="col-sm-4">
-           <h3>Opening Balance: <strong>Rs. <?php  if($opbalance===0) echo '0'; else echo number_format($opbalance)
+           <h3>Opening Balance: <strong>Rs. <?php  if($opbalance===0) echo '0'; else echo number_format($opbalance,$floating)
             ?>/-</strong></h3>
            <hr>
          </div>
@@ -140,11 +140,11 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
          </div> 
          
           <div class="col-sm-2">
-           <h5><?php echo number_format($dr) ?></h5>
+           <h5><?php echo number_format($dr,$floating) ?></h5>
          </div> 
          
           <div class="col-sm-2">
-           <h5><?php echo number_format($cr) ?></h5>
+           <h5><?php echo number_format($cr,$floating) ?></h5>
          </div> 
 
 
@@ -180,11 +180,11 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
         </div> 
         
          <div class="col-sm-2">
-          <h5><?php echo number_format($dr) ?></h5>
+          <h5><?php echo number_format($dr,$floating) ?></h5>
         </div> 
         
          <div class="col-sm-2">
-          <h5><?php echo number_format($cr) ?></h5>
+          <h5><?php echo number_format($cr,$floating) ?></h5>
         </div> 
 
 
@@ -202,11 +202,11 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
      </div>
       <div class="col-sm-2">
         <hr>
-       <h4><?php echo number_format($tdr) ?></h4>
+       <h4><?php echo number_format($tdr,$floating) ?></h4>
      </div>
       <div class="col-sm-2">
         <hr>
-       <h4><?php echo number_format($tcr) ?></h2>
+       <h4><?php echo number_format($tcr,$floating) ?></h2>
      </div>
 
    </div>
@@ -226,7 +226,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
              </div>
              <div class="col-sm-4">
               <hr>
-              <h3> Closing Balance: <strong>Rs. <?php if($clbalance===0) echo '0'; else echo number_format($clbalance)?>/-</strong></h3>
+              <h3> Closing Balance: <strong>Rs. <?php if($clbalance===0) echo '0'; else echo number_format($clbalance,$floating)?>/-</strong></h3>
               
             </div>
           </div>

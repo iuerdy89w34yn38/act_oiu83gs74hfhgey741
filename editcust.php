@@ -15,7 +15,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 <?php if (!empty($_GET['id']))  $id=$_GET['id'] ;?>
 
-
 <?php
 if(isset($_POST['submit'])){
   $msg="Unsuccessful" ;
@@ -35,6 +34,173 @@ if(isset($_POST['submit'])){
 
 
   $data=mysqli_query($con,"INSERT INTO customers (name,typeid,mobile,company,email,phone,address,city,country,dated)VALUES ('$name','$typeid','$mobile','$company','$email','$phone','$address','$city','$country','$date')")or die( mysqli_error($con) );
+  
+
+
+
+
+
+
+
+
+//Opening Balance
+
+
+
+   $rows =mysqli_query($con,"SELECT id FROM customers ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $vendid = $row['id'];
+
+    }
+
+     $openbal=$_POST['openbal'];
+     $baltype=$_POST['baltype'];
+
+
+if($openbal>0){
+if($baltype=="credit"){
+
+  $cramount=$openbal;
+  $dramount=0;
+
+    $srcid=$vendid;
+    $rows =mysqli_query($con,"SELECT * FROM customers where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $srcname = $row['name'];
+      $srcbalance = $row['balance'];
+      $srctype = $row['type'];
+      $srctypeid = $row['typeid'];
+
+    }
+
+    $destid=200019;
+    $rows =mysqli_query($con,"SELECT * FROM acts where id=$destid ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $destname = $row['name'];
+      $destbalance = $row['balance'];
+      $desttype = $row['type'];
+      $desttypeid = $row['typeid'];
+    }
+
+
+
+
+    $desp='Customer Opening Balance of : '.$srcname;
+
+                    //transaction Entry
+    $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,cr,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$cramount','$dramount','$date','$date')")or die( mysqli_error($con) );
+
+
+    $sqls = "UPDATE customers SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
+    mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+    $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
+    mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+
+
+
+                    //Ledger Entry
+    $rows =mysqli_query($con,"SELECT id FROM transaction ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $jid = $row['id'];
+
+    }
+
+    $desp='Customer Opening Balance of : '.$srcname;
+
+
+    $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$openbal','$date','$date')")or die( mysqli_error($con) );
+
+    $desp='Opening Sale Account of '.$srcname;
+
+    $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$openbal','$date','$date')")or die( mysqli_error($con) );
+
+
+
+   }else{
+
+
+  $dramount=$openbal;
+  $cramount=0;
+
+    $srcid=$vendid;
+    $rows =mysqli_query($con,"SELECT * FROM customers where id=$srcid ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $srcname = $row['name'];
+      $srcbalance = $row['balance'];
+      $srctype = $row['type'];
+      $srctypeid = $row['typeid'];
+
+    }
+
+    $destid=200029;
+    $rows =mysqli_query($con,"SELECT * FROM acts where id=$destid ORDER BY name" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $destname = $row['name'];
+      $destbalance = $row['balance'];
+      $desttype = $row['type'];
+      $desttypeid = $row['typeid'];
+    }
+
+
+
+
+    $desp='Vendor Opening Balance of : '.$srcname;
+
+                    //transaction Entry
+    $data=mysqli_query($con,"INSERT INTO transaction (desp,dract,cract,cr,dr,datec,dateup)VALUES ('$desp','$destid','$srcid','$cramount','$dramount','$date','$date')")or die( mysqli_error($con) );
+
+
+    $sqls = "UPDATE customers SET `balance` = '$srcbalance' WHERE `id` = $srcid"  ;
+    mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+    $sqls = "UPDATE acts SET `balance` = '$destbalance' WHERE `id` = $destid"  ;
+    mysqli_query($con, $sqls)or die(mysqli_error($con));
+
+
+
+
+                    //Ledger Entry
+    $rows =mysqli_query($con,"SELECT id FROM transaction ORDER BY id desc limit 1" ) or die(mysqli_error($con));
+    while($row=mysqli_fetch_array($rows)){ 
+      $jid = $row['id'];
+
+    }
+
+    $desp='Customer Opening Balance of : '.$srcname;
+
+
+    $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$openbal','$date','$date')")or die( mysqli_error($con) );
+
+    $desp='Opening Sales Return of '.$srcname;
+
+    $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$openbal','$date','$date')")or die( mysqli_error($con) );
+
+
+
+   }
+
+
+
+  }
+
+//Done Opening Balance
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   $msg="Successful" ;
   
 }
@@ -294,6 +460,49 @@ if(isset($_GET['del'])){
             </select>
 
           </div>
+
+
+
+          <div class="col-sm-12">
+
+                                          <hr>
+                                          <br>
+                                        </div>
+                                         
+                                          <div class="col-sm-4">
+                                            <p>Add Openin Balance</p>
+                                          </div>
+
+
+                                          <div class="col-sm-3">
+                                             <input class="form-control" type="number" name="openbal" value="0">
+                                          </div>
+
+
+                                          <div class="col-sm-2">
+                                          <select name="baltype" class="select2">
+
+                                            <option value="credit">Credit</option>
+                                            <option value="debit">Debit</option>                                           
+
+                                          </select>
+
+
+
+                                          </div>
+                                          <div class="col-sm-2">
+
+   &nbsp;  
+
+                                          <a href="#" data-toggle="tooltip" data-placement="top" 
+                                          title="Credit => Account Recievable+
+                                           Debit => Account Payable+ "
+                                           class="btn btn-primary helptip" >?</a>
+                                        </div>
+
+
+
+
 
           <div class="col-sm-5">
           </div>

@@ -13,7 +13,6 @@
 
 
 
-
 </head>
 <body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
 data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
@@ -262,7 +261,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							<hr>
 						-->
 
-						<center><h2> Net Profit: Rs. <?php echo number_format($netprofit) ?>/-</h2></center>
+						<center><h2> Net Profit: Rs. <?php echo number_format($netprofit,$floating) ?>/-</h2></center>
 
 					</div>
 
@@ -349,7 +348,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 						<br>
-						<h3>Rs.<?php echo number_format($vendpay) ?>/-</h3>
+						<h3>Rs.<?php echo number_format($vendpay,$floating) ?>/-</h3>
 					</div>
 					<div class="align-self-center">
 						<i class="la la-industry warning font-large-2 float-right"></i>
@@ -435,7 +434,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 						</h4>
 						<br>
-						<h3>Rs.<?php echo number_format($vendpay) ?>/-</h3>
+						<h3>Rs.<?php echo number_format($vendpay,$floating) ?>/-</h3>
 					</div>
 					<div class="align-self-center">
 						<i class="la la-industry warning font-large-2 float-right"></i>
@@ -483,7 +482,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 						</h6> 
 						<br>
-						<h3>Rs.<?php echo number_format($netsales) ?>/-</h3>
+						<h3>Rs.<?php echo number_format($netsales,$floating) ?>/-</h3>
 					</div>
 					<div class="align-self-center">
 						<i class="la la-codepen success font-large-2 float-right"></i>
@@ -524,7 +523,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 						</h6>
 						<br>
-						<h3>Rs.<?php echo number_format($netsales) ?>/-</h3>
+						<h3>Rs.<?php echo number_format($netsales,$floating) ?>/-</h3>
 					</div>
 					<div class="align-self-center">
 						<i class="la la-industry warning font-large-2 float-right"></i>
@@ -560,7 +559,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 						</h6>
 						<br>
-						<h3>Rs.<?php echo number_format($salesr) ?>/-</h3>
+						<h3>Rs.<?php echo number_format($salesr,$floating) ?>/-</h3>
 					</div>
 					<div class="align-self-center">
 						<i class="la la-dollar danger font-large-2 float-right"></i>
@@ -618,13 +617,13 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							?>
 
 							<h4><?php echo $actname ?>: 
-								<span style="text-align: right;">Rs. <?php echo number_format($total);   ?>/- </span></h4>
+								<span style="text-align: right;">Rs. <?php echo number_format($total,$floating);   ?>/- </span></h4>
 								<hr>
 
 						<?php } ?>
 			
 
-							<h3>Total : Rs. <?php echo number_format($gtotal) ?>/-</h3>
+							<h3>Total : Rs. <?php echo number_format($gtotal,$floating) ?>/-</h3>
 
 
 						</div>
@@ -689,7 +688,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 							</h6>
 							<br>
-							<h3>Total <?php echo number_format($gtotal) ?> Items</h3>
+							<h3>Total <?php echo number_format($gtotal,$floating) ?> Items</h3>
 						</div>
 						<div class="align-self-center">
 							<i class="la la-cubes  font-large-2 float-right"></i>
@@ -752,7 +751,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 							</h6> 
 							<br>
-							<h3>Rs.<?php echo number_format($netsales) ?>/-</h3>
+							<h3>Rs.<?php echo number_format($netsales,$floating) ?>/-</h3>
 						</div>
 						<div class="align-self-center">
 							<i class="la la-codepen success font-large-2 float-right"></i>
@@ -793,7 +792,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 							</h6>
 							<br>
-							<h3>Rs.<?php echo number_format($netsales) ?>/-</h3>
+							<h3>Rs.<?php echo number_format($netsales,$floating) ?>/-</h3>
 						</div>
 						<div class="align-self-center">
 							<i class="la la-industry warning font-large-2 float-right"></i>
@@ -829,7 +828,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 							</h6>
 							<br>
-							<h3>Rs.<?php echo number_format($salesr) ?>/-</h3>
+							<h3>Rs.<?php echo number_format($salesr,$floating) ?>/-</h3>
 						</div>
 						<div class="align-self-center">
 							<i class="la la-dollar danger font-large-2 float-right"></i>
@@ -887,13 +886,13 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 								?>
 
 								<h4><?php echo $actname ?>: 
-									<span style="text-align: right;">Rs. <?php echo number_format($total);   ?>/- </span></h4>
+									<span style="text-align: right;">Rs. <?php echo number_format($total,$floating);   ?>/- </span></h4>
 									<hr>
 
 							<?php } ?>
 				
 
-								<h3>Total : Rs. <?php echo number_format($gtotal) ?>/-</h3>
+								<h3>Total : Rs. <?php echo number_format($gtotal,$floating) ?>/-</h3>
 
 
 							</div>
@@ -956,7 +955,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 								</h6>
 								<br>
-								<h3>Total <?php echo number_format($gtotal) ?> Items</h3>
+								<h3>Total <?php echo number_format($gtotal,$floating) ?> Items</h3>
 							</div>
 							<div class="align-self-center">
 								<i class="la la-cubes  font-large-2 float-right"></i>
@@ -977,7 +976,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 </div>
 </div>
-
 
 
 <?php include"include/footer.php" ?>

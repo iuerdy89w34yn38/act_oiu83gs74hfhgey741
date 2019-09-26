@@ -309,12 +309,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                     
                     <td><?php echo $actname ?></td>
                     <td><?php echo $actid ?></td>
-                    <td><?php echo number_format($btdr) ?></td>
-                    <td><?php echo number_format($btcr) ?></td>
-                    <td><?php echo number_format($ctdr) ?></td>
-                    <td><?php echo number_format($ctcr) ?></td>
-                    <td><?php echo number_format($etdr) ?></td>
-                    <td><?php echo number_format($etcr) ?></td>
+                    <td><?php echo number_format($btdr,$floating) ?></td>
+                    <td><?php echo number_format($btcr,$floating) ?></td>
+                    <td><?php echo number_format($ctdr,$floating) ?></td>
+                    <td><?php echo number_format($ctcr,$floating) ?></td>
+                    <td><?php echo number_format($etdr,$floating) ?></td>
+                    <td><?php echo number_format($etcr,$floating) ?></td>
                   </tr>
 
 
@@ -325,22 +325,22 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                 <tfoot>
                   
                   <th colspan="2" style="text-align: right;">Accounts Total: </th>
-                  <th><?php echo number_format( $btdbalance )?></th>
-                  <th><?php echo number_format( $btcbalance ) ?></th>
-                  <th><?php echo number_format( $ctdbalance )?></th>
-                  <th><?php echo number_format( $ctcbalance )?></th>
-                  <th><?php echo number_format( $etdbalance )?></th>
-                  <th><?php echo number_format( $etcbalance )?></th>
+                  <th><?php echo number_format( $btdbalance,$floating )?></th>
+                  <th><?php echo number_format( $btcbalance,$floating )?></th>
+                  <th><?php echo number_format( $ctdbalance,$floating )?></th>
+                  <th><?php echo number_format( $ctcbalance,$floating )?></th>
+                  <th><?php echo number_format( $etdbalance,$floating )?></th>
+                  <th><?php echo number_format( $etcbalance,$floating )?></th>
                 </tfoot>
                <tfoot>
                   
                   <th colspan="2" align="right">Total</th>
-                  <th><?php echo number_format( $nbtdbalance )?></th>
-                  <th><?php echo number_format( $nbtcbalance ) ?></th>
-                  <th><?php echo number_format( $nctdbalance )?></th>
-                  <th><?php echo number_format( $nctcbalance )?></th>
-                  <th><?php echo number_format( $netdbalance )?></th>
-                  <th><?php echo number_format( $netcbalance )?></th>
+                  <th><?php echo number_format( $nbtdbalance ,$floating)?></th>
+                  <th><?php echo number_format( $nbtcbalance,$floating ) ?></th>
+                  <th><?php echo number_format( $nctdbalance,$floating )?></th>
+                  <th><?php echo number_format( $nctcbalance,$floating )?></th>
+                  <th><?php echo number_format( $netdbalance,$floating )?></th>
+                  <th><?php echo number_format( $netcbalance,$floating )?></th>
                 </tfoot>
               </table>
               <br>

@@ -129,7 +129,7 @@ if(isset($_POST['submitcap'])){
             </div>
             <div class="col-md-2">
                                 
-              <h3>Rs. <?php echo number_format($total);   ?>/-</h3>
+              <h3>Rs. <?php echo number_format($total,$floating);   ?>/-</h3>
             </div>
             </div>
 
@@ -149,7 +149,7 @@ if(isset($_POST['submitcap'])){
            </div>
            <div class="col-md-2">
                                
-             <h3>Rs. <?php echo number_format($gtotal) ?>/-</h3>
+             <h3>Rs. <?php echo number_format($gtotal,$floating) ?>/-</h3>
            </div>
            </div>
 

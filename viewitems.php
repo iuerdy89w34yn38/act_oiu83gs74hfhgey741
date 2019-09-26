@@ -319,7 +319,7 @@ if(isset($_POST['del'])){
                        <td><?php echo $gtotal ?></td>
                        <td><?php echo $price ?></td>  
                        <td><?php echo $sell ?></td> 
-                       <td><?php echo number_format($value) ?></td> 
+                       <td><?php echo number_format($value,$floating) ?></td> 
 
                       <td><?php if($pause==0) echo 'Yes'; else echo 'No' ;?> </td>
                       
@@ -350,7 +350,7 @@ if(isset($_POST['del'])){
             <tr>
 
               <th colspan="7" style="text-align: right;">Total Inventory Value</th>
-              <th><?php echo number_format($tvalue); ?></th>
+              <th><?php echo number_format($tvalue,$floating); ?></th>
               <th colspan="3"></th>
 
             </tr>
@@ -496,7 +496,7 @@ if(isset($_POST['del'])){
                                 $dr = $row['quantity'];
                                 $tpdr=$tpdr+$dr;
                               } 
-                              $total=$tcr-$tdr-$tpdr; 
+                              $total=$tcr-$tdr+$tpdr; 
                               $gtotal=$gtotal+$total;
 
                               $value=$gtotal*$sell;

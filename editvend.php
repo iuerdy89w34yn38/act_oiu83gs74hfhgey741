@@ -38,9 +38,6 @@ if(isset($_POST['submit'])){
 
 
 
-
-
-
 //Opening Balance
 
 
@@ -482,8 +479,9 @@ if(isset($_GET['del'])){
    &nbsp;  
 
                                           <a href="#" data-toggle="tooltip" data-placement="top" 
-                                          title=" Credit => A/C Rv. DR. & Pur. A/C CR. --- Debit => A/C Pay. CR. & Purchase DR. "
-                                           class="btn btn-primary" style="padding: 5px 10px;border-radius: 1rem;">?</a>
+                                          title="Credit => Account Payable+
+                                           Debit => Account Recievable+ "
+                                           class="btn btn-primary helptip">?</a>
                                         </div>
 
 

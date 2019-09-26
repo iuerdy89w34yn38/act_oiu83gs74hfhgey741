@@ -27,6 +27,7 @@
 
   <?php if(isset($_POST['send'])){
 
+    $err=0;
 
     $x= count($home = $_POST['qty1']);
 
@@ -35,16 +36,38 @@
       $pid = $_POST['item'][$i];
       $qty = $_POST['qty1'][$i];
 
-      $rows =mysqli_query($con,"SELECT stock FROM items where id=$pid ORDER BY name" ) or die(mysqli_error($con));
-      while($row=mysqli_fetch_array($rows)){ 
-        $stock = $row['stock'];
+     
+          $tcr=0;
+          $tdr=0;
+          $tpdr=0;
+          $total=0;
+          $gtotal=0;
 
-      }
+          $rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$pid AND type='in' ORDER BY id desc" ) or die(mysqli_error($con));
+          $sales=0;
+          while($row=mysqli_fetch_array($rows)){
+            $cr = $row['quantity'];
+            $tcr=$tcr+$cr;
+          } 
+          $rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$pid AND type='out' ORDER BY id desc" ) or die(mysqli_error($con));
+          $salesr=0;
+          while($row=mysqli_fetch_array($rows)){
+            $dr = $row['quantity'];
+            $tdr=$tdr+$dr;
+          } 
+          $rows =mysqli_query($con,"SELECT quantity FROM itemslog WHERE pid=$pid AND type='preturn' ORDER BY id desc" ) or die(mysqli_error($con));
+          $salesr=0;
+          while($row=mysqli_fetch_array($rows)){
+            $dr = $row['quantity'];
+            $tpdr=$tpdr+$dr;
+          } 
+          $total=$tcr-$tdr+$tpdr; 
+          $stock=$gtotal+$total;
+
       if($qty>$stock){
 
 
-        $msg = 'Quantity is greater than Stock';
-        exit($msg);
+        $err=1;
 
 
       }
@@ -52,6 +75,8 @@
 
 
     }
+
+    if($err==0){
 
 
 
@@ -189,6 +214,11 @@
 
     }
     $msg = 'Successfull';
+
+  }else{
+  $msg = 'Unsuccessfull... Quantity is greater than stock.';
+
+    }
 
 
 

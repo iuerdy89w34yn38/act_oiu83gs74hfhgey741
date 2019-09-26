@@ -178,7 +178,7 @@ if(isset($_GET['delinv'])){
               <br>
 
               <div class="col-sm-2">
-               <h5>Rs. <?php echo number_format($amount) ?>/-</h5>
+               <h5>Rs. <?php echo number_format($amount,$floating) ?>/-</h5>
              </div> 
 
 
@@ -240,7 +240,7 @@ if(isset($_GET['delinv'])){
                <h4>  <?php echo $pquantity ?> </h4>
              </div>
              <div class="col-sm-2">
-               <h4>  <?php echo number_format($itotal) ?> </h4>
+               <h4>  <?php echo number_format($itotal,$floating) ?> </h4>
              </div>
            </div>
            
@@ -258,7 +258,7 @@ if(isset($_GET['delinv'])){
           <hr>
           <br>
 
-          <h3> Total: <strong>Rs. <?php echo number_format($amount) ?>/-</strong></h3>
+          <h3> Total: <strong>Rs. <?php echo number_format($amount,$floating) ?>/-</strong></h3>
 
         </div>
         <br>

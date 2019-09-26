@@ -615,7 +615,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
             </div>
             <div class="col-md-2">
                                 
-              <h5>Rs. <?php echo number_format($total);   ?>/-</h5>
+              <h5>Rs. <?php echo number_format($total,$floating);   ?>/-</h5>
             </div>
             </div>
 
@@ -631,7 +631,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
            </div>
            <div class="col-md-2">
                                
-             <h3>Rs. <?php echo number_format($vendpay) ?>/-</h3>
+             <h3>Rs. <?php echo number_format($vendpay$floating) ?>/-</h3>
            </div>
            </div>
 
@@ -838,7 +838,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
             </div>
             <div class="col-md-2">
                                 
-              <h5>Rs. <?php echo number_format($total);   ?>/-</h5>
+              <h5>Rs. <?php echo number_format($total,$floating);   ?>/-</h5>
             </div>
             </div>
 
@@ -854,7 +854,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
            </div>
            <div class="col-md-2">
                                
-             <h3>Rs. <?php echo number_format($vendpay) ?>/-</h3>
+             <h3>Rs. <?php echo number_format($vendpay,$floating) ?>/-</h3>
            </div>
            </div>
 

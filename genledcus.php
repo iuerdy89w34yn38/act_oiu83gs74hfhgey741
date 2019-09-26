@@ -167,7 +167,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                   <tr>
                     <td colspan="3" > </td>
                     <td> <h4>Opening Balance:</h4> </td>
-                    <td colspan="2"> <h3> <strong>Rs. <?php  if($opbalance===0) echo '0' ; else echo number_format($opbalance);
+                    <td colspan="2"> <h3> <strong>Rs. <?php  if($opbalance===0) echo '0' ; else echo number_format($opbalance,$floating);
                  ?>/-</strong></h3> </td>
 
                   </tr>
@@ -215,14 +215,14 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                           <a href="viewpay.php?id=<?php echo $jid ?>" target="blank"><h6 style="color:#464855;text-decoration: underline;"><?php echo $desp ?></h6></a>
                           </td>
                           <td>
-                           <h5><?php echo number_format($dr) ?></h5>
+                           <h5><?php echo number_format($dr,$floating) ?></h5>
                           </td>
                           <td>
-                          <h5><?php echo number_format($cr) ?></h5>
+                          <h5><?php echo number_format($cr,$floating) ?></h5>
                           </td>
 
                           <td>
-                          <h5><?php echo number_format($tbalance); ?></h5>
+                          <h5><?php echo number_format($tbalance,$floating); ?></h5>
                           </td>
 
 
@@ -237,8 +237,8 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                     <tr>
                       <td colspan="2"> </td>
                       <td> Total: </td>
-                      <td><strong><h5 style="font-weight: 600"><?php echo number_format($tdr) ?></h5></strong> </td>
-                      <td><strong><h5 style="font-weight: 600"><?php echo number_format($tcr) ?></h5></strong> </td>
+                      <td><strong><h5 style="font-weight: 600"><?php echo number_format($tdr,$floating) ?></h5></strong> </td>
+                      <td><strong><h5 style="font-weight: 600"><?php echo number_format($tcr,$floating) ?></h5></strong> </td>
                       <td>
                       </td>
 
@@ -247,7 +247,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                    <tr>
                      <td colspan="3" > </td>
                      <td> <h4>Closing Balance:</h4> </td>
-                     <td colspan="2"> <h3> <strong>Rs. <?php if($tbalance===0) echo '0' ; else echo number_format($tbalance) ?>/-</strong></h3> </td>
+                     <td colspan="2"> <h3> <strong>Rs. <?php if($tbalance===0) echo '0' ; else echo number_format($tbalance,$floating) ?>/-</strong></h3> </td>
 
                    </tr>
 
