@@ -15,7 +15,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 <?php if (!empty($_GET['id']))  $id=$_GET['id'] ;?>
 
-
 <?php
 if(isset($_POST['submit'])){
     $msg="Unsuccessful" ;

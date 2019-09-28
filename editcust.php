@@ -241,7 +241,7 @@ if(isset($_GET['del'])){
 
 
 
-  $data=mysqli_query($con,"DELETE FROM `customers` WHERE id=$delid")or die(mysqli_error($con) );
+  $data=mysqli_query($con,"UPDATE customers SET `del` = '1' WHERE id=$delid")or die(mysqli_error($con) );
 
   if ($data == 1) {
     $msg="Deleted Successfully!";
@@ -254,7 +254,6 @@ if(isset($_GET['del'])){
 
 }
 ?>
-
 
 
 
@@ -546,7 +545,7 @@ if(isset($_GET['del'])){
 
         <tbody>
           <?php
-         $rows1 =mysqli_query($con,"SELECT * FROM customers  ORDER BY name" ) or die(mysqli_error($con));
+         $rows1 =mysqli_query($con,"SELECT * FROM customers where del=0  ORDER BY name" ) or die(mysqli_error($con));
 
          while($row1=mysqli_fetch_array($rows1)){
 

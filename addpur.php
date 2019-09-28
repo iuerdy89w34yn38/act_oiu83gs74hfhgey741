@@ -572,7 +572,7 @@
 
                     <?php
 
-                    $rows =mysqli_query($con,"SELECT * FROM vendors  ORDER BY name" ) or die(mysqli_error($con));
+                    $rows =mysqli_query($con,"SELECT * FROM vendors WHERE del=0  ORDER BY name" ) or die(mysqli_error($con));
 
                     while($row=mysqli_fetch_array($rows)){
 

@@ -12,7 +12,6 @@ if(!isset($_SESSION['name'])){
 
  <?php include"include/connect.php";?>
 
-
  <?php
 
  date_default_timezone_set("Asia/Karachi");
@@ -30,20 +29,18 @@ if(!isset($_SESSION['name'])){
  		$comp_address = $row['comp_address'];
  		$comp_logo = $row['comp_logo'];
  		$floating = $row['floating'];
+ 		$invformat = $row['invformat'];
 
 
  		
      }
 
- $rows =mysqli_query($con,"SELECT theme,invformat FROM users where `username`='$username'" ) or die(mysqli_error($con));
+ $rows =mysqli_query($con,"SELECT theme FROM users where `username`='$username'" ) or die(mysqli_error($con));
            
  	while($row=mysqli_fetch_array($rows)){
  		
  		
  		$themeid = $row['theme'];
- 		$invformat = $row['invformat'];
-
-
  		
      }
 

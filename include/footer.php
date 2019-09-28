@@ -17,7 +17,6 @@ type="text/javascript"></script>
 <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
 <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
 
-
 <script src="js/scripts/extensions/block-ui.js" type="text/javascript"></script>
 
 <!-- END PAGE VENDOR JS-->
@@ -108,8 +107,8 @@ type="text/javascript"></script>
 <script type="text/javascript">
 
     function wrt(x) {
-      var a=parseInt(document.getElementsByName('qty1[]')[x].value);
-      var b=parseInt(document.getElementsByName('price1[]')[x].value);
+      var a=parseFloat(document.getElementsByName('qty1[]')[x].value);
+      var b=parseFloat(document.getElementsByName('price1[]')[x].value);
       var c=a*b;
       document.getElementsByName('item_total1[]')[x].value=c;
       var n=0;

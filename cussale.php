@@ -1,4 +1,4 @@
-<!doctype html>
+  <!doctype html>
 <html>
 <head>
   <?php include"include/connect.php" ?>
@@ -23,7 +23,6 @@
   </head>
   <body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
   data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
-
 
   <?php if(isset($_POST['send'])){
 
@@ -222,7 +221,6 @@
 
             //First Entry
     
-
         $srcbalance=$srcbalance+$amount;
         $destbalance=$destbalance+$amount-$discount;
         $aamount=$amount-$discount;
@@ -587,7 +585,7 @@ display: none;
 
                   <?php
 
-                  $rows =mysqli_query($con,"SELECT * FROM customers  ORDER BY name" ) or die(mysqli_error($con));
+                  $rows =mysqli_query($con,"SELECT * FROM customers where del=0 ORDER BY name" ) or die(mysqli_error($con));
 
                   while($row=mysqli_fetch_array($rows)){
 
