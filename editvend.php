@@ -562,7 +562,7 @@ if(isset($_GET['del'])){
                   <td><?php echo $mobile ?> </td>
                   <td><?php echo $company ?> </td>
                   <td><?php echo $city ?> </td>
-                  <td><?php echo $total ?> </td>
+                  <td><?php echo number_format($total,$floating) ?> </td>
                   <td>
                     <button name="id" class="btn btn-primary" value="<?php echo $id ?>">Edit</button>
 

@@ -22,14 +22,10 @@ if(isset($_POST['submitp'])){
      $desp=$_POST['desp'];
      $brand=$_POST['brand'];
      $wgt=$_POST['wgt'];
+     $unit=$_POST['unit'];
 
 
-
-
-    $data=mysqli_query($con,"INSERT INTO items (name,desp,brand,weight)VALUES ('$name','$desp','$brand','$wgt')")or die( mysqli_error($con) );
-
-
-
+    $data=mysqli_query($con,"INSERT INTO items (name,desp,brand,weight,unit)VALUES ('$name','$desp','$brand','$wgt','$unit')")or die( mysqli_error($con) );
 
 
       $stock=$_POST['stock'];
@@ -177,9 +173,28 @@ if(isset($_POST['del'])){
                   </div>
 
 
-                  <div class="col-sm-4">
-                    <span>Weight (g)</span>
-                      <input type="text" class="form-control" name="wgt" placeholder="Description">
+                  <div class="col-sm-2">
+                    <span>Weight</span>
+                      <input type="text" class="form-control" name="wgt" placeholder="Weight">
+                  </div>
+                  <div class="col-sm-2">
+                    <span>Unit</span>
+                    <select class="form-control select2" name="unit">
+                      <?php
+
+                      $rows =mysqli_query($con,"SELECT * FROM itemu ORDER BY name" ) or die(mysqli_error($con));
+                                
+                        while($row=mysqli_fetch_array($rows)){
+                          
+                          $id = $row['id']; 
+                          $name = $row['name']; ?>
+
+                      <option value="<?php echo $name ?>"><?php echo $name ?></option>
+
+                      <?php } ?>
+
+                    </select>
+
                   </div>
 
 

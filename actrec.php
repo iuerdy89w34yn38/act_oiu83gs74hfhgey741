@@ -631,7 +631,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
            </div>
            <div class="col-md-2">
                                
-             <h3>Rs. <?php echo number_format($vendpay$floating) ?>/-</h3>
+             <h3>Rs. <?php echo number_format($vendpay,$floating) ?>/-</h3>
            </div>
            </div>
 
