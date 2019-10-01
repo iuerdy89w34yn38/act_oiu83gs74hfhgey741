@@ -427,7 +427,7 @@ $msg = 'Successful';
                                     
                   <h3><?php echo $actname ?>:</h3>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                                     
                   <h3>Rs. <?php echo number_format($total,$floating);   ?>/-</h3>
                 </div>
@@ -447,7 +447,7 @@ $msg = 'Successful';
                                    
                  <h3>Total :</h3>
                </div>
-               <div class="col-md-2">
+               <div class="col-md-4">
                                    
                  <h3>Rs. <?php echo number_format($gtotal,$floating) ?>/-</h3>
                </div>
@@ -509,7 +509,7 @@ $msg = 'Successful';
                     </select>
 
                   </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-3">
                     <span>Amount </span>
                       <input type="number" name="amount" class="form-control" placeholder="0">
                   </div>

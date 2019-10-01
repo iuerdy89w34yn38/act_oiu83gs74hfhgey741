@@ -2030,7 +2030,8 @@ $timec=date("h:i a");
                 </div>
                 <br>
                 
-              <button type="submit" name="login" class="btn btn-info btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
+              <button type="submit" name="login" class="btn
+               btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
             </form>
 
 
