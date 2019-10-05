@@ -86,7 +86,7 @@
 
           <li class="<?php if($link=="viewpinv.php") echo "active"; ?>"><a class="menu-item" href="viewpinv.php" >View Purchase Invoice </a> </li>
 
-          <li class="<?php if($link=="viewpay.php") echo "active"; ?>"><a class="menu-item" href="viewpay.php" >View Invoices </a> </li>
+          <li class="<?php if($link=="viewpay.php") echo "active"; ?>"><a class="menu-item" href="viewpay.php" >View Invoices / Vouchers </a> </li>
 
         </ul>
       </li>

@@ -14,7 +14,7 @@
 
 
 </head>
-<body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
+<body id="body" class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
 data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 <?php $link="index.php"; ;?>
@@ -23,7 +23,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <?php include"include/header.php" ?>
 <?php include"include/sidebar.php" ?>
 <div class="app-content content">
-<div class="content-wrapper">
+<div id="container" class="content-wrapper">
 <?php if($userrole=='admin') { ?>
 <div class="row">
 	<div class="col-lg-4">
@@ -976,6 +976,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 </div>
 </div>
+
+<script>
+setTimeout(function(){
+   window.location.reload(1);
+}, 15000);
+</script>
 
 
 <?php include"include/footer.php" ?>

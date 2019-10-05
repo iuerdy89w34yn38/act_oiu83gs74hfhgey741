@@ -19,7 +19,7 @@
 <body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
 data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
-<?php $link="viewinv.php"; ;?>
+<?php $link="viewpay.php"; ;?>
 
 <?php
 if(isset($_GET['delinv'])){
@@ -89,7 +89,15 @@ if(isset($_GET['delinv'])){
          $dract = $row['dract'];
          $cract = $row['cract'];
 
+         if($dract=='200016'){
+            $typeid=$cract;
+         }else{ $typeid=$dract; }
 
+         $rowsx =mysqli_query($con,"SELECT name FROM acts  where id='$typeid' " ) or die(mysqli_error($con));
+         while($rowx=mysqli_fetch_array($rowsx)){
+
+         $typename = $rowx['name'];
+         }
 
          if($dr==0){
           $amount=$cr;
@@ -131,7 +139,7 @@ if(isset($_GET['delinv'])){
                 <br>
                 <div class="row align-conter-center">
 
-                  <div class="col-sm-3">
+                  <div class="col-sm-1">
                   </div>
                   <div class="col-sm-3">
                    <h4>Date: <strong> <?php  echo $datec?></strong></h4>
@@ -140,6 +148,10 @@ if(isset($_GET['delinv'])){
 
                  <div class="col-sm-3">
                    <h4>Invoice : <strong> <?php  echo $id?></strong></h4>
+
+                 </div>
+                 <div class="col-sm-3">
+                   <h4>For : <strong> <?php echo $typename ?></strong></h4>
 
                  </div>
                </div>
@@ -190,8 +202,7 @@ if(isset($_GET['delinv'])){
 
            <hr>
            <br>
-           <?php if(($dract>200000 AND $dract<400000) OR ($cract>200000 AND $cract<400000) ){ ?>
-
+        <?php if(($dract==200019 OR $dract==200018 OR $dract==200028 OR $dract==200029) OR ($cract==200019 OR $cract==200018 OR $cract==200028 OR $cract==200029) ){ ?>
              <div class="row align-conter-center">
 
                <div class="col-sm-1">
@@ -380,10 +391,11 @@ if(isset($_GET['delinv'])){
 
                <div class="col-sm-12">
 
-                <table class="table table-bordered table-striped  dataex-select-multi ">
+                <table id="invtable" class="table table-bordered table-striped  dataex-select-multi ">
                   <thead>
                     <tr>
-                      <td>Invoice</td>
+                      <td aria-sort="descending">Invoice</td>
+                      <td>Type</td>
                       <td>Description</td>
                       <td>View/Edit</td>
                     </thead>
@@ -397,10 +409,24 @@ if(isset($_GET['delinv'])){
 
                         $id = $row['id'];
                         $desp = $row['desp'];
+
+         $dract = $row['dract'];
+         $cract = $row['cract'];
+
+         if($dract=='200016'){
+            $typeid=$cract;
+         }else{ $typeid=$dract; }
+
+         $rowsx =mysqli_query($con,"SELECT name FROM acts  where id='$typeid' " ) or die(mysqli_error($con));
+         while($rowx=mysqli_fetch_array($rowsx)){
+
+         $typename = $rowx['name'];
+         }
                         ?>
 
                         <tr>
                           <td><?php echo $id ?></td>
+                          <td><?php echo $typename ?></td>
                           <td><?php echo $desp ?></td>
                           <td><button class="btn btn-primary  block-element" name="id" value="<?php echo $id ?>">View</button></td>
 
@@ -434,7 +460,9 @@ if(isset($_GET['delinv'])){
 
 
 
+
 <?php include"include/footer.php" ?>
+
 
 </body>
 </html>

@@ -26,13 +26,21 @@
             <li class="dropdown dropdown-user nav-item">
               <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                 <span class="mr-1">
-                  <span class="user-name text-bold-700" style="text-transform: uppercase;"><?php echo $username ?> </span>
+                  <span class="user-name text-bold-700" style="text-transform: uppercase;"><?php echo $username ?></span>
                 </span>
                 <span class="avatar avatar-online">
+
                   <img src="images/pro.png" alt="avatar"><i></i></span>
+                  <?php  $rows =mysqli_query($con,"SELECT * FROM msgs where resolve = 0" ) or die(mysqli_error($con)); 
+                      $notescount=mysqli_num_rows($rows); ?>
+
+                  <?php if($notescount>0) { ?> <span class="topbadge"><?php echo $notescount ?></span> <?php } ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i> Edit Profile</a>
-                <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
+                <a class="dropdown-item" href="notes.php"><i class="ft-list"></i> Notes
+                  <?php if($notescount>0) { ?> <span class="mybadge"><?php echo $notescount ?></span> <?php } ?>
+
+                 </a>
                 
                 <a class="dropdown-item" href="reset.php"><i class="ft-check-square"></i> Reset</a>
                 <a class="dropdown-item" href="settings.php"><i class="ft-settings"></i> Settings</a>

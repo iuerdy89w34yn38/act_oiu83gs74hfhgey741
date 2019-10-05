@@ -36,6 +36,17 @@
          $cract = $row['cract'];
 
 
+         if($dract=='200016'){
+            $typeid=$cract;
+         }else{ $typeid=$dract; }
+
+         $rowsx =mysqli_query($con,"SELECT name FROM acts  where id='$typeid' " ) or die(mysqli_error($con));
+         while($rowx=mysqli_fetch_array($rowsx)){
+
+         $typename = $rowx['name'];
+         }
+
+
          $actid = 0;
 
 
@@ -58,7 +69,8 @@
           <tr> <td colspan="4" >   <img style="max-width: 190px;float: left" class="img-fluid" src="images/logo.png"> </td> </tr>
           <tr>
           <td colspan="2"> Date :  <strong> <?php  echo $datec?></strong> </td>
-          <td colspan="2"> Inoive  : <strong> <?php  echo $id?></strong></td>
+          <td colspan="1"> For :  <strong> <?php  echo $typename?></strong> </td>
+          <td colspan="1"> Inoive  : <strong> <?php  echo $id?></strong></td>
           </tr>
 
                <?php
@@ -115,7 +127,7 @@
 
 
 
-        <?php if(($dract>200000 AND $dract<400000) OR ($cract>200000 AND $cract<400000) ){ ?>
+        <?php if(($dract==200019 OR $dract==200018 OR $dract==200028 OR $dract==200029) OR ($cract==200019 OR $cract==200018 OR $cract==200028 OR $cract==200029) ){ ?>
                  <tr><td colspan="4">&nbsp;</td></tr>
 
 
@@ -143,7 +155,7 @@
                 <td>  <?php echo $pname ?>  </td><td>  <?php echo $pprice ?>  </td>
                 <td>  <?php echo $pquantity ?> </td><td>  <?php echo number_format($itotal,$floating) ?> </td> 
           </tr>
- <?php } ?>
+ <?php } } ?>
 
 
        <?php
@@ -174,7 +186,6 @@
           <td> <strong>Rs. <?php if($tbalance===0) echo '0' ; else echo number_format($tbalance,$floating) ?>/-</strong></td> </tr>
 
 
-        <?php  } ?>
 
 
         </table>

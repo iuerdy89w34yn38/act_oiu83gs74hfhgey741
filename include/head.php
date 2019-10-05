@@ -281,5 +281,25 @@ rel="stylesheet">
 	border-radius: 1rem;
 	margin-top: 8px;
 }
+
+.topbadge{
+	color: #fff;
+	background:  <?php echo $color1  ?>;
+	padding: 0px 8px;
+    border-radius: 50%;
+    font-size: 12px;
+    position: absolute;
+    top: 25%;
+    right: 10%;
+}
+	
+.mybadge{
+
+	color: #fff;
+	background:  <?php echo $color1  ?>;
+	padding: 0px 5px;
+    border-radius: 50%;
+    font-size: 10px;
+}
 	
 </style>

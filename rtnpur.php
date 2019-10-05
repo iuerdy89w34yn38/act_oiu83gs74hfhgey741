@@ -504,12 +504,12 @@
 
                     <?php
 
-                    $rows =mysqli_query($con,"SELECT invoiceno FROM transaction WHERE invoicepic!='Null' AND dract=200018 " ) or die(mysqli_error($con));
+                    $rows =mysqli_query($con,"SELECT id FROM transaction WHERE dract=200018 " ) or die(mysqli_error($con));
 
                     while($row=mysqli_fetch_array($rows)){
 
 
-                      $name = $row['invoiceno']; ?>
+                      $name = $row['id']; ?>
 
                       <option value="<?php echo $name ?>"><?php echo $name ?></option>
 
@@ -634,7 +634,6 @@
 
 
 <?php include 'include/footer.php'; ?>
-
 
 
 </html>
