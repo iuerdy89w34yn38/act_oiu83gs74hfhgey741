@@ -102,7 +102,11 @@ if(isset($_GET['delinv'])){
          if($dr==0){
           $amount=$cr;
         }
-        else $amount = $dr;
+        else{ $amount = $dr;}
+
+
+        $tamount = $amount;
+
 
         ?>
 
@@ -261,6 +265,73 @@ if(isset($_GET['delinv'])){
 
        <?php } ?>
 
+     <?php 
+        $rowsp =mysqli_query($con,"SELECT * FROM journal where (jid='$id') AND (actid=200038 OR actid=200039) LIMIT 1" ) or die(mysqli_error($con));
+        $total=0;
+
+        while($rowp=mysqli_fetch_array($rowsp)){
+
+         $disdesp = $rowp['desp'];
+         $discr = $rowp['cr'];
+         $disdr = $rowp['dr'];
+
+         if($discr==0){
+            $disamount=$disdr;
+         }else{ $disamount=$discr;}
+
+         $tamount=$amount-$disamount;
+
+         ?>
+
+       <div class="row align-conter-center">
+
+         <div class="col-sm-6">
+         </div>
+         <div class="col-sm-3">
+          <hr>
+          <br>
+
+          <h3>Gross Total:</h3>
+
+        </div>
+         <div class="col-sm-3">
+          <hr>
+          <br>
+
+          <h3> <strong>Rs. <?php echo number_format($amount,$floating) ?>/-</strong></h3>
+
+        </div>
+        <br>
+        <br>
+        <br>
+
+      </div>
+       <div class="row align-conter-center">
+
+         <div class="col-sm-6">
+         </div>
+         <div class="col-sm-3">
+          <hr>
+          <br>
+
+          <h3> <?php echo $disdesp ?>:</h3>
+
+        </div>
+         <div class="col-sm-3">
+          <hr>
+          <br>
+
+          <h3> <strong>Rs. <?php echo number_format($disamount,$floating) ?>/-</strong></h3>
+
+        </div>
+        <br>
+        <br>
+        <br>
+
+      </div>
+
+    <?php } ?>
+
        <div class="row align-conter-center">
 
          <div class="col-sm-8">
@@ -269,7 +340,7 @@ if(isset($_GET['delinv'])){
           <hr>
           <br>
 
-          <h3> Total: <strong>Rs. <?php echo number_format($amount,$floating) ?>/-</strong></h3>
+          <h3> Total: <strong>Rs. <?php echo number_format($tamount,$floating) ?>/-</strong></h3>
 
         </div>
         <br>

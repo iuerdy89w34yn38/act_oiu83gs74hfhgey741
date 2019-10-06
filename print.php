@@ -56,6 +56,10 @@
         }
         else $amount = $dr;
 
+        $tamount = $amount;
+
+
+
 
         ?>
 
@@ -158,6 +162,50 @@
  <?php } } ?>
 
 
+ <?php 
+    $rowsp =mysqli_query($con,"SELECT * FROM journal where (jid='$id') AND (actid=200038 OR actid=200039) LIMIT 1" ) or die(mysqli_error($con));
+    $total=0;
+
+    while($rowp=mysqli_fetch_array($rowsp)){
+
+     $disdesp = $rowp['desp'];
+     $discr = $rowp['cr'];
+     $disdr = $rowp['dr'];
+
+     if($discr==0){
+        $disamount=$disdr;
+     }else{ $disamount=$discr;}
+
+     $tamount=$amount-$disamount;
+
+     ?>
+        <tr><td colspan="4">&nbsp;</td></tr>
+       <tr>
+        <td colspan="2">
+        </td>
+        <td>
+          <p>Gross Total:</p>
+        </td>
+        <td>
+          <p> <strong>Rs. <?php echo number_format($amount,$floating) ?>/-</strong></p>
+        </td>
+
+      </tr>
+       <tr>
+          <td colspan="2"></td>
+         <td>
+
+          <p> <?php echo $disdesp ?>:</p>
+
+        </td>
+        <td>
+          <p> <strong>Rs. <?php echo number_format($disamount,$floating) ?>/-</strong></p>
+        </td>
+      </tr>
+
+    <?php } ?>
+
+
        <?php
        $tdr=0;
        $tcr=0;
@@ -181,7 +229,7 @@
          ?>
                  <tr><td colspan="4">&nbsp;</td></tr>
 
-          <tr>  <td colspan="3" style="text-align: right;"> Total: </td> <td>Rs. <?php echo number_format($amount,$floating) ?>/- </td> </tr>
+          <tr>  <td colspan="3" style="text-align: right;"> Total: </td> <td>Rs. <?php echo number_format($tamount,$floating) ?>/- </td> </tr>
           <tr>  <td colspan="3" style="text-align: right"> Closing Balance: </td> 
           <td> <strong>Rs. <?php if($tbalance===0) echo '0' ; else echo number_format($tbalance,$floating) ?>/-</strong></td> </tr>
 

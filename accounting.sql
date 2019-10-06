@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 30, 2019 at 07:25 AM
+-- Generation Time: Oct 05, 2019 at 03:00 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -47,17 +47,17 @@ CREATE TABLE IF NOT EXISTS `acts` (
 --
 
 INSERT INTO `acts` (`id`, `typeid`, `type`, `name`, `slug`, `purpose`, `balance`, `nodel`) VALUES
-(200019, 2, 'Revenue', 'Sales Account', 'sales-account', 'income', '0', 1),
-(200018, 10, 'Cost of Goods Sold', 'Purchase Account', 'purchase-account', 'inventory', '0', 1),
-(200016, 5, 'Current Assets', 'Cash in Hands', 'cash-in-hands', 'cash', '0', 1),
+(200019, 2, 'Revenue', 'Sales Account', 'sales-account', 'income', '1503.75', 1),
+(200018, 10, 'Cost of Goods Sold', 'Purchase Account', 'purchase-account', 'inventory', '28710', 1),
+(200016, 5, 'Current Assets', 'Cash in Hands', 'cash-in-hands', 'cash', '49546.25', 1),
 (200021, 5, 'Current Assets', 'Customers', 'customers', 'assets', '0', 1),
 (200022, 3, 'Liability', 'Vendors', 'vendors', 'liabilities', '0', 1),
-(200028, 10, 'Cost of Goods Sold', 'Purchase Return', 'purchase-return', 'inventory', '0', 1),
+(200028, 10, 'Cost of Goods Sold', 'Purchase Return', 'purchase-return', 'inventory', '600', 1),
 (200029, 2, 'Revenue', 'Sales Return', 'sales-return', 'income', '0', 1),
 (200032, 5, 'Current Assets', 'Open Cheque', 'cheque', 'cash', '0', 1),
-(200038, 10, 'Cost of Goods Sold', 'Purchase Discount', 'purchase-discount', 'inventory', '0', 1),
-(200039, 2, 'Revenue', 'Sales Discount', 'sales-discount', 'income', '0', 1),
-(200044, 1, 'Capital', 'Capital Account', 'capital-account', 'capital', '0', 0);
+(200038, 10, 'Cost of Goods Sold', 'Purchase Discount', 'purchase-discount', 'inventory', '56.25', 1),
+(200039, 2, 'Revenue', 'Sales Discount', 'sales-discount', 'income', '3.75', 1),
+(200044, 1, 'Capital', 'Capital Account', 'capital-account', 'capital', '50000', 0);
 
 -- --------------------------------------------------------
 
@@ -902,8 +902,8 @@ INSERT INTO `items` (`id`, `brand`, `name`, `desp`, `price`, `sellprice`, `quant
 (1, '6', 'Water Bottle', '', '0', '0', '0', '1.5', 'Ltr.', 0, 0),
 (2, '7', 'Water Bottle', '', '0', '0', '0', '1', 'Ltr.', 0, 0),
 (6, '7', 'Red Anar', 'Red Cold Drink', '0', '0', '0', '2.25', 'Ltr.', 0, 0),
-(11, '8', 'Khoya ', 'Ice Cream', '0', '0', '0', '100', 'g.', 0, 0),
-(12, '6', 'Nido Bunyad', 'Powder Milk', '0', '0', '0', '500', 'g.', 0, 0);
+(11, '8', 'Khoya ', 'Ice Cream', '185.25', '200', '0', '100', 'g.', 50, 0),
+(12, '6', 'Nido Bunyad', 'Powder Milk', '225.25', '250', '0', '500', 'g.', 80, 0);
 
 -- --------------------------------------------------------
 
@@ -947,7 +947,19 @@ CREATE TABLE IF NOT EXISTS `itemslog` (
   `subtotal` varchar(11) NOT NULL DEFAULT '0',
   `datec` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1004029 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1004035 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `itemslog`
+--
+
+INSERT INTO `itemslog` (`id`, `jid`, `pid`, `type`, `name`, `price`, `quantity`, `weight`, `subtotal`, `datec`) VALUES
+(1004029, 2005035, 11, 'in', 'Khoya ', '90.25', '15', '0', '2553.75', '2019-10-01'),
+(1004030, 2005035, 12, 'in', 'Nido Bunyad', '120', '10', '0', '2553.75', '2019-10-01'),
+(1004031, 2005036, 11, 'out', 'Khoya ', '100.25', '15', '0', '1503.75', '2019-10-05'),
+(1004032, 2005037, 12, 'preturn', 'Nido Bunyad', '120', '5', '0', '600', '2019-10-05'),
+(1004033, 2005038, 11, 'in', 'Khoya ', '185.25', '50', '0', '26156.25', '2019-10-05'),
+(1004034, 2005038, 12, 'in', 'Nido Bunyad', '225.25', '75', '0', '26156.25', '2019-10-05');
 
 -- --------------------------------------------------------
 
@@ -992,7 +1004,33 @@ CREATE TABLE IF NOT EXISTS `journal` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `journal`
+--
+
+INSERT INTO `journal` (`id`, `jid`, `typeid`, `ref`, `actid`, `desp`, `type`, `dr`, `cr`, `balance`, `datec`, `dateup`) VALUES
+(1, 2005034, 1, 0, 200044, 'Capital Account', 'Capital', '0', '50000', 50000, '2019-10-01', '2019-10-01'),
+(2, 2005034, 5, 0, 200016, 'Cash is Coming in Cash in Hands', 'Current Assets', '50000', '0', 50000, '2019-10-01', '2019-10-01'),
+(3, 2005035, 5, 0, 200016, 'Goods are Purchased from OpenVend Against Invoice No. 987987 Through Cash in Hands', 'Current Assets', '0', '2553.75', 47446, '2019-10-01', '2019-10-01'),
+(4, 2005035, 200022, 1, 400009, 'Cash in Hands Purchase', 'Vendors', '2553.75', '0', 0, '2019-10-01', '2019-10-01'),
+(5, 2005035, 200022, 1, 400009, 'Goods are Purchased from OpenVend Against Invoice No. 987987 Through Cash in Hands', 'Vendors', '0', '2553.75', 0, '2019-10-01', '2019-10-01'),
+(6, 2005035, 10, 0, 200018, 'Cash in Hands Purchase', 'Cost of Goods Sold', '2553.75', '0', 2554, '2019-10-01', '2019-10-01'),
+(7, 2005036, 2, 0, 200019, 'Goods Sold are sold to Test Customer - Sales Account Credited', 'Revenue', '0', '1503.75', 1504, '2019-10-05', '2019-10-05'),
+(8, 2005036, 2, 1, 200039, 'Discount Given', 'Revenue', '3.75', '0', 4, '2019-10-05', '2019-10-05'),
+(9, 2005036, 200021, 1, 600005, 'Discount Given to Test Customer', 'Customers', '3.75', '0', 0, '2019-10-05', '2019-10-05'),
+(10, 2005036, 200021, 1, 600005, 'Payment Received to Cash in Hands', 'Customers', '1500', '0', 0, '2019-10-05', '2019-10-05'),
+(11, 2005036, 200021, 1, 600005, 'Goods Sold are sold to Test Customer - Sales Account Credited', 'Customers', '0', '1503.75', 0, '2019-10-05', '2019-10-05'),
+(12, 2005036, 2, 0, 200039, 'Discount Given', 'Revenue', '3.75', '0', 4, '2019-10-05', '2019-10-05'),
+(13, 2005036, 5, 0, 200016, 'Payment Received to Cash in Hands', 'Current Assets', '1500', '0', 48946, '2019-10-05', '2019-10-05'),
+(14, 2005037, 10, 0, 200028, 'Purchase Returned from OpenVend to Cash in Hands due to  for Invoice 2005035', 'Cost of Goods Sold', '0', '600', 600, '2019-10-05', '2019-10-05'),
+(15, 2005037, 200022, 1, 400009, 'Purchase Return Purchase Returned', 'Vendors', '600', '0', 0, '2019-10-05', '2019-10-05'),
+(16, 2005037, 200022, 1, 400009, 'Purchase Returned from OpenVend to Cash in Hands due to  for Invoice 2005035', 'Vendors', '0', '600', 0, '2019-10-05', '2019-10-05'),
+(17, 2005037, 5, 0, 200016, 'Purchase Return Purchase Returned', 'Current Assets', '600', '0', 49546, '2019-10-05', '2019-10-05'),
+(18, 2005038, 10, 0, 200038, 'Discount Recieved', 'Cost of Goods Sold', '0', '56.25', 56, '2019-10-05', '2019-10-05'),
+(19, 2005038, 200022, 0, 400009, 'Goods are Purchased from OpenVend on Credit Against Invoice No. 2284FFT4', 'Vendors', '0', '26100', 26100, '2019-10-05', '2019-10-05'),
+(20, 2005038, 10, 0, 200018, 'Purchase Account', 'Cost of Goods Sold', '26156.25', '0', 28710, '2019-10-05', '2019-10-05');
 
 -- --------------------------------------------------------
 
@@ -1020,13 +1058,18 @@ CREATE TABLE IF NOT EXISTS `loginlog` (
   `dbr` text NOT NULL,
   `dres` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loginlog`
 --
 
 INSERT INTO `loginlog` (`id`, `user`, `pass`, `atmp`, `datec`, `timec`, `dt`, `dip`, `diph`, `dorg`, `dcount`, `dcountry`, `dcity`, `dos`, `dbrow`, `dbr`, `dres`) VALUES
+(23, 'hamza56', 'admin990', 1, '2019-10-02', '04:03 pm', 'Computer', '39.45.63.202', '', 'AS45595 Pakistan Telecom Company Limited', 'PK', 'Pakistan', 'Sialkot', 'Windows 10', 'Chrome 75.0.3770.100', 'PC / Laptop', '1366x768'),
+(22, 'hamza56', 'admin990', 1, '2019-10-01', '02:43 pm', 'Computer', '', '', '', '', '', '', 'Windows 10', 'Chrome 75.0.3770.100', 'PC / Laptop', '1366x768'),
+(21, 'hamza56', 'admin990', 1, '2019-10-01', '02:43 pm', 'Computer', '', '', '', '', '', '', 'Windows 10', 'Chrome 75.0.3770.100', 'PC / Laptop', '1366x768'),
+(20, 'hamza56', 'admin990', 1, '2019-09-30', '05:48 pm', 'Computer', '39.45.235.57', '', 'AS45595 Pakistan Telecom Company Limited', 'PK', 'Pakistan', 'Lahore', 'Windows 10', 'Chrome 75.0.3770.100', 'PC / Laptop', '1366x768'),
+(19, 'hamza56', 'admin990', 1, '2019-09-30', '05:45 pm', 'Computer', '39.45.235.57', '', 'AS45595 Pakistan Telecom Company Limited', 'PK', 'Pakistan', 'Lahore', 'Windows 10', 'Chrome 75.0.3770.100', 'PC / Laptop', '1366x768'),
 (18, 'hamza56', 'admin990', 1, '2019-09-29', '11:56 am', 'Computer', '39.45.40.218', '', 'AS45595 Pakistan Telecom Company Limited', 'PK', 'Pakistan', 'Lahore', 'Windows 10', 'Chrome 75.0.3770.100', 'PC / Laptop', '1366x768'),
 (17, 'hamza56', 'admin990', 1, '2019-09-28', '05:31 pm', 'Computer', '39.45.5.252', '', 'AS45595 Pakistan Telecom Company Limited', 'PK', 'Pakistan', 'Sialkot', 'Windows 10', 'Chrome 75.0.3770.100', 'PC / Laptop', '1366x768');
 
@@ -1040,9 +1083,22 @@ DROP TABLE IF EXISTS `msgs`;
 CREATE TABLE IF NOT EXISTS `msgs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `msg` text NOT NULL,
+  `datec` date NOT NULL,
   `resolve` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `msgs`
+--
+
+INSERT INTO `msgs` (`id`, `msg`, `datec`, `resolve`) VALUES
+(12, ' Balacnce sheet is not showing the opening balance and is also not balanced discount casue the issue.', '2019-10-02', 0),
+(11, ' Discount add while printing the invoice.', '2019-10-02', 0),
+(13, 'Products Details to be remove when general transaction print on invoice .\r\n', '2019-10-05', 1),
+(15, ' Add Inovice Type on Inovice Sale / Purchase / Cash\r\n', '2019-10-05', 1),
+(16, ' Dashboard Dynamic Refresh', '2019-10-05', 1),
+(17, ' Success Message Tooltip.', '2019-10-05', 0);
 
 -- --------------------------------------------------------
 
@@ -1085,7 +1141,18 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `datec` date NOT NULL,
   `dateup` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2005034 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2005039 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`id`, `desp`, `invoiceno`, `invoicepic`, `chequeno`, `chequeamt`, `dract`, `cract`, `dr`, `cr`, `datec`, `dateup`) VALUES
+(2005034, 'Cash is Desposited from Capital Account to Cash in Hands', '0', NULL, '0', 0, 200044, 200016, '50000', '0', '2019-10-01', '2019-10-01'),
+(2005035, 'Goods are Purchased from OpenVend Against Invoice No. 987987 Through Cash in Hands', '987987', 'd07852b7406cef62e625e67306e94b691.png', '0', 0, 200018, 200016, '0', '2553.75', '2019-10-01', '2019-10-01'),
+(2005036, 'Goods Sold are sold to Test Customer - through Cash in Hands', '0', NULL, '0', 0, 200016, 200019, '1503.75', '0', '2019-10-05', '2019-10-05'),
+(2005037, 'Purchase Returned from OpenVend to Cash in Hands due to  for Invoice 2005035', '2005035', NULL, '0', 0, 200016, 200028, '0', '600', '2019-10-05', '2019-10-05'),
+(2005038, 'Goods are Purchased from OpenVend on Credit Against Invoice No. 2284FFT4', '2284FFT4', 'e9b8c3e98b1bc467f25fb0012f345a531.png', '0', 0, 200018, 400009, '26156.25', '26156.25', '2019-10-05', '2019-10-05');
 
 -- --------------------------------------------------------
 
@@ -1140,7 +1207,7 @@ CREATE TABLE IF NOT EXISTS `vendors` (
 --
 
 INSERT INTO `vendors` (`id`, `typeid`, `type`, `name`, `mobile`, `company`, `phone`, `email`, `address`, `city`, `country`, `balance`, `dated`, `del`) VALUES
-(400009, 200022, 'Vendors', 'OpenVend', '0304534343258', 'OpenComp', '05634323487', 'open@vend.com', 'Rachna Complex', 'Gujranwala', 'Pakistan', 0, '2019-09-28', 0),
+(400009, 200022, 'Vendors', 'OpenVend', '0304534343258', 'OpenComp', '05634323487', 'open@vend.com', 'Rachna Complex', 'Gujranwala', 'Pakistan', 26100, '2019-09-28', 0),
 (400008, 200022, 'Vendors', 'Test Vendor', '03232313233', 'Vend Comp', '04234224242', 'vend@email.com', 'Al Rehman Garden', 'Lahore', 'Pakistan', 0, '2019-09-28', 0);
 COMMIT;
 
