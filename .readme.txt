@@ -1,0 +1,20 @@
+---------------------- Changelog V 1.1 Build 110  -----------------------
+
+----Resolved Issues:							----Known Issues:
+	
+	> Stock List View								> Balance Sheet not Balanced
+	>												> Vendors Account Receiveables
+
+	
+
+
+----Updates & Changes:							----Recomendations:
+
+	> Dashboard Automatic Refresh					> Self Update 
+	> Todo Notes									> Proper Documentation
+
+
+
+
+
+	>												>

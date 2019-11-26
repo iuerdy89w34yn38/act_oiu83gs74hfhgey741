@@ -290,7 +290,7 @@ if(isset($_POST['del'])){
                       $total=$tcr-$tdr-$tpdr; 
                       $gtotal=$gtotal+$total;
 
-                      $value=$gtotal*$sell;
+                      $value=$gtotal*$price;
                       $tvalue=$tvalue+$value;
 
                       ?>

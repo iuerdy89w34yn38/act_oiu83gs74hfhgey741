@@ -264,16 +264,42 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 						<hr>
 					</div>
 
-						<?php
 
-						$rows =mysqli_query($con,"SELECT * FROM customers WHERE balance>0 ORDER BY name" ) or die(mysqli_error($con));
 
-						while($row=mysqli_fetch_array($rows)){
+			<?php
 
-							$bsname = $row['name'];
-							$bsbalance = $row['balance'];
-							$bsar=$bsar+$bsbalance;
-						}
+			$bsar=0;
+            $allrows =mysqli_query($con,"SELECT id,name,address,phone FROM customers ORDER BY name" ) or die(mysqli_error($con));
+            while($allrow=mysqli_fetch_array($allrows)){
+             $actid = $allrow['id'];
+             $actname = $allrow['name'];
+             $address = $allrow['address'];
+             $phone = $allrow['phone'];
+             
+             $tcr=0;
+             $tdr=0;
+             $total=0;
+             $rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid " ) or die(mysqli_error($con));
+
+             while($row=mysqli_fetch_array($rows)){
+               $cr = $row['cr'];
+               $tcr=$tcr+$cr;
+             } 
+             $rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid " ) or die(mysqli_error($con));
+             
+             while($row=mysqli_fetch_array($rows)){
+               $dr = $row['dr'];
+               $tdr=$tdr+$dr;
+             } 
+
+             $total=$tdr-$tcr;
+             if($total>0){
+             $bsar=$bsar+$total;
+		         
+		         } 
+		     }
+     
+						
 							?>
 							<div class="row">
 								<div class="col-sm-8">
@@ -709,6 +735,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 						$netcogs = $cogs-$cogsr-$cogsd;
+						$netcogs = 0;
 
 
 								
@@ -740,7 +767,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 						$gp=$netsales-$netcogs;
 						$netprofit=$gp-$expenses;
-						if ($netprofit<0) $netprofit=0;
 						?>
 
 
@@ -784,7 +810,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 					</div>
 					<div class="col-sm-2">
-						<center><h4  style="font-weight: 600"><?php echo number_format($bsat)?></h4></center>
+						<center><h4  style="font-weight: 600"><?php echo number_format($bsat,$floating)?></h4></center>
 
 
 					</div>

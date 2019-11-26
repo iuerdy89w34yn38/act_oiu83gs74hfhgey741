@@ -89,7 +89,7 @@ if(isset($_GET['delinv'])){
          $dract = $row['dract'];
          $cract = $row['cract'];
 
-         if($dract=='200016'){
+         if($dract=='200016' OR ($dract > 600000 && $dract < 800000) ){
             $typeid=$cract;
          }else{ $typeid=$dract; }
 
@@ -484,9 +484,10 @@ if(isset($_GET['delinv'])){
          $dract = $row['dract'];
          $cract = $row['cract'];
 
-         if($dract=='200016'){
+         if($dract=='200016' OR ($dract > 600000 && $dract < 800000) ){
             $typeid=$cract;
          }else{ $typeid=$dract; }
+
 
          $rowsx =mysqli_query($con,"SELECT name FROM acts  where id='$typeid' " ) or die(mysqli_error($con));
          while($rowx=mysqli_fetch_array($rowsx)){

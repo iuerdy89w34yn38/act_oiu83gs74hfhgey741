@@ -569,7 +569,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
              <hr>
 
            <?php
-
             $vendpay=0;
             $allrows =mysqli_query($con,"SELECT id,name,address,phone FROM customers ORDER BY name" ) or die(mysqli_error($con));
             while($allrow=mysqli_fetch_array($allrows)){

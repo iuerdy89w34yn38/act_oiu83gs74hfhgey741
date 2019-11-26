@@ -1,5 +1,0 @@
-Software Version: 0.9 
-
-Before Ammendments of:
-
-Edit / Delete Invoice

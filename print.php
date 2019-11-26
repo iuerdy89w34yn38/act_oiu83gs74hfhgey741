@@ -36,7 +36,7 @@
          $cract = $row['cract'];
 
 
-         if($dract=='200016'){
+         if($dract=='200016' OR ($dract > 600000 && $dract < 800000) ){
             $typeid=$cract;
          }else{ $typeid=$dract; }
 
@@ -107,7 +107,7 @@
                  ?>
                  <tr><td colspan="4">&nbsp;</td></tr>
           <tr>
-             <td colspan="1"> ID: <?php echo $actid ?>  </td><td colspan="1"> Address: <?php echo $dcity ?> </td>
+             <td colspan="2"> ID: <?php echo $actid ?>  </td><td colspan="2"> Address: <?php echo $dcity ?> </td>
           </tr><tr>
                 <td colspan="2"> Name: <?php echo $dname ?>  </td> <td colspan="2"> Phone: <?php echo $dmobile ?> </td>
           </tr>
