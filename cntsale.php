@@ -160,7 +160,7 @@
 
     }
 
-    $desp='Goods Sold to '.$destname.' Counter Sale';
+    $desp='Sale Account (Counter Sale) ';
 
 
     $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$srcid','$desp','$srctype','$srctypeid','$srcbalance','$aamount','$datec','$dateup')")or die( mysqli_error($con) );
@@ -174,7 +174,8 @@
     $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,cr,datec,dateup)VALUES ('$jid','$discid','$desp','$disctype','$disctypeid','$discbalance','$discount','$datec','$dateup')")or die( mysqli_error($con) ); 
     }
 
-    $desp='Counter Sale ';
+    $desp='Goods Sold to '.$destname.' Counter Sale';
+
 
     $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 

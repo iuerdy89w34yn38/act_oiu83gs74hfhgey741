@@ -1,6 +1,6 @@
 <?php
 
-EXPORT_DATABASE("localhost","hamzaper_hpsoftware","hamzaper_hpsoftware","hamzaper_axaccounting");
+EXPORT_DATABASE("localhost","root","","accounting");
 /* 
 ##### EXAMPLE #####
    EXPORT_DATABASE("localhost","user","pass","db_name" ); 

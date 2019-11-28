@@ -579,9 +579,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 						$expenses= 0;
 						$gp= 0;
 
-						
-							$gtotal=0;
-							$lmonth = date('Y-m-d', strtotime(' -30 day'));
 							$allrows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =2 AND id!=200029  ORDER BY name" ) or die(mysqli_error($con));
 							while($allrow=mysqli_fetch_array($allrows)){
 								$actid = $allrow['id'];
@@ -591,12 +588,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 								$tdr=0;
 								$total=0;
 
-								$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid   ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$cr = $row['cr'];
 									$tcr=$tcr+$cr;
 								} 
-								$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+								$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid   ORDER BY id desc" ) or die(mysqli_error($con));
 								while($row=mysqli_fetch_array($rows)){
 									$dr = $row['dr'];
 									$tdr=$tdr+$dr;
@@ -615,12 +612,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$tdr=0;
 							$total=0;
 
-							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid   ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$cr = $row['cr'];
 								$tcr=$tcr+$cr;
 							} 
-							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid   ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$dr = $row['dr'];
 								$tdr=$tdr+$dr;
@@ -638,12 +635,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$tdr=0;
 							$total=0;
 
-							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>'$lmonth' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid   AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$cr = $row['cr'];
 								$tcr=$tcr+$cr;
 							} 
-							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>'$lmonth' AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid   AND ref=0  ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$dr = $row['dr'];
 								$tdr=$tdr+$dr;
@@ -652,11 +649,11 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$salesd=$salesd+$balance;
 						}
 
-						
+					
 						$netsales1 = $sales-$salesr-$salesd;
 						$netsales = abs($netsales1);
 
-						
+					
 
 						$allrows =mysqli_query($con,"SELECT * FROM acts WHERE typeid =10 AND id!=200028  ORDER BY name" ) or die(mysqli_error($con));
 						while($allrow=mysqli_fetch_array($allrows)){
@@ -667,12 +664,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$tdr=0;
 							$total=0;
 
-							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid   ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$cr = $row['cr'];
 								$tcr=$tcr+$cr;
 							} 
-							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid   ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$dr = $row['dr'];
 								$tdr=$tdr+$dr;
@@ -692,20 +689,19 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$tdr=0;
 							$total=0;
 
-							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid   ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$cr = $row['cr'];
 								$tcr=$tcr+$cr;
 							} 
-							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid   ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$dr = $row['dr'];
 								$tdr=$tdr+$dr;
 							} 
-							$balance=$tdr-$tcr;	
+							$balance=$tcr-$tdr;	
 							$cogsr=$cogsr+$balance;
 						}
-
 
 
 						$allrows =mysqli_query($con,"SELECT * FROM acts WHERE id=200038  ORDER BY name" ) or die(mysqli_error($con));
@@ -717,12 +713,12 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$tdr=0;
 							$total=0;
 
-							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>'$lmonth' AND ref=0 ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid   AND ref=0 ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$cr = $row['cr'];
 								$tcr=$tcr+$cr;
 							} 
-							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>'$lmonth' AND ref=0 ORDER BY id desc" ) or die(mysqli_error($con));
+							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid   AND ref=0 ORDER BY id desc" ) or die(mysqli_error($con));
 							while($row=mysqli_fetch_array($rows)){
 								$dr = $row['dr'];
 								$tdr=$tdr+$dr;
@@ -735,7 +731,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 
 						$netcogs = $cogs-$cogsr-$cogsd;
-						$netcogs = 0;
 
 
 								
@@ -749,14 +744,14 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$tdr=0;
 
 
-							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
-							while($row=mysqli_fetch_array($rows)){
-								$cr = $row['cr'];
+							$rowsx =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid   ORDER BY id desc" ) or die(mysqli_error($con));
+							while($rowx=mysqli_fetch_array($rowsx)){
+								$cr = $rowx['cr'];
 								$tcr=$tcr+$cr;
 							} 
-							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
-							while($row=mysqli_fetch_array($rows)){
-								$dr = $row['dr'];
+							$rowsx =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid   ORDER BY id desc" ) or die(mysqli_error($con));
+							while($rowx=mysqli_fetch_array($rowsx)){
+								$dr = $rowx['dr'];
 								$tdr=$tdr+$dr;
 							} 
 							$balance=$tdr-$tcr;	
@@ -767,6 +762,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 						$gp=$netsales-$netcogs;
 						$netprofit=$gp-$expenses;
+						
 						?>
 
 

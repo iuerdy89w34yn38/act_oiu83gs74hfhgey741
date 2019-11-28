@@ -7,8 +7,6 @@
 <?php include"include/head.php" ?>
 
 
-
-
 <title>Profit Loss Statement - <?php echo $comp_name ?>  </title>
 
 
@@ -109,7 +107,6 @@ table{
 									$sales=$sales+$balance;
 								}
 							
-
 							$allrows =mysqli_query($con,"SELECT * FROM acts WHERE id=200029  ORDER BY name" ) or die(mysqli_error($con));
 							while($allrow=mysqli_fetch_array($allrows)){
 								$actid = $allrow['id'];
@@ -155,7 +152,6 @@ table{
 								$balance=$tcr-$tdr;	
 								$salesd=$salesd+$balance;
 							}
-
 							
 							$netsales = $sales-$salesr-$salesd;
 
@@ -250,14 +246,14 @@ table{
 								$tdr=0;
 
 
-								$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
-								while($row=mysqli_fetch_array($rows)){
-									$cr = $row['cr'];
+								$rowsx =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+								while($rowx=mysqli_fetch_array($rowsx)){
+									$cr = $rowx['cr'];
 									$tcr=$tcr+$cr;
 								} 
-								$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
-								while($row=mysqli_fetch_array($rows)){
-									$dr = $row['dr'];
+								$rowsx =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>='$dates' AND datec<='$datee'  ORDER BY id desc" ) or die(mysqli_error($con));
+								while($rowx=mysqli_fetch_array($rowsx)){
+									$dr = $rowx['dr'];
 									$tdr=$tdr+$dr;
 								} 
 								$balance=$tdr-$tcr;	

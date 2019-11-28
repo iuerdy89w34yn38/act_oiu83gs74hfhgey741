@@ -1,1 +1,1 @@
-<?php	$con=mysqli_connect("localhost","hamzaper_hpsoftware","hamzaper_hpsoftware","hamzaper_axaccounting")or die(mysql_error());?> 
+<?php	$con=mysqli_connect("localhost","root","","accounting")or die(mysql_error());?> 

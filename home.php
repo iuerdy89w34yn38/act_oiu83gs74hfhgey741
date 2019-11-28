@@ -46,6 +46,10 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 						$salesr = 0;
 						$salesd = 0;
 						$netsales = 0;
+						$pur = 0;
+						$purret = 0;
+						$purd = 0;
+						$netpur = 0;
 						$cogs= 0;
 						$cogsr= 0;
 						$cogsd= 0;
@@ -181,7 +185,6 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 						}
 
 
-
 						$allrows =mysqli_query($con,"SELECT * FROM acts WHERE id=200038  ORDER BY name" ) or die(mysqli_error($con));
 						while($allrow=mysqli_fetch_array($allrows)){
 							$actid = $allrow['id'];
@@ -222,14 +225,14 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 							$tdr=0;
 
 
-							$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
-							while($row=mysqli_fetch_array($rows)){
-								$cr = $row['cr'];
+							$rowsx =mysqli_query($con,"SELECT cr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							while($rowx=mysqli_fetch_array($rowsx)){
+								$cr = $rowx['cr'];
 								$tcr=$tcr+$cr;
 							} 
-							$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
-							while($row=mysqli_fetch_array($rows)){
-								$dr = $row['dr'];
+							$rowsx =mysqli_query($con,"SELECT dr FROM journal WHERE actid=$actid AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+							while($rowx=mysqli_fetch_array($rowsx)){
+								$dr = $rowx['dr'];
 								$tdr=$tdr+$dr;
 							} 
 							$balance=$tdr-$tcr;	
@@ -460,11 +463,11 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 		$sales=$sales+$cr;
 	} 
 
-	$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=200029 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
+	$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=200029 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
 	$salesr=0;
 	while($row=mysqli_fetch_array($rows)){
 
-		$dr = $row['dr'];
+		$dr = $row['cr'];
 		$salesr=$salesr+$dr;
 	} 
 
@@ -495,22 +498,22 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 	<?php 
 
 	$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=200018 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
-	$sales=0;
+	$pur=0;
 	while($row=mysqli_fetch_array($rows)){
 
 		$dr = $row['dr'];
-		$sales=$sales+$dr;
+		$pur=$pur+$dr;
 	} 
 
 	$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=200028 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
-	$salesr=0;
+	$purret=0;
 	while($row=mysqli_fetch_array($rows)){
 
 		$cr = $row['cr'];
-		$salesr=$salesr+$cr;
+		$purret=$purret+$cr;
 	} 
 
-	$netsales=$sales-$salesr;
+	$netpur=$pur-$purret;
 
 	?>
 	<div class="card pull-up">
@@ -523,7 +526,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 						</h6>
 						<br>
-						<h3>Rs.<?php echo number_format($netsales,$floating) ?>/-</h3>
+						<h3>Rs.<?php echo number_format($netpur,$floating) ?>/-</h3>
 					</div>
 					<div class="align-self-center">
 						<i class="la la-industry warning font-large-2 float-right"></i>
@@ -762,24 +765,24 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 		</div>
 
 		<?php 
-
+		$netpur=0;
 		$rows =mysqli_query($con,"SELECT dr FROM journal WHERE actid=200018 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
-		$sales=0;
+		$pur=0;
 		while($row=mysqli_fetch_array($rows)){
 
 			$dr = $row['dr'];
-			$sales=$sales+$dr;
+			$pur=$pur+$dr;
 		} 
 
 		$rows =mysqli_query($con,"SELECT cr FROM journal WHERE actid=200028 AND datec>'$lmonth' ORDER BY id desc" ) or die(mysqli_error($con));
-		$salesr=0;
+		$purret=0;
 		while($row=mysqli_fetch_array($rows)){
 
 			$cr = $row['cr'];
-			$salesr=$salesr+$cr;
+			$purret=$purret+$cr;
 		} 
 
-		$netsales=$sales-$salesr;
+		$netpur=$purret-$purret;
 
 		?>
 		<div class="card pull-up">

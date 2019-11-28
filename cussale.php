@@ -187,7 +187,6 @@
 
       $desp='Goods are Sold to '.$destname.' on Credit';
       
-
       $data=mysqli_query($con,"INSERT INTO journal (jid,actid,desp,type,typeid,balance,dr,datec,dateup)VALUES ('$jid','$destid','$desp','$desttype','$desttypeid','$destbalance','$amount','$datec','$dateup')")or die( mysqli_error($con) );
 
 
