@@ -158,6 +158,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
                 <tr>
                 <td>Date</td>
+                <td>Type</td>
                 <td>Invoice</td>
                 <td>Description</td>
                 <td>Debit</td>
@@ -181,8 +182,17 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                   $dr=$row['dr'];
                   $cr=$row['cr']; 
                   $datec=$row['datec']; 
+                  $typeid=$row['typeid']; 
                   $tdr=$tdr+$dr;
                   $tcr=$tcr+$cr;
+
+
+
+         $rowsx =mysqli_query($con,"SELECT name FROM act_t  where id='$typeid' " ) or die(mysqli_error($con));
+         while($rowx=mysqli_fetch_array($rowsx)){
+
+         $typename = $rowx['name'];
+         }
 
                   $time = strtotime($datec);
                   $mydate = date("m/d/Y", $time);
@@ -192,12 +202,14 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
                   ?>
                     <tr>
                       <td><?php echo $mydate ?></td>
+                      <td><?php echo $typename ?></td>
                       <td><?php echo $jid ?></td>
                       <td>  <a href="viewpay.php?id=<?php echo $jid ?>" target="blank"><?php echo $desp ?></a></td>
                       <td><?php echo number_format($dr,$floating) ?></td>
                       <td><?php echo number_format($cr,$floating) ?></td>
                       <td><?php echo number_format($tbalance,$floating); ?></td>
                     </tr>
+
 
                     <?php } ?>
 

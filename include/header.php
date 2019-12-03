@@ -36,14 +36,15 @@
 
                   <?php if($notescount>0) { ?> <span class="topbadge"><?php echo $notescount ?></span> <?php } ?>
               </a>
-              <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i> Edit Profile</a>
+              <div class="dropdown-menu dropdown-menu-right">
+
                 <a class="dropdown-item" href="notes.php"><i class="ft-list"></i> Notes
                   <?php if($notescount>0) { ?> <span class="mybadge"><?php echo $notescount ?></span> <?php } ?>
 
                  </a>
                 
-                <a class="dropdown-item" href="reset.php"><i class="ft-check-square"></i> Reset</a>
-                <a class="dropdown-item" href="settings.php"><i class="ft-settings"></i> Settings</a>
+                <a class="dropdown-item" href="update.php"><i class="ft-check-square"></i>Update</a>
+                <a class="dropdown-item" href="settings.php"><i class="ft-settings"></i>Settings</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="logout.php"><i class="ft-power"></i> Logout</a>
               </div>
             </li>

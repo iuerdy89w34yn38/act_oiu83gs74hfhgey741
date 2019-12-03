@@ -126,7 +126,7 @@ table{
 									$dr = $row['dr'];
 									$tdr=$tdr+$dr;
 								} 
-								$balance=$tcr-$tdr;	
+								$balance=$tdr-$tcr;	
 								$salesr=$salesr+$balance;
 							}
 
@@ -279,7 +279,7 @@ table{
 
 									<tr>
 										<td>Sales Returns:</td>
-										<td><?php echo $salesr ?></td>
+										<td> -<?php echo $salesr ?></td>
 									</tr>
 
 									<tr>

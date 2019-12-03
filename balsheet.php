@@ -598,7 +598,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 									$dr = $row['dr'];
 									$tdr=$tdr+$dr;
 								} 
-								$balance=$tdr-$tcr;	
+								$balance=$tcr-$tdr;	
 								$sales=$sales+$balance;
 							}
 						
@@ -650,8 +650,8 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 						}
 
 					
-						$netsales1 = $sales-$salesr-$salesd;
-						$netsales = abs($netsales1);
+						$netsales = $sales-$salesr-$salesd;
+						//$netsales = abs($netsales1);
 
 					
 

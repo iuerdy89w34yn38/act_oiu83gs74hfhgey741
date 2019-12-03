@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 03, 2019 at 04:19 AM
+-- Generation Time: Dec 03, 2019 at 07:07 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `acts`
 --
 
-DROP TABLE IF EXISTS `acts`;
 CREATE TABLE IF NOT EXISTS `acts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `typeid` int(11) NOT NULL DEFAULT '0',
@@ -48,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `acts` (
 -- Table structure for table `act_t`
 --
 
-DROP TABLE IF EXISTS `act_t`;
 CREATE TABLE IF NOT EXISTS `act_t` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(20) DEFAULT NULL,
@@ -64,7 +62,6 @@ CREATE TABLE IF NOT EXISTS `act_t` (
 -- Table structure for table `cities`
 --
 
-DROP TABLE IF EXISTS `cities`;
 CREATE TABLE IF NOT EXISTS `cities` (
   `ctval` int(11) NOT NULL AUTO_INCREMENT,
   `city` varchar(22) NOT NULL,
@@ -77,7 +74,6 @@ CREATE TABLE IF NOT EXISTS `cities` (
 -- Table structure for table `color`
 --
 
-DROP TABLE IF EXISTS `color`;
 CREATE TABLE IF NOT EXISTS `color` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
@@ -93,7 +89,6 @@ CREATE TABLE IF NOT EXISTS `color` (
 -- Table structure for table `company`
 --
 
-DROP TABLE IF EXISTS `company`;
 CREATE TABLE IF NOT EXISTS `company` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `comp_name` text NOT NULL,
@@ -113,7 +108,6 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- Table structure for table `countries`
 --
 
-DROP TABLE IF EXISTS `countries`;
 CREATE TABLE IF NOT EXISTS `countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `country` text NOT NULL,
@@ -126,7 +120,6 @@ CREATE TABLE IF NOT EXISTS `countries` (
 -- Table structure for table `customers`
 --
 
-DROP TABLE IF EXISTS `customers`;
 CREATE TABLE IF NOT EXISTS `customers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `typeid` int(11) NOT NULL DEFAULT '0',
@@ -151,7 +144,6 @@ CREATE TABLE IF NOT EXISTS `customers` (
 -- Table structure for table `items`
 --
 
-DROP TABLE IF EXISTS `items`;
 CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `brand` varchar(40) NOT NULL,
@@ -173,7 +165,6 @@ CREATE TABLE IF NOT EXISTS `items` (
 -- Table structure for table `itemsb`
 --
 
-DROP TABLE IF EXISTS `itemsb`;
 CREATE TABLE IF NOT EXISTS `itemsb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
@@ -186,7 +177,6 @@ CREATE TABLE IF NOT EXISTS `itemsb` (
 -- Table structure for table `itemslog`
 --
 
-DROP TABLE IF EXISTS `itemslog`;
 CREATE TABLE IF NOT EXISTS `itemslog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jid` int(11) NOT NULL,
@@ -207,7 +197,6 @@ CREATE TABLE IF NOT EXISTS `itemslog` (
 -- Table structure for table `itemu`
 --
 
-DROP TABLE IF EXISTS `itemu`;
 CREATE TABLE IF NOT EXISTS `itemu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
@@ -220,7 +209,6 @@ CREATE TABLE IF NOT EXISTS `itemu` (
 -- Table structure for table `journal`
 --
 
-DROP TABLE IF EXISTS `journal`;
 CREATE TABLE IF NOT EXISTS `journal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jid` int(11) NOT NULL,
@@ -243,7 +231,6 @@ CREATE TABLE IF NOT EXISTS `journal` (
 -- Table structure for table `loginlog`
 --
 
-DROP TABLE IF EXISTS `loginlog`;
 CREATE TABLE IF NOT EXISTS `loginlog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` text NOT NULL,
@@ -271,7 +258,6 @@ CREATE TABLE IF NOT EXISTS `loginlog` (
 -- Table structure for table `msgs`
 --
 
-DROP TABLE IF EXISTS `msgs`;
 CREATE TABLE IF NOT EXISTS `msgs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `msg` text NOT NULL,
@@ -283,10 +269,23 @@ CREATE TABLE IF NOT EXISTS `msgs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `software`
+--
+
+CREATE TABLE IF NOT EXISTS `software` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ver` int(11) NOT NULL,
+  `api` text NOT NULL,
+  `upver` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stats`
 --
 
-DROP TABLE IF EXISTS `stats`;
 CREATE TABLE IF NOT EXISTS `stats` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `capital` int(11) NOT NULL,
@@ -299,7 +298,6 @@ CREATE TABLE IF NOT EXISTS `stats` (
 -- Table structure for table `transaction`
 --
 
-DROP TABLE IF EXISTS `transaction`;
 CREATE TABLE IF NOT EXISTS `transaction` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `desp` text NOT NULL,
@@ -322,7 +320,6 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
@@ -338,7 +335,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Table structure for table `vendors`
 --
 
-DROP TABLE IF EXISTS `vendors`;
 CREATE TABLE IF NOT EXISTS `vendors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `typeid` int(11) NOT NULL DEFAULT '0',

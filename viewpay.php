@@ -27,6 +27,7 @@ if(isset($_GET['delinv'])){
   
   $inv=$_GET['delinv'];
 
+
   $data=mysqli_query($con,"DELETE FROM transaction where id = $inv")or die( mysqli_error($con) );
   $data=mysqli_query($con,"DELETE FROM journal where jid = $inv")or die( mysqli_error($con) );
   $data=mysqli_query($con,"DELETE FROM itemslog where jid = $inv")or die( mysqli_error($con) );
@@ -109,7 +110,6 @@ if(isset($_GET['delinv'])){
 
 
         ?>
-
 
 
         <div class="col-sm-12">
